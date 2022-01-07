@@ -1,0 +1,1 @@
+const BASEURL_CUSTOMER = ''
