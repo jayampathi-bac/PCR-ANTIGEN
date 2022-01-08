@@ -4,7 +4,7 @@
 
       <!-- \\ mugshot -->
       <div class="id-card__mugshot">
-        <img src="http://www.travelcontinuously.com/wp-content/uploads/2018/04/empty-avatar.png" id="id-card-mugshot">
+        <img src="https://www.travelcontinuously.com/wp-content/uploads/2018/04/empty-avatar.png" id="id-card-mugshot">
       </div>
       <!-- // mugshot -->
 
@@ -23,7 +23,7 @@
       <div class="id-card__banner">
 
 
-        <img src="http://www.travelcontinuously.com/wp-content/uploads/2018/04/empty-avatar.png" id="id-mugshot">
+        <img src="https://www.travelcontinuously.com/wp-content/uploads/2018/04/empty-avatar.png" id="id-mugshot">
 
 
         <!--       <span class="id-card__banner-text">EXPERIMENT S9.3a</span> -->

@@ -58,7 +58,7 @@ const onSave = async () => {
     let data = {name: name.value, contact_number: contact_number.value, email: email.value, profile_picture_url : profile_picture_url.value}
     let config = {headers: {Authorization: "Bearer " + cookies.get('user').access_token}}
     const res = await axios.put(`${basic_url}/v1/customer`,data, config);
-    console.log("updating response : ",res)
+    // console.log("updating response : ",res)
     if (res.data.success){
       notyf.success('Your changes have been successfully saved!')
       store.dispatch("auth/updateUser", {

@@ -36,7 +36,7 @@ const onSave = async () => {
       let data = {current_password: current_password.value, new_password: new_password.value, contact_number: store.state.auth.user.contact_number}
       let config = {headers: {Authorization: "Bearer " + cookies.get('user').access_token}}
       const res = await axios.put(`${basic_url}/v1/customer/updatePassword`,data, config);
-      console.log("updating password response : ",res)
+      // console.log("updating password response : ",res)
       if (res.data.success){
         notyf.success('Your changes have been successfully saved!')
         isLoading.value = false

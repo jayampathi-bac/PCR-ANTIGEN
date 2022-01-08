@@ -88,12 +88,12 @@ useHead({
             <div class="login-form">
 <!--              contact-->
               <V-Field>
-                <V-Control icon="feather:user">
+                <V-Control icon="feather:phone">
                   <input
                     class="input"
                     type="text"
-                    placeholder="Username"
-                    autocomplete="username"
+                    placeholder="Contact Number"
+                    autocomplete="contact"
                     v-model="userName1"
                   />
                 </V-Control>

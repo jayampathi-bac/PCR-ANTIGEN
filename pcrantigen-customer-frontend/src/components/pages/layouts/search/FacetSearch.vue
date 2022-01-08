@@ -39,7 +39,7 @@ async function getData() {
   const res = await axios
     .get(`${basic_url}/v1/test/${contact}`, {headers: {Authorization: "Bearer " + userToken}})
     .then(response => {
-      console.log("results response : ", response)
+      // console.log("results response : ", response)
       if (response.data.success) {
         result.value = response.data.data
         branch_id.value = response.data.data["branch_id"]
@@ -49,8 +49,7 @@ async function getData() {
         script_image_url.value = response.data.data["script_image_url"]
         user_image_url.value = response.data.data["user_image_url"]
       }
-      console.log("result", result.value)
-
+      // console.log("result", result.value)
     });
   return res;
 }
@@ -60,7 +59,7 @@ onMounted(async () => {
 })
 
 async function generateCard() {
-  console.log("Button clicked");
+  // console.log("Button clicked");
   const canvas = await html2canvas(document.getElementById("generatedIdCard"));
   canvas.style.display = "none";
   document.body.appendChild(canvas);
