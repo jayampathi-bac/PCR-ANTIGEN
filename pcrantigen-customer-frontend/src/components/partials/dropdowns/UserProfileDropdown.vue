@@ -64,7 +64,7 @@
           role="menuitem"
           raised
           fullwidth
-          @click="this.handleLogOut"
+          @click="handleLogOut"
         >
           Logout
         </V-Button>
