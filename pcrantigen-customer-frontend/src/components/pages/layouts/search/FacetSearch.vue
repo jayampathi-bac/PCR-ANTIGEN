@@ -6,8 +6,9 @@ import GeneratedCard from "/@src/components/GeneratedCard.vue";
 import html2canvas from 'html2canvas';
 import IDCardGenerator from "/@src/components/IDCardGenerator.vue";
 import { useCookies } from "vue3-cookies";
-const { cookies } = useCookies();
+import {basic_url} from "/@src/utils/basic_config";
 
+const { cookies } = useCookies();
 
 const store = useStore()
 
@@ -36,7 +37,7 @@ async function getData() {
   let userToken = cookies.get('user').access_token;
   let contact = cookies.get('user').contact;
   const res = await axios
-    .get(`http://localhost:8080/v1/test/${contact}`, {headers: {Authorization: "Bearer " + userToken}})
+    .get(`${basic_url}/v1/test/${contact}`, {headers: {Authorization: "Bearer " + userToken}})
     .then(response => {
       console.log("results response : ", response)
       if (response.data.success) {

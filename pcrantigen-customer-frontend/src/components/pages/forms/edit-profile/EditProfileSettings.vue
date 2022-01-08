@@ -6,6 +6,8 @@ import sleep from '/@src/utils/sleep'
 import axios from "axios";
 import {useStore} from "vuex";
 import { useCookies } from "vue3-cookies";
+import {basic_url} from "/@src/utils/basic_config";
+
 
 const { cookies } = useCookies();
 const notyf = useNotyf()
@@ -33,7 +35,7 @@ const onSave = async () => {
     if (new_password.value === confirm_password.value){
       let data = {current_password: current_password.value, new_password: new_password.value, contact_number: store.state.auth.user.contact_number}
       let config = {headers: {Authorization: "Bearer " + cookies.get('user').access_token}}
-      const res = await axios.put(`http://localhost:8080/v1/customer/updatePassword`,data, config);
+      const res = await axios.put(`${basic_url}/v1/customer/updatePassword`,data, config);
       console.log("updating password response : ",res)
       if (res.data.success){
         notyf.success('Your changes have been successfully saved!')

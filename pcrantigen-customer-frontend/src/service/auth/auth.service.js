@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
-
+import {basic_url} from "../../utils/basic_config";
 
 class AuthService {
     login(user) {
@@ -10,7 +10,7 @@ class AuthService {
       data.set("password",user.password);
       data.set("grant_type","password");
 
-      return axios.post("http://localhost:8080/oauth/token",data,{auth:{username:'pcr',password:'1234'}})
+      return axios.post( `${basic_url}/oauth/token`,data,{auth:{username:'pcr',password:'1234'}})
         .then(response=>{
           // console.log("login response",response)
           if (response.data.access_token){

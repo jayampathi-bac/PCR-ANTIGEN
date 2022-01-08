@@ -3,6 +3,7 @@ import {onMounted, ref} from 'vue'
 import { useRouter } from 'vue-router'
 import { useHead } from '@vueuse/head'
 import useNotyf from '/@src/composable/useNotyf'
+import {basic_url} from "/@src/utils/basic_config";
 
 import { isDark } from '/@src/state/darkModeState'
 import sleep from '/@src/utils/sleep'
@@ -30,7 +31,7 @@ const handleSignup = async () => {
         notif.warning('Please agree to the terms and conditions..!')
       }else{
         axios
-          .post(`http://localhost:8080/v1/customer`, {
+          .post(`${basic_url}/v1/customer`, {
             name: name.value,
             contact_number:contact_number.value,
             email: email.value,

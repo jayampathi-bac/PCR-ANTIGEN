@@ -6,6 +6,7 @@ import sleep from '/@src/utils/sleep'
 import {useStore} from 'vuex'
 import axios from "axios";
 import { useCookies } from "vue3-cookies";
+import {basic_url} from "/@src/utils/basic_config";
 
 const { cookies } = useCookies();
 const store = useStore()
@@ -56,7 +57,7 @@ const onSave = async () => {
   if (name.value && email.value) {
     let data = {name: name.value, contact_number: contact_number.value, email: email.value, profile_picture_url : profile_picture_url.value}
     let config = {headers: {Authorization: "Bearer " + cookies.get('user').access_token}}
-    const res = await axios.put(`http://localhost:8080/v1/customer`,data, config);
+    const res = await axios.put(`${basic_url}/v1/customer`,data, config);
     console.log("updating response : ",res)
     if (res.data.success){
       notyf.success('Your changes have been successfully saved!')
