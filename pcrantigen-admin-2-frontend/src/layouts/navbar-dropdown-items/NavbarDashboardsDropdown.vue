@@ -444,7 +444,7 @@ watch([() => route.fullPath, dropdownElement], () => {
 
               <div class="column-content" data-simplebar="">
                 <RouterLink
-                  :to="{ name: 'sidebar-blank-page-1' }"
+                  :to="{ name: 'sidebar-layouts-dashboard' }"
                   class="dropdown-item is-media"
                 >
                   <div class="icon">
@@ -710,7 +710,7 @@ watch([() => route.fullPath, dropdownElement], () => {
 
               <div class="column-content">
                 <RouterLink
-                  :to="{ name: 'wizard-v1' }"
+                  :to="{ name: 'sidebar-layouts-dashboard' }"
                   class="dropdown-item is-media"
                 >
                   <div class="icon">

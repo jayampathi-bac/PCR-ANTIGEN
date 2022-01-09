@@ -92,7 +92,7 @@ watch(
       @toggle="isMobileSidebarOpen = !isMobileSidebarOpen"
     >
       <template #brand>
-        <RouterLink :to="{ name: 'sidebar-blank-page-1' }" class="navbar-item is-brand">
+        <RouterLink :to="{ name: 'sidebar-layouts-dashboard' }" class="navbar-item is-brand">
           <img src="../../src/assets/jvpd.png" alt=""/>
         </RouterLink>
 
