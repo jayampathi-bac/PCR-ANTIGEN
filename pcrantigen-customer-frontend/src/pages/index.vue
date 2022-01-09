@@ -91,7 +91,9 @@ useHead({
                 <V-Control icon="feather:phone">
                   <input
                     class="input"
-                    type="text"
+                    type="number"
+                    pattern="[0-9]*"
+                    inputmode="numeric"
                     placeholder="Contact Number"
                     autocomplete="contact"
                     v-model="userName1"
