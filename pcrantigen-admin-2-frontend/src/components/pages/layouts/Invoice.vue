@@ -63,7 +63,7 @@ import { popovers } from '/@src/data/users/userPopovers'
           <V-Avatar
             size="large"
             class="is-customer"
-            picture="/demo/photos/brands/airbnb.svg"
+            picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
           />
 
           <div class="meta">

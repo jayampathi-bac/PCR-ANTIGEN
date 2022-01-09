@@ -7,9 +7,9 @@ const getResults = () => {
 
   const resultService = new ResultService();
 
-  const search = (branch_id: string) => {
+  const search = () => {
     console.log("searching Results")
-    resultService.getResults(branch_id).then((result: { data: never[]; }) => {
+    resultService.getResults().then((result: { data: never[]; }) => {
       results.value = result.data;
     }).catch((e: any) => {
       console.log('error: ', e);

@@ -16,28 +16,29 @@ const userName1 = ref(null)
 const ups = ref(null)
 
 const handleLogin = async () => {
-  await router.push({name: 'sidebar-layouts-dashboard'})
-  // if (!isLoading.value) {
-  //   isLoading.value = true
-  //   if (userName1.value && ups.value) {
-  //     store.dispatch("auth/login", {
-  //       username: userName1.value,
-  //       password: ups.value
-  //     }).then(() => {
-  //         isLoading.value = false
-  //         router.push({ name: 'navbar-blank-page-1' })
-  //         notif.success(`Welcome ${store.state.auth.user.name} .!`)
-  //       },
-  //       (error) => {
-  //         notif.warning('Incorrect credentials.! Please try again..!')
-  //         isLoading.value = false
-  //       }
-  //     );
-  //   } else {
-  //     notif.warning("empty fields.!")
-  //     isLoading.value = false
-  //   }
-  // }
+  // await router.push({name: 'sidebar-layouts-dashboard'})
+  if (!isLoading.value) {
+    isLoading.value = true
+    if (userName1.value && ups.value) {
+      store.dispatch("auth/login", {
+        username: userName1.value,
+        password: ups.value
+      }).then(() => {
+          isLoading.value = false
+          router.push({ name: 'sidebar-layouts-dashboard' })
+          // console.log('hrere hrer',store.state.auth.admin1)
+          notif.success(`Welcome ${store.state.auth.admin2.name} .!`)
+        },
+        (error) => {
+          notif.warning('Incorrect credentials.! Please try again..!')
+          isLoading.value = false
+        }
+      );
+    } else {
+      notif.warning("empty fields.!")
+      isLoading.value = false
+    }
+  }
 }
 
 useHead({
@@ -76,15 +77,15 @@ useHead({
     <div class="single-form-wrap">
       <div class="inner-wrap">
         <!--Form Title-->
-        <div class="auth-head">
-          <p>Please sign in to your account</p>
-          <RouterLink :to="{ name: 'auth-signup-3' }">
-            I do not have an account yet
-          </RouterLink>
-        </div>
+<!--        <div class="auth-head">-->
+<!--          <p>Please sign in to your account</p>-->
+<!--          <RouterLink :to="{ name: 'auth-signup' }">-->
+<!--            I do not have an account yet-->
+<!--          </RouterLink>-->
+<!--        </div>-->
 
         <!--Form-->
-        <div class="form-card">
+        <div class="form-card mt-6">
           <form @submit.prevent="handleLogin">
             <div class="login-form">
               <!--              contact-->
@@ -141,7 +142,7 @@ useHead({
           </form>
         </div>
         <RouterLink
-          :to="{ name: 'auth-login-1' }"
+          :to="{ name: 'auth-forget' }"
           class="is-submenu"
         >
           <div class="forgot-link has-text-centered">

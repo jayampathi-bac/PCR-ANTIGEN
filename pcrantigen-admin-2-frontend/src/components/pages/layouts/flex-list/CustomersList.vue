@@ -7,6 +7,10 @@ import useNotyf from '/@src/composable/useNotyf'
 
 import CustomerService from '/@src/service/customerService';
 
+import {useCookies} from "vue3-cookies";
+
+const {cookies} = useCookies();
+
 const customerService = new CustomerService();
 
 const notif = useNotyf()
@@ -52,13 +56,16 @@ const saveCustomerFunc = () => {
           email: email.value,
           contact_number: contact_number.value,
           password: password.value,
-          profile_url: profile_url.value
+          profile_url: profile_url.value,
+          branch_id: cookies.get('admin2').branch_id
         }
         customerService.postCustomer(customer)
           .then(function (response) {
             console.log('response',response)
             if (response.data.data.success){
               notif.success(response.data.data.message)
+              centeredActionsOpen.value = false;
+              search();
             }else{
               notif.warning(response.data.data.message)
             }

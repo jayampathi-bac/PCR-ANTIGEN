@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { useHead } from '@vueuse/head'
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
-import { pageTitle } from '/@src/state/sidebarLayoutState'
+const router = useRouter()
 
-pageTitle.value = 'List View 1'
-useHead({
-  title: 'List View 1 - Sidebar - Vuero',
+onMounted(() => {
+  router.push({
+    name: 'sidebar-layouts-dashboard',
+  })
 })
 </script>
 
 <template>
-  <div class="page-content-inner">
-    <ViewListV1 />
-  </div>
+  <div></div>
 </template>

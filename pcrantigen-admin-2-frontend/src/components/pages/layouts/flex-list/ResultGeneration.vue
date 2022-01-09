@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import {computed, onMounted, ref} from 'vue'
 
-// import SockJS from "sockjs-client";
-// import Stomp from "webstomp-client";
-
 import getResults from '/@src/composable/resultData'
-import CaptureUserImage from "/@src/components/CaptureUserImage.vue";
-import CaptureTestImage from "/@src/components/CaptureTestImage.vue";
+
+import {useCookies} from "vue3-cookies";
+
+const {cookies} = useCookies();
 
 const {search, results, generateResult} = getResults();
 
@@ -57,7 +56,7 @@ const issueResult = (customerID: string) => {
     record_status:'Positive',
     script_image_url:'https://www.testing.com/test.jpg',
     user_image_url:'https://www.testing.com/test.jpg',
-    branch_id:1234
+    branch_id: cookies.get('admin2').branch_id
   })
 }
 
@@ -102,7 +101,7 @@ const received_messages = ref([]);
 // }
 
 onMounted(async () => {
-  search('1');
+  search();
   // connect();
 })
 </script>

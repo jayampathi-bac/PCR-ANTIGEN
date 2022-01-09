@@ -66,7 +66,7 @@
                 <div class="experience-wrapper">
                   <div class="experience-item">
                     <img
-                      src="/demo/photos/brands/airbnb.svg"
+                      src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                       alt=""
                       @error.once="
                         $event.target.src =
@@ -85,7 +85,7 @@
                   </div>
                   <div class="experience-item">
                     <img
-                      src="/demo/photos/brands/facebook.svg"
+                      src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                       alt=""
                       @error.once="
                         $event.target.src =
@@ -104,7 +104,7 @@
                   </div>
                   <div class="experience-item">
                     <img
-                      src="/demo/photos/brands/atlassian.svg"
+                      src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                       alt=""
                       @error.once="
                         $event.target.src =
@@ -123,7 +123,7 @@
                   </div>
                   <div class="experience-item">
                     <img
-                      src="/demo/photos/brands/github.svg"
+                      src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                       alt=""
                       @error.once="
                         $event.target.src =

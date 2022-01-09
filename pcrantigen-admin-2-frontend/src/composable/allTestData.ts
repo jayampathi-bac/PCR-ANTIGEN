@@ -8,9 +8,9 @@ const getAllTests = () => {
 
   const allTestsService = new AllTestsService();
 
-  const searchAllTests = (branch_id: string) => {
+  const searchAllTests = () => {
     console.log("searching Results")
-    allTestsService.getAllTestsByBranch(branch_id).then((result: { data: never[]; }) => {
+    allTestsService.getAllTestsByBranch().then((result: { data: never[]; }) => {
       allTests.value = result.data;
     }).catch((e: any) => {
       console.log('error: ', e);

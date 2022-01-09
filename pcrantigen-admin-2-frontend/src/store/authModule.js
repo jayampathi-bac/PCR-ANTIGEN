@@ -3,28 +3,23 @@ import axios from "axios";
 import { useCookies } from "vue3-cookies";
 
 const { cookies } = useCookies();
-const user = cookies.get('user')
-// const contact = cookies.get('user').contact
-// const user = {
-//   access_token: userToken,
-//   contact:contact
-// };
+const admin2 = cookies.get('admin2')
 
-const initialState = (user)
-    ? { status: { loggedIn: true }, user}
-    : { status: { loggedIn: false }, user: null };
+const initialState = (admin2)
+    ? { status: { loggedIn: true }, admin2}
+    : { status: { loggedIn: false }, admin2: null };
 
 export const authModule = {
     namespaced: true,
     state: initialState,
     actions: {
-        login({ commit }, user) {
-            return AuthService.login(user).then(
+        login({ commit }, admin2) {
+            return AuthService.login(admin2).then(
 
-                user => {
-                    commit('loginSuccess', user);
+              admin2 => {
+                    commit('loginSuccess', admin2);
 
-                    return Promise.resolve(user);
+                    return Promise.resolve(admin2);
                 },
                 error => {
                     commit('loginFailure');
@@ -41,26 +36,26 @@ export const authModule = {
         },
     },
     mutations: {
-        loginSuccess(state, user) {
-            console.log("login Success")
+        loginSuccess(state, admin2) {
+            console.log("login Success",admin2)
             state.status.loggedIn = true;
-            state.user = user;
+            state.admin2 = admin2;
         },
         loginFailure(state) {
             console.log("login Failure")
             state.status.loggedIn = false;
-            state.user = null;
+            state.admin2 = null;
         },
         logout(state) {
             console.log("logout Success")
             state.status.loggedIn = false;
-            state.user = null;
+            state.admin2 = null;
         },
         UpdateUserState(state, data) {
             console.log("UpdateUserState Success")
-            state.user.name = data.name;
-            state.user.email = data.email;
-            state.user.profile_url = data.profile_url;
+            state.admin2.name = data.name;
+            state.admin2.email = data.email;
+            state.admin2.profile_url = data.profile_url;
         }
     }
 };

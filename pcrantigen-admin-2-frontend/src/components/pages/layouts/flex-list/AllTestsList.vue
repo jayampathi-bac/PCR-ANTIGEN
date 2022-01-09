@@ -86,7 +86,7 @@ const searchCustomerByMonth = () => {
 }
 
 onMounted(() => {
-  searchAllTests('1')
+  searchAllTests()
 })
 
 </script>
