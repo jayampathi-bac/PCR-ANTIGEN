@@ -136,11 +136,11 @@
                 size="small"
                 :limit="3"
                 :avatars="[
-                  { picture: '/demo/avatars/7.jpg' },
+                  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
                   { color: 'info', initials: 'JD' },
-                  { picture: '/demo/avatars/12.jpg' },
-                  { picture: '/demo/avatars/12.jpg' },
-                  { picture: '/demo/avatars/12.jpg' },
+                  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
                 ]"
               />
             </div>
@@ -195,7 +195,7 @@
                 size="small"
                 :avatars="[
                   { color: 'success', initials: 'BT' },
-                  { picture: '/demo/avatars/8.jpg' },
+                  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
                 ]"
               />
             </div>
@@ -222,7 +222,7 @@
               <V-AvatarStack
                 class="is-pushed-mobile"
                 size="small"
-                :avatars="[{ picture: '/demo/avatars/13.jpg' }]"
+                :avatars="[{ picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' }]"
               />
             </div>
             <div class="flex-table-cell cell-end" data-th="Actions">

@@ -7,7 +7,7 @@ export const users = [
     role: 'UI/UX Designer',
     bio: 'This is a nice user description that we can use as demo content.',
     medias: {
-      avatar: '/demo/avatars/13.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       badge: '/images/icons/flags/united-states-of-america.svg',
     },
     progress: 65,
@@ -77,7 +77,7 @@ export const users = [
     role: 'Web Developer',
     bio: 'This is a nice user description that we can use as demo content.',
     medias: {
-      avatar: '/demo/avatars/25.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       badge: '/images/icons/stacks/js.svg',
     },
     progress: 58,
@@ -147,7 +147,7 @@ export const users = [
     role: 'Business Analyst',
     bio: 'This is a nice user description that we can use as demo content.',
     medias: {
-      avatar: '/demo/avatars/39.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       badge: '/images/icons/flags/united-states-of-america.svg',
     },
     progress: 28,
@@ -567,7 +567,7 @@ export const users = [
     role: 'Software Engineer',
     bio: 'This is a nice user description that we can use as demo content.',
     medias: {
-      avatar: '/demo/avatars/7.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       badge: '/images/icons/stacks/csharp.svg',
     },
     progress: 78,

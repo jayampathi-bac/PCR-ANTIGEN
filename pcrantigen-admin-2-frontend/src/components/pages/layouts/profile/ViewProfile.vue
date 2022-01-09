@@ -3,7 +3,7 @@
     <div class="profile-header has-text-centered">
       <V-Avatar
         size="xl"
-        picture="/demo/avatars/8.jpg"
+        picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
         badge="/images/icons/flags/united-states-of-america.svg"
       />
 
@@ -219,7 +219,7 @@
                       <V-Avatar size="small" initials="BT" color="warning" />
                       <V-Avatar size="small" picture="/demo/avatars/18.jpg" />
                       <V-Avatar size="small" initials="JD" color="info" />
-                      <V-Avatar size="small" picture="/demo/avatars/7.jpg" />
+                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                       <V-Avatar size="small" initials="38" />
                     </div>
                   </div>
@@ -233,9 +233,9 @@
                       <span>4 years of experience</span>
                     </div>
                     <div class="people">
-                      <V-Avatar size="small" picture="/demo/avatars/21.jpg" />
+                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                       <V-Avatar size="small" initials="AT" color="success" />
-                      <V-Avatar size="small" picture="/demo/avatars/39.jpg" />
+                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                       <V-Avatar size="small" picture="/demo/avatars/23.jpg" />
                       <V-Avatar size="small" initials="27" />
                     </div>
@@ -253,7 +253,7 @@
                       <V-Avatar size="small" picture="/demo/avatars/38.jpg" />
                       <V-Avatar size="small" picture="/demo/avatars/11.jpg" />
                       <V-Avatar size="small" initials="SC" color="h-purple" />
-                      <V-Avatar size="small" picture="/demo/avatars/13.jpg" />
+                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                       <V-Avatar size="small" initials="19" />
                     </div>
                   </div>
@@ -267,10 +267,10 @@
                       <span>10+ years of experience</span>
                     </div>
                     <div class="people">
-                      <V-Avatar size="small" picture="/demo/avatars/21.jpg" />
+                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                       <V-Avatar size="small" initials="SC" color="h-purple" />
                       <V-Avatar size="small" picture="/demo/avatars/5.jpg" />
-                      <V-Avatar size="small" picture="/demo/avatars/7.jpg" />
+                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                       <V-Avatar size="small" initials="31" />
                     </div>
                   </div>
@@ -423,7 +423,7 @@
                   <!--People-->
                   <a href="#" class="people-item">
                     <V-Avatar
-                      picture="/demo/avatars/25.jpg"
+                      picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                       badge="/images/icons/stacks/js.svg"
                     />
 

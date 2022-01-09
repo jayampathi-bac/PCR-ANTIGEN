@@ -136,9 +136,9 @@ import {profitChartOptions} from '/@src/data/dashboards/personal-v1/profitChart'
         <div class="column is-4">
           <div class="dashboard-card is-gauge">
             <div class="people">
-              <V-Avatar picture="/demo/avatars/21.jpg"/>
+              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"/>
               <V-Avatar initials="SC" color="h-purple"/>
-              <V-Avatar picture="/demo/avatars/39.jpg"/>
+              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"/>
             </div>
             <apexchart
               :height="teamGaugeOptions.chart.height"
@@ -167,9 +167,9 @@ import {profitChartOptions} from '/@src/data/dashboards/personal-v1/profitChart'
         <div class="column is-4">
           <div class="dashboard-card is-gauge">
             <div class="people">
-              <V-Avatar picture="/demo/avatars/21.jpg"/>
+              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"/>
               <V-Avatar initials="SC" color="h-purple"/>
-              <V-Avatar picture="/demo/avatars/39.jpg"/>
+              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"/>
             </div>
             <apexchart
               :height="teamGaugeOptions.chart.height"

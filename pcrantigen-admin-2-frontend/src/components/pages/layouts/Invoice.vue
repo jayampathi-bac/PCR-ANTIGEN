@@ -41,7 +41,7 @@ import { popovers } from '/@src/data/users/userPopovers'
       <div class="invoice-card">
         <div class="invoice-section is-flex is-bordered">
           <tippy class="has-help-cursor" interactive placement="bottom-start">
-            <V-Avatar size="large" picture="/demo/avatars/13.jpg" />
+            <V-Avatar size="large" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
             <template #content>
               <UserPopoverContent :user="popovers.user13" />
             </template>

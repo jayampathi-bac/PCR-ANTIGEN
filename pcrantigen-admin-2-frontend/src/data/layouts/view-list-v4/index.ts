@@ -8,7 +8,7 @@ export const recipes = [
     attachments: 3,
     author: {
       name: 'Alice C.',
-      avatar: '/demo/avatars/7.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     followers: [
       {
@@ -17,7 +17,7 @@ export const recipes = [
       },
       {
         id: 2,
-        picture: '/demo/avatars/8.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
     ],
   },
@@ -35,7 +35,7 @@ export const recipes = [
     followers: [
       {
         id: 1,
-        picture: '/demo/avatars/12.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
       {
         id: 2,
@@ -185,7 +185,7 @@ export const recipes = [
     followers: [
       {
         id: 1,
-        picture: '/demo/avatars/8.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
       {
         id: 2,
@@ -193,7 +193,7 @@ export const recipes = [
       },
       {
         id: 3,
-        picture: '/demo/avatars/13.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
       {
         id: 4,
@@ -230,12 +230,12 @@ export const recipes = [
     attachments: 2,
     author: {
       name: 'Alice C.',
-      avatar: '/demo/avatars/7.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     followers: [
       {
         id: 1,
-        picture: '/demo/avatars/8.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
       {
         id: 2,
@@ -243,7 +243,7 @@ export const recipes = [
       },
       {
         id: 3,
-        picture: '/demo/avatars/13.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
       {
         id: 4,
@@ -280,7 +280,7 @@ export const recipes = [
     attachments: 2,
     author: {
       name: 'Elizabeth F.',
-      avatar: '/demo/avatars/21.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     followers: [
       {
@@ -293,7 +293,7 @@ export const recipes = [
       },
       {
         id: 3,
-        picture: '/demo/avatars/25.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
       {
         id: 4,
@@ -330,7 +330,7 @@ export const recipes = [
     attachments: 1,
     author: {
       name: 'Joshua S.',
-      avatar: '/demo/avatars/12.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     followers: [
       {
@@ -380,7 +380,7 @@ export const recipes = [
     attachments: 1,
     author: {
       name: 'Joshua S.',
-      avatar: '/demo/avatars/12.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     followers: [
       {
@@ -443,7 +443,7 @@ export const recipes = [
       },
       {
         id: 3,
-        picture: '/demo/avatars/13.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
       {
         id: 4,

@@ -13,7 +13,7 @@ export const popovers = {
   },
   user7: {
     id: 7,
-    avatar: '/demo/avatars/7.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/flags/united-states-of-america.svg',
     username: 'Alice C.',
     fullName: 'Alice Carasca',
@@ -25,7 +25,7 @@ export const popovers = {
   },
   user8: {
     id: 8,
-    avatar: '/demo/avatars/8.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/flags/united-states-of-america.svg',
     username: 'Erik K.',
     fullName: 'Erik Kovalsky',
@@ -73,7 +73,7 @@ export const popovers = {
   },
   user12: {
     id: 12,
-    avatar: '/demo/avatars/12.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/flags/united-states-of-america.svg',
     username: 'Joshua S.',
     fullName: 'Joshua Stevens',
@@ -85,7 +85,7 @@ export const popovers = {
   },
   user13: {
     id: 13,
-    avatar: '/demo/avatars/13.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/flags/united-states-of-america.svg',
     username: 'Tara S.',
     fullName: 'Tara Svenson',
@@ -157,7 +157,7 @@ export const popovers = {
   },
   user21: {
     id: 21,
-    avatar: '/demo/avatars/21.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/flags/england.svg',
     username: 'Elisabeth F.',
     fullName: 'Elisabeth Fisher',
@@ -205,7 +205,7 @@ export const popovers = {
   },
   user25: {
     id: 25,
-    avatar: '/demo/avatars/25.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/flags/united-states-of-america.svg',
     username: 'Melany W.',
     fullName: 'Melany Wallace',
@@ -349,7 +349,7 @@ export const popovers = {
   },
   user39: {
     id: 39,
-    avatar: '/demo/avatars/39.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/flags/united-states-of-america.svg',
     username: 'Alejandro B.',
     fullName: 'Alejandro Badajoz',

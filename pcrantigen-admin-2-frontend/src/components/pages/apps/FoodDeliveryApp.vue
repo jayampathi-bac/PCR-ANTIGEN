@@ -350,7 +350,7 @@ onUnmounted(() => {
           </UIWidget>
 
           <ContactWidget
-            picture="/demo/avatars/8.jpg"
+            picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
             username="Erik K."
             email="erikkovalsky@vuero.io"
             company="Vuero Ltd."

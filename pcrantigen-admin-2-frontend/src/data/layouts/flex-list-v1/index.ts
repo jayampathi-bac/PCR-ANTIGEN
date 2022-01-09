@@ -3,7 +3,7 @@ export const users = [
     id: 0,
     username: 'Erik K.',
     position: 'Product Manager',
-    picture: '/demo/avatars/8.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/flags/united-states-of-america.svg',
     location: 'Las Vegas, NV',
     industry: 'Software',
@@ -11,7 +11,7 @@ export const users = [
     contacts: [
       {
         id: 0,
-        picture: '/demo/avatars/25.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'AC',
         color: 'info',
       },
@@ -23,7 +23,7 @@ export const users = [
       },
       {
         id: 2,
-        picture: '/demo/avatars/8.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'EK',
         color: 'h-purple',
       },
@@ -63,7 +63,7 @@ export const users = [
     id: 2,
     username: 'Melany W.',
     position: 'Web Developer',
-    picture: '/demo/avatars/25.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/flags/united-states-of-america.svg',
     location: 'San Jose, CA',
     industry: 'Design',
@@ -77,7 +77,7 @@ export const users = [
       },
       {
         id: 7,
-        picture: '/demo/avatars/7.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'AC',
         color: 'h-purple',
       },
@@ -111,7 +111,7 @@ export const users = [
     id: 3,
     username: 'Joshua S.',
     position: 'Backend Developer',
-    picture: '/demo/avatars/12.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/flags/united-states-of-america.svg',
     location: 'Las Vegas, NV',
     industry: 'Accounting',
@@ -119,7 +119,7 @@ export const users = [
     contacts: [
       {
         id: 7,
-        picture: '/demo/avatars/13.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'TS',
         color: 'info',
       },
@@ -129,7 +129,7 @@ export const users = [
     id: 4,
     username: 'Tara S.',
     position: 'UI/UX Designer',
-    picture: '/demo/avatars/13.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/flags/united-states-of-america.svg',
     location: 'Los Angeles, CA',
     industry: 'Finance',
@@ -137,7 +137,7 @@ export const users = [
     contacts: [
       {
         id: 0,
-        picture: '/demo/avatars/25.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'AC',
         color: 'info',
       },
@@ -191,7 +191,7 @@ export const users = [
     contacts: [
       {
         id: 0,
-        picture: '/demo/avatars/25.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'AC',
         color: 'info',
       },
@@ -239,7 +239,7 @@ export const users = [
     contacts: [
       {
         id: 0,
-        picture: '/demo/avatars/25.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'AC',
         color: 'info',
       },
@@ -251,7 +251,7 @@ export const users = [
       },
       {
         id: 8,
-        picture: '/demo/avatars/8.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'ML',
         color: 'warning',
       },
@@ -281,13 +281,13 @@ export const users = [
     contacts: [
       {
         id: 25,
-        picture: '/demo/avatars/25.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'AC',
         color: 'info',
       },
       {
         id: 13,
-        picture: '/demo/avatars/13.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'TS',
         color: 'info',
       },
@@ -313,7 +313,7 @@ export const users = [
     contacts: [
       {
         id: 25,
-        picture: '/demo/avatars/25.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'MW',
         color: 'info',
       },
@@ -331,7 +331,7 @@ export const users = [
     contacts: [
       {
         id: 7,
-        picture: '/demo/avatars/7.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'AC',
         color: 'info',
       },

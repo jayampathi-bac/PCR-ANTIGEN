@@ -3,7 +3,7 @@
     <div class="profile-header has-text-centered">
       <V-Avatar
         size="xl"
-        picture="/demo/avatars/8.jpg"
+        picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
         badge="/images/icons/flags/united-states-of-america.svg"
       />
 

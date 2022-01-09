@@ -33,7 +33,7 @@ export const projects = [
       },
       {
         id: 7,
-        picture: '/demo/avatars/7.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Alice C.',
         initials: 'AC',
         color: 'success',
@@ -53,7 +53,7 @@ export const projects = [
     team: [
       {
         id: 21,
-        picture: '/demo/avatars/21.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Elizabet F.',
         initials: 'EF',
         color: 'warning',
@@ -67,7 +67,7 @@ export const projects = [
       },
       {
         id: 39,
-        picture: '/demo/avatars/39.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Alejandro B.',
         initials: 'AB',
         color: 'danger',
@@ -87,7 +87,7 @@ export const projects = [
     team: [
       {
         id: 21,
-        picture: '/demo/avatars/21.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Elizabet F.',
         initials: 'EF',
         color: 'warning',
@@ -101,7 +101,7 @@ export const projects = [
       },
       {
         id: 39,
-        picture: '/demo/avatars/39.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Alejandro B.',
         initials: 'AB',
         color: 'danger',
@@ -338,7 +338,7 @@ export const projects = [
       },
       {
         id: 7,
-        picture: '/demo/avatars/7.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Alice C.',
         initials: 'AC',
         color: 'success',
@@ -358,7 +358,7 @@ export const projects = [
     team: [
       {
         id: 21,
-        picture: '/demo/avatars/21.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Elizabet F.',
         initials: 'EF',
         color: 'warning',
@@ -372,7 +372,7 @@ export const projects = [
       },
       {
         id: 39,
-        picture: '/demo/avatars/39.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Alejandro B.',
         initials: 'AB',
         color: 'danger',
@@ -446,7 +446,7 @@ export const projects = [
     team: [
       {
         id: 21,
-        picture: '/demo/avatars/21.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Elizabet F.',
         initials: 'EF',
         color: 'warning',
@@ -460,7 +460,7 @@ export const projects = [
       },
       {
         id: 39,
-        picture: '/demo/avatars/39.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Alejandro B.',
         initials: 'AB',
         color: 'danger',

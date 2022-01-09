@@ -1,7 +1,7 @@
 export const users = [
   {
     id: 13,
-    avatar: '/demo/avatars/13.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/stacks/illustrator.svg',
     username: 'Tara S.',
     fullName: 'Tara Svenson',
@@ -27,7 +27,7 @@ export const users = [
   },
   {
     id: 25,
-    avatar: '/demo/avatars/25.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/stacks/js.svg',
     username: 'Melany W.',
     fullName: 'Melany Wallace',
@@ -53,7 +53,7 @@ export const users = [
   },
   {
     id: 39,
-    avatar: '/demo/avatars/39.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/stacks/python.svg',
     username: 'Alejandro B.',
     fullName: 'Alejandro Badajoz',
@@ -209,7 +209,7 @@ export const users = [
   },
   {
     id: 7,
-    avatar: '/demo/avatars/7.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/flags/united-states-of-america.svg',
     username: 'Alice C.',
     fullName: 'Alice Carasca',

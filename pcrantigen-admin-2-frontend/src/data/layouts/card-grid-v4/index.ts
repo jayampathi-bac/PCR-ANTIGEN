@@ -6,7 +6,7 @@ export const posts = [
     image: '/demo/photos/11.jpg',
     author: {
       id: 39,
-      avatar: '/demo/avatars/39.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       name: 'Alejandro B.',
       initials: 'AB',
       color: 'info',
@@ -110,7 +110,7 @@ export const posts = [
     image: '/demo/photos/20.jpg',
     author: {
       id: 8,
-      avatar: '/demo/avatars/8.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       name: 'Erik K.',
       initials: 'EK',
       color: 'info',

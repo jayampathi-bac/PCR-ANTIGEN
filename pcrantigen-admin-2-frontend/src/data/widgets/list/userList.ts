@@ -15,7 +15,7 @@ export const userList = [
   },
   {
     id: 2,
-    picture: '/demo/avatars/8.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     name: 'Erik Kovalsky',
     position: 'Product Manager',
     progress: -12,
@@ -29,14 +29,14 @@ export const userList = [
   },
   {
     id: 4,
-    picture: '/demo/avatars/21.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     name: 'Elizabeth Fisher',
     position: 'Mobile Developer',
     progress: -4,
   },
   {
     id: 5,
-    picture: '/demo/avatars/21.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     name: 'Tara Svenson',
     position: 'UI/UX Designer',
     progress: 32,

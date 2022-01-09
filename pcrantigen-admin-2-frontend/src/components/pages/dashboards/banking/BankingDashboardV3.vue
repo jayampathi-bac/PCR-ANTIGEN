@@ -126,7 +126,7 @@ import { popovers } from '/@src/data/users/userPopovers'
               :offset="[0, 40]"
               placement="top-end"
             >
-              <V-Avatar picture="/demo/avatars/21.jpg" />
+              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
               <template #content>
                 <UserPopoverContent :user="popovers.user21" />
               </template>
@@ -148,7 +148,7 @@ import { popovers } from '/@src/data/users/userPopovers'
               :offset="[0, 40]"
               placement="top-end"
             >
-              <V-Avatar picture="/demo/avatars/7.jpg" />
+              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
               <template #content>
                 <UserPopoverContent :user="popovers.user7" />
               </template>

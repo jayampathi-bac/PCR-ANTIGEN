@@ -53,7 +53,7 @@ const accept = async () => {
           <div class="people-wrap">
             <div class="people">
               <tippy class="has-help-cursor" interactive placement="bottom">
-                <V-Avatar size="small" picture="/demo/avatars/21.jpg" />
+                <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                 <template #content>
                   <UserPopoverContent :user="popovers.user21" />
                 </template>
@@ -67,7 +67,7 @@ const accept = async () => {
               </tippy>
 
               <tippy class="has-help-cursor" interactive placement="bottom">
-                <V-Avatar size="small" picture="/demo/avatars/39.jpg" />
+                <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                 <template #content>
                   <UserPopoverContent :user="popovers.user39" />
                 </template>

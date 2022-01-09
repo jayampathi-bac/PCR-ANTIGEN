@@ -148,7 +148,7 @@ const randomCard = () => {
           </div>
           <div class="block-body is-seats">
             <tippy class="has-help-cursor" interactive placement="bottom-start">
-              <V-Avatar picture="/demo/avatars/8.jpg" />
+              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
               <template #content>
                 <UserPopoverContent :user="popovers.user8" />
               </template>
@@ -176,7 +176,7 @@ const randomCard = () => {
             </tippy>
 
             <tippy class="has-help-cursor" interactive placement="bottom">
-              <V-Avatar picture="/demo/avatars/7.jpg" />
+              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
               <template #content>
                 <UserPopoverContent :user="popovers.user7" />
               </template>

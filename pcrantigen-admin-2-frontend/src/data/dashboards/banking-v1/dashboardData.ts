@@ -6,7 +6,7 @@ export const selectSlotOptions = [
   {
     value: 'default',
     name: 'Select an account',
-    icon: '/demo/avatars/8.jpg',
+    icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
   },
   {
     value: '4156 1000 56565 17',

@@ -57,7 +57,7 @@
                 <div class="featured-authors-item">
                   <V-Block title="Alice C." subtitle="Software Engineer" center>
                     <template #icon>
-                      <V-Avatar picture="/demo/avatars/7.jpg" squared />
+                      <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" squared />
                     </template>
                     <template #action>
                       <span class="dark-inverted">112K</span>
@@ -68,7 +68,7 @@
                 <div class="featured-authors-item">
                   <V-Block title="Elizabeth F." subtitle="Web Developer" center>
                     <template #icon>
-                      <V-Avatar picture="/demo/avatars/21.jpg" squared />
+                      <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" squared />
                     </template>
                     <template #action>
                       <span class="dark-inverted">91K</span>
@@ -197,7 +197,7 @@
 
                   <V-Block title="Alice C." subtitle="Software Engineer">
                     <template #icon>
-                      <V-Avatar picture="/demo/avatars/7.jpg" squared />
+                      <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" squared />
                     </template>
                   </V-Block>
                 </div>

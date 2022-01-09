@@ -304,7 +304,7 @@ import {
                     :offset="[0, 10]"
                     placement="bottom-end"
                   >
-                    <V-Avatar picture="/demo/avatars/7.jpg" size="small" />
+                    <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="small" />
                     <template #content>
                       <UserPopoverContent :user="popovers.user7" />
                     </template>

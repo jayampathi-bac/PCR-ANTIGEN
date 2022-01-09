@@ -8,7 +8,7 @@ export const topicList = [
     users: [
       {
         id: 2,
-        picture: '/demo/avatars/12.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
       {
         id: 5,
@@ -53,7 +53,7 @@ export const topicList = [
       },
       {
         id: 3,
-        picture: '/demo/avatars/8.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
     ],
   },
@@ -66,7 +66,7 @@ export const topicList = [
     users: [
       {
         id: 0,
-        picture: '/demo/avatars/7.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
       {
         id: 21,
@@ -87,11 +87,11 @@ export const topicList = [
       },
       {
         id: 6,
-        picture: '/demo/avatars/13.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
       {
         id: 3,
-        picture: '/demo/avatars/8.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
       {
         id: 100,

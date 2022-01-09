@@ -22,7 +22,7 @@ export const avatarStack1 = [
 export const avatarStack2 = [
   {
     id: 21,
-    picture: '/demo/avatars/21.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     initials: 'EF',
     color: 'info',
   },
@@ -46,13 +46,13 @@ export const avatarStack3 = [
 export const avatarStack4 = [
   {
     id: 13,
-    picture: '/demo/avatars/13.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     initials: 'TS',
     color: 'info',
   },
   {
     id: 25,
-    picture: '/demo/avatars/25.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     initials: 'MW',
     color: 'success',
   },

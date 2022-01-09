@@ -10,7 +10,7 @@ export const optionsSingle = [
 export const flexRowsOrders = [
   {
     id: 0,
-    picture: '/demo/avatars/8.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Erik K.',
     orderId: '#158456',
     date: 'Oct 31, 2020',
@@ -30,7 +30,7 @@ export const flexRowsOrders = [
   },
   {
     id: 2,
-    picture: '/demo/avatars/25.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Melany W.',
     orderId: '#155848',
     date: 'Oct 31, 2020',
@@ -40,7 +40,7 @@ export const flexRowsOrders = [
   },
   {
     id: 3,
-    picture: '/demo/avatars/12.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Joshua S.',
     orderId: '#154736',
     date: 'Oct 30, 2020',
@@ -50,7 +50,7 @@ export const flexRowsOrders = [
   },
   {
     id: 4,
-    picture: '/demo/avatars/13.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Tara S.',
     orderId: '#158315',
     date: 'Oct 30, 2020',

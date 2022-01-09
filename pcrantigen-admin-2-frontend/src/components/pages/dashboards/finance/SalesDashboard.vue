@@ -49,7 +49,7 @@ onMounted(() => {
   <div class="finance-dashboard sales-dashboard">
     <!--Header-->
     <div class="dashboard-header">
-      <V-Avatar size="large" picture="/demo/avatars/8.jpg" />
+      <V-Avatar size="large" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
 
       <div class="start">
         <h3 class="dark-inverted">Welcome back, Erik Kovalsky</h3>

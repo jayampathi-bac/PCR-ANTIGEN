@@ -5,7 +5,7 @@
         "name":"Alice C.",
         "initials": "AC",
         "location":"San Diego, CA",
-        "pic":"/demo/avatars/7.jpg",
+        "pic":"https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png",
         "badge":"/images/icons/flags/united-states-of-america.svg",
         "position": "Software Engineer",
         "bio": "This is a nice user description that we can use as demo content"
@@ -27,7 +27,7 @@
         "name":"Joshua S.",
         "initials": "JS",
         "location":"Las Vegas, NV",
-        "pic":"/demo/avatars/12.jpg",
+        "pic":"https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png",
         "badge":"/images/icons/flags/united-states-of-america.svg",
         "position": "Backend Developer",
         "bio": "This is a nice user description that we can use as demo content"
@@ -38,7 +38,7 @@
         "name":"Erik K.",
         "initials": "EK",
         "location":"New York, NY",
-        "pic":"/demo/avatars/8.jpg",
+        "pic":"https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png",
         "badge":"/images/icons/flags/united-states-of-america.svg",
         "position": "Product Manager",
         "bio": "This is a nice user description that we can use as demo content"
@@ -49,7 +49,7 @@
         "name":"Melany W.",
         "initials": "MW",
         "location":"San Jose, CA",
-        "pic":"/demo/avatars/25.jpg",
+        "pic":"https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png",
         "badge":"/images/icons/flags/united-states-of-america.svg",
         "position": "Web Developer",
         "bio": "This is a nice user description that we can use as demo content"
@@ -71,7 +71,7 @@
         "name":"Tara S.",
         "initials": "TS",
         "location":"New York, NY",
-        "pic":"/demo/avatars/13.jpg",
+        "pic":"https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png",
         "badge":"/images/icons/flags/united-states-of-america.svg",
         "position": "UI/UX Designer",
         "bio": "This is a nice user description that we can use as demo content"
@@ -214,7 +214,7 @@
         "name":"Elizabeth F.",
         "initials": "EF",
         "location":"London, UK",
-        "pic":"/demo/avatars/21.jpg",
+        "pic":"https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png",
         "badge":"/images/icons/flags/england.svg",
         "position": "Mobile Developer",
         "bio": "This is a nice user description that we can use as demo content"
@@ -368,7 +368,7 @@
         "name":"Alejandro B.",
         "initials": "AB",
         "location":"New York, NY",
-        "pic":"/demo/avatars/39.jpg",
+        "pic":"https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png",
         "badge":"/images/icons/flags/united-states-of-america.svg",
         "position": "Business Analyst",
         "bio": "This is a nice user description that we can use as demo content"

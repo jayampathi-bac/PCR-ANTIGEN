@@ -114,7 +114,7 @@ const filterProjects = ref(0)
                 <V-AvatarStack
                   size="small"
                   :avatars="[
-                    { picture: '/demo/avatars/13.jpg' },
+                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
                     { picture: '/demo/avatars/11.jpg' },
                   ]"
                 />
@@ -150,15 +150,15 @@ const filterProjects = ref(0)
                 <V-AvatarStack
                   size="small"
                   :avatars="[
-                    { picture: '/demo/avatars/7.jpg' },
+                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
                     { picture: '/demo/avatars/9.jpg' },
                     { color: 'info', initials: 'JD' },
-                    { picture: '/demo/avatars/12.jpg' },
-                    { picture: '/demo/avatars/8.jpg' },
-                    { picture: '/demo/avatars/25.jpg' },
-                    { picture: '/demo/avatars/25.jpg' },
-                    { picture: '/demo/avatars/25.jpg' },
-                    { picture: '/demo/avatars/25.jpg' },
+                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
                   ]"
                 />
 
@@ -227,9 +227,9 @@ const filterProjects = ref(0)
                 <V-AvatarStack
                   size="small"
                   :avatars="[
-                    { picture: '/demo/avatars/8.jpg' },
+                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
                     { picture: '/demo/avatars/22.jpg' },
-                    { picture: '/demo/avatars/12.jpg' },
+                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
                     { picture: '/demo/avatars/10.jpg' },
                     { picture: '/demo/avatars/26.jpg' },
                   ]"
@@ -266,9 +266,9 @@ const filterProjects = ref(0)
                 <V-AvatarStack
                   size="small"
                   :avatars="[
-                    { picture: '/demo/avatars/13.jpg' },
+                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
                     { picture: '/demo/avatars/11.jpg' },
-                    { picture: '/demo/avatars/8.jpg' },
+                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
                     { picture: '/demo/avatars/22.jpg' },
                   ]"
                 />
@@ -305,7 +305,7 @@ const filterProjects = ref(0)
                 <V-AvatarStack
                   size="small"
                   :avatars="[
-                    { picture: '/demo/avatars/13.jpg' },
+                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
                     { picture: '/demo/avatars/11.jpg' },
                   ]"
                 />
@@ -341,7 +341,7 @@ const filterProjects = ref(0)
                 <V-AvatarStack
                   size="small"
                   :avatars="[
-                    { picture: '/demo/avatars/13.jpg' },
+                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
                     { picture: '/demo/avatars/16.jpg' },
                     { picture: '/demo/avatars/10.jpg' },
                     { picture: '/demo/avatars/9.jpg' },

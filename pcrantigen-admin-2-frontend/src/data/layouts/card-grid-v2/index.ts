@@ -7,7 +7,7 @@ export const projects = [
     image: '/demo/photos/apps/1.jpg',
     owner: {
       id: 7,
-      avatar: '/demo/avatars/7.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       name: 'Alice C.',
       initials: 'AC',
       color: 'info',
@@ -29,7 +29,7 @@ export const projects = [
       },
       {
         id: 12,
-        picture: '/demo/avatars/12.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Joshua S.',
         initials: 'JS',
         color: 'success',
@@ -44,7 +44,7 @@ export const projects = [
     image: '/demo/photos/apps/2.png',
     owner: {
       id: 8,
-      avatar: '/demo/avatars/8.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       name: 'Erik K.',
       initials: 'EK',
       color: 'info',
@@ -52,14 +52,14 @@ export const projects = [
     team: [
       {
         id: 13,
-        picture: '/demo/avatars/13.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Tara S.',
         initials: 'TS',
         color: 'danger',
       },
       {
         id: 21,
-        picture: '/demo/avatars/21.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Elizabet F.',
         initials: 'EF',
         color: 'warning',
@@ -74,7 +74,7 @@ export const projects = [
     image: '/demo/photos/apps/3.png',
     owner: {
       id: 25,
-      avatar: '/demo/avatars/25.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       name: 'Melany W.',
       initials: 'MW',
       color: 'info',
@@ -105,14 +105,14 @@ export const projects = [
     team: [
       {
         id: 13,
-        picture: '/demo/avatars/13.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Tara S.',
         initials: 'TS',
         color: 'danger',
       },
       {
         id: 21,
-        picture: '/demo/avatars/21.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Elizabet F.',
         initials: 'EF',
         color: 'warning',
@@ -142,7 +142,7 @@ export const projects = [
       },
       {
         id: 39,
-        picture: '/demo/avatars/39.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Alejandro B.',
         initials: 'AB',
         color: 'h-purple',
@@ -179,7 +179,7 @@ export const projects = [
       },
       {
         id: 8,
-        picture: '/demo/avatars/8.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Erik K.',
         initials: 'EK',
         color: 'h-purple',
@@ -194,7 +194,7 @@ export const projects = [
     image: '/demo/photos/apps/7.png',
     owner: {
       id: 25,
-      avatar: '/demo/avatars/25.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       name: 'Melany W.',
       initials: 'MW',
       color: 'info',
@@ -225,7 +225,7 @@ export const projects = [
     team: [
       {
         id: 21,
-        picture: '/demo/avatars/21.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Elizabeth F.',
         initials: 'EF',
         color: 'warning',
@@ -314,7 +314,7 @@ export const projects = [
     image: '/demo/photos/apps/11.png',
     owner: {
       id: 13,
-      avatar: '/demo/avatars/13.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       name: 'Tara S.',
       initials: 'TS',
       color: 'danger',
@@ -337,7 +337,7 @@ export const projects = [
     image: '/demo/photos/apps/12.jpg',
     owner: {
       id: 12,
-      avatar: '/demo/avatars/12.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       name: 'Joshua S.',
       initials: 'JS',
       color: 'info',
@@ -360,7 +360,7 @@ export const projects = [
     image: '/demo/photos/apps/13.png',
     owner: {
       id: 12,
-      avatar: '/demo/avatars/12.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       name: 'Joshua S.',
       initials: 'JS',
       color: 'info',
@@ -368,7 +368,7 @@ export const projects = [
     team: [
       {
         id: 8,
-        picture: '/demo/avatars/8.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Erik K.',
         initials: 'EK',
         color: 'h-purple',
@@ -420,7 +420,7 @@ export const projects = [
     image: '/demo/photos/apps/15.png',
     owner: {
       id: 39,
-      avatar: '/demo/avatars/39.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       name: 'Alejandro B.',
       initials: 'AB',
       color: 'info',

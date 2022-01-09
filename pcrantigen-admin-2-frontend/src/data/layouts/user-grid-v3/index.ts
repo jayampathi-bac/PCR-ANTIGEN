@@ -1,7 +1,7 @@
 export const users = [
   {
     id: 13,
-    avatar: '/demo/avatars/13.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/stacks/illustrator.svg',
     username: 'Tara S.',
     fullName: 'Tara Svenson',
@@ -46,7 +46,7 @@ export const users = [
       },
       {
         id: 7,
-        avatar: '/demo/avatars/7.jpg',
+        avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Alice C.',
         initials: 'AC',
         color: 'success',
@@ -79,7 +79,7 @@ export const users = [
     team: [
       {
         id: 21,
-        avatar: '/demo/avatars/21.jpg',
+        avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Elizabet F.',
         initials: 'EF',
         color: 'warning',
@@ -93,7 +93,7 @@ export const users = [
       },
       {
         id: 39,
-        avatar: '/demo/avatars/39.jpg',
+        avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Alejandro B.',
         initials: 'AB',
         color: 'danger',
@@ -102,7 +102,7 @@ export const users = [
   },
   {
     id: 25,
-    avatar: '/demo/avatars/25.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/stacks/js.svg',
     username: 'Melany W.',
     fullName: 'Melany Wallace',
@@ -126,7 +126,7 @@ export const users = [
     team: [
       {
         id: 21,
-        avatar: '/demo/avatars/21.jpg',
+        avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Elizabet F.',
         initials: 'EF',
         color: 'warning',
@@ -140,7 +140,7 @@ export const users = [
       },
       {
         id: 39,
-        avatar: '/demo/avatars/39.jpg',
+        avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Alejandro B.',
         initials: 'AB',
         color: 'danger',
@@ -189,7 +189,7 @@ export const users = [
   },
   {
     id: 39,
-    avatar: '/demo/avatars/39.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/stacks/python.svg',
     username: 'Alejandro B.',
     fullName: 'Alejandro Badajoz',
@@ -401,7 +401,7 @@ export const users = [
       },
       {
         id: 7,
-        avatar: '/demo/avatars/7.jpg',
+        avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Alice C.',
         initials: 'AC',
         color: 'success',
@@ -434,7 +434,7 @@ export const users = [
     team: [
       {
         id: 21,
-        avatar: '/demo/avatars/21.jpg',
+        avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Elizabet F.',
         initials: 'EF',
         color: 'warning',
@@ -448,7 +448,7 @@ export const users = [
       },
       {
         id: 39,
-        avatar: '/demo/avatars/39.jpg',
+        avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Alejandro B.',
         initials: 'AB',
         color: 'danger',
@@ -561,7 +561,7 @@ export const users = [
     team: [
       {
         id: 21,
-        avatar: '/demo/avatars/21.jpg',
+        avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Elizabet F.',
         initials: 'EF',
         color: 'warning',
@@ -575,7 +575,7 @@ export const users = [
       },
       {
         id: 39,
-        avatar: '/demo/avatars/39.jpg',
+        avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Alejandro B.',
         initials: 'AB',
         color: 'danger',
@@ -711,7 +711,7 @@ export const users = [
   },
   {
     id: 7,
-    avatar: '/demo/avatars/7.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/flags/united-states-of-america.svg',
     username: 'Alice C.',
     fullName: 'Alice Carasca',
@@ -735,7 +735,7 @@ export const users = [
     team: [
       {
         id: 25,
-        avatar: '/demo/avatars/25.jpg',
+        avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Melany W.',
         initials: 'MW',
         color: 'success',
@@ -749,7 +749,7 @@ export const users = [
       },
       {
         id: 12,
-        avatar: '/demo/avatars/12.jpg',
+        avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         name: 'Joshua S.',
         initials: 'JS',
         color: 'warning',

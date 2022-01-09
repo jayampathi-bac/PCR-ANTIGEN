@@ -268,7 +268,7 @@ import { userStack } from '/@src/data/dashboards/personal-v3/users'
         <a href="#" class="dashboard-card is-interview">
           <V-Block title="Joshua S." subtitle="02:30 - 03:00" center>
             <template #icon>
-              <V-Avatar picture="/demo/avatars/12.jpg" />
+              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
             </template>
             <template #action>
               <i

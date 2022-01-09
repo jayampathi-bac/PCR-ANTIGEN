@@ -6,13 +6,13 @@
         aria-haspopup="true"
         @click="toggle"
       >
-        <V-Avatar picture="/demo/avatars/8.jpg" />
+        <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
       </a>
     </template>
 
     <template #content>
       <div class="dropdown-head">
-        <V-Avatar size="large" picture="/demo/avatars/8.jpg" />
+        <V-Avatar size="large" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
 
         <div class="meta">
           <span>Erik Kovalsky</span>

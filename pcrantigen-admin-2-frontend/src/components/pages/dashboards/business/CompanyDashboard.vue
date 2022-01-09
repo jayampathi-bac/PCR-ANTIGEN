@@ -430,7 +430,7 @@ onMounted(async () => {
                   :offset="[0, 10]"
                   placement="top-start"
                 >
-                  <V-Avatar size="medium" picture="/demo/avatars/13.jpg" />
+                  <V-Avatar size="medium" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                   <template #content>
                     <UserPopoverContent :user="popovers.user13" />
                   </template>

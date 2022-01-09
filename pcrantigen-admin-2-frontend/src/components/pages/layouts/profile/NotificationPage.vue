@@ -12,7 +12,7 @@
           <div class="content-wrap">
             <div class="content-box">
               <div class="status"></div>
-              <V-Avatar picture="/demo/avatars/13.jpg" />
+              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
 
               <div class="box-text">
                 <div class="meta-text">
@@ -24,7 +24,7 @@
                 </div>
               </div>
               <div class="box-end">
-                <V-Avatar size="small" picture="/demo/avatars/8.jpg" />
+                <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
               </div>
             </div>
           </div>
@@ -92,7 +92,7 @@
           <div class="content-wrap">
             <div class="content-box">
               <div class="status"></div>
-              <V-Avatar picture="/demo/avatars/12.jpg" />
+              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
 
               <div class="box-text">
                 <div class="meta-text">
@@ -167,7 +167,7 @@
                 </div>
               </div>
               <div class="box-end">
-                <V-Avatar size="small" picture="/demo/avatars/8.jpg" />
+                <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
               </div>
             </div>
           </div>
@@ -182,7 +182,7 @@
           <div class="content-wrap">
             <div class="content-box">
               <div class="status"></div>
-              <V-Avatar picture="/demo/avatars/13.jpg" />
+              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
 
               <div class="box-text">
                 <div class="meta-text">
@@ -206,7 +206,7 @@
           <div class="content-wrap">
             <div class="content-box">
               <div class="status"></div>
-              <V-Avatar picture="/demo/avatars/25.jpg" />
+              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
 
               <div class="box-text">
                 <div class="meta-text">

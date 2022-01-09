@@ -15,7 +15,7 @@ import { todoList3, todoList4 } from '/@src/data/widgets/list/todoList'
                 <div class="current-user">
                   <V-Avatar
                     size="medium"
-                    picture="/demo/avatars/8.jpg"
+                    picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                     squared
                   />
                   <h3>Welcome back, Erik.</h3>
@@ -30,7 +30,7 @@ import { todoList3, todoList4 } from '/@src/data/widgets/list/todoList'
                   Praeclarae mortes.
                 </p>
                 <div class="candidates">
-                  <V-Avatar picture="/demo/avatars/13.jpg" squared />
+                  <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" squared />
                   <V-Avatar picture="/demo/avatars/32.jpg" squared />
                   <V-Avatar picture="/demo/avatars/9.jpg" squared />
                   <button>
@@ -163,7 +163,7 @@ import { todoList3, todoList4 } from '/@src/data/widgets/list/todoList'
                   <div class="grid-item">
                     <UserCardDropdown />
                     <V-Avatar
-                      picture="/demo/avatars/13.jpg"
+                      picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                       badge="/images/icons/stacks/illustrator.svg"
                       size="large"
                     />
@@ -195,7 +195,7 @@ import { todoList3, todoList4 } from '/@src/data/widgets/list/todoList'
                   <div class="grid-item">
                     <UserCardDropdown />
                     <V-Avatar
-                      picture="/demo/avatars/25.jpg"
+                      picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                       badge="/images/icons/stacks/js.svg"
                       size="large"
                     />

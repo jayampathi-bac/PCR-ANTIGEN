@@ -12,7 +12,7 @@ export const classes = [
     },
     author: {
       id: 8,
-      picture: '/demo/avatars/8.jpg',
+      picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       username: 'Erik K.',
       initials: 'EK',
       color: 'info',
@@ -31,7 +31,7 @@ export const classes = [
     },
     author: {
       id: 12,
-      picture: '/demo/avatars/12.jpg',
+      picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       username: 'Joshua S.',
       initials: 'JS',
       color: 'info',
