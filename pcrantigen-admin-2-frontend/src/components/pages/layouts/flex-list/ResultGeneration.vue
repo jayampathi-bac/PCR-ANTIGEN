@@ -112,7 +112,7 @@ const savedCustomerImage = (value: any) => {
   capturedCustomerImage.value = value
   // console.log('savedCustomerImage',value);
 };
-const isDisabled = (customer: object) => (customer.status === 'COMPLETEd' || customer.status === 'INCOMPLETE');
+const isDisabled = (customer: object) => (customer.status === 'COMPLETE' || customer.status === 'INCOMPLETE');
 
 
 const savedTestImage = (value: any) => {
