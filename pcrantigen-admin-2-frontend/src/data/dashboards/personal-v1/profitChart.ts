@@ -73,7 +73,7 @@ export const profitChartOptions = {
   },
   colors: [themeColors.green, themeColors.secondary, themeColors.orange],
   title: {
-    text: 'Profit Evolution',
+    text: 'Customers',
     align: 'left',
   },
 }

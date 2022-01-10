@@ -34,23 +34,26 @@ const profile_url = ref(cookies.get('admin2').profile_url)
         <V-Avatar size="large" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"/>
 
         <div class="meta">
-          <span>{{name}}</span>
+          <span>{{ name }}</span>
           <!--          <span>Product Manager</span>-->
         </div>
       </div>
-
-      <a href="#" role="menuitem" class="dropdown-item is-media">
-        <div class="icon">
-          <i aria-hidden="true" class="lnil lnil-user-alt"></i>
-        </div>
-        <div class="meta">
-          <span>Profile</span>
-          <span>View your profile</span>
-        </div>
-      </a>
+      <RouterLink
+        :to="{ name: 'sidebar-layouts-profile-edit' }"
+        class="is-submenu"
+      >
+        <a href="#" role="menuitem" class="dropdown-item is-media">
+          <div class="icon">
+            <i aria-hidden="true" class="lnil lnil-user-alt"></i>
+          </div>
+          <div class="meta">
+            <span>Profile</span>
+            <span>View your profile</span>
+          </div>
+        </a>
+      </RouterLink>
 
       <hr class="dropdown-divider"/>
-
       <!--      <a href="#" role="menuitem" class="dropdown-item is-media">-->
       <!--        <div class="icon">-->
       <!--          <i aria-hidden="true" class="lnil lnil-briefcase"></i>-->
@@ -72,16 +75,20 @@ const profile_url = ref(cookies.get('admin2').profile_url)
       <!--      </a>-->
 
       <hr class="dropdown-divider"/>
-
-      <a href="#" role="menuitem" class="dropdown-item is-media">
-        <div class="icon">
-          <i aria-hidden="true" class="lnil lnil-cog"></i>
-        </div>
-        <div class="meta">
-          <span>Settings</span>
-          <span>Account settings</span>
-        </div>
-      </a>
+      <RouterLink
+        :to="{ name: 'sidebar-layouts-profile-edit-settings' }"
+        class="is-submenu"
+      >
+        <a href="#" role="menuitem" class="dropdown-item is-media">
+          <div class="icon">
+            <i aria-hidden="true" class="lnil lnil-cog"></i>
+          </div>
+          <div class="meta">
+            <span>Settings</span>
+            <span>Account settings</span>
+          </div>
+        </a>
+      </RouterLink>
 
       <hr class="dropdown-divider"/>
 

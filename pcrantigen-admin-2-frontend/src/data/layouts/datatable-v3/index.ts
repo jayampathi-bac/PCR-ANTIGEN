@@ -9,7 +9,7 @@ export const datatableV3 = [
     '2 weeks ago',
   ],
   [
-    '/images/icons/files/sheet.svg',
+    'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     'Tech Summit Expenses',
     '34 kb',
     '1.1.3',

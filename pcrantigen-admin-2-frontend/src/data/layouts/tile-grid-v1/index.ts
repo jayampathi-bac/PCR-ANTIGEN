@@ -24,7 +24,7 @@ export const users = [
   {
     id: 8,
     avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Erik K.',
     initials: 'EK',
     color: 'h-purple',
@@ -46,7 +46,7 @@ export const users = [
   {
     id: 122,
     avatar: null,
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Betty T.',
     initials: 'BT',
     color: 'warning',
@@ -57,7 +57,7 @@ export const users = [
   {
     id: 23,
     avatar: '/demo/avatars/23.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Irina V.',
     initials: 'IV',
     color: 'info',
@@ -68,7 +68,7 @@ export const users = [
   {
     id: 37,
     avatar: '/demo/avatars/37.jpg',
-    badge: '/images/icons/flags/france.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Helmut F.',
     initials: 'HF',
     color: 'h-purple',
@@ -101,7 +101,7 @@ export const users = [
   {
     id: 19,
     avatar: '/demo/avatars/19.jpg',
-    badge: '/images/icons/flags/germany.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Greta K.',
     initials: 'GK',
     color: 'h-yellow',
@@ -123,7 +123,7 @@ export const users = [
   {
     id: 124,
     avatar: null,
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Alan T.',
     initials: 'AT',
     color: 'success',
@@ -134,7 +134,7 @@ export const users = [
   {
     id: 120,
     avatar: null,
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Sara C.',
     initials: 'SC',
     color: 'h-purple',
@@ -145,7 +145,7 @@ export const users = [
   {
     id: 32,
     avatar: '/demo/avatars/32.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Jonathan K.',
     initials: 'JK',
     color: 'info',
@@ -189,7 +189,7 @@ export const users = [
   {
     id: 16,
     avatar: '/demo/avatars/16.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Jason G.',
     initials: 'JG',
     color: 'danger',
@@ -211,7 +211,7 @@ export const users = [
   {
     id: 22,
     avatar: '/demo/avatars/22.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Dwayne H.',
     initials: 'DH',
     color: 'info',
@@ -233,7 +233,7 @@ export const users = [
   {
     id: 24,
     avatar: '/demo/avatars/24.jpg',
-    badge: '/images/icons/flags/france.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Sandrine C.',
     initials: 'SC',
     color: 'info',
@@ -244,7 +244,7 @@ export const users = [
   {
     id: 27,
     avatar: '/demo/avatars/27.jpg',
-    badge: '/images/icons/flags/spain.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Carmen E.',
     initials: 'CE',
     color: 'h-yellow',
@@ -266,7 +266,7 @@ export const users = [
   {
     id: 15,
     avatar: '/demo/avatars/15.jpg',
-    badge: '/images/icons/flags/germany.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Hilde V.',
     initials: 'HV',
     color: 'info',
@@ -288,7 +288,7 @@ export const users = [
   {
     id: 10,
     avatar: '/demo/avatars/10.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Henry G.',
     initials: 'HG',
     color: 'danger',
@@ -299,7 +299,7 @@ export const users = [
   {
     id: 18,
     avatar: '/demo/avatars/18.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Esteban C.',
     initials: 'EC',
     color: 'success',

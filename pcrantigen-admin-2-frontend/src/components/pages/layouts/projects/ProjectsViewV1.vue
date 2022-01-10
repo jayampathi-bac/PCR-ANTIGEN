@@ -16,7 +16,7 @@
         <a class="project-grid-item">
           <img
             class="project-avatar"
-            src="/images/icons/logos/slicer.svg"
+            src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
             alt=""
             @error.once="
               $event.target.src = 'https://via.placeholder.com/150x150'
@@ -34,7 +34,7 @@
         <a class="project-grid-item">
           <img
             class="project-avatar"
-            src="/images/icons/logos/metamovies.svg"
+            src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
             alt=""
             @error.once="
               $event.target.src = 'https://via.placeholder.com/150x150'
@@ -70,7 +70,7 @@
         <a class="project-grid-item">
           <img
             class="project-avatar"
-            src="/images/icons/logos/fastpizza.svg"
+            src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
             alt=""
             @error.once="
               $event.target.src = 'https://via.placeholder.com/150x150'

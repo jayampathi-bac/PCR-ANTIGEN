@@ -8,7 +8,7 @@ export const files = [
   },
   {
     id: 2,
-    icon: '/images/icons/files/sheet.svg',
+    icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     name: 'Tech Summit Expenses',
     updated: '1 week ago',
     size: '34 KB',
@@ -57,7 +57,7 @@ export const files = [
   },
   {
     id: 9,
-    icon: '/images/icons/files/sheet.svg',
+    icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     name: '2020 Supplier Expenses',
     updated: '2 weeks ago',
     size: '250 KB',
@@ -85,7 +85,7 @@ export const files = [
   },
   {
     id: 13,
-    icon: '/images/icons/files/sheet.svg',
+    icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     name: '2019 Supplier Expenses',
     updated: '8 months ago',
     size: '250 KB',

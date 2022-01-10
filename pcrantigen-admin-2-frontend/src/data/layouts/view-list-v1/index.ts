@@ -7,7 +7,7 @@ export const users = [
     roleColor: 'primary',
     medias: {
       avatar: '/demo/avatars/5.jpg',
-      flag: '/images/icons/flags/united-states-of-america.svg',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 14,
@@ -48,7 +48,7 @@ export const users = [
     roleColor: 'secondary',
     medias: {
       avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
-      flag: '/images/icons/flags/united-states-of-america.svg',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 14,
@@ -68,7 +68,7 @@ export const users = [
     roleColor: 'orange',
     medias: {
       avatar: '/demo/avatars/40.jpg',
-      flag: '/images/icons/flags/france.svg',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 6,
@@ -94,7 +94,7 @@ export const users = [
     roleColor: 'primary',
     medias: {
       avatar: '/demo/avatars/27.jpg',
-      flag: '/images/icons/flags/spain.svg',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 8,
@@ -111,7 +111,7 @@ export const users = [
     roleColor: 'green',
     medias: {
       avatar: '/demo/avatars/9.jpg',
-      flag: '/images/icons/flags/united-states-of-america.svg',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 19,
@@ -131,7 +131,7 @@ export const users = [
     roleColor: 'green',
     medias: {
       avatar: '/demo/avatars/18.jpg',
-      flag: '/images/icons/flags/united-states-of-america.svg',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 59,
@@ -159,7 +159,7 @@ export const users = [
     roleColor: 'primary',
     medias: {
       avatar: '/demo/avatars/10.jpg',
-      flag: '/images/icons/flags/united-states-of-america.svg',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 42,
@@ -179,7 +179,7 @@ export const users = [
     roleColor: 'orange',
     medias: {
       avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
-      flag: '/images/icons/flags/united-states-of-america.svg',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 17,
@@ -202,7 +202,7 @@ export const users = [
     roleColor: 'orange',
     medias: {
       avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
-      flag: '/images/icons/flags/united-states-of-america.svg',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 31,

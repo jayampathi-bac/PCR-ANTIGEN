@@ -1,19 +1,28 @@
 <script setup lang="ts">
-import {computed, onMounted, ref} from 'vue'
+import {computed, onMounted, ref, inject} from 'vue'
 
 import getResults from '/@src/composable/resultData'
+import ResultService from '/@src/service/resultService';
 
 import {useCookies} from "vue3-cookies";
+import useNotyf from "/@src/composable/useNotyf";
+
+const notif = useNotyf()
+
+const resultService = new ResultService();
 
 const {cookies} = useCookies();
 
-const {search, results, generateResult} = getResults();
+const {search, results} = getResults();
 
 const sendResutlsModelOpen = ref(false)
 const captureUserImageModel = ref(false)
 const captureTestImageModel = ref(false)
 const capturedCustomerImage = ref(null)
 const capturedTestImage = ref(null)
+const test_name = ref('PCR Antigen')
+
+const swal = inject('$swal')
 
 const filters = ref('')
 
@@ -23,41 +32,73 @@ const filteredData = computed(() => {
   } else {
     return results.value.filter((item) => {
       return (
-        item.contact_number.match(new RegExp(filters.value, 'i')) ||
-        item.user_image_url.match(new RegExp(filters.value, 'i')) ||
-        item.created_at.match(new RegExp(filters.value, 'i')) ||
-        item.record_status.match(new RegExp(filters.value, 'i'))
+        item.customer_contact.match(new RegExp(filters.value, 'i')) ||
+        item.profile_url.match(new RegExp(filters.value, 'i')) ||
+        item.logged_at.match(new RegExp(filters.value, 'i')) ||
+        item.name.match(new RegExp(filters.value, 'i'))
       )
     })
   }
 });
 
 // VModel Data
-const selected_customer_id = ref('');
+//selected_customer object data = c
+const selected_customer = ref('');
 const date = ref(new Date())
 let result = ref('Negative')
-const testResult = ref(0)
+const testResult = ref('Negative')
 const resultOptions = [
   'Positive',
   'Negative',
 ]
 
-const loadSendResult = (customerID: string) => {
+const loadSendResult = (customer: Object) => {
   sendResutlsModelOpen.value = true
-  selected_customer_id.value = customerID
+  selected_customer.value = customer
 }
 
-const issueResult = (customerID: string) => {
-  // console.log("capturedCustomerImage",capturedCustomerImage.value)
-  // console.log("capturedTestImage",capturedTestImage.value)
-  generateResult({
-    created_at:'2020-02-02',
-    contact_number:1234,
-    record_status:'Positive',
-    script_image_url:'https://www.testing.com/test.jpg',
-    user_image_url:'https://www.testing.com/test.jpg',
-    branch_id: cookies.get('admin2').branch_id
+const issueResult = () => {
+  sendResutlsModelOpen.value = false
+
+  swal.fire({
+    title: `Do you want to send results to ${selected_customer.value.name}?`,
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: 'Send',
+    denyButtonText: `Don't send`,
+  }).then((result) => {
+    console.log("result", result)
+    if (result.isConfirmed) {
+      resultService.generateResult({
+        contact_number: selected_customer.value.customer_contact,
+        script_image_url: 'https://www.testing.com/test.jpg',
+        user_image_url: 'https://www.testing.com/test.jpg',
+        test_result: (testResult.value === 'Negative') ? 0 : 1,
+        record_state: 1,
+        branch_id: cookies.get('admin2').branch_id
+      }).then(function (response) {
+        console.log('response', response)
+        if (response.data.success) {
+          resultService.updateAvailableLogStatus({
+            contact_number: selected_customer.value.customer_contact,
+            status: 'COMPLETE',
+            branch_id: cookies.get('admin2').branch_id
+          })
+          notif.success(response.data.message)
+          swal.fire('Saved!', '', 'success')
+        } else {
+          notif.warning(response.data.message)
+        }
+      }).catch(function (error) {
+        console.log(error);
+      });
+    } else if (result.isDenied) {
+      swal.fire('Changes are not saved', '', 'info')
+    } else if (result.isDismissed) {
+      sendResutlsModelOpen.value = true
+    }
   })
+
 }
 
 const openCaptureUserImageModel = () => {
@@ -71,10 +112,33 @@ const savedCustomerImage = (value: any) => {
   capturedCustomerImage.value = value
   // console.log('savedCustomerImage',value);
 };
+const isDisabled = (customer: object) => (customer.status === 'COMPLETEd' || customer.status === 'INCOMPLETE');
+
 
 const savedTestImage = (value: any) => {
   capturedTestImage.value = value
-  console.log('savedTestImage',value);
+  console.log('savedTestImage', value);
+};
+
+const voidCustomer = (customer: object) => {
+  console.log('voidCustomer', customer);
+  resultService.updateAvailableLogStatus({
+    contact_number: customer.customer_contact,
+    status: 'INCOMPLETE',
+    branch_id: cookies.get('admin2').branch_id,
+  })
+    .then(function (response) {
+      console.log('response', response)
+      if (response.data.success) {
+        notif.success(response.data.message)
+        search();
+      } else {
+        notif.warning(response.data.message)
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 const connected = ref(false);
@@ -103,6 +167,7 @@ const received_messages = ref([]);
 onMounted(async () => {
   search();
   // connect();
+
 })
 </script>
 
@@ -157,48 +222,47 @@ onMounted(async () => {
               <!--Table item-->
               <div
                 v-for="customer in filteredData"
-                :key="customer.customer_contact_number"
+                :key="customer.customer_contact"
                 class="flex-table-item"
               >
                 <div class="flex-table-cell is-media is-grow">
                   <V-Avatar
-                    :picture="customer.user_image_url"
+                    :picture="customer.profile_url"
                     size="medium"
                   />
                   <div>
-                    <span class="item-name dark-inverted">{{ customer.customer_contact_number }}</span>
+                    <span class="item-name dark-inverted m-1">{{ customer.name }}</span>
+                    <span class="item-meta">
+                      <span>{{ customer.customer_contact }}</span>
+                    </span>
                   </div>
                 </div>
                 <div class="flex-table-cell" data-th="Time Logged">
-                  <span class="light-text">{{ customer.created_at }}</span>
+                  <span class="light-text">{{ customer.logged_at }}</span>
                 </div>
                 <div class="flex-table-cell" data-th="State">
-                  <span class="light-text">{{ customer.record_status }}</span>
+                  <span class="light-text">{{ customer.status }}</span>
                 </div>
                 <div class="flex-table-cell" data-th="Test Type">
-                  <span
-                    v-if="customer.record_status === '1'"
-                    class="tag is-success is-rounded"
-                  >
-                    Positive
-                  </span>
-                  <span
-                    v-if="customer.record_status === '0'"
-                    class="tag is-danger is-rounded"
-                  >Negative</span>
+                  <span class="light-text"> PCR Antigen </span>
                 </div>
                 <div class="flex-table-cell cell-end" data-th="Actions">
-                  <div class="m-2">
+                  <span class="mr-2">
                     <VButton
-                      @click="loadSendResult(customer.customer_contact_number)"
+                      @click="loadSendResult(customer)"
                       color="primary"
                       outlined
+                      :disabled="isDisabled(customer)"
                     > Send Result
                     </VButton>
-                  </div>
-                  <div>
-                    <VButton color="danger" outlined> Void</VButton>
-                  </div>
+                  </span>
+                  <span>
+                    <VButton
+                      @click="voidCustomer(customer)"
+                      color="danger"
+                      :disabled="isDisabled(customer)"
+                      outlined> Void</VButton>
+                  </span>
                 </div>
               </div>
             </transition-group>
@@ -229,20 +293,20 @@ onMounted(async () => {
               <div class="columns">
                 <div class="column is-12">
                   <V-Field>
-                    <V-Control icon="feather:user">
+                    <V-Control icon="feather:phone">
                       <input
                         type="text"
                         class="input"
                         readonly
                         placeholder="Customer ID"
                         autocomplete="customer-id"
-                        v-model="selected_customer_id"
+                        v-model="selected_customer.customer_contact"
                       />
                     </V-Control>
                   </V-Field>
                   <V-Field>
                     <V-Control icon="feather:calendar">
-                      <v-date-picker v-model="date" mode="dateTime">
+                      <v-date-picker v-model="date" mode="date">
                         <template #default="{ inputValue }">
                           <VField>
                             <VControl>
@@ -260,11 +324,13 @@ onMounted(async () => {
                         class="input"
                         placeholder="Test Name"
                         autocomplete="test-name"
+                        v-model="test_name"
+                        readonly
                       />
                     </V-Control>
                   </V-Field>
                   <V-Field>
-                    <V-Control >
+                    <V-Control>
                       <Multiselect
                         v-model="testResult"
                         :options="resultOptions"
@@ -274,11 +340,12 @@ onMounted(async () => {
                     </V-Control>
                   </V-Field>
                   <V-Field v-show="testResult === 'Negative'">
-                    <V-Control >
+                    <V-Control>
                       <VButtons class="is-centered">
                         <VButton @click="openCaptureUserImageModel()"
                                  color="info" icon="feather:user" raised rounded outlined
-                        > Capture Customer Image</VButton>
+                        > Capture Customer Image
+                        </VButton>
                         <VButton @click="openCaptureTestImageModel()"
                                  color="danger" icon="feather:activity" raised rounded outlined>
                           Capture Test Image
@@ -344,8 +411,13 @@ onMounted(async () => {
     margin-left: auto;
   }
 }
-.camera-frame{
+
+.camera-frame {
   border: 2px solid black;
   border-radius: 5px;
+}
+
+.swal2-title {
+  font-size: 20px !important;
 }
 </style>

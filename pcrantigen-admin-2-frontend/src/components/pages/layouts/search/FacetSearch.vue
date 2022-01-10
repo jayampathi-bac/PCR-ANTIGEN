@@ -53,7 +53,7 @@ const records = [
   {
     name: 'Tech Summit Expenses',
     date: 'XLS file',
-    preview: '/images/icons/files/sheet.svg',
+    preview: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     squared: true,
   },
   {

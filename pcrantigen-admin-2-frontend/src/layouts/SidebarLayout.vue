@@ -97,7 +97,7 @@ watch(
         </RouterLink>
 
         <div class="brand-end">
-          <NotificationsMobileDropdown/>
+<!--          <NotificationsMobileDropdown/>-->
           <UserProfileDropdown/>
         </div>
       </template>
@@ -147,23 +147,23 @@ watch(
         </li>
       </template>
 
-      <template #bottom-links>
-        <li>
-          <a href="#">
-            <i
-              aria-hidden="true"
-              class="iconify"
-              data-icon="feather:settings"
-            ></i>
-          </a>
-        </li>
-      </template>
+<!--      <template #bottom-links>-->
+<!--        <li>-->
+<!--          <a href="#">-->
+<!--            <i-->
+<!--              aria-hidden="true"-->
+<!--              class="iconify"-->
+<!--              data-icon="feather:settings"-->
+<!--            ></i>-->
+<!--          </a>-->
+<!--        </li>-->
+<!--      </template>-->
     </MobileSidebar>
 
 
 
     <!-- Desktop navigation -->
-    <CircularMenu/>
+<!--    <CircularMenu/>-->
 
     <Sidebar :theme="props.theme" :is-open="isDesktopSidebarOpen">
       <template #links>
@@ -234,19 +234,19 @@ watch(
 
 
         <!-- Settings -->
-        <li>
-          <RouterLink
-            id="open-settings"
-            :to="{ name: 'sidebar-layouts-profile-settings' }"
-            data-content="Settings"
-          >
-            <i
-              aria-hidden="true"
-              class="iconify sidebar-svg"
-              data-icon="feather:settings"
-            ></i>
-          </RouterLink>
-        </li>
+<!--        <li>-->
+<!--          <RouterLink-->
+<!--            id="open-settings"-->
+<!--            :to="{ name: 'sidebar-layouts-profile-settings' }"-->
+<!--            data-content="Settings"-->
+<!--          >-->
+<!--            <i-->
+<!--              aria-hidden="true"-->
+<!--              class="iconify sidebar-svg"-->
+<!--              data-icon="feather:settings"-->
+<!--            ></i>-->
+<!--          </RouterLink>-->
+<!--        </li>-->
 
         <!-- Profile Dropdown -->
         <li>

@@ -21,7 +21,7 @@ export default defineConfig({
   // Project root directory (where index.html is located).
   root: process.cwd(),
   // Base public path when served in development or production.
-  base: 'https://salesadmin.jvpdtest.com/',
+  base: 'https://jvpd-admin.netlify.app/',
   // Directory to serve as plain static assets.
   publicDir: 'public',
   // Adjust console output verbosity.
@@ -171,8 +171,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       base: '/',
       manifest: {
-        name: 'Vuero - A complete Vue 3 design system',
-        short_name: 'Vuero',
+        name: 'JVPD TEST',
+        short_name: 'JVPD',
         start_url: '/?utm_source=pwa',
         display: 'standalone',
         theme_color: '#ffffff',

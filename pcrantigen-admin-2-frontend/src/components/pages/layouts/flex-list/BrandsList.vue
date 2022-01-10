@@ -143,7 +143,9 @@ onMounted(async () => {
                   <span class="light-text">{{ branch.description }}</span>
                 </div>
                 <div class="flex-table-cell cell-end" data-th="Actions">
-                  <VButton color="primary" outlined> More</VButton>
+                  <span>
+                    <VButton color="primary" outlined> More</VButton>
+                  </span>
                 </div>
               </div>
             </transition-group>

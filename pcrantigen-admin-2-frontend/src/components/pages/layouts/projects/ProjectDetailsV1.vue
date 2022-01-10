@@ -113,7 +113,7 @@ const props = defineProps({
                 <div class="columns is-multiline">
                   <div class="column is-6">
                     <div class="file-box">
-                      <img src="/images/icons/files/zip-format.svg" alt="" />
+                      <img src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" alt="" />
                       <div class="meta">
                         <span>Preliminary Sketches</span>
                         <span>
@@ -154,7 +154,7 @@ const props = defineProps({
                   </div>
                   <div class="column is-6">
                     <div class="file-box">
-                      <img src="/images/icons/files/sheet.svg" alt="" />
+                      <img src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" alt="" />
                       <div class="meta">
                         <span>Project Budget</span>
                         <span>
@@ -182,7 +182,7 @@ const props = defineProps({
                   </div>
                   <div class="column is-6">
                     <div class="file-box">
-                      <img src="/images/icons/files/video.svg" alt="" />
+                      <img src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" alt="" />
                       <div class="meta">
                         <span>POC Demo</span>
                         <span>

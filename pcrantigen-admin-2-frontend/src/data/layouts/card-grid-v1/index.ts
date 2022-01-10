@@ -8,7 +8,7 @@ export const users = [
     bio: 'This is a nice user description that we can use as demo content.',
     medias: {
       avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
-      badge: '/images/icons/flags/united-states-of-america.svg',
+      badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     progress: 65,
     social: [
@@ -43,7 +43,7 @@ export const users = [
     bio: 'This is a nice user description that we can use as demo content.',
     medias: {
       avatar: '/demo/avatars/37.jpg',
-      badge: '/images/icons/flags/france.svg',
+      badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     progress: 38,
     social: [
@@ -148,7 +148,7 @@ export const users = [
     bio: 'This is a nice user description that we can use as demo content.',
     medias: {
       avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
-      badge: '/images/icons/flags/united-states-of-america.svg',
+      badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     progress: 28,
     social: [
@@ -218,7 +218,7 @@ export const users = [
     bio: 'This is a nice user description that we can use as demo content.',
     medias: {
       avatar: '/demo/avatars/19.jpg',
-      badge: '/images/icons/flags/germany.svg',
+      badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     progress: 56,
     social: [
@@ -288,7 +288,7 @@ export const users = [
     bio: 'This is a nice user description that we can use as demo content.',
     medias: {
       avatar: '/demo/avatars/5.jpg',
-      badge: '/images/icons/flags/united-states-of-america.svg',
+      badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     progress: 29,
     social: [
@@ -323,7 +323,7 @@ export const users = [
     bio: 'This is a nice user description that we can use as demo content.',
     medias: {
       avatar: '/demo/avatars/32.jpg',
-      badge: '/images/icons/flags/united-states-of-america.svg',
+      badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     progress: 91,
     social: [
@@ -463,7 +463,7 @@ export const users = [
     bio: 'This is a nice user description that we can use as demo content.',
     medias: {
       avatar: '/demo/avatars/16.jpg',
-      badge: '/images/icons/flags/united-states-of-america.svg',
+      badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     progress: 78,
     social: [
@@ -498,7 +498,7 @@ export const users = [
     bio: 'This is a nice user description that we can use as demo content.',
     medias: {
       avatar: '/demo/avatars/23.jpg',
-      badge: '/images/icons/flags/united-states-of-america.svg',
+      badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     progress: 36,
     social: [
@@ -603,7 +603,7 @@ export const users = [
     bio: 'This is a nice user description that we can use as demo content.',
     medias: {
       avatar: '/demo/avatars/22.jpg',
-      badge: '/images/icons/flags/united-states-of-america.svg',
+      badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     progress: 17,
     social: [

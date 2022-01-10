@@ -3,15 +3,15 @@ import { themeColors } from '/@src/utils/themeColors'
 export const customersOptions = {
   series: [
     {
-      name: 'Returning',
+      name: 'Total',
       data: [31, 40, 28, 51, 42, 109, 100],
     },
     {
-      name: 'Newcomers',
+      name: 'Completed',
       data: [11, 32, 45, 32, 34, 52, 41],
     },
     {
-      name: 'Abandonned',
+      name: 'Incomplete',
       data: [78, 53, 36, 10, 14, 5, 2],
     },
   ],
@@ -24,7 +24,7 @@ export const customersOptions = {
   },
   colors: [themeColors.accent, themeColors.info, themeColors.green],
   title: {
-    text: 'Customers',
+    text: 'Results Generation',
     align: 'left',
   },
   legend: {

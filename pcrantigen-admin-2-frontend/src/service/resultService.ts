@@ -7,13 +7,19 @@ const config = {headers: {Authorization: "Bearer " + cookies.get('admin2').acces
 const branch_id = cookies.get('admin2').branch_id
 
 export default class ResultService {
-  getResults = () => axios.get(`${basic_url}/v1/admin/test/all/${branch_id}`, config)
+
+  getResults = () => axios.get(`${basic_url}/v1/admin/availablecustomer/all/${branch_id}`, config)
     .then((response) => ({
       data: response.data.data,
     }));
 
   generateResult = (result: Object) => axios.post(`${basic_url}/v1/admin/test`, result, config)
     .then((response) => ({
-      data: response.data.data,
+      data: response.data,
+    }));
+
+  updateAvailableLogStatus = (result: Object) => axios.put(`${basic_url}/v1/admin/availablelog`, result, config)
+    .then((response) => ({
+      data: response.data,
     }));
 }

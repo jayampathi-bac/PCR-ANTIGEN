@@ -56,6 +56,9 @@ import './scss/vendors/line-icons-pro.css'
 import './scss/vendors/prism-coldark-cold.css'
 
 import './scss/main.scss'
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 
 // Now we can start our vue app
 const app = createApp(App)
@@ -73,6 +76,7 @@ app.use(VueTippy, {
     theme: 'light',
   },
 })
+app.use(VueSweetalert2);
 
 app.component(VueMultiselect.name, VueMultiselect)
 app.component(VueSlider.name, VueSlider)

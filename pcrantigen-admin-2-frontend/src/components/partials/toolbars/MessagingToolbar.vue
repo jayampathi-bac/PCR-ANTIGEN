@@ -15,18 +15,18 @@ const dropdown = useDropdown(dropdownElement)
 const localFlagSrc = computed(() => {
   switch (locale.value) {
     case 'fr':
-      return '/images/icons/flags/france.svg'
+      return 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png'
     case 'es':
-      return '/images/icons/flags/spain.svg'
+      return 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png'
     case 'es-MX':
-      return '/images/icons/flags/mexico.svg'
+      return 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png'
     case 'de':
-      return '/images/icons/flags/germany.svg'
+      return 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png'
     case 'zh-CN':
-      return '/images/icons/flags/china.svg'
+      return 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png'
     case 'en':
     default:
-      return '/images/icons/flags/united-states-of-america.svg'
+      return 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png'
   }
 })
 </script>

@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import { useWindowScroll } from '@vueuse/core'
-import { computed, ref } from 'vue'
+import {computed, onBeforeMount, ref} from 'vue'
 import useNotyf from '/@src/composable/useNotyf'
 import sleep from '/@src/utils/sleep'
+import {useStore} from 'vuex'
+import axios from "axios";
+import { useCookies } from "vue3-cookies";
+import {basic_url} from "/@src/utils/basic_config";
 
+const { cookies } = useCookies();
+const store = useStore()
 const isUploading = ref(false)
 const isLoading = ref(false)
 const experience = ref('')
-const firstJob = ref('')
-const flexibility = ref('')
 const remote = ref('')
 const skills = ref(['software', 'saas', 'engineering'])
 const skillsOptions = [
@@ -40,12 +44,50 @@ const onRemoveFile = (error: any, file: any) => {
 
   console.log('file removed', file)
 }
+const name = ref(store.state.auth.admin2.name);
+const contact_number = ref(store.state.auth.admin2.contact_number);
+const email = ref(store.state.auth.admin2.email);
+const profile_picture_url = ref(store.state.auth.admin2.profile_url ? store.state.auth.admin2.profile_url : "https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png");
+
 const onSave = async () => {
   isLoading.value = true
-  await sleep()
-  notyf.success('Your changes have been successfully saved!')
+
+  if (name.value && email.value) {
+    let data = {name: name.value, contact_number: contact_number.value, email: email.value, profile_picture_url : profile_picture_url.value}
+    let config = {headers: {Authorization: "Bearer " + cookies.get('admin2').access_token}}
+    const res = await axios.put(`${basic_url}/v1/customer`,data, config);
+    // console.log("updating response : ",res)
+    if (res.data.success){
+      notyf.success('Your changes have been successfully saved!')
+      store.dispatch("auth/updateUser", {
+        name: name.value,
+        email: email.value
+      })
+      const user = {
+        name:name.value,
+        contact:contact_number.value,
+        email:email.value ,
+        access_token:cookies.get('admin2').access_token ,
+        profile_url:profile_picture_url.value ,
+      };
+      cookies.set("admin2",user,60 * 60 * 24 * 3);
+    }else{
+      notyf.warning('Please try again!')
+    }
+  }else{
+    notyf.warning('Fields are empty..!')
+  }
+
   isLoading.value = false
 }
+
+onBeforeMount(() => {
+  const userToken = cookies.get('admin2').access_token
+  name.value = cookies.get('admin2').name
+  contact_number.value = cookies.get('admin2').contact
+  email.value = cookies.get('admin2').email
+  profile_picture_url.value = cookies.get('admin2').profile_url
+})
 </script>
 
 <template>
@@ -59,7 +101,7 @@ const onSave = async () => {
         <div class="right">
           <div class="buttons">
             <V-Button
-              :to="{ name: 'sidebar-layouts-profile-view' }"
+              :to="{ name: 'sidebar-layouts-dashboard' }"
               icon="lnir lnir-arrow-left rem-100"
               light
               dark-outlined
@@ -83,7 +125,6 @@ const onSave = async () => {
       <div class="fieldset">
         <div class="fieldset-heading">
           <h4>Profile Picture</h4>
-          <p>This is how others will recognize you</p>
         </div>
 
         <V-Avatar size="xl" class="profile-v-avatar">
@@ -138,32 +179,20 @@ const onSave = async () => {
       <div class="fieldset">
         <div class="fieldset-heading">
           <h4>Personal Info</h4>
-          <p>Others diserve to know you more</p>
+          <p>Update your personal details here. </p>
         </div>
 
         <div class="columns is-multiline">
           <!--Field-->
-          <div class="column is-6">
+          <div class="column is-12">
             <V-Field>
               <V-Control icon="feather:user">
                 <input
                   type="text"
                   class="input"
-                  placeholder="First Name"
-                  autocomplete="given-name"
-                />
-              </V-Control>
-            </V-Field>
-          </div>
-          <!--Field-->
-          <div class="column is-6">
-            <V-Field>
-              <V-Control icon="feather:user">
-                <input
-                  type="text"
-                  class="input"
-                  placeholder="Last Name"
-                  autocomplete="family-name"
+                  placeholder="Full Name"
+                  autocomplete="full-name"
+                  v-model="name"
                 />
               </V-Control>
             </V-Field>
@@ -171,12 +200,14 @@ const onSave = async () => {
           <!--Field-->
           <div class="column is-12">
             <V-Field>
-              <V-Control icon="feather:briefcase">
+              <V-Control icon="feather:phone">
                 <input
                   type="text"
                   class="input"
-                  placeholder="Job Title"
-                  autocomplete="organization-title"
+                  placeholder="Contact Number"
+                  autocomplete="contact-number"
+                  readonly
+                  v-model="contact_number"
                 />
               </V-Control>
             </V-Field>
@@ -184,193 +215,13 @@ const onSave = async () => {
           <!--Field-->
           <div class="column is-12">
             <V-Field>
-              <V-Control icon="feather:map-pin">
+              <V-Control icon="feather:mail">
                 <input
                   type="text"
                   class="input"
-                  placeholder="Location"
-                  autocomplete="country-name"
-                />
-              </V-Control>
-            </V-Field>
-          </div>
-          <!--Field-->
-          <div class="column is-12">
-            <V-Field>
-              <V-Control>
-                <textarea
-                  class="textarea"
-                  rows="4"
-                  placeholder="About / Bio"
-                  autocomplete="off"
-                  autocapitalize="off"
-                  spellcheck="true"
-                ></textarea>
-              </V-Control>
-            </V-Field>
-          </div>
-        </div>
-      </div>
-
-      <!--Fieldset-->
-      <div class="fieldset">
-        <div class="fieldset-heading">
-          <h4>Professional Info</h4>
-          <p>This can help you to win some opportunities</p>
-        </div>
-        <div class="columns is-multiline">
-          <!--Field-->
-          <div class="column is-6">
-            <V-Field>
-              <V-Control>
-                <Multiselect
-                  v-model="experience"
-                  placeholder="Experience"
-                  :options="[
-                    '0-2 years',
-                    '2-5 years',
-                    '5-10 years',
-                    '10+ years',
-                  ]"
-                />
-              </V-Control>
-            </V-Field>
-          </div>
-          <!--Field-->
-          <div class="column is-6">
-            <V-Field>
-              <V-Control>
-                <Multiselect
-                  v-model="firstJob"
-                  placeholder="Is this your first job?"
-                  :options="['Yes', 'No']"
-                />
-              </V-Control>
-            </V-Field>
-          </div>
-          <!--Field-->
-          <div class="column is-6">
-            <V-Field>
-              <V-Control>
-                <Multiselect
-                  v-model="flexibility"
-                  placeholder="Are you flexible?"
-                  :options="['Yes', 'No']"
-                />
-              </V-Control>
-            </V-Field>
-          </div>
-          <!--Field-->
-          <div class="column is-6">
-            <V-Field>
-              <V-Control>
-                <Multiselect
-                  v-model="remote"
-                  placeholder="Do you work remotely?"
-                  :options="['Yes', 'No']"
-                />
-              </V-Control>
-            </V-Field>
-          </div>
-          <!--Field-->
-          <div class="column is-12">
-            <V-Field>
-              <V-Control>
-                <Multiselect
-                  v-model="skills"
-                  mode="tags"
-                  :searchable="true"
-                  :create-tag="true"
-                  :options="skillsOptions"
-                  placeholder="Add tags"
-                />
-              </V-Control>
-            </V-Field>
-          </div>
-        </div>
-      </div>
-
-      <!--Fieldset-->
-      <div class="fieldset">
-        <div class="fieldset-heading">
-          <h4>Social Profiles</h4>
-          <p>This can help others finding you on social media</p>
-        </div>
-        <div class="columns is-multiline">
-          <!--Field-->
-          <div class="column is-6">
-            <V-Field>
-              <V-Control icon="fab fa-facebook-f">
-                <input
-                  type="text"
-                  class="input"
-                  placeholder="Facebook URL"
-                  inputmode="url"
-                />
-              </V-Control>
-            </V-Field>
-          </div>
-          <!--Field-->
-          <div class="column is-6">
-            <V-Field>
-              <V-Control icon="fab fa-twitter">
-                <input
-                  type="text"
-                  class="input"
-                  placeholder="Twitter URL"
-                  inputmode="url"
-                />
-              </V-Control>
-            </V-Field>
-          </div>
-          <!--Field-->
-          <div class="column is-6">
-            <V-Field>
-              <V-Control icon="fab fa-dribbble">
-                <input
-                  type="text"
-                  class="input"
-                  placeholder="Dribbble URL"
-                  inputmode="url"
-                />
-              </V-Control>
-            </V-Field>
-          </div>
-          <!--Field-->
-          <div class="column is-6">
-            <V-Field>
-              <V-Control icon="fab fa-instagram">
-                <input
-                  type="text"
-                  class="input"
-                  placeholder="Instagram URL"
-                  inputmode="url"
-                />
-              </V-Control>
-            </V-Field>
-          </div>
-          <!--Field-->
-          <div class="column is-6">
-            <V-Field>
-              <V-Control icon="fab fa-github">
-                <input
-                  type="text"
-                  class="input"
-                  placeholder="Github URL"
-                  inputmode="url"
-                />
-              </V-Control>
-            </V-Field>
-          </div>
-          <!--Field-->
-          <div class="column is-6">
-            <V-Field>
-              <V-Control icon="fab fa-gitlab">
-                <input
-                  type="text"
-                  class="input"
-                  placeholder="Gitlab URL"
-                  inputmode="url"
+                  placeholder="Email Address"
+                  autocomplete="email"
+                  v-model="email"
                 />
               </V-Control>
             </V-Field>

@@ -60,12 +60,12 @@ watch([() => route.fullPath, dropdownElement], () => {
 
           <img
             class="placeholder-image light-image"
-            src="/@src/assets/illustrations/components/buttons.svg"
+            src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
             alt=""
           />
           <img
             class="placeholder-image dark-image"
-            src="/@src/assets/illustrations/components/buttons-dark.svg"
+            src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
             alt=""
           />
         </div>

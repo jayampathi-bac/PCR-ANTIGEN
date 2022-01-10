@@ -10374,6 +10374,11 @@
     "unquote" "~1.1.1"
     "util.promisify" "~1.0.0"
 
+"sweetalert2@11.x":
+  "integrity" "sha512-o7owEtVtpqnB8y3BDCRn2taYb7URcf6RIUm120LjFxt8IHfPIm0UeHuiS3nEp5r9RKm5GlSSJOh/yuapUQcYcQ=="
+  "resolved" "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.3.4.tgz"
+  "version" "11.3.4"
+
 "table@^5.2.3":
   "integrity" "sha512-wmEc8m4fjnob4gt5riFRtTu/6+4rSe12TpAELNSqHMfF3IqnA+CH37USM6/YR3qRZv7e56kAEAtd6nKZaxe0Ug=="
   "resolved" "https://registry.npmjs.org/table/-/table-5.4.6.tgz"
@@ -11538,6 +11543,13 @@
   dependencies:
     "bezier-easing" "2.1.0"
 
+"vue-sweetalert2@^5.0.2":
+  "integrity" "sha512-28pcpmvaFxwoXIUkOWwhZhmsV749jXxha8JicwPoSKyFKR5FhIaZU6UHO5WlUCLIVUI6sAWY6WngK2x/iXYwZg=="
+  "resolved" "https://registry.npmjs.org/vue-sweetalert2/-/vue-sweetalert2-5.0.2.tgz"
+  "version" "5.0.2"
+  dependencies:
+    "sweetalert2" "11.x"
+
 "vue-tippy@6.0.0-alpha.29":
   "integrity" "sha512-NqSfgjGAlOJF0YZjzL22rSviqGkvvCv7wQepSepXvjPC9UMjV82ke55bXD6TfhSPdjdpeKi6VqFwFzmgw/g0lg=="
   "resolved" "https://registry.npmjs.org/vue-tippy/-/vue-tippy-6.0.0-alpha.29.tgz"
@@ -11559,7 +11571,7 @@
   dependencies:
     "vue" "^2.6.10"
 
-"vue@^2.5.17 || ^2.6", "vue@^2.6.0 || >=3.0.0-rc.1", "vue@^3.0.0", "vue@^3.0.2", "vue@> 3.0.0", "vue@>=3", "vue@3.0.11", "vue@3.1.1":
+"vue@*", "vue@^2.5.17 || ^2.6", "vue@^2.6.0 || >=3.0.0-rc.1", "vue@^3.0.0", "vue@^3.0.2", "vue@> 3.0.0", "vue@>=3", "vue@3.0.11", "vue@3.1.1":
   "integrity" "sha512-3/eUi4InQz8MPzruHYSTQPxtM3LdZ1/S/BvaU021zBnZi0laRUyH6pfuE4wtUeLvI8wmUNwj5wrZFvbHUXL9dw=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.0.11.tgz"
   "version" "3.0.11"

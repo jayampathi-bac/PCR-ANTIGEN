@@ -26,7 +26,7 @@ const handleLogin = async () => {
       }).then(() => {
           isLoading.value = false
           router.push({ name: 'sidebar-layouts-dashboard' })
-          // console.log('hrere hrer',store.state.auth.admin1)
+          // console.log('hrere hrer',store.state.auth.admin2)
           notif.success(`Welcome ${store.state.auth.admin2.name} .!`)
         },
         (error) => {

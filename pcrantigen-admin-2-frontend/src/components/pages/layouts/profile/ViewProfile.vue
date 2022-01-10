@@ -4,7 +4,7 @@
       <V-Avatar
         size="xl"
         picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
-        badge="/images/icons/flags/united-states-of-america.svg"
+        badge="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
       />
 
       <h3 class="title is-4 is-narrow is-thin">Erik Kovalsky</h3>
@@ -159,7 +159,7 @@
                 <div class="languages-wrapper">
                   <div class="languages-item">
                     <V-IconWrap
-                      picture="/images/icons/flags/united-states-of-america.svg"
+                      picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                     />
 
                     <div class="meta">
@@ -168,7 +168,7 @@
                     </div>
                   </div>
                   <div class="languages-item">
-                    <V-IconWrap picture="/images/icons/flags/france.svg" />
+                    <V-IconWrap picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
 
                     <div class="meta">
                       <span class="dark-inverted">French</span>
@@ -176,7 +176,7 @@
                     </div>
                   </div>
                   <div class="languages-item">
-                    <V-IconWrap picture="/images/icons/flags/germany.svg" />
+                    <V-IconWrap picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
 
                     <div class="meta">
                       <span class="dark-inverted">German</span>
@@ -184,7 +184,7 @@
                     </div>
                   </div>
                   <div class="languages-item">
-                    <V-IconWrap picture="/images/icons/flags/spain.svg" />
+                    <V-IconWrap picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
 
                     <div class="meta">
                       <span class="dark-inverted">Spanish</span>
@@ -298,7 +298,7 @@
                     <V-Avatar
                       size="large"
                       picture="/demo/avatars/5.jpg"
-                      badge="/images/icons/flags/united-states-of-america.svg"
+                      badge="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                     />
                     <h3 class="dark-inverted">Project Manager</h3>
                     <p>
@@ -317,7 +317,7 @@
                     <V-Avatar
                       size="large"
                       picture="/demo/avatars/18.jpg"
-                      badge="/images/icons/flags/united-states-of-america.svg"
+                      badge="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                     />
 
                     <h3 class="dark-inverted">UI/UX Designer</h3>

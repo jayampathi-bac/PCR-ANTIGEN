@@ -24,20 +24,17 @@
               @click="reloadCapture"
               :disable="imageCaptured"
               rounded
-            >Reload
-            </VButton>
+            >Reload</VButton>
             <VButton
               @click="captureImage"
               color="success" outlined
               rounded
-            >Capture
-            </VButton>
+            >Capture</VButton>
             <VButton
               @click="swapCamera"
               outlined
               rounded
-            >Swap
-            </VButton>
+            >Swap</VButton>
           </VButtons>
         </div>
       </div>
@@ -46,12 +43,9 @@
 </template>
 
 <script>
-import useNotyf from "/@src/composable/useNotyf";
-
-
 export default {
-  name: "CaptureUserImage",
-  props: {
+  name: "CaptureTestImage",
+  props:{
     isOpened: Boolean
   },
   data() {
@@ -61,7 +55,6 @@ export default {
       hasCameraSupport: true,
       imageUploadData: [],
       locationLoading: false,
-      notif: useNotyf(),
       shouldFaceUser: false,
     }
   },
@@ -71,13 +64,13 @@ export default {
       console.log("initCamera", shouldFaceUser123)
       navigator.mediaDevices.getUserMedia({
         video: {
-          facingMode: shouldFaceUser123
+          facingMode: 'user'
         },
       }).then(stream => {
         this.$refs.video.srcObject = stream
       }).catch(error => {
-        console.log("error", error)
-        this.notif.warning("Please connect a camera.!")
+        console.log("error",error)
+        // notif.warning("Please Connect a camera..!")
         this.hasCameraSupport = false
       })
     },
@@ -91,15 +84,16 @@ export default {
       this.imageCaptured = true
       this.photo = this.dataURItoBlob(canvas.toDataURL())
       this.disableCamera()
-      this.$emit('savedCustomerImage', this.photo)
+      this.$emit('savedTestImage', this.photo)
+      console.log("capturing")
     },
-    swapCamera() {
-      console.log("shouldFaceUser", this.shouldFaceUser)
+    swapCamera(){
+      console.log("shouldFaceUser",this.shouldFaceUser)
       this.shouldFaceUser = !this.shouldFaceUser;
-      this.initCamera();
+      this.initCamera()
     },
-    disableCamera() {
-      this.$refs.video.srcObject.getVideoTracks().forEach(track => {
+    disableCamera(){
+      this.$refs.video.srcObject.getVideoTracks().forEach(track =>{
         track.stop()
       })
 
@@ -128,28 +122,28 @@ export default {
       return blob;
 
     },
-    addPost() {
+    addPost(){
       this.$q.loading.show()
       let formdata = new FormData()
-      formdata.append('id', this.post.id)
-      formdata.append('caption', this.post.caption)
-      formdata.append('location', this.post.location)
-      formdata.append('date', this.post.date)
-      formdata.append('file', this.post.photo, this.post.id + '.png')
+      formdata.append('id',this.post.id)
+      formdata.append('caption',this.post.caption)
+      formdata.append('location',this.post.location)
+      formdata.append('date',this.post.date)
+      formdata.append('file',this.post.photo,this.post.id+'.png')
 
-      this.$axios.post(`${process.env.API}/createPost`, formdata).then(response => {
-        console.log("response : ", response)
+      this.$axios.post(`${process.env.API}/createPost`,formdata).then(response =>{
+        console.log("response : ",response)
         this.$router.push('/')
 
         //notification
         this.$q.notify({
           message: 'Post created.',
           actions: [
-            {label: 'Dismiss', color: 'white'}
+            { label: 'Dismiss', color: 'white' }
           ]
         })
         this.$q.loading.hide()
-      }).catch(err => {
+      }).catch(err =>{
         this.$q.dialog({
           title: 'Error',
           message: 'Could not create the post'
@@ -157,7 +151,7 @@ export default {
         this.$q.loading.hide()
       })
     },
-    reloadCapture() {
+    reloadCapture(){
       this.initCamera()
       this.imageCaptured = false
     }
@@ -166,18 +160,17 @@ export default {
     this.initCamera()
   },
   beforeUnmount() {
-    if (this.hasCameraSupport) {
+    if (this.hasCameraSupport){
       console.log("destroyed")
       this.disableCamera()
     }
   },
-
-  watch: {
-    isOpened: function (newVal, oldVal) {
+  watch:{
+    isOpened: function(newVal, oldVal) {
       // console.log('Prop changed: ', newVal, ' | was: ', oldVal)
-      if (newVal) {
+      if (newVal){
         this.initCamera()
-      } else {
+      }else{
         this.disableCamera()
         // console.log("photo",this.photo)
       }

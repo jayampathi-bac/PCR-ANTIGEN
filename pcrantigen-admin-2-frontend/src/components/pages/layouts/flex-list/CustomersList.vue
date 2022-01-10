@@ -132,7 +132,7 @@ onMounted(async () => {
             <span class="is-grow">Customer</span>
             <span>Email</span>
             <span>Contact</span>
-            <span class="cell-end">Action</span>
+            <span class="cell-end">Actions</span>
           </div>
 
           <div class="flex-list-inner">
@@ -160,7 +160,7 @@ onMounted(async () => {
                   <span class="light-text">{{ customer.contact_number }}</span>
                 </div>
                 <div class="flex-table-cell cell-end" data-th="Actions">
-                  <VButton color="primary" outlined> More</VButton>
+                  <span><VButton color="primary" outlined> More</VButton></span>
                 </div>
               </div>
             </transition-group>

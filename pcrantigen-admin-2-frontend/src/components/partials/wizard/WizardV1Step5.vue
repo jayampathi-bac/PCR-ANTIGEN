@@ -108,7 +108,7 @@ watchEffect(() => {
         <V-Avatar
           size="big"
           picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
-          badge="/images/icons/flags/united-states-of-america.svg"
+          badge="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
         />
         <h3 class="title is-4 is-narrow is-thin">Erik Kovalsky</h3>
         <p class="light-text">You are the project owner</p>

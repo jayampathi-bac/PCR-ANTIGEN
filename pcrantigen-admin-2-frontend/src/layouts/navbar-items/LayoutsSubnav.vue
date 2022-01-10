@@ -183,12 +183,12 @@ const activeTab = ref<TabId>('list')
                 <a href="https://cssninja.io" class="column-placeholder">
                   <img
                     class="light-image"
-                    src="/images/icons/misc/buoy.svg"
+                    src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                     alt=""
                   />
                   <img
                     class="dark-image"
-                    src="/images/icons/misc/buoy-dark.svg"
+                    src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                     alt=""
                   />
                   <h3>Support</h3>
@@ -199,12 +199,12 @@ const activeTab = ref<TabId>('list')
                 >
                   <img
                     class="light-image"
-                    src="/images/icons/misc/docs.svg"
+                    src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                     alt=""
                   />
                   <img
                     class="dark-image"
-                    src="/images/icons/misc/docs-dark.svg"
+                    src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                     alt=""
                   />
                   <h3>Documentation</h3>
@@ -363,12 +363,12 @@ const activeTab = ref<TabId>('list')
                 <a href="https://cssninja.io" class="column-placeholder">
                   <img
                     class="light-image"
-                    src="/images/icons/misc/buoy.svg"
+                    src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                     alt=""
                   />
                   <img
                     class="dark-image"
-                    src="/images/icons/misc/buoy-dark.svg"
+                    src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                     alt=""
                   />
                   <h3>Support</h3>
@@ -379,12 +379,12 @@ const activeTab = ref<TabId>('list')
                 >
                   <img
                     class="light-image"
-                    src="/images/icons/misc/docs.svg"
+                    src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                     alt=""
                   />
                   <img
                     class="dark-image"
-                    src="/images/icons/misc/docs-dark.svg"
+                    src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                     alt=""
                   />
                   <h3>Documentation</h3>

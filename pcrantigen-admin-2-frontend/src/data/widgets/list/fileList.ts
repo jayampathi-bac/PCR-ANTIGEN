@@ -1,7 +1,7 @@
 export const fileList1 = [
   {
     id: 0,
-    icon: '/images/icons/files/zip-format.svg',
+    icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     name: 'theme.zip',
     type: 'Zipped folder',
   },
@@ -19,7 +19,7 @@ export const fileList1 = [
   },
   {
     id: 3,
-    icon: '/images/icons/files/sheet.svg',
+    icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     name: 'project_budget.xsls',
     type: 'MS Excel file',
   },
@@ -31,7 +31,7 @@ export const fileList1 = [
   },
   {
     id: 5,
-    icon: '/images/icons/files/sheet.svg',
+    icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     name: 'invoice_recap.xsls',
     type: 'MS Excel file',
   },
@@ -58,7 +58,7 @@ export const fileList2 = [
   },
   {
     id: 9,
-    icon: '/images/icons/files/zip-format.svg',
+    icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     name: 'theme_assets.zip',
     type: 'Zipped folder',
   },
