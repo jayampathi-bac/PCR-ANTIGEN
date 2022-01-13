@@ -11091,6 +11091,13 @@
     "@intlify/vue-devtools" "9.1.4"
     "@vue/devtools-api" "^6.0.0-beta.7"
 
+"vue-native-websocket-vue3@^3.1.4":
+  "integrity" "sha512-Dqq+LaoV1ZgWhPGIEBKBIXMc+n+7Bh6BkAgnRrf3iV6NSOA7q42dQNOEPbJCzmn/L779ck56RT1UtoCZfIwq/w=="
+  "resolved" "https://registry.npmjs.org/vue-native-websocket-vue3/-/vue-native-websocket-vue3-3.1.4.tgz"
+  "version" "3.1.4"
+  dependencies:
+    "file-entry-cache" "^6.0.1"
+
 "vue-router@4.0.6":
   "integrity" "sha512-Y04llmK2PyaESj+N33VxLjGCUDuv9t4q2OpItEGU7POZiuQZaugV6cJpE6Qm1sVFtxufodLKN2y2dQl9nk0Reg=="
   "resolved" "https://registry.npmjs.org/vue-router/-/vue-router-4.0.6.tgz"

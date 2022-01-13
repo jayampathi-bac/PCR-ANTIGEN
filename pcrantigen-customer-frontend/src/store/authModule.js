@@ -17,6 +17,11 @@ const initialState = (user)
 export const authModule = {
     namespaced: true,
     state: initialState,
+    getters: {
+      getContactNo: state => {
+        return state.user.contact
+      }
+    },
     actions: {
         login({ commit }, user) {
             return AuthService.login(user).then(

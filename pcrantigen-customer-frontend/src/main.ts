@@ -16,7 +16,7 @@ import { createHead } from '@vueuse/head'
 import VueMultiselect from '@vueform/multiselect'
 import VueSlider from '@vueform/slider'
 import VueCKEditor from '@ckeditor/ckeditor5-vue'
-
+import {socket_url} from "/@src/utils/basic_config";
 
 
 import App from './App.vue'
@@ -52,6 +52,9 @@ import './scss/main.scss'
 // Now we can start our vue app
 const app = createApp(App)
 const head = createHead()
+
+// import VueNativeSock from "vue-native-websocket-vue3";
+// app.use(VueNativeSock,socket_url);
 
 app.use(store);
 app.use(router)

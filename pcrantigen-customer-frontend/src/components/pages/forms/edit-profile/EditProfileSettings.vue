@@ -5,9 +5,9 @@ import useNotyf from '/@src/composable/useNotyf'
 import sleep from '/@src/utils/sleep'
 import axios from "axios";
 import {useStore} from "vuex";
-import { useCookies } from "vue3-cookies";
 import {basic_url} from "/@src/utils/basic_config";
 
+import { useCookies } from "vue3-cookies";
 
 const { cookies } = useCookies();
 const notyf = useNotyf()

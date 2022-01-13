@@ -10,7 +10,7 @@ const { cookies } = useCookies();
  */
 import routes from 'pages-generated'
 
-/**
+/*
  * Here is how a simple route is generated:
  * import { RouteRecordRaw } from 'vue-router'
  *
@@ -40,7 +40,7 @@ import routes from 'pages-generated'
  *
  * Uncomment the line below to view the generated routes
  */
-// console.log(routes)
+console.log(routes)
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -50,8 +50,9 @@ const router = createRouter({
 /**
  * Handle NProgress display on page changes
  */
+
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/','/auth/signup-3','/auth/login-1'];
+  const publicPages = ['/','/auth/signup-3','/auth/login-1','/:branch',];
   const authRequired = !publicPages.includes(to.path);
   // const loggedIn = localStorage.getItem('user');
   const loggedIn = cookies.get('user');
