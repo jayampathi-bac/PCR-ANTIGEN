@@ -32,12 +32,12 @@
               rounded
             >Capture
             </VButton>
-            <VButton
-              @click="swapCamera"
-              outlined
-              rounded
-            >Swap
-            </VButton>
+<!--            <VButton-->
+<!--              @click="swapCamera"-->
+<!--              outlined-->
+<!--              rounded-->
+<!--            >Swap-->
+<!--            </VButton>-->
           </VButtons>
         </div>
       </div>

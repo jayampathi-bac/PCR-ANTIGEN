@@ -1,11 +1,17 @@
 <script setup lang="ts">
-import {computed, onMounted, ref} from 'vue'
+import {computed, onMounted, ref, inject} from 'vue'
 
 import getBrands from '/@src/composable/brandsData'
 
 import useNotyf from '/@src/composable/useNotyf'
 
 import BrandService from '/@src/service/brandService';
+
+import {useCookies} from "vue3-cookies";
+
+const swal = inject('$swal')
+
+const {cookies} = useCookies();
 
 const brandService = new BrandService();
 
@@ -33,7 +39,7 @@ const filteredData = computed(() => {
 
 //profile_url: string; password: string; email: string; contact_number: string; name: string;
 const brand_name = ref('')
-const branch_id = ref('')
+const branch_id = ref(cookies.get('admin2').branch_id)
 const description = ref('')
 
 const saveBrandFunc = () => {
@@ -49,6 +55,7 @@ const saveBrandFunc = () => {
       .then(function (response) {
         console.log('response',response)
         if (response.data.success){
+          swal.fire('Saving Successful!', '', 'success')
           notif.success(response.data.message)
           searchAllBrands()
           centeredActionsOpen.value = false
@@ -64,6 +71,18 @@ const saveBrandFunc = () => {
   }
 }
 
+const fireBrandFuncAlert = () => {
+  centeredActionsOpen.value = false;
+  swal.fire({
+    title: `Do you want to save the Brand ?`,
+    showCancelButton: true,
+    confirmButtonText: 'Save',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      saveBrandFunc()
+    }
+  })
+}
 onMounted(async () => {
   searchAllBrands();
 })
@@ -194,6 +213,7 @@ onMounted(async () => {
                       autocomplete="branch"
                       inputmode="branch"
                       v-model="branch_id"
+                      readonly
                     />
                   </V-Control>
                 </V-Field>
@@ -217,7 +237,7 @@ onMounted(async () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="saveBrandFunc">Add Brand</VButton>
+        <VButton color="primary" raised @click="fireBrandFuncAlert">Add Brand</VButton>
       </template>
     </VModal>
   </div>

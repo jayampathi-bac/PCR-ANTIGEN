@@ -7,6 +7,8 @@ import ResultService from '/@src/service/resultService';
 import {useCookies} from "vue3-cookies";
 import useNotyf from "/@src/composable/useNotyf";
 
+import {socket_url} from "/@src/utils/basic_config";
+
 const notif = useNotyf()
 
 const resultService = new ResultService();
@@ -46,7 +48,7 @@ const filteredData = computed(() => {
 const selected_customer = ref('');
 const date = ref(new Date())
 let result = ref('Negative')
-const testResult = ref('Negative')
+const testResult = ref('')
 const resultOptions = [
   'Positive',
   'Negative',
@@ -62,10 +64,8 @@ const issueResult = () => {
 
   swal.fire({
     title: `Do you want to send results to ${selected_customer.value.name}?`,
-    showDenyButton: true,
     showCancelButton: true,
     confirmButtonText: 'Send',
-    denyButtonText: `Don't send`,
   }).then((result) => {
     console.log("result", result)
     if (result.isConfirmed) {
@@ -86,6 +86,7 @@ const issueResult = () => {
           })
           notif.success(response.data.message)
           swal.fire('Saved!', '', 'success')
+          search();
         } else {
           notif.warning(response.data.message)
         }
@@ -114,7 +115,6 @@ const savedCustomerImage = (value: any) => {
 };
 const isDisabled = (customer: object) => (customer.status === 'COMPLETE' || customer.status === 'INCOMPLETE');
 
-
 const savedTestImage = (value: any) => {
   capturedTestImage.value = value
   console.log('savedTestImage', value);
@@ -122,52 +122,64 @@ const savedTestImage = (value: any) => {
 
 const voidCustomer = (customer: object) => {
   console.log('voidCustomer', customer);
-  resultService.updateAvailableLogStatus({
-    contact_number: customer.customer_contact,
-    status: 'INCOMPLETE',
-    branch_id: cookies.get('admin2').branch_id,
+  swal.fire({
+    title: `Do you want to void ${customer.name}?`,
+    showCancelButton: true,
+    confirmButtonText: 'Void',
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      resultService.updateAvailableLogStatus({
+        contact_number: customer.customer_contact,
+        status: 'INCOMPLETE',
+        branch_id: cookies.get('admin2').branch_id,
+      })
+        .then(function (response) {
+          console.log('response', response)
+          if (response.data.success) {
+            notif.success(response.data.message)
+            swal.fire('Void Successful!', '', 'success')
+            search();
+          } else {
+            notif.warning(response.data.message)
+          }
+        }).catch(function (error) {
+        console.log(error);
+      });
+
+    }
   })
-    .then(function (response) {
-      console.log('response', response)
-      if (response.data.success) {
-        notif.success(response.data.message)
-        search();
-      } else {
-        notif.warning(response.data.message)
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
 };
+
+let connection = null
+const callingWebSocket = () => {
+  console.log("Starting connection to WebSocket Server")
+  connection = new WebSocket(socket_url)
+
+  connection.onmessage = function (event) {
+    console.log("response came")
+    console.log(event);
+    const myObj = JSON.parse(event.data);
+    console.log(myObj);
+    if (cookies.get('admin2').branch_id === parseInt(myObj.branch_id) && myObj.condition === "true") {
+      console.log("true true true")
+      search();
+    }
+  }
+
+  connection.onopen = function (event) {
+    console.log(event)
+    console.log("Successfully connected to the echo websocket server...")
+  }
+}
 
 const connected = ref(false);
 const received_messages = ref([]);
 
-// const connect = () => {
-//   let socket = new SockJS("http://localhost:8080/gs-guide-websocket");
-//   let stompClient = Stomp.over(socket);
-//   stompClient.connect(
-//     {},
-//     frame => {
-//       connected.value = true;
-//       console.log(frame);
-//       stompClient.subscribe("/topic/greetings", tick => {
-//         console.log(tick);
-//         received_messages.value.push(JSON.parse(tick.body).content);
-//       });
-//     },
-//     error => {
-//       console.log(error);
-//       connected.value = false;
-//     }
-//   );
-// }
 
 onMounted(async () => {
   search();
-  // connect();
-
+  callingWebSocket();
 })
 </script>
 
@@ -378,7 +390,7 @@ onMounted(async () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="issueResult()">Save Image</VButton>
+        <VButton color="primary" raised @click="">Save Image</VButton>
       </template>
     </VModal>
     <VModal
@@ -389,11 +401,11 @@ onMounted(async () => {
       title="Capture Test Record Image"
     >
       <template #content>
-        <capture-test-image :is-opened="captureTestImageModel" @savedTestImage="savedTestImage"/>
+        <capture-test-image  :is-opened="captureTestImageModel" @savedTestImage="savedTestImage"/>
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="issueResult()">Save Image</VButton>
+        <VButton color="primary" raised @click="">Save Image</VButton>
       </template>
     </VModal>
   </div>
@@ -419,5 +431,9 @@ onMounted(async () => {
 
 .swal2-title {
   font-size: 20px !important;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: #41b883 !important;
 }
 </style>

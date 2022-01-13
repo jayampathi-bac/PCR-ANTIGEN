@@ -58,11 +58,15 @@ import './scss/vendors/prism-coldark-cold.css'
 import './scss/main.scss'
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import {socket_url} from "/@src/utils/basic_config";
 
 
 // Now we can start our vue app
 const app = createApp(App)
 const head = createHead()
+
+// import VueNativeSock from "vue-native-websocket-vue3";
+// app.use(VueNativeSock,socket_url);
 
 app.use(store);
 app.use(router)

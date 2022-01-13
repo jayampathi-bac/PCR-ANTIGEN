@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, onMounted, ref} from 'vue'
+import {computed, inject, onMounted, ref} from 'vue'
 
 import getCustomers from '/@src/composable/customersData'
 
@@ -8,6 +8,8 @@ import useNotyf from '/@src/composable/useNotyf'
 import CustomerService from '/@src/service/customerService';
 
 import {useCookies} from "vue3-cookies";
+
+const swal = inject('$swal')
 
 const {cookies} = useCookies();
 
@@ -18,6 +20,7 @@ const notif = useNotyf()
 const {search, saveCustomer, customers} = getCustomers();
 
 const centeredActionsOpen = ref(false)
+
 
 const filters = ref('')
 
@@ -63,6 +66,7 @@ const saveCustomerFunc = () => {
           .then(function (response) {
             console.log('response',response)
             if (response.data.data.success){
+              swal.fire('Saving Successful!', '', 'success')
               notif.success(response.data.data.message)
               centeredActionsOpen.value = false;
               search();
@@ -82,6 +86,74 @@ const saveCustomerFunc = () => {
   } else {
     notif.warning('Empty Fields.!!')
   }
+}
+const fireSaveCustomerAlert = () => {
+  centeredActionsOpen.value = false
+  swal.fire({
+    title: `Do you want to save the customer ?`,
+    showCancelButton: true,
+    confirmButtonText: 'Save',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      saveCustomerFunc()
+    }
+  })
+}
+
+//Edit Customer Section
+const editCustomerAction = ref(false)
+const editName = ref('')
+const editEmail = ref('')
+const editContactNumber = ref('')
+
+const editCustomerModelOpen = (customer) => {
+  editCustomerAction.value = true
+  editName.value = customer.name;
+  editEmail.value = customer.email;
+  editContactNumber.value = customer.contact_number;
+}
+
+const editCustomerFunc = () => {
+  console.log("editing")
+  if (editName.value && editContactNumber.value && editEmail.value) {
+    console.log("working edit")
+    const customerObj  = {
+      name: editName.value,
+      email: editEmail.value,
+      contact_number: editContactNumber.value,
+    }
+    customerService.editCustomer(customerObj)
+      .then(function (response) {
+        console.log('response',response)
+        if (response.data.data.success){
+          notif.success('Editing customer is Successful..!')
+          swal.fire('Editing Successful!', '', 'success')
+          editCustomerAction.value = false;
+          editName.value = '';
+          search();
+        }else{
+          notif.warning(response.data.data.message)
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  } else {
+    notif.warning('Empty Fields.!!')
+  }
+}
+
+const fireEditCustomerAlert = () => {
+  editCustomerAction.value = false
+  swal.fire({
+    title: `Do you want to edit the customer ?`,
+    showCancelButton: true,
+    confirmButtonText: 'Edit',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      editCustomerFunc()
+    }
+  })
 }
 
 onMounted(async () => {
@@ -160,7 +232,7 @@ onMounted(async () => {
                   <span class="light-text">{{ customer.contact_number }}</span>
                 </div>
                 <div class="flex-table-cell cell-end" data-th="Actions">
-                  <span><VButton color="primary" outlined> More</VButton></span>
+                  <span><VButton color="primary" outlined @click="editCustomerModelOpen(customer)"> Edit</VButton></span>
                 </div>
               </div>
             </transition-group>
@@ -265,7 +337,65 @@ onMounted(async () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="saveCustomerFunc">Add Customer</VButton>
+        <VButton color="primary" raised @click="fireSaveCustomerAlert">Add Customer</VButton>
+      </template>
+    </VModal>
+    <VModal
+      :open="editCustomerAction"
+      size="medium"
+      actions="center"
+      @close="editCustomerAction = false"
+      title="Edit Customer"
+    >
+      <template #content>
+        <form class="form-layout is-split" @submit.prevent>
+          <div class="form-outer">
+            <div class="form-section is-grey">
+              <div>
+                <V-Field>
+                  <V-Control icon="feather:user">
+                    <input
+                      type="text"
+                      class="input"
+                      placeholder="Name"
+                      autocomplete="name"
+                      v-model="editName"
+                    />
+                  </V-Control>
+                </V-Field>
+                <V-Field>
+                  <V-Control icon="feather:phone">
+                    <input
+                      type="tel"
+                      class="input"
+                      placeholder="Phone Number"
+                      autocomplete="tel"
+                      inputmode="tel"
+                      v-model="editContactNumber"
+                      readonly
+                    />
+                  </V-Control>
+                </V-Field>
+                <V-Field>
+                  <V-Control icon="feather:mail">
+                    <input
+                      type="email"
+                      class="input"
+                      placeholder="Email Address"
+                      autocomplete="email"
+                      inputmode="email"
+                      v-model="editEmail"
+                    />
+                  </V-Control>
+                </V-Field>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </template>
+      <template #action>
+        <VButton color="primary" raised @click="fireEditCustomerAlert">Edit Customer</VButton>
       </template>
     </VModal>
   </div>
@@ -283,4 +413,12 @@ onMounted(async () => {
     margin-left: auto;
   }
 }
+.swal2-title {
+  font-size: 20px !important;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: #41b883 !important;
+}
+
 </style>

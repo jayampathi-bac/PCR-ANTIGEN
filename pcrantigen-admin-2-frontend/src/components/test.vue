@@ -123,6 +123,7 @@ export default {
 
     },
     addPost(){
+
       this.$q.loading.show()
       let formdata = new FormData()
       formdata.append('id',this.post.id)
@@ -158,6 +159,7 @@ export default {
   },
   mounted() {
     this.initCamera()
+
   },
   beforeUnmount() {
     if (this.hasCameraSupport){
@@ -176,7 +178,9 @@ export default {
       }
     }
   }
+
 }
+
 </script>
 
 

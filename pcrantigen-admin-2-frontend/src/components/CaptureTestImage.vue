@@ -30,11 +30,11 @@
               color="success" outlined
               rounded
             >Capture</VButton>
-            <VButton
-              @click="swapCamera"
-              outlined
-              rounded
-            >Swap</VButton>
+<!--            <VButton-->
+<!--              @click="swapCamera"-->
+<!--              outlined-->
+<!--              rounded-->
+<!--            >Swap</VButton>-->
           </VButtons>
         </div>
       </div>
@@ -68,15 +68,42 @@ const initCamera = () => {
   console.log("initCamera", shouldFaceUser123)
   navigator.mediaDevices.getUserMedia({
     video: {
-      facingMode: 'user'
+      facingMode: shouldFaceUser123
     },
   }).then(stream => {
+    video.value.srcObject = null
     video.value.srcObject = stream
+    video.value.play();
   }).catch(error => {
     console.log("error",error)
     // notif.warning("Please Connect a camera..!")
     hasCameraSupport.value = false
   })
+}
+
+let stream;
+
+const capture = async facingMode => {
+  const options = {
+    audio: false,
+    video: {
+      facingMode,
+    },
+  };
+
+  try {
+    if (stream) {
+      const tracks = stream.getTracks();
+      tracks.forEach(track => track.stop());
+    }
+    stream = await navigator.mediaDevices.getUserMedia(options);
+  } catch (e) {
+    console.log(e);
+    return;
+  }
+  video.value.srcObject = null;
+  video.value.srcObject = stream;
+  video.value.play();
 }
 
 const captureImage = () => {
@@ -96,7 +123,12 @@ const captureImage = () => {
 const swapCamera = () => {
   console.log("shouldFaceUser",shouldFaceUser.value)
   shouldFaceUser.value = !shouldFaceUser.value;
-  initCamera()
+  // initCamera()
+  if (shouldFaceUser.value) {
+    capture('environment');
+  }else{
+    capture('user');
+  }
 }
 
 const disableCamera = () => {
@@ -161,19 +193,19 @@ const addPost = () => {
 }
 
 const reloadCapture = () => {
-  initCamera()
+  capture('environment');
   imageCaptured.value = false
 }
 
 onMounted(() => {
-  initCamera()
+  capture('environment');
 })
 
 watch(
   () => isOpened.value,
   (count, prevCount) => {
     if (count){
-      initCamera()
+      capture('environment');
     }else{
       disableCamera()
       // console.log("photo",this.photo)

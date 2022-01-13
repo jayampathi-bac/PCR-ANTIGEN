@@ -25,4 +25,15 @@ export default class CustomerService {
       data: response,
     }));
 
+  editCustomer = (customer: { email: string; contact_number: string; name: string}
+  ) => axios.put(`${basic_url}/v1/admin/customer`, {
+    name: customer.name,
+    contact_number: customer.contact_number,
+    email: customer.email,
+    profile_url: '',
+  }, config)
+    .then((response) => ({
+      data: response,
+    }));
+
 }
