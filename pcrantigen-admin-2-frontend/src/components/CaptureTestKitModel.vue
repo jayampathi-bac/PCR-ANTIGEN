@@ -16,14 +16,15 @@ const closeCaptureTestImageModel = () => {
   captureTestImageModel.value = false
 }
 
-const video = ref(null)
-const canvas = ref(null)
+// const video = ref(null)
+// const canvas = ref(null)
 const photo = ref(null);
 const isImageCaptured = ref(false);
 const hasCameraSupport = ref(true);
 const imageUploadData = ref([]);
 
 let videoElm = null
+let canvasElm = null
 
 const checkForCameraSupport = () => {
   const supports = navigator.mediaDevices.getSupportedConstraints();
@@ -61,7 +62,7 @@ const capture = async facingMode => {
 
 const captureImage = () => {
   let video = videoElm
-  let canvas = canvas.value
+  let canvas = canvasElm
   canvas.width = video.getBoundingClientRect().width
   canvas.height = video.getBoundingClientRect().height
   let context = canvas.getContext('2d')
@@ -106,6 +107,7 @@ const reloadCapture = () => {
 onMounted(() => {
   checkForCameraSupport()
   videoElm = document.querySelector('#video');
+  canvasElm = document.querySelector('#canvas');
 })
 
 </script>
@@ -144,7 +146,7 @@ onMounted(() => {
               />
               <canvas
                 v-show="isImageCaptured"
-                ref="canvas"
+                id="canvas"
                 class="full-width"
                 height="240"
               />
