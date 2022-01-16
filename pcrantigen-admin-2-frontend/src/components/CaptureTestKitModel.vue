@@ -70,7 +70,7 @@ const captureImage = () => {
   isImageCaptured.value = true
   photo.value = dataURItoBlob(canvas.toDataURL())
   // disableCamera()
-  console.log('capturing savedTestImage', this.photo)
+  console.log('capturing savedTestImage', photo.value)
 }
 
 const dataURItoBlob = (dataURI) => {
