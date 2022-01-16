@@ -35,7 +35,7 @@ const checkForCameraSupport = () => {
     capture('environment');
   }
 }
-
+let stream;
 const capture = async facingMode => {
   const options = {
     audio: false,
