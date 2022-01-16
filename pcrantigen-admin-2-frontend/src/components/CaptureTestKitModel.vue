@@ -13,7 +13,6 @@ const closeCaptureUserImageModel = () => {
   captureUserImageModel.value = false
 }
 const closeCaptureTestImageModel = () => {
-
   captureTestImageModel.value = false
 }
 
@@ -171,6 +170,7 @@ onMounted(() => {
                   </VButton>
                   <VButton
                     @click="captureImage"
+                    :diabled="isImageCaptured"
                     color="success" outlined
                     rounded
                   >Capture
