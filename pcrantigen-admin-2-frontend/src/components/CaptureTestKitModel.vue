@@ -170,7 +170,7 @@ onMounted(() => {
                   </VButton>
                   <VButton
                     @click="captureImage"
-                    :diabled="isImageCaptured"
+                    :diable="isImageCaptured"
                     color="success" outlined
                     rounded
                   >Capture
