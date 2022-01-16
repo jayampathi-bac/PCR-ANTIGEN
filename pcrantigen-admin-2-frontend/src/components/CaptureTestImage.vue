@@ -45,7 +45,7 @@
 <script setup>
 import {onMounted, ref, toRefs, inject, defineProps, watch} from 'vue'
 // const refs = inject('$refs')
-const emit = inject('$emit')
+// const emit = inject('$emit')
 
 const props = defineProps({
   isOpened: Boolean,

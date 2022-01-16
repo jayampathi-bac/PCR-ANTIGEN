@@ -52,7 +52,7 @@ const capture = async facingMode => {
     }
     stream = await navigator.mediaDevices.getUserMedia(options);
   } catch (e) {
-    alert(e);
+    console.log(e);
     return;
   }
   videoElm.srcObject = null;
@@ -164,13 +164,13 @@ onMounted(() => {
                 <VButtons style="justify-content: center">
                   <VButton
                     @click="reloadCapture"
-                    :disable="isImageCaptured"
+                    :disabled="!isImageCaptured"
                     rounded
                   >Reload
                   </VButton>
                   <VButton
                     @click="captureImage"
-                    :diable="isImageCaptured"
+                    :disabled="isImageCaptured"
                     color="success" outlined
                     rounded
                   >Capture

@@ -382,36 +382,36 @@ onMounted(async () => {
         <VButton color="primary" raised @click="issueResult()">Issue Result</VButton>
       </template>
     </VModal>
-    <VModal
-      :open="captureUserImageModel"
-      size="large"
-      actions="center"
-      @close="captureUserImageModel = false"
-      title="Capture Customer Image"
-    >
-      <template #content>
-        <capture-user-image :is-opened="captureUserImageModel" @savedCustomerImage="savedCustomerImage"/>
+<!--    <VModal-->
+<!--      :open="captureUserImageModel"-->
+<!--      size="large"-->
+<!--      actions="center"-->
+<!--      @close="captureUserImageModel = false"-->
+<!--      title="Capture Customer Image"-->
+<!--    >-->
+<!--      <template #content>-->
+<!--        <capture-user-image :is-opened="captureUserImageModel" @savedCustomerImage="savedCustomerImage"/>-->
 
-      </template>
-      <template #action>
-        <VButton color="primary" raised @click="">Save Image</VButton>
-      </template>
-    </VModal>
-    <VModal
-      :open="captureTestImageModel"
-      size="large"
-      actions="center"
-      @close="captureTestImageModel = false"
-      title="Capture Test Record Image"
-    >
-      <template #content>
-        <capture-test-image  :is-opened="captureTestImageModel" @savedTestImage="savedTestImage"/>
+<!--      </template>-->
+<!--      <template #action>-->
+<!--        <VButton color="primary" raised @click="">Save Image</VButton>-->
+<!--      </template>-->
+<!--    </VModal>-->
+<!--    <VModal-->
+<!--      :open="captureTestImageModel"-->
+<!--      size="large"-->
+<!--      actions="center"-->
+<!--      @close="captureTestImageModel = false"-->
+<!--      title="Capture Test Record Image"-->
+<!--    >-->
+<!--      <template #content>-->
+<!--        <capture-test-image  :is-opened="captureTestImageModel" @savedTestImage="savedTestImage"/>-->
 
-      </template>
-      <template #action>
-        <VButton color="primary" raised @click="">Save Image</VButton>
-      </template>
-    </VModal>
+<!--      </template>-->
+<!--      <template #action>-->
+<!--        <VButton color="primary" raised @click="">Save Image</VButton>-->
+<!--      </template>-->
+<!--    </VModal>-->
   </div>
 
 </template>
