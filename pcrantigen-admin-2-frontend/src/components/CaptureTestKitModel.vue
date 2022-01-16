@@ -13,7 +13,7 @@ const closeCaptureUserImageModel = () => {
   captureUserImageModel.value = false
 }
 const closeCaptureTestImageModel = () => {
-  disableCamera()
+
   captureTestImageModel.value = false
 }
 
