@@ -68,10 +68,9 @@ const captureImage = () => {
   let context = canvas.getContext('2d')
   context.drawImage(video, 0, 0, canvas.width, canvas.height)
   isImageCaptured.value = true
-  photo.value = this.dataURItoBlob(canvas.toDataURL())
-  disableCamera()
-  emit('savedTestImage', this.photo)
-  console.log("capturing")
+  photo.value = dataURItoBlob(canvas.toDataURL())
+  // disableCamera()
+  console.log('capturing savedTestImage', this.photo)
 }
 
 const dataURItoBlob = (dataURI) => {
