@@ -72,13 +72,23 @@ const sendMessage = () => {
   connection.send(`{"contact_number": "${cookies.get('user').contact}","branch_id":"${store.getters.getBranchID}"}`);
 }
 
+const branch_id = ref()
+
+const loadBranchIDParam = () => {
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlSearchParams.entries());
+  console.log("params", route.query.id)
+  branch_id.value = route.query.id
+}
 
 
 onMounted(() => {
   console.log("branch hello")
   // const branch_id = route.params.index;
-  store.commit('setBranchID', 2)
-  console.log("test token : ", route.params.branch)
+  loadBranchIDParam()
+
+  store.commit('setBranchID', branch_id.value)
+  // console.log("test token : ", route.params.branch)
 })
 
 

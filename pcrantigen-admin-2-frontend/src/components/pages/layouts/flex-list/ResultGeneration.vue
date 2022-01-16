@@ -83,10 +83,13 @@ const issueResult = () => {
             contact_number: selected_customer.value.customer_contact,
             status: 'COMPLETE',
             branch_id: cookies.get('admin2').branch_id
-          })
-          notif.success(response.data.message)
-          swal.fire('Saved!', '', 'success')
-          search();
+          }).then(function (response) {}).catch(function (error) {
+            if (response.data.success) {
+              notif.success(response.data.message)
+              swal.fire('Saved!', '', 'success')
+              search();
+            }
+          });
         } else {
           notif.warning(response.data.message)
         }
@@ -113,7 +116,7 @@ const savedCustomerImage = (value: any) => {
   capturedCustomerImage.value = value
   // console.log('savedCustomerImage',value);
 };
-const isDisabled = (customer: object) => (customer.status === 'COMPLETE' || customer.status === 'INCOMPLETE');
+const isDisabled = (customer: object) => (customer.status === 'COMPLETEd' || customer.status === 'INCOMPLETEd');
 
 const savedTestImage = (value: any) => {
   capturedTestImage.value = value
@@ -352,18 +355,19 @@ onMounted(async () => {
                     </V-Control>
                   </V-Field>
                   <V-Field v-show="testResult === 'Negative'">
-                    <V-Control>
-                      <VButtons class="is-centered">
-                        <VButton @click="openCaptureUserImageModel()"
-                                 color="info" icon="feather:user" raised rounded outlined
-                        > Capture Customer Image
-                        </VButton>
-                        <VButton @click="openCaptureTestImageModel()"
-                                 color="danger" icon="feather:activity" raised rounded outlined>
-                          Capture Test Image
-                        </VButton>
-                      </VButtons>
-                    </V-Control>
+<!--                    <V-Control>-->
+<!--                      <VButtons class="is-centered">-->
+<!--                        <VButton @click="openCaptureUserImageModel()"-->
+<!--                                 color="info" icon="feather:user" raised rounded outlined-->
+<!--                        > Capture Customer Image-->
+<!--                        </VButton>-->
+<!--                        <VButton @click="openCaptureTestImageModel()"-->
+<!--                                 color="danger" icon="feather:activity" raised rounded outlined>-->
+<!--                          Capture Test Image-->
+<!--                        </VButton>-->
+<!--                      </VButtons>-->
+<!--                    </V-Control>-->
+                    <capture-test-kit-model/>
                   </V-Field>
                 </div>
               </div>

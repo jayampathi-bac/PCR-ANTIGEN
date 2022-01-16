@@ -9,7 +9,7 @@ const getBrands = () => {
 
   const searchAllBrands = () => {
     console.log("searching brands")
-    brandService.getBrands().then((result: { data: never[]; }) => {
+    brandService.getBrandsByBranch().then((result: { data: never[]; }) => {
       brands.value = result.data;
     }).catch((e: any) => {
       console.log('error: ', e);

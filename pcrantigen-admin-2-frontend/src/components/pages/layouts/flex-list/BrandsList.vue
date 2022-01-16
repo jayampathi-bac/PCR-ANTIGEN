@@ -30,7 +30,7 @@ const filteredData = computed(() => {
     return brands.value.filter((item) => {
       return (
         item.brand_name.match(new RegExp(filters.value, 'i')) ||
-        item.branch_id.match(new RegExp(filters.value, 'i')) ||
+        item.brand_company_name.match(new RegExp(filters.value, 'i')) ||
         item.description.match(new RegExp(filters.value, 'i'))
       )
     })
@@ -39,15 +39,17 @@ const filteredData = computed(() => {
 
 //profile_url: string; password: string; email: string; contact_number: string; name: string;
 const brand_name = ref('')
+const brand_company_name = ref('')
 const branch_id = ref(cookies.get('admin2').branch_id)
 const description = ref('')
 
 const saveBrandFunc = () => {
   console.log("saving")
-  if (brand_name.value && branch_id.value && description.value) {
+  if (brand_name.value && brand_company_name.value && branch_id.value && description.value) {
     console.log("working")
     const brand  = {
       brand_name: brand_name.value,
+      brand_company_name: brand_company_name.value,
       branch_id: branch_id.value,
       description: description.value
     }
@@ -155,9 +157,12 @@ onMounted(async () => {
                 <div class="flex-table-cell" data-th="Brand Name">
                   <span class="light-text">{{ branch.brand_name }}</span>
                 </div>
-                <div class="flex-table-cell" data-th="Branch ID">
-                  <span class="light-text">{{ branch.branch_id }}</span>
+                <div class="flex-table-cell" data-th="Company Name">
+                  <span class="light-text">{{ branch.brand_company_name }}</span>
                 </div>
+<!--                <div class="flex-table-cell" data-th="Branch ID">-->
+<!--                  <span class="light-text">{{ branch.branch_id }}</span>-->
+<!--                </div>-->
                 <div class="flex-table-cell" data-th="Description">
                   <span class="light-text">{{ branch.description }}</span>
                 </div>
@@ -209,11 +214,10 @@ onMounted(async () => {
                     <input
                       type="tel"
                       class="input"
-                      placeholder="Branch ID"
-                      autocomplete="branch"
-                      inputmode="branch"
-                      v-model="branch_id"
-                      readonly
+                      placeholder="Company Brand Name"
+                      autocomplete="company_brand"
+                      inputmode="company_brand"
+                      v-model="brand_company_name"
                     />
                   </V-Control>
                 </V-Field>

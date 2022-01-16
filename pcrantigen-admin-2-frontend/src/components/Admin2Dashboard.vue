@@ -114,7 +114,7 @@ const name = ref(cookies.get('admin2').name)
         <!--Card-->
         <div class="column is-6">
           <div class="dashboard-card">
-            <apexchart
+             <apexchart
               :height="customersOptions.chart.height"
               :type="customersOptions.chart.type"
               :series="customersOptions.series"
