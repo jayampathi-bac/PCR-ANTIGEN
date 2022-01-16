@@ -13,6 +13,7 @@ const closeCaptureUserImageModel = () => {
   captureUserImageModel.value = false
 }
 const closeCaptureTestImageModel = () => {
+  disableCamera()
   captureTestImageModel.value = false
 }
 
@@ -97,6 +98,13 @@ const dataURItoBlob = (dataURI) => {
   return blob;
 }
 
+const disableCamera = () => {
+  console.log("closing")
+  videoElm.srcObject.getVideoTracks().forEach(track =>{
+    track.stop()
+  })
+
+}
 
 const reloadCapture = () => {
   capture('environment');
