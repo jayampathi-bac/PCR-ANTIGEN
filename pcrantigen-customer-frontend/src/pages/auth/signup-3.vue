@@ -42,7 +42,8 @@ const handleSignup = async () => {
             contact_number: contact_number.value,
             email: email.value,
             password: password.value,
-            profile_url: "https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+            profile_url: "https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png",
+            branch_id: (identifier.value !== '0') ? identifier.value : null
           })
           .then(response => {
             // console.log("signup response : ",response)
