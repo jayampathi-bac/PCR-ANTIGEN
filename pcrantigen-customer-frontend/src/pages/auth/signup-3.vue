@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import {onMounted, ref} from 'vue'
-import { useRouter } from 'vue-router'
-import { useHead } from '@vueuse/head'
+import {onMounted, ref, defineProps, toRefs, watch} from 'vue'
+import {useRouter} from 'vue-router'
+import {useHead} from '@vueuse/head'
 import useNotyf from '/@src/composable/useNotyf'
 import {basic_url} from "/@src/utils/basic_config";
 
-import { isDark } from '/@src/state/darkModeState'
+import {isDark} from '/@src/state/darkModeState'
 import sleep from '/@src/utils/sleep'
 import axios from "axios";
 
+const props = defineProps({
+  identifier: String,
+});
+
+let {identifier} = toRefs(props);
 
 
 const router = useRouter()
@@ -22,28 +27,29 @@ const repeat_password = ref(null)
 const isAgreed = ref(null)
 
 const handleSignup = async () => {
+  console.log("identifier handle", identifier.value)
   if (name.value && contact_number.value && email.value && password.value && repeat_password.value) {
     isLoading.value = true
-    if (password.value !== repeat_password.value){
+    if (password.value !== repeat_password.value) {
       notif.warning('Passwords do not match. Please try again..!')
-    }else{
-      if (!isAgreed.value){
+    } else {
+      if (!isAgreed.value) {
         notif.warning('Please agree to the terms and conditions..!')
-      }else{
+      } else {
         axios
           .post(`${basic_url}/v1/customer`, {
             name: name.value,
-            contact_number:contact_number.value,
+            contact_number: contact_number.value,
             email: email.value,
             password: password.value,
             profile_url: "https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
           })
           .then(response => {
             // console.log("signup response : ",response)
-            if (response.data.success === true){
+            if (response.data.success === true) {
               notif.success(response.data.message)
-              router.push({ name: 'index' })
-            }else{
+              router.push({name: 'index'})
+            } else {
               notif.warning(response.data.message)
             }
           });
@@ -52,7 +58,7 @@ const handleSignup = async () => {
     // notif.success('Welcome, Erik Kovalsky')
     // router.push({ name: 'index' })
     isLoading.value = false
-  }else{
+  } else {
     notif.warning('Please fill the empty Fields..!')
     isLoading.value = false
   }
@@ -60,6 +66,17 @@ const handleSignup = async () => {
 
 useHead({
   title: 'Signup',
+})
+
+onMounted(() => {
+  // @ts-ignore
+  console.log("hi this is the identifier",identifier);
+  if (identifier === undefined) {
+    router.push({ name: "index" })
+  }
+  console.log("hi this is the identifier",identifier);
+
+
 })
 </script>
 
@@ -70,7 +87,7 @@ useHead({
       <div class="left"></div>
       <div class="center">
         <RouterLink :to="{ name: 'index' }" class="header-item">
-<!--          <AnimatedLogo width="38px" height="38px" />-->
+          <!--          <AnimatedLogo width="38px" height="38px" />-->
           <img src="../assets/jvpd.png" class="pt-6" alt=""/>
         </RouterLink>
       </div>
@@ -95,7 +112,7 @@ useHead({
       <div class="inner-wrap">
         <!--Form Title-->
         <div class="auth-head">
-<!--          <h2>Join Us Now.</h2>-->
+          <!--          <h2>Join Us Now.</h2>-->
           <p>Start by creating your account</p>
           <RouterLink :to="{ name: 'index' }">
             I already have an account
@@ -206,7 +223,7 @@ useHead({
 @import '../../scss/abstracts/_mixins.scss';
 @import '../../scss/pages/auth/_auth.scss';
 
-.auth-nav .center a img{
+.auth-nav .center a img {
   max-width: 120px !important;
   margin-top: 20px;
 }

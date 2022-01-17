@@ -74,12 +74,13 @@ const sendMessage = () => {
   connection.send(`{"contact_number": "${cookies.get('user').contact}","branch_id":"${store.getters.getBranchID}"}`);
 }
 
-
+const identifier = ref('-1')
 
 onMounted(() => {
   console.log("hi this is the param",route.query.identifier)
   // const branch_id = route.params.index;
   store.commit('setBranchID', route.query.identifier)
+  identifier.value = route.query.identifier ? route.query.identifier : 0
 
 })
 
@@ -118,8 +119,12 @@ onMounted(() => {
         <!--Form Title-->
         <div class="auth-head">
           <p>Please sign in to your account</p>
-          <RouterLink :to="{ name: 'auth-signup-3' }">
-            I do not have an account yet
+          <RouterLink
+            :to="{
+            name: 'auth-signup-3',
+            params: { identifier: identifier}
+            }"
+          >I do not have an account yet
           </RouterLink>
         </div>
 
