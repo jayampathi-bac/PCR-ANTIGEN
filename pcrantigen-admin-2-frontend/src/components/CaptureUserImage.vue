@@ -22,12 +22,13 @@
           <VButtons style="justify-content: center">
             <VButton
               @click="reloadCapture"
-              :disable="imageCaptured"
+              :disabled="!imageCaptured"
               rounded
             >Reload
             </VButton>
             <VButton
               @click="captureImage"
+              :disabled="imageCaptured"
               color="success" outlined
               rounded
             >Capture

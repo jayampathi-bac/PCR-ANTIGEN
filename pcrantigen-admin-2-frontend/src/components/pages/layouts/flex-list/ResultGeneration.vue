@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, onMounted, ref, inject} from 'vue'
+import {computed, onMounted, ref, inject, watch} from 'vue'
 
 import getResults from '/@src/composable/resultData'
 import ResultService from '/@src/service/resultService';
@@ -15,7 +15,7 @@ const resultService = new ResultService();
 
 const {cookies} = useCookies();
 
-const {search, results} = getResults();
+const {search, results, brands, searchAllBrandsToResults} = getResults();
 
 const sendResutlsModelOpen = ref(false)
 const captureUserImageModel = ref(false)
@@ -48,61 +48,80 @@ const filteredData = computed(() => {
 const selected_customer = ref('');
 const date = ref(new Date())
 let result = ref('Negative')
-const testResult = ref('')
+const testResult = ref(null)
 const resultOptions = [
   'Positive',
   'Negative',
 ]
 
-const loadSendResult = (customer: Object) => {
+const selectedBrand = ref(0)
+const brandOptions = ref([
+  {value: '1', label: 'Batman'},
+  {value: '2', label: 'Robin'},
+  {value: '3', label: 'Joker'},
+])
+
+
+const loadSendResult = (customer: string) => {
   sendResutlsModelOpen.value = true
   selected_customer.value = customer
 }
 
 const issueResult = () => {
-  sendResutlsModelOpen.value = false
+  if (testResult.value && selectedBrand.value !== 0) {
+    sendResutlsModelOpen.value = false
+    swal.fire({
+      title: `Do you want to send results to ${selected_customer.value.name}?`,
+      showCancelButton: true,
+      confirmButtonText: 'Send',
+    }).then((result) => {
+      console.log("result", result)
+      if (result.isConfirmed) {
+        resultService.generateResult({
+          contact_number: selected_customer.value.customer_contact,
+          script_image_url: 'https://www.testing.com/test.jpg',
+          user_image_url: 'https://www.testing.com/test.jpg',
+          test_result: (testResult.value === 'Negative') ? 0 : 1,
+          record_state: 1,
+          testkit_id: selectedBrand.value,
+          branch_id: cookies.get('admin2').branch_id
+        }).then(function (response) {
+          console.log('response', response)
+          if (response.data.success) {
+            resultService.updateAvailableLogStatus({
+              contact_number: selected_customer.value.customer_contact,
+              status: 'COMPLETE',
+              branch_id: cookies.get('admin2').branch_id
+            }).then(function (response) {
+            }).catch(function (error) {
+              if (response.data.success) {
+                notif.success(response.data.message)
+                swal.fire('Saved!', '', 'success')
+                clearFields();
+                search();
+              }
+            });
+          } else {
+            notif.warning(response.data.message)
+          }
+        }).catch(function (error) {
+          console.log(error);
+        });
+      } else if (result.isDenied) {
+        swal.fire('Changes are not saved', '', 'info')
+      } else if (result.isDismissed) {
+        sendResutlsModelOpen.value = true
+      }
+    })
+  } else {
+    notif.warning("Please fill all fields..!")
+  }
 
-  swal.fire({
-    title: `Do you want to send results to ${selected_customer.value.name}?`,
-    showCancelButton: true,
-    confirmButtonText: 'Send',
-  }).then((result) => {
-    console.log("result", result)
-    if (result.isConfirmed) {
-      resultService.generateResult({
-        contact_number: selected_customer.value.customer_contact,
-        script_image_url: 'https://www.testing.com/test.jpg',
-        user_image_url: 'https://www.testing.com/test.jpg',
-        test_result: (testResult.value === 'Negative') ? 0 : 1,
-        record_state: 1,
-        branch_id: cookies.get('admin2').branch_id
-      }).then(function (response) {
-        console.log('response', response)
-        if (response.data.success) {
-          resultService.updateAvailableLogStatus({
-            contact_number: selected_customer.value.customer_contact,
-            status: 'COMPLETE',
-            branch_id: cookies.get('admin2').branch_id
-          }).then(function (response) {}).catch(function (error) {
-            if (response.data.success) {
-              notif.success(response.data.message)
-              swal.fire('Saved!', '', 'success')
-              search();
-            }
-          });
-        } else {
-          notif.warning(response.data.message)
-        }
-      }).catch(function (error) {
-        console.log(error);
-      });
-    } else if (result.isDenied) {
-      swal.fire('Changes are not saved', '', 'info')
-    } else if (result.isDismissed) {
-      sendResutlsModelOpen.value = true
-    }
-  })
+}
 
+const clearFields = () => {
+  testResult.value = null
+  selectedBrand.value = 0
 }
 
 const openCaptureUserImageModel = () => {
@@ -112,11 +131,18 @@ const openCaptureTestImageModel = () => {
   captureTestImageModel.value = true
 }
 
+const closeCaptureUserImageModel = () => {
+  captureUserImageModel.value = false
+}
+const closeCaptureTestImageModel = () => {
+  captureTestImageModel.value = false
+}
+
 const savedCustomerImage = (value: any) => {
   capturedCustomerImage.value = value
   // console.log('savedCustomerImage',value);
 };
-const isDisabled = (customer: object) => (customer.status === 'COMPLETEd' || customer.status === 'INCOMPLETEd');
+const isDisabled = (customer: object) => (customer.status === 'COMPLETE' || customer.status === 'INCOMPLETE');
 
 const savedTestImage = (value: any) => {
   capturedTestImage.value = value
@@ -179,10 +205,11 @@ const callingWebSocket = () => {
 const connected = ref(false);
 const received_messages = ref([]);
 
-
 onMounted(async () => {
   search();
   callingWebSocket();
+  searchAllBrandsToResults();
+
 })
 </script>
 
@@ -344,30 +371,40 @@ onMounted(async () => {
                       />
                     </V-Control>
                   </V-Field>
-                  <V-Field>
-                    <V-Control>
+                  <V-Field class="is-autocomplete-select">
+                    <VControl icon="feather:search">
+                      <Multiselect
+                        v-model="selectedBrand"
+                        :options="brands"
+                        placeholder="Select Test Kit"
+                        :searchable="true"
+                      >
+                      </Multiselect>
+                    </VControl>
+                  </V-Field>
+                  <V-Field class="is-autocomplete-select">
+                    <V-Control icon="feather:activity">
                       <Multiselect
                         v-model="testResult"
                         :options="resultOptions"
-                        :max-height="145"
+                        :searchable="true"
                         placeholder="Test Result"
                       />
                     </V-Control>
                   </V-Field>
                   <V-Field v-show="testResult === 'Negative'">
-<!--                    <V-Control>-->
-<!--                      <VButtons class="is-centered">-->
-<!--                        <VButton @click="openCaptureUserImageModel()"-->
-<!--                                 color="info" icon="feather:user" raised rounded outlined-->
-<!--                        > Capture Customer Image-->
-<!--                        </VButton>-->
-<!--                        <VButton @click="openCaptureTestImageModel()"-->
-<!--                                 color="danger" icon="feather:activity" raised rounded outlined>-->
-<!--                          Capture Test Image-->
-<!--                        </VButton>-->
-<!--                      </VButtons>-->
-<!--                    </V-Control>-->
-                    <capture-test-kit-model/>
+                    <V-Control>
+                      <VButtons class="is-centered">
+                        <VButton @click="openCaptureUserImageModel()"
+                                 color="info" icon="feather:user" raised rounded outlined
+                        > Capture Customer Image
+                        </VButton>
+                        <VButton @click="openCaptureTestImageModel()"
+                                 color="danger" icon="feather:activity" raised rounded outlined>
+                          Capture Test Image
+                        </VButton>
+                      </VButtons>
+                    </V-Control>
                   </V-Field>
                 </div>
               </div>
@@ -382,36 +419,36 @@ onMounted(async () => {
         <VButton color="primary" raised @click="issueResult()">Issue Result</VButton>
       </template>
     </VModal>
-<!--    <VModal-->
-<!--      :open="captureUserImageModel"-->
-<!--      size="large"-->
-<!--      actions="center"-->
-<!--      @close="captureUserImageModel = false"-->
-<!--      title="Capture Customer Image"-->
-<!--    >-->
-<!--      <template #content>-->
-<!--        <capture-user-image :is-opened="captureUserImageModel" @savedCustomerImage="savedCustomerImage"/>-->
+    <VModal
+      :open="captureUserImageModel"
+      size="large"
+      actions="center"
+      @close="closeCaptureUserImageModel"
+      title="Capture Customer Image"
+    >
+      <template #content>
+        <capture-user-image :is-opened="captureUserImageModel" @savedCustomerImage="savedCustomerImage"/>
 
-<!--      </template>-->
-<!--      <template #action>-->
-<!--        <VButton color="primary" raised @click="">Save Image</VButton>-->
-<!--      </template>-->
-<!--    </VModal>-->
-<!--    <VModal-->
-<!--      :open="captureTestImageModel"-->
-<!--      size="large"-->
-<!--      actions="center"-->
-<!--      @close="captureTestImageModel = false"-->
-<!--      title="Capture Test Record Image"-->
-<!--    >-->
-<!--      <template #content>-->
-<!--        <capture-test-image  :is-opened="captureTestImageModel" @savedTestImage="savedTestImage"/>-->
+      </template>
+      <template #action>
+        <VButton color="primary" raised @click="closeCaptureUserImageModel">Save Image</VButton>
+      </template>
+    </VModal>
+    <VModal
+      :open="captureTestImageModel"
+      size="large"
+      actions="center"
+      @close="closeCaptureTestImageModel"
+      title="Capture Test Record Image"
+    >
+      <template #content>
+        <capture-test-image :is-opened="captureTestImageModel" @savedTestImage="savedTestImage"/>
 
-<!--      </template>-->
-<!--      <template #action>-->
-<!--        <VButton color="primary" raised @click="">Save Image</VButton>-->
-<!--      </template>-->
-<!--    </VModal>-->
+      </template>
+      <template #action>
+        <VButton color="primary" raised @click="closeCaptureTestImageModel">Save Image</VButton>
+      </template>
+    </VModal>
   </div>
 
 </template>

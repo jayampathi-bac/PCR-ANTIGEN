@@ -15,17 +15,6 @@ const getBrands = () => {
       console.log('error: ', e);
     });
   };
-  // const saveCustomer = (customer: { profile_url: string; password: string; email: string; contact_number: string; name: string; }) => {
-  //   console.log("searching customers")
-  //   customerService.postCustomer(customer)
-  //     .then(function a(response) {
-  //     console.log('response',response)
-  //   })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
-
 
   return {
     searchAllBrands,

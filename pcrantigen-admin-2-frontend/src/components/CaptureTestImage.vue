@@ -22,19 +22,23 @@
           <VButtons style="justify-content: center">
             <VButton
               @click="reloadCapture"
-              :disable="imageCaptured"
+              :disabled="!imageCaptured"
               rounded
-            >Reload</VButton>
+            >Reload
+            </VButton>
             <VButton
               @click="captureImage"
+              :disabled="imageCaptured"
               color="success" outlined
               rounded
-            >Capture</VButton>
-<!--            <VButton-->
-<!--              @click="swapCamera"-->
-<!--              outlined-->
-<!--              rounded-->
-<!--            >Swap</VButton>-->
+            >Capture
+            </VButton>
+            <!--            <VButton-->
+            <!--              @click="swapCamera"-->
+            <!--              outlined-->
+            <!--              rounded-->
+            <!--            >Swap-->
+            <!--            </VButton>-->
           </VButtons>
         </div>
       </div>
@@ -42,178 +46,145 @@
   </div>
 </template>
 
-<script setup>
-import {onMounted, ref, toRefs, inject, defineProps, watch} from 'vue'
-// const refs = inject('$refs')
-// const emit = inject('$emit')
+<script>
+import useNotyf from "/@src/composable/useNotyf";
 
-const props = defineProps({
-  isOpened: Boolean,
-});
 
-const video = ref(null)
-const canvas = ref(null)
-
-const { isOpened } = toRefs(props);
-
-const photo = ref(null);
-const imageCaptured = ref(false);
-const hasCameraSupport = ref(true);
-const imageUploadData = ref([]);
-const locationLoading = ref(false);
-const shouldFaceUser = ref(false);
-
-const initCamera = () => {
-  let shouldFaceUser123 = shouldFaceUser.value ? 'user' : 'environment';
-  console.log("initCamera", shouldFaceUser123)
-  navigator.mediaDevices.getUserMedia({
-    video: {
-      facingMode: shouldFaceUser123
-    },
-  }).then(stream => {
-    video.value.srcObject = null
-    video.value.srcObject = stream
-    video.value.play();
-  }).catch(error => {
-    console.log("error",error)
-    // notif.warning("Please Connect a camera..!")
-    hasCameraSupport.value = false
-  })
-}
-
-let stream;
-
-const capture = async facingMode => {
-  const options = {
-    audio: false,
-    video: {
-      facingMode,
-    },
-  };
-
-  try {
-    if (stream) {
-      const tracks = stream.getTracks();
-      tracks.forEach(track => track.stop());
+export default {
+  name: "CaptureUserImage",
+  props: {
+    isOpened: Boolean
+  },
+  data() {
+    return {
+      photo: null,
+      imageCaptured: false,
+      hasCameraSupport: true,
+      imageUploadData: [],
+      locationLoading: false,
+      notif: useNotyf(),
+      shouldFaceUser: false,
     }
-    stream = await navigator.mediaDevices.getUserMedia(options);
-  } catch (e) {
-    console.log(e);
-    return;
-  }
-  video.value.srcObject = null;
-  video.value.srcObject = stream;
-  video.value.play();
-}
+  },
+  methods: {
+    initCamera() {
+      let shouldFaceUser123 = this.shouldFaceUser ? 'user' : 'environment';
+      console.log("initCamera", shouldFaceUser123)
+      navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: shouldFaceUser123
+        },
+      }).then(stream => {
+        this.$refs.video.srcObject = stream
+      }).catch(error => {
+        console.log("error", error)
+        this.notif.warning("Please connect a camera.!")
+        this.hasCameraSupport = false
+      })
+    },
+    captureImage() {
+      let video = this.$refs.video
+      let canvas = this.$refs.canvas
+      canvas.width = video.getBoundingClientRect().width
+      canvas.height = video.getBoundingClientRect().height
+      let context = canvas.getContext('2d')
+      context.drawImage(video, 0, 0, canvas.width, canvas.height)
+      this.imageCaptured = true
+      this.photo = this.dataURItoBlob(canvas.toDataURL())
+      this.disableCamera()
+      this.$emit('savedCustomerImage', this.photo)
+    },
+    swapCamera() {
+      console.log("shouldFaceUser", this.shouldFaceUser)
+      this.shouldFaceUser = !this.shouldFaceUser;
+      this.initCamera();
+    },
+    disableCamera() {
+      this.$refs.video.srcObject.getVideoTracks().forEach(track => {
+        track.stop()
+      })
 
-const captureImage = () => {
-  let video = video.value
-  let canvas = canvas.value
-  canvas.width = video.getBoundingClientRect().width
-  canvas.height = video.getBoundingClientRect().height
-  let context = canvas.getContext('2d')
-  context.drawImage(video, 0, 0, canvas.width, canvas.height)
-  imageCaptured.value = true
-  photo.value = this.dataURItoBlob(canvas.toDataURL())
-  disableCamera()
-  emit('savedTestImage', this.photo)
-  console.log("capturing")
-}
+    },
+    dataURItoBlob(dataURI) {
+      // convert base64 to raw binary data held in a string
+      // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+      var byteString = atob(dataURI.split(',')[1]);
 
-const swapCamera = () => {
-  console.log("shouldFaceUser",shouldFaceUser.value)
-  shouldFaceUser.value = !shouldFaceUser.value;
-  // initCamera()
-  if (shouldFaceUser.value) {
-    capture('environment');
-  }else{
-    capture('user');
-  }
-}
+      // separate out the mime component
+      var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
 
-const disableCamera = () => {
-  video.value.srcObject.getVideoTracks().forEach(track =>{
-    track.stop()
-  })
+      // write the bytes of the string to an ArrayBuffer
+      var ab = new ArrayBuffer(byteString.length);
 
-}
+      // create a view into the buffer
+      var ia = new Uint8Array(ab);
 
-const dataURItoBlob = (dataURI) => {
-  // convert base64 to raw binary data held in a string
-  // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
-  var byteString = atob(dataURI.split(',')[1]);
+      // set the bytes of the buffer to the correct values
+      for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+      }
 
-  // separate out the mime component
-  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+      // write the ArrayBuffer to a blob, and you're done
+      var blob = new Blob([ab], {type: mimeString});
+      return blob;
 
-  // write the bytes of the string to an ArrayBuffer
-  var ab = new ArrayBuffer(byteString.length);
+    },
+    addPost() {
+      this.$q.loading.show()
+      let formdata = new FormData()
+      formdata.append('id', this.post.id)
+      formdata.append('caption', this.post.caption)
+      formdata.append('location', this.post.location)
+      formdata.append('date', this.post.date)
+      formdata.append('file', this.post.photo, this.post.id + '.png')
 
-  // create a view into the buffer
-  var ia = new Uint8Array(ab);
+      this.$axios.post(`${process.env.API}/createPost`, formdata).then(response => {
+        console.log("response : ", response)
+        this.$router.push('/')
 
-  // set the bytes of the buffer to the correct values
-  for (var i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i);
-  }
+        //notification
+        this.$q.notify({
+          message: 'Post created.',
+          actions: [
+            {label: 'Dismiss', color: 'white'}
+          ]
+        })
+        this.$q.loading.hide()
+      }).catch(err => {
+        this.$q.dialog({
+          title: 'Error',
+          message: 'Could not create the post'
+        })
+        this.$q.loading.hide()
+      })
+    },
+    reloadCapture() {
+      this.initCamera()
+      this.imageCaptured = false
+    }
+  },
+  mounted() {
+    this.initCamera()
+  },
+  beforeUnmount() {
+    if (this.hasCameraSupport) {
+      console.log("destroyed")
+      this.disableCamera()
+    }
+  },
 
-  // write the ArrayBuffer to a blob, and you're done
-  var blob = new Blob([ab], {type: mimeString});
-  return blob;
-}
-
-const addPost = () => {
-
-  // let formdata = new FormData()
-  // formdata.append('id',this.post.id)
-  // formdata.append('caption',this.post.caption)
-  // formdata.append('location',this.post.location)
-  // formdata.append('date',this.post.date)
-  // formdata.append('file',this.post.photo,this.post.id+'.png')
-  //
-  // this.$axios.post(`${process.env.API}/createPost`,formdata).then(response =>{
-  //   console.log("response : ",response)
-  //   this.$router.push('/')
-  //
-  //   //notification
-  //   this.$q.notify({
-  //     message: 'Post created.',
-  //     actions: [
-  //       { label: 'Dismiss', color: 'white' }
-  //     ]
-  //   })
-  //   this.$q.loading.hide()
-  // }).catch(err =>{
-  //   this.$q.dialog({
-  //     title: 'Error',
-  //     message: 'Could not create the post'
-  //   })
-  //   this.$q.loading.hide()
-  // })
-}
-
-const reloadCapture = () => {
-  capture('environment');
-  imageCaptured.value = false
-}
-
-onMounted(() => {
-  capture('environment');
-})
-
-watch(
-  () => isOpened.value,
-  (count, prevCount) => {
-    if (count){
-      capture('environment');
-    }else{
-      disableCamera()
-      // console.log("photo",this.photo)
+  watch: {
+    isOpened: function (newVal, oldVal) {
+      // console.log('Prop changed: ', newVal, ' | was: ', oldVal)
+      if (newVal) {
+        this.initCamera()
+      } else {
+        this.disableCamera()
+        // console.log("photo",this.photo)
+      }
     }
   }
-)
-
-
+}
 </script>
 
 
