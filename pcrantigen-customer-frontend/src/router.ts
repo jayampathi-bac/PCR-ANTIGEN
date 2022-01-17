@@ -52,7 +52,7 @@ const router = createRouter({
  */
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/','/auth/signup-3','/auth/login-1','/:branch',];
+  const publicPages = ['/','/auth/signup-3','/auth/login-1','/branch',];
   const authRequired = !publicPages.includes(to.path);
   // const loggedIn = localStorage.getItem('user');
   const loggedIn = cookies.get('user');

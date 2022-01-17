@@ -86,7 +86,8 @@ async function generateCard() {
           <div id="id-card-center">
             <!--            <img src="./src/assets/id.png" alt="">-->
 <!--            <generated-card :formData="formData"/>-->
-            <i-d-card-generator :formData="formData"/>
+<!--            <i-d-card-generator :formData="formData"/>-->
+            <result-i-d-card/>
           </div>
         </template>
         <template #action>

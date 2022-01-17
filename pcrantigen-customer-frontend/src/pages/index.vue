@@ -40,8 +40,10 @@ const handleLogin = async () => {
           isLoading.value = false
           router.push({name: 'navbar-blank-page-1'})
           notif.success(`Welcome ${store.state.auth.user.name} .!`)
-          // callingWebSocket();
-
+          if (route.query.identifier !== undefined){
+            console.log("calling websocket")
+            callingWebSocket();
+          }
         },
         (error) => {
           notif.warning('Incorrect credentials.! Please try again..!')
@@ -55,28 +57,29 @@ const handleLogin = async () => {
   }
 }
 
-// const callingWebSocket = () => {
-//   console.log("Starting connection to WebSocket Server")
-//   connection = new WebSocket(socket_url)
-//
-//   connection.onopen = function (event) {
-//     console.log(event)
-//     console.log("Successfully connected to the echo websocket server...")
-//     sendMessage();
-//   }
-// }
-//
-// const sendMessage = () => {
-//   console.log(connection);
-//   // console.log("hi",store.getters['auth/getContactNo'])
-//   connection.send(`{"contact_number": "${cookies.get('user').contact}","branch_id":"${store.getters.getBranchID}"}`);
-// }
+const callingWebSocket = () => {
+  console.log("Starting connection to WebSocket Server")
+  connection = new WebSocket(socket_url)
+
+  connection.onopen = function (event) {
+    console.log(event)
+    console.log("Successfully connected to the echo websocket server...")
+    sendMessage();
+  }
+}
+
+const sendMessage = () => {
+  console.log(connection);
+  // console.log("hi",store.getters['auth/getContactNo'])
+  connection.send(`{"contact_number": "${cookies.get('user').contact}","branch_id":"${store.getters.getBranchID}"}`);
+}
 
 
 
 onMounted(() => {
+  console.log("hi this is the param",route.query.identifier)
   // const branch_id = route.params.index;
-  store.commit('setBranchID', 2)
+  store.commit('setBranchID', route.query.identifier)
 
 })
 
