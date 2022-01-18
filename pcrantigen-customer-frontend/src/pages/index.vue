@@ -66,6 +66,10 @@ const callingWebSocket = () => {
     console.log("Successfully connected to the echo websocket server...")
     sendMessage();
   }
+
+  connection.onclose = function(){
+    connection = new WebSocket(socket_url)
+  };
 }
 
 const sendMessage = () => {

@@ -35,16 +35,19 @@ const onRemoveFile = (error: any, file: any) => {
 
   console.log('file removed', file)
 }
+
 const addExperience = async () => {
   isUploading.value = false
   onSave()
 }
+
 const onSave = async () => {
   isLoading.value = true
   await sleep()
   notyf.success('Your changes have been successfully saved!')
   isLoading.value = false
 }
+
 </script>
 
 <template>

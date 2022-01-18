@@ -154,4 +154,9 @@ async function generateCard() {
   align-items: center;
 }
 
+.modal-card-body{
+  justify-content: center;
+  display: flex;
+}
+
 </style>
