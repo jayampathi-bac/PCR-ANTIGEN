@@ -48,7 +48,7 @@ onMounted(() => {
                 <div class="quick-stat">
                   <V-Block
                     :title=dashboardQuickStats.new_customer
-                    subtitle="New customers in this month"
+                    subtitle="Customers in this "
                     center
                     m-responsive
                     t-responsive
@@ -135,7 +135,7 @@ onMounted(() => {
 
 
         <!--Card-->
-        <div class="column is-6">
+        <div class="column is-6 pb-2">
           <div class="dashboard-card is-gauge">
             <div class="people">
               <V-Avatar picture="https://icon-library.com/images/completed-icon/completed-icon-6.jpg"/>

@@ -3,6 +3,8 @@ import { useHead } from '@vueuse/head'
 
 import { pageTitle } from '/@src/state/navbarLayoutState'
 
+pageTitle.value = 'Edit Account Settings'
+
 pageTitle.value = 'Account'
 useHead({
   title: 'Edit Account Settings',

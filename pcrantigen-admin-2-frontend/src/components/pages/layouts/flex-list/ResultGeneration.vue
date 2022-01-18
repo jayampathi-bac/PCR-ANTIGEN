@@ -7,7 +7,7 @@ import ResultService from '/@src/service/resultService';
 import {useCookies} from "vue3-cookies";
 import useNotyf from "/@src/composable/useNotyf";
 
-import {socket_url} from "/@src/utils/basic_config";
+import {socket_url, socket_url2} from "/@src/utils/basic_config";
 
 const notif = useNotyf()
 
@@ -69,6 +69,7 @@ const loadSendResult = (customer: string) => {
 
 const issueResult = () => {
   if (testResult.value && selectedBrand.value !== 0) {
+    console.log("here here")
     sendResutlsModelOpen.value = false
     swal.fire({
       title: `Do you want to send results to ${selected_customer.value.name}?`,
@@ -88,19 +89,28 @@ const issueResult = () => {
         }).then(function (response) {
           console.log('response', response)
           if (response.data.success) {
-            resultService.updateAvailableLogStatus({
-              contact_number: selected_customer.value.customer_contact,
-              status: 'COMPLETE',
-              branch_id: cookies.get('admin2').branch_id
-            }).then(function (response) {
-            }).catch(function (error) {
-              if (response.data.success) {
-                notif.success(response.data.message)
-                swal.fire('Saved!', '', 'success')
-                clearFields();
-                search();
-              }
-            });
+            callingWebSocket2(selected_customer.value.customer_contact)
+            // resultService.updateAvailableLogStatus({
+            //   contact_number: selected_customer.value.customer_contact,
+            //   status: 'COMPLETE',
+            //   branch_id: cookies.get('admin2').branch_id
+            // }).then(function (response) {
+            //   if (response.data.success) {
+            //     notif.success(response.data.message)
+            //     swal.fire('Saved!', '', 'success')
+            //     clearFields();
+            //     search();
+            //   }else{
+            //     notif.warning(response.data.message)
+            //     swal.fire('Saving Failed!', '', 'error')
+            //     clearFields();
+            //     search();
+            //   }
+            // }).catch(function (error) {
+            //   notif.warning(error)
+            //   clearFields();
+            //   search();
+            // });
           } else {
             notif.warning(response.data.message)
           }
@@ -130,7 +140,6 @@ const openCaptureUserImageModel = () => {
 const openCaptureTestImageModel = () => {
   captureTestImageModel.value = true
 }
-
 const closeCaptureUserImageModel = () => {
   captureUserImageModel.value = false
 }
@@ -142,6 +151,7 @@ const savedCustomerImage = (value: any) => {
   capturedCustomerImage.value = value
   // console.log('savedCustomerImage',value);
 };
+
 const isDisabled = (customer: object) => (customer.status === 'COMPLETE' || customer.status === 'INCOMPLETE');
 
 const savedTestImage = (value: any) => {
@@ -149,7 +159,10 @@ const savedTestImage = (value: any) => {
   console.log('savedTestImage', value);
 };
 
+const selectedCustomerVoid = ref({})
+
 const voidCustomer = (customer: object) => {
+  selectedCustomerVoid.value = customer
   console.log('voidCustomer', customer);
   swal.fire({
     title: `Do you want to void ${customer.name}?`,
@@ -158,32 +171,78 @@ const voidCustomer = (customer: object) => {
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      resultService.updateAvailableLogStatus({
-        contact_number: customer.customer_contact,
-        status: 'INCOMPLETE',
-        branch_id: cookies.get('admin2').branch_id,
-      })
-        .then(function (response) {
-          console.log('response', response)
-          if (response.data.success) {
-            notif.success(response.data.message)
-            swal.fire('Void Successful!', '', 'success')
-            search();
-          } else {
-            notif.warning(response.data.message)
-          }
-        }).catch(function (error) {
-        console.log(error);
-      });
+      callingWebSocket2(customer.customer_contact)
+      // resultService.updateAvailableLogStatus({
+      //   contact_number: customer.customer_contact,
+      //   status: 'INCOMPLETE',
+      //   branch_id: cookies.get('admin2').branch_id,
+      // })
+      //   .then(function (response) {
+      //     console.log('response', response)
+      //     if (response.data.success) {
+      //       notif.success(response.data.message)
+      //       swal.fire('Void Successful!', '', 'success')
+      //       search();
+      //     } else {
+      //       notif.warning(response.data.message)
+      //     }
+      //   }).catch(function (error) {
+      //   console.log(error);
+      // });
 
     }
   })
 };
 
 let connection = null
+let connection2 = null
+
+//websocket connection 2
+const callingWebSocket2 = (contact) => {
+  console.log("Starting connection to WebSocket Server 2")
+  connection2 = new WebSocket(socket_url2)
+
+  connection2.onmessage = function (event) {
+    console.log("connection2 response came")
+    console.log("connection2",event.data);
+    if (event.data === 'updated') {
+          notif.success('Send Successfully..')
+          swal.fire('Saved!', '', 'success')
+          clearFields();
+          search();
+    } else  {
+      notif.warning('Send Failed..!')
+      swal.fire('Saving Failed.!', '', 'error')
+      clearFields();
+      search();
+    }
+
+  }
+
+  connection2.onopen = function (event) {
+    console.log('connection2 onopen',event)
+    console.log("Successfully connected to the echo websocket server 2...")
+    console.log("contact number here here here",contact)
+    console.log("contact number here here here",JSON.stringify({'contact_number': contact, "status": "INCOMPLETE", "branch_id":cookies.get('admin2').branch_id}))
+    // setInterval(() => connection.send(JSON.stringify({ event: "ping" })), 10000);
+    connection2.send(JSON.stringify({'contact_number': contact, "status": "INCOMPLETE", "branch_id":cookies.get('admin2').branch_id}));
+  }
+
+  // contact_number: customer.customer_contact,
+  //   status: 'INCOMPLETE',
+  //   branch_id: cookies.get('admin2').branch_id,
+  // connection2.send('{"contact_number": "0998765434","branch_id":"1"}');
+
+  connection2.onclose = function(){
+    console.log('connection2 onclose')
+    connection2 = new WebSocket(socket_url2)
+  };
+}
+
 const callingWebSocket = () => {
   console.log("Starting connection to WebSocket Server")
   connection = new WebSocket(socket_url)
+
 
   connection.onmessage = function (event) {
     console.log("response came")
@@ -199,7 +258,12 @@ const callingWebSocket = () => {
   connection.onopen = function (event) {
     console.log(event)
     console.log("Successfully connected to the echo websocket server...")
+    // setInterval(() => connection.send(JSON.stringify({ event: "ping" })), 10000);
   }
+
+  connection.onclose = function(){
+    connection = new WebSocket(socket_url)
+  };
 }
 
 const connected = ref(false);
@@ -211,6 +275,8 @@ onMounted(async () => {
   searchAllBrandsToResults();
 
 })
+
+onBeforeUnmount()
 </script>
 
 <template>
@@ -312,13 +378,13 @@ onMounted(async () => {
         </div>
 
         <!--Table Pagination-->
-        <V-FlexPagination
-          v-if="filteredData.length > 5"
-          :item-per-page="10"
-          :total-items="873"
-          :current-page="42"
-          :max-links-displayed="7"
-        />
+<!--        <V-FlexPagination-->
+<!--          v-if="filteredData.length > 5"-->
+<!--          :item-per-page="10"-->
+<!--          :total-items="873"-->
+<!--          :current-page="42"-->
+<!--          :max-links-displayed="7"-->
+<!--        />-->
       </div>
     </div>
     <VModal
