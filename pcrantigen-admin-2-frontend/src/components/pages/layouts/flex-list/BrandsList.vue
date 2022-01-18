@@ -20,6 +20,8 @@ const notif = useNotyf()
 const { searchAllBrands, brands } = getBrands();
 
 const centeredActionsOpen = ref(false)
+const editActionsOpen = ref(false)
+const deleteActionsOpen = ref(false)
 
 const filters = ref('')
 
@@ -42,6 +44,10 @@ const brand_name = ref('')
 const brand_company_name = ref('')
 const branch_id = ref(cookies.get('admin2').branch_id)
 const description = ref('')
+
+const edit_brand_name = ref('')
+const edit_brand_company_name = ref('')
+const edit_description = ref('')
 
 const saveBrandFunc = () => {
   console.log("saving")
@@ -72,6 +78,39 @@ const saveBrandFunc = () => {
     notif.warning('Empty Fields.!!')
   }
 }
+const editBrandFunc = () => {
+  console.log("editing")
+  if (edit_brand_name.value && edit_brand_company_name.value && branch_id.value && edit_description.value) {
+    console.log("working")
+    const brand  = {
+      brand_name: edit_brand_name.value,
+      brand_company_name: edit_brand_company_name.value,
+      branch_id: branch_id.value,
+      description: edit_description.value
+    }
+    brandService.editBrand(brand)
+      .then(function (response) {
+        console.log('response',response)
+        if (response.data.success){
+          swal.fire('Editing Successful!', '', 'success')
+          notif.success(response.data.message)
+          searchAllBrands()
+          editActionsOpen.value = false
+        }else{
+          swal.fire('Editing Failed!', '', 'error')
+          notif.warning(response.data.message)
+          editActionsOpen.value = false
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  } else {
+    notif.warning('Empty Fields.!!')
+  }
+}
+
+
 
 const fireBrandFuncAlert = () => {
   centeredActionsOpen.value = false;
@@ -85,6 +124,59 @@ const fireBrandFuncAlert = () => {
     }
   })
 }
+
+const fireEditBrandFuncAlert = () => {
+  console.log("fireEditBrandFuncAlert")
+  swal.fire({
+    title: `Do you want to edit the Brand ?`,
+    showCancelButton: true,
+    confirmButtonText: 'Edit',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      editBrandFunc()
+    }
+  })
+}
+
+const deleteBrandFunc = (brand) => {
+  console.log('delete this',brand)
+  brandService.deleteBrand(brand.id)
+    .then(function (response) {
+      console.log('response',response)
+      if (response.data.success){
+        swal.fire('Deleting Successful!', '', 'success')
+        notif.success(response.data.message)
+        searchAllBrands()
+      }else{
+        swal.fire('Deleting Failed!', '', 'error')
+        notif.warning(response.data.message)
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+const fireDeleteBrandAlert = (brand) => {
+  swal.fire({
+    title: `Do you want to delete the Brand ?`,
+    showCancelButton: true,
+    confirmButtonText: 'Delete',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      deleteBrandFunc(brand)
+    }
+  })
+}
+
+const openEditActionsOpen = (brand) => {
+  editActionsOpen.value = true
+  edit_brand_name.value = brand.brand_name;
+  edit_brand_company_name.value = brand.brand_company_name;
+  edit_description.value = brand.description;
+}
+
+
 onMounted(async () => {
   searchAllBrands();
 })
@@ -131,44 +223,42 @@ onMounted(async () => {
             :class="[filteredData.length === 0 && 'is-hidden']"
           >
             <span class="is-grow">Brand Name</span>
-            <span>Branch ID</span>
-            <span>Description</span>
-            <span class="cell-end">Actions</span>
+            <span class="is-grow">Company Name</span>
+            <span class="is-grow">Description</span>
+            <span class="is-grow cell-end">Actions</span>
           </div>
 
           <div class="flex-list-inner">
             <transition-group name="list" tag="div">
               <!--Table item-->
               <div
-                v-for="branch in filteredData"
-                :key="branch.branch_id"
+                v-for="brand in filteredData"
+                :key="brand.id"
                 class="flex-table-item"
               >
-<!--                <div class="flex-table-cell is-media is-grow">-->
-<!--                  <V-Avatar-->
-<!--                    :picture="customer.profile_url"-->
-<!--                    color="info"-->
-<!--                    size="medium"-->
-<!--                  />-->
-<!--                  <div>-->
-<!--                    <span class="item-name dark-inverted">{{ customer.name }}</span>-->
-<!--                  </div>-->
-<!--                </div>-->
-                <div class="flex-table-cell" data-th="Brand Name">
-                  <span class="light-text">{{ branch.brand_name }}</span>
+                <div class="flex-table-cell is-grow" data-th="Brand Name">
+                  <span class="light-text">{{ brand.brand_name }}</span>
                 </div>
-                <div class="flex-table-cell" data-th="Company Name">
-                  <span class="light-text">{{ branch.brand_company_name }}</span>
+                <div class="flex-table-cell is-grow" data-th="Company Name">
+                  <span class="light-text">{{ brand.brand_company_name }}</span>
                 </div>
-<!--                <div class="flex-table-cell" data-th="Branch ID">-->
-<!--                  <span class="light-text">{{ branch.branch_id }}</span>-->
-<!--                </div>-->
-                <div class="flex-table-cell" data-th="Description">
-                  <span class="light-text">{{ branch.description }}</span>
+                <div class="flex-table-cell is-grow" data-th="Description">
+                  <span class="light-text">{{ brand.description }}</span>
                 </div>
-                <div class="flex-table-cell cell-end" data-th="Actions">
+                <div class="flex-table-cell is-grow cell-end" data-th="Actions">
+                  <span class="mr-2">
+                    <VButton
+                      @click="openEditActionsOpen(brand)"
+                      color="primary"
+                      outlined
+                    > Edit
+                    </VButton>
+                  </span>
                   <span>
-                    <VButton color="primary" outlined> More</VButton>
+                    <VButton
+                      @click="fireDeleteBrandAlert(brand)"
+                      color="danger"
+                      outlined> Delete</VButton>
                   </span>
                 </div>
               </div>
@@ -214,7 +304,7 @@ onMounted(async () => {
                     <input
                       type="tel"
                       class="input"
-                      placeholder="Company Brand Name"
+                      placeholder="Company Name"
                       autocomplete="company_brand"
                       inputmode="company_brand"
                       v-model="brand_company_name"
@@ -242,6 +332,64 @@ onMounted(async () => {
       </template>
       <template #action>
         <VButton color="primary" raised @click="fireBrandFuncAlert">Add Brand</VButton>
+      </template>
+    </VModal>
+    <VModal
+      :open="editActionsOpen"
+      size="medium"
+      actions="center"
+      @close="editActionsOpen = false"
+      title="Edit Brand"
+    >
+      <template #content>
+        <form class="form-layout is-split" @submit.prevent>
+          <div class="form-outer">
+            <div class="form-section is-grey">
+              <div>
+                <V-Field>
+                  <V-Control icon="feather:pocket">
+                    <input
+                      type="text"
+                      class="input"
+                      placeholder="Brand Name"
+                      autocomplete="brand_name"
+                      v-model="edit_brand_name"
+                    />
+                  </V-Control>
+                </V-Field>
+                <V-Field>
+                  <V-Control icon="feather:home">
+                    <input
+                      type="tel"
+                      class="input"
+                      placeholder="Company Brand Name"
+                      autocomplete="company_brand"
+                      inputmode="company_brand"
+                      v-model="edit_brand_company_name"
+                    />
+                  </V-Control>
+                </V-Field>
+                <V-Field>
+                  <V-Control icon="feather:file-text">
+                    <input
+                      type="email"
+                      class="input"
+                      placeholder="Description"
+                      autocomplete="description"
+                      inputmode="description"
+                      v-model="edit_description"
+                    />
+                  </V-Control>
+                </V-Field>
+              </div>
+            </div>
+          </div>
+
+        </form>
+
+      </template>
+      <template #action>
+        <VButton color="primary" raised @click="fireEditBrandFuncAlert">Edit Brand</VButton>
       </template>
     </VModal>
   </div>

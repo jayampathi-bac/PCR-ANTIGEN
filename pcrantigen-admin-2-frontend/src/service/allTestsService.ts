@@ -7,9 +7,9 @@ const config = {headers: {Authorization: "Bearer " + cookies.get('admin2').acces
 const branch_id = cookies.get('admin2').branch_id
 
 export default class AllTestsService {
-  getAllTestsByBranch = () => axios.get(`${basic_url}/v1/admin/test/all/${branch_id}`, config)
+  getAllTestsByBranch = (pageId: number) => axios.get(`${basic_url}/v1/admin/test/all/${branch_id}/${pageId}`, config)
     .then((response) => ({
-      data: response.data.data,
+      data: response.data,
     }));
 
   getAllTestsByRange = (start_date: string, end_date: string) => axios.get(`${basic_url}/v1/admin/test/allby/${branch_id}`, {

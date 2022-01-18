@@ -1,70 +1,79 @@
 import { themeColors } from '/@src/utils/themeColors'
 
-export const teamGaugeOptions = {
-  series: [76],
-  title: {
-    text: 'Test Completed Proportion',
-  },
+export const customerChartOptions = {
+  // customerSeries: [
+  //   {
+  //     name: 'Ratio',
+  //     data: [2.3, 3.1, 4.0, 10.1, 4.0, 2, 3, 4, 3, 2, 1, 4],
+  //   },
+  // ],
   chart: {
-    height: 455,
-    type: 'radialBar',
-    sparkline: {
-      enabled: true,
-    },
+    height: 265,
+    type: 'bar',
     toolbar: {
       show: false,
     },
   },
-  colors: [
-    themeColors.accent,
-    themeColors.secondary,
-    themeColors.orange,
-    themeColors.purple,
-    themeColors.info,
-  ],
   plotOptions: {
-    radialBar: {
-      startAngle: -90,
-      endAngle: 90,
-      track: {
-        background: '#e7e7e7',
-        strokeWidth: '97%',
-        margin: 5, // margin is in pixels
-        dropShadow: {
-          enabled: false,
-          top: 2,
-          left: 0,
-          color: '#999',
-          opacity: 1,
-          blur: 2,
-        },
-      },
+    bar: {
       dataLabels: {
-        name: {
-          show: false,
-        },
-        value: {
-          offsetY: -2,
-          fontSize: '22px',
-        },
+        position: 'top', // top, center, bottom
       },
     },
   },
-  grid: {
-    padding: {
-      top: 80,
+  dataLabels: {
+    enabled: true,
+    formatter: function (val: string) {
+      return val + '%'
+    },
+    offsetY: -20,
+    style: {
+      fontSize: '12px',
+      colors: ['#304758'],
     },
   },
-  fill: {
-    type: 'gradient',
-    gradient: {
-      shade: 'light',
-      shadeIntensity: 0.1,
-      inverseColors: false,
-      opacityFrom: 1,
-      opacityTo: 1,
-      stops: [0, 50, 53, 91],
+  xaxis: {
+    categories: ['Jan','Feb','Mar','Apr','May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    position: 'top',
+    axisBorder: {
+      show: false,
+    },
+    axisTicks: {
+      show: false,
+    },
+    crosshairs: {
+      fill: {
+        type: 'gradient',
+        gradient: {
+          colorFrom: '#D8E3F0',
+          colorTo: '#BED1E6',
+          stops: [0, 100],
+          opacityFrom: 0.4,
+          opacityTo: 0.5,
+        },
+      },
+    },
+    tooltip: {
+      enabled: true,
     },
   },
-  labels: ['Average Results'],
+  yaxis: {
+    axisBorder: {
+      show: false,
+    },
+    axisTicks: {
+      show: false,
+    },
+    labels: {
+      show: false,
+      formatter: function (val: string) {
+        return val + '%'
+      },
+    },
+  },
+  colors: [themeColors.green, themeColors.secondary, themeColors.orange],
+  title: {
+    text: 'Customers',
+    align: 'left',
+  },
 }

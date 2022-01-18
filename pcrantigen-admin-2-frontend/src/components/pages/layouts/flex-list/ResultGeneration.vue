@@ -226,11 +226,11 @@ onMounted(async () => {
         </V-Control>
       </V-Field>
 
-      <V-Buttons>
-        <V-Button color="primary" icon="fas fa-plus" elevated>
-          Add Test
-        </V-Button>
-      </V-Buttons>
+<!--      <V-Buttons>-->
+<!--        <V-Button color="primary" icon="fas fa-plus" elevated>-->
+<!--          Add Test-->
+<!--        </V-Button>-->
+<!--      </V-Buttons>-->
     </div>
 
     <div class="page-content-inner">
@@ -253,10 +253,10 @@ onMounted(async () => {
             :class="[filteredData.length === 0 && 'is-hidden']"
           >
             <span class="is-grow">Customer ID</span>
-            <span>Time Logged</span>
-            <span>Test State</span>
-            <span>Test Type</span>
-            <span class="cell-end">Actions</span>
+            <span class="is-grow">Time Logged</span>
+            <span class="is-grow">Test State</span>
+            <span class="is-grow">Test Type</span>
+            <span class="is-grow cell-end">Actions</span>
           </div>
 
           <div class="flex-list-inner">
@@ -279,16 +279,16 @@ onMounted(async () => {
                     </span>
                   </div>
                 </div>
-                <div class="flex-table-cell" data-th="Time Logged">
+                <div class="flex-table-cell is-grow" data-th="Time Logged">
                   <span class="light-text">{{ customer.logged_at }}</span>
                 </div>
-                <div class="flex-table-cell" data-th="State">
+                <div class="flex-table-cell is-grow" data-th="State">
                   <span class="light-text">{{ customer.status }}</span>
                 </div>
-                <div class="flex-table-cell" data-th="Test Type">
+                <div class="flex-table-cell is-grow" data-th="Test Type">
                   <span class="light-text"> PCR Antigen </span>
                 </div>
-                <div class="flex-table-cell cell-end" data-th="Actions">
+                <div class="flex-table-cell is-grow cell-end" data-th="Actions">
                   <span class="mr-2">
                     <VButton
                       @click="loadSendResult(customer)"

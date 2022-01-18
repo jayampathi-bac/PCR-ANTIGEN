@@ -1,12 +1,20 @@
 <script setup lang="ts">
-import {customersOptions} from '/@src/data/dashboards/personal-v1/customersChart'
-import {teamGaugeOptions} from '/@src/data/dashboards/personal-v1/teamGaugeChart'
-import {profitChartOptions} from '/@src/data/dashboards/personal-v1/profitChart'
+import {resultOptions} from '/@src/data/charts/resultsChart'
+import {testCompletedChartOptions} from '/@src/data/charts/testCompletedChart'
+import {customerChartOptions} from '/@src/data/charts/customersChart'
 import {useCookies} from "vue3-cookies";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 const {cookies} = useCookies();
 
+import getDashboardData from '/@src/composable/dashboardData'
+
+const {searchDashboardData, dashboardData, series, customerSeries,testCompletedProportion} = getDashboardData();
+
 const name = ref(cookies.get('admin2').name)
+
+onMounted(() => {
+  searchDashboardData();
+})
 
 </script>
 
@@ -115,10 +123,10 @@ const name = ref(cookies.get('admin2').name)
         <div class="column is-6">
           <div class="dashboard-card">
              <apexchart
-              :height="customersOptions.chart.height"
-              :type="customersOptions.chart.type"
-              :series="customersOptions.series"
-              :options="customersOptions"
+              :height="resultOptions.chart.height"
+              :type="resultOptions.chart.type"
+              :series="series"
+              :options="resultOptions"
             >
             </apexchart>
           </div>
@@ -138,10 +146,10 @@ const name = ref(cookies.get('admin2').name)
               <V-Avatar picture="https://icon-library.com/images/145e4ee39c.svg.svg"/>
             </div>
             <apexchart
-              :height="teamGaugeOptions.chart.height"
-              :type="teamGaugeOptions.chart.type"
-              :series="teamGaugeOptions.series"
-              :options="teamGaugeOptions"
+              :height="testCompletedChartOptions.chart.height"
+              :type="testCompletedChartOptions.chart.type"
+              :series="testCompletedProportion"
+              :options="testCompletedChartOptions"
             >
             </apexchart>
           </div>
@@ -151,10 +159,10 @@ const name = ref(cookies.get('admin2').name)
         <div class="column is-6">
           <div class="dashboard-card">
             <apexchart
-              :height="profitChartOptions.chart.height"
-              :type="profitChartOptions.chart.type"
-              :series="profitChartOptions.series"
-              :options="profitChartOptions"
+              :height="customerChartOptions.chart.height"
+              :type="customerChartOptions.chart.type"
+              :series="customerSeries"
+              :options="customerChartOptions"
             >
             </apexchart>
           </div>

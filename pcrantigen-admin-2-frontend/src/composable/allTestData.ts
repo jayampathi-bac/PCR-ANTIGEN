@@ -5,13 +5,17 @@ import AllTestsService from '/@src/service/allTestsService';
 const getAllTests = () => {
   const allTests = ref([]);
   const allTestsByRange = ref([]);
+  const totalTests = ref(0);
+
 
   const allTestsService = new AllTestsService();
 
-  const searchAllTests = () => {
+  const searchAllTests = (pageId: number) => {
     console.log("searching Results")
-    allTestsService.getAllTestsByBranch().then((result: { data: never[]; }) => {
-      allTests.value = result.data;
+    allTestsService.getAllTestsByBranch(pageId).then((result: { data: never[]; }) => {
+      allTests.value = result.data.data;
+      // console.log("meta",result.data.meta)
+      totalTests.value = result.data.meta;
     }).catch((e: any) => {
       console.log('error: ', e);
     });
@@ -20,7 +24,7 @@ const getAllTests = () => {
   const searchAllTestsByRange = (start_date: string,end_date: string) => {
     console.log("searching Results by range")
     allTestsService.getAllTestsByRange(start_date, end_date).then((result: { data: never[]; }) => {
-      allTests.value = result.data;
+      allTests.value = result.data.data;
     }).catch((e: any) => {
       console.log('error: ', e);
     });
@@ -29,7 +33,7 @@ const getAllTests = () => {
   const searchAllTestsByMonth = (selectedMonth: number) => {
     console.log("searching Results by selectedMonth")
     allTestsService.getAllTestsByMonth(selectedMonth).then((result: { data: never[]; }) => {
-      allTests.value = result.data;
+      allTests.value = result.data.data;
     }).catch((e: any) => {
       console.log('error: ', e);
     });
@@ -41,6 +45,7 @@ const getAllTests = () => {
     searchAllTests,
     searchAllTestsByRange,
     searchAllTestsByMonth,
+    totalTests,
   };
 };
 

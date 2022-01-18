@@ -16,25 +16,25 @@
         </div>
       </a>
 
-      <a role="menuitem" href="#" class="dropdown-item is-media">
-        <div class="icon">
-          <i aria-hidden="true" class="lnil lnil-briefcase"></i>
-        </div>
-        <div class="meta">
-          <span>Projects</span>
-          <span>View user projects</span>
-        </div>
-      </a>
+<!--      <a role="menuitem" href="#" class="dropdown-item is-media">-->
+<!--        <div class="icon">-->
+<!--          <i aria-hidden="true" class="lnil lnil-briefcase"></i>-->
+<!--        </div>-->
+<!--        <div class="meta">-->
+<!--          <span>Projects</span>-->
+<!--          <span>View user projects</span>-->
+<!--        </div>-->
+<!--      </a>-->
 
-      <a role="menuitem" href="#" class="dropdown-item is-media">
-        <div class="icon">
-          <i aria-hidden="true" class="lnil lnil-calendar"></i>
-        </div>
-        <div class="meta">
-          <span>Schedule</span>
-          <span>Schedule a meeting</span>
-        </div>
-      </a>
+<!--      <a role="menuitem" href="#" class="dropdown-item is-media">-->
+<!--        <div class="icon">-->
+<!--          <i aria-hidden="true" class="lnil lnil-calendar"></i>-->
+<!--        </div>-->
+<!--        <div class="meta">-->
+<!--          <span>Schedule</span>-->
+<!--          <span>Schedule a meeting</span>-->
+<!--        </div>-->
+<!--      </a>-->
 
       <hr class="dropdown-divider" />
 

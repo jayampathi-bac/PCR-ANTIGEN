@@ -1,20 +1,20 @@
 import { themeColors } from '/@src/utils/themeColors'
 
-export const customersOptions = {
-  series: [
-    {
-      name: 'Total',
-      data: [31, 40, 28, 51, 42, 109, 100],
-    },
-    {
-      name: 'Completed',
-      data: [11, 32, 45, 32, 34, 52, 41],
-    },
-    {
-      name: 'Incomplete',
-      data: [78, 53, 36, 10, 14, 5, 2],
-    },
-  ],
+export const resultOptions = {
+  // series: [
+  //   {
+  //     name: 'Total',
+  //     data: [31, 40, 28, 51, 42, 109, 100, 28, 51, 42, 109, 100],
+  //   },
+  //   {
+  //     name: 'Completed',
+  //     data: [11, 32, 45, 32, 34, 52, 41, 45, 32, 34, 52, 41],
+  //   },
+  //   {
+  //     name: 'Incomplete',
+  //     data: [78, 53, 36, 10, 14, 5, 2, 36, 10, 14, 5, 2],
+  //   },
+  // ],
   chart: {
     height: 295,
     type: 'area',
@@ -38,15 +38,20 @@ export const customersOptions = {
     curve: 'smooth',
   },
   xaxis: {
-    type: 'datetime',
+    type: 'month',
     categories: [
-      '2020-09-19T00:00:00.000Z',
-      '2020-09-20T01:30:00.000Z',
-      '2020-09-21T02:30:00.000Z',
-      '2020-09-22T03:30:00.000Z',
-      '2020-09-23T04:30:00.000Z',
-      '2020-09-24T05:30:00.000Z',
-      '2020-09-25T06:30:00.000Z',
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
     ],
   },
   tooltip: {

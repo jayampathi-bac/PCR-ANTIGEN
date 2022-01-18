@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import {computed, onMounted, ref} from 'vue'
-
+import { useRoute } from 'vue-router'
 import useNotyf from '/@src/composable/useNotyf'
 
 import getAllTests from '/@src/composable/allTestData'
+const route = useRoute()
 
-const {allTests, searchAllTests, searchAllTestsByRange, searchAllTestsByMonth} = getAllTests();
+const {allTests, searchAllTests, searchAllTestsByRange, searchAllTestsByMonth,totalTests} = getAllTests();
 
 const notif = useNotyf()
 const filters = ref('')
@@ -121,8 +122,16 @@ const downloadCSVFunc = () => {
   exportToCsv('all_test_records.csv')
 }
 
+const currentPage = computed(() => {
+  try {
+    searchAllTests(Number.parseInt(route.query.page as string) || 1 )
+    return Number.parseInt(route.query.page as string) || 1
+  } catch {}
+  return 1
+})
+
 onMounted(() => {
-  searchAllTests()
+  searchAllTests(1)
 })
 
 </script>
@@ -254,10 +263,10 @@ onMounted(() => {
               >
                 <span class="is-grow">Customer</span>
                 <span class="is-grow">Contact Number</span>
-                <span>Record ID</span>
-                <span>Test Result</span>
-                <span>Record State</span>
-                <span class="cell-end">Created At</span>
+                <span class="is-grow">Record ID</span>
+                <span class="is-grow">Test Result</span>
+                <span class="is-grow">Record State</span>
+                <span class="is-grow cell-end">Created At</span>
               </div>
               <div class="flex-list-inner">
                 <transition-group name="list" tag="div">
@@ -277,19 +286,19 @@ onMounted(() => {
                         <span class="item-name dark-inverted">{{ test.customer_name }}</span>
                       </div>
                     </div>
-                    <div class="flex-table-cell" data-th="Contact Number">
+                    <div class="flex-table-cell is-grow" data-th="Contact Number">
                       <span class="light-text">{{ test.customer_contact_number }}</span>
                     </div>
-                    <div class="flex-table-cell" data-th="Record ID">
+                    <div class="flex-table-cell is-grow" data-th="Record ID">
                       <span class="light-text">{{ test.record_id }}</span>
                     </div>
-                    <div class="flex-table-cell" data-th="Test Result">
+                    <div class="flex-table-cell is-grow" data-th="Test Result">
                       <span class="light-text">{{ test.test_result }}</span>
                     </div>
-                    <div class="flex-table-cell" data-th="Record State">
+                    <div class="flex-table-cell is-grow" data-th="Record State">
                       <span class="light-text">{{ test.record_state }}</span>
                     </div>
-                    <div class="flex-table-cell cell-end" data-th="Created At">
+                    <div class="flex-table-cell is-grow cell-end" data-th="Created At">
                       <span class="light-text">{{ test.created_at }}</span>
                     </div>
                   </div>
@@ -300,8 +309,8 @@ onMounted(() => {
             <V-FlexPagination
               v-if="filteredData.length > 5"
               :item-per-page="10"
-              :total-items="873"
-              :current-page="42"
+              :total-items=totalTests
+              :current-page="currentPage"
               :max-links-displayed="7"
             />
           </div>

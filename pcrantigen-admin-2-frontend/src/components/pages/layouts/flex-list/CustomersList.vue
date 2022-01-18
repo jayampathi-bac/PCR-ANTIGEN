@@ -202,9 +202,9 @@ onMounted(async () => {
             :class="[filteredData.length === 0 && 'is-hidden']"
           >
             <span class="is-grow">Customer</span>
-            <span>Email</span>
-            <span>Contact</span>
-            <span class="cell-end">Actions</span>
+            <span class="is-grow">Email</span>
+            <span class="is-grow">Contact</span>
+            <span class="is-grow cell-end">Actions</span>
           </div>
 
           <div class="flex-list-inner">
@@ -225,13 +225,13 @@ onMounted(async () => {
                     <span class="item-name dark-inverted">{{ customer.name }}</span>
                   </div>
                 </div>
-                <div class="flex-table-cell" data-th="Email">
+                <div class="flex-table-cell is-grow" data-th="Email">
                   <span class="light-text">{{ customer.email }}</span>
                 </div>
-                <div class="flex-table-cell" data-th="Contact Number">
+                <div class="flex-table-cell is-grow" data-th="Contact Number">
                   <span class="light-text">{{ customer.contact_number }}</span>
                 </div>
-                <div class="flex-table-cell cell-end" data-th="Actions">
+                <div class="flex-table-cell  is-grow cell-end" data-th="Actions">
                   <span><VButton color="primary" outlined @click="editCustomerModelOpen(customer)"> Edit</VButton></span>
                 </div>
               </div>
