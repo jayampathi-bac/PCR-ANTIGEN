@@ -12,14 +12,16 @@ const getDashboardData = () => {
   const inCompleteResultData = ref([])
   const customerData = ref([])
   const testCompletedProportion = ref([])
+  const dashboardQuickStats = ref({})
 
   const searchDashboardData = () => {
     dashboardService.getDashboardData().then((result: { data: never[]; }) => {
       dashboardData.value = result.data;
-      console.log("dashboardData", dashboardData.value[0])
+      console.log("dashboardData", dashboardData.value[3])
       let x = dashboardData.value[0]
       let y = dashboardData.value[2]
       testCompletedProportion.value.push(dashboardData.value[1])
+      dashboardQuickStats.value =dashboardData.value[3]
       console.log('testCompletedProportion', dashboardData.value[1])
       x.map((item) => {
         // console.log("item", item.total_count);
@@ -80,7 +82,8 @@ const getDashboardData = () => {
     dashboardData,
     series,
     customerSeries,
-    testCompletedProportion
+    testCompletedProportion,
+    dashboardQuickStats
   };
 };
 

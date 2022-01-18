@@ -8,7 +8,7 @@ const {cookies} = useCookies();
 
 import getDashboardData from '/@src/composable/dashboardData'
 
-const {searchDashboardData, dashboardData, series, customerSeries,testCompletedProportion} = getDashboardData();
+const {searchDashboardData, dashboardData, series, customerSeries,testCompletedProportion, dashboardQuickStats} = getDashboardData();
 
 const name = ref(cookies.get('admin2').name)
 
@@ -47,7 +47,7 @@ onMounted(() => {
                 <!--Stat-->
                 <div class="quick-stat">
                   <V-Block
-                    title="3313"
+                    :title=dashboardQuickStats.new_customer
                     subtitle="New customers in this month"
                     center
                     m-responsive
@@ -63,7 +63,7 @@ onMounted(() => {
                 <!--Stat-->
                 <div class="quick-stat">
                   <V-Block
-                    title="2,870"
+                    :title=dashboardQuickStats.test_done_by_month
                     subtitle="Test kits issued"
                     center
                     m-responsive
@@ -84,8 +84,8 @@ onMounted(() => {
                 <!--Stat-->
                 <div class="quick-stat">
                   <V-Block
-                    title="39,849"
-                    subtitle="Tests done in this month"
+                    :title=dashboardQuickStats.total_testkit_brand
+                    subtitle="Total testkit brands"
                     center
                     m-responsive
                     t-responsive
@@ -101,7 +101,7 @@ onMounted(() => {
                 <!--Stat-->
                 <div class="quick-stat">
                   <V-Block
-                    title="65,4231"
+                    :title=dashboardQuickStats.all_customers
                     subtitle="All Customers"
                     center
                     m-responsive
