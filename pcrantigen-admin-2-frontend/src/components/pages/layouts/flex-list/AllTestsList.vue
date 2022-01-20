@@ -122,6 +122,10 @@ const downloadCSVFunc = () => {
   exportToCsv('all_test_records.csv')
 }
 
+const refreshLoading = () => {
+  searchAllTests(1)
+}
+
 const currentPage = computed(() => {
   try {
     searchAllTests(Number.parseInt(route.query.page as string) || 1 )
@@ -242,6 +246,13 @@ onMounted(() => {
               />
             </V-Control>
           </V-Field>
+
+          <V-Buttons>
+            <!--        <V-Button dark="3">View Reports</V-Button>-->
+            <V-Button color="primary" icon="feather:refresh-cw" elevated @click="refreshLoading()">
+              refresh
+            </V-Button>
+          </V-Buttons>
         </div>
         <div class="page-content-inner">
           <div class="flex-list-wrapper flex-list-v1">
@@ -307,7 +318,7 @@ onMounted(() => {
             </div>
             <!--Table Pagination-->
             <V-FlexPagination
-              v-if="filteredData.length > 5"
+              v-if="filteredData.length > 0"
               :item-per-page="10"
               :total-items=totalTests
               :current-page="currentPage"

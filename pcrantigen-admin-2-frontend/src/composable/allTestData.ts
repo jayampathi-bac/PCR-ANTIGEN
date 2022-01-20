@@ -12,7 +12,8 @@ const getAllTests = () => {
 
   const searchAllTests = (pageId: number) => {
     console.log("searching Results")
-    allTestsService.getAllTestsByBranch(pageId).then((result: { data: never[]; }) => {
+    allTestsService.getAllTestsByBranch(pageId).then((result: { data: any; }) => {
+
       allTests.value = result.data.data;
       // console.log("meta",result.data.meta)
       totalTests.value = result.data.meta;

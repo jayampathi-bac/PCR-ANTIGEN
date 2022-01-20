@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import { useWindowScroll } from '@vueuse/core'
-import {computed, onBeforeMount, ref} from 'vue'
+import {useWindowScroll} from '@vueuse/core'
+import {computed, inject, onBeforeMount, ref} from 'vue'
 import useNotyf from '/@src/composable/useNotyf'
 import sleep from '/@src/utils/sleep'
 import {useStore} from 'vuex'
 import axios from "axios";
-import { useCookies } from "vue3-cookies";
+import {useCookies} from "vue3-cookies";
 import {basic_url} from "/@src/utils/basic_config";
+import UserService from '/@src/service/userService';
 
-const { cookies } = useCookies();
+const userService = new UserService();
+
+const swal = inject('$swal')
+const {cookies} = useCookies();
 const store = useStore()
 const isUploading = ref(false)
 const isLoading = ref(false)
@@ -16,13 +20,13 @@ const experience = ref('')
 const remote = ref('')
 const skills = ref(['software', 'saas', 'engineering'])
 const skillsOptions = [
-  { value: 'software', label: 'Software' },
-  { value: 'saas', label: 'SaaS' },
-  { value: 'engineering', label: 'Engineering' },
+  {value: 'software', label: 'Software'},
+  {value: 'saas', label: 'SaaS'},
+  {value: 'engineering', label: 'Engineering'},
 ]
 
 const notyf = useNotyf()
-const { y } = useWindowScroll()
+const {y} = useWindowScroll()
 
 const isScrolling = computed(() => {
   return y.value > 30
@@ -36,56 +40,79 @@ const onAddFile = (error: any, file: any) => {
 
   console.log('file added', file)
 }
+
 const onRemoveFile = (error: any, file: any) => {
   if (error) {
     console.error(error)
     return
   }
-
   console.log('file removed', file)
 }
+
 const name = ref(store.state.auth.admin2.name);
 const contact_number = ref(store.state.auth.admin2.contact_number);
-const email = ref(store.state.auth.admin2.email);
+const address = ref(store.state.auth.admin2.address);
 const profile_picture_url = ref(store.state.auth.admin2.profile_url ? store.state.auth.admin2.profile_url : "https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png");
+
+
+const fireEditProfileAlert = () => {
+  if (name.value && address.value) {
+    swal.fire({
+      title: `Do you want to edit profile ?`,
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        onSave()
+      }
+    })
+  } else {
+    notyf.warning('Fields are empty..!')
+  }
+}
 
 const onSave = async () => {
   isLoading.value = true
-
-  if (name.value && email.value) {
-    let data = {name: name.value, contact_number: contact_number.value, email: email.value, profile_picture_url : profile_picture_url.value}
-    let config = {headers: {Authorization: "Bearer " + cookies.get('admin2').access_token}}
-    const res = await axios.put(`${basic_url}/v1/customer`,data, config);
-    // console.log("updating response : ",res)
-    if (res.data.success){
-      notyf.success('Your changes have been successfully saved!')
-      store.dispatch("auth/updateUser", {
-        name: name.value,
-        email: email.value
-      })
-      const user = {
-        name:name.value,
-        contact:contact_number.value,
-        email:email.value ,
-        access_token:cookies.get('admin2').access_token ,
-        profile_url:profile_picture_url.value ,
-      };
-      cookies.set("admin2",user,60 * 60 * 24 * 3);
-    }else{
-      notyf.warning('Please try again!')
-    }
-  }else{
-    notyf.warning('Fields are empty..!')
+  let data = {
+    company_name: name.value,
+    contact_number: contact_number.value,
+    address: address.value,
+    profile_url: profile_picture_url.value
   }
-
-  isLoading.value = false
+  userService.editUserProfile(data)
+    .then(function (response) {
+      if (response.data.success) {
+        notyf.success('Your changes have been successfully saved!')
+        swal.fire('Saving Successful!', '', 'success')
+        store.dispatch("auth/updateUser", {
+          name: name.value,
+          address: address.value
+        })
+        const user = {
+          name: name.value,
+          contact: contact_number.value,
+          address: address.value,
+          access_token: cookies.get('admin2').access_token,
+          profile_url: profile_picture_url.value,
+        };
+        cookies.set("admin2", user, 60 * 60 * 24 * 3);
+        isLoading.value = false
+      } else {
+        swal.fire('Saving Failed!', '', 'error')
+        notyf.warning('Please try again!')
+        isLoading.value = false
+      }
+    }).catch(function (error) {
+    console.log(error);
+    isLoading.value = false
+  });
 }
 
 onBeforeMount(() => {
   const userToken = cookies.get('admin2').access_token
   name.value = cookies.get('admin2').name
   contact_number.value = cookies.get('admin2').contact
-  email.value = cookies.get('admin2').email
+  address.value = cookies.get('admin2').address
   profile_picture_url.value = cookies.get('admin2').profile_url
 })
 </script>
@@ -112,7 +139,7 @@ onBeforeMount(() => {
               color="primary"
               raised
               :loading="isLoading"
-              @click="onSave"
+              @click="fireEditProfileAlert()"
             >
               Save Changes
             </V-Button>
@@ -219,9 +246,9 @@ onBeforeMount(() => {
                 <input
                   type="text"
                   class="input"
-                  placeholder="Email Address"
-                  autocomplete="email"
-                  v-model="email"
+                  placeholder="EAddress"
+                  autocomplete="address"
+                  v-model="address"
                 />
               </V-Control>
             </V-Field>
@@ -231,3 +258,14 @@ onBeforeMount(() => {
     </div>
   </div>
 </template>
+
+<style lang="scss">
+.swal2-title {
+  font-size: 20px !important;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: #41b883 !important;
+}
+
+</style>

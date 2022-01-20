@@ -17,17 +17,21 @@ class AuthService {
           console.log("login response",response)
           if (response.data.access_token){
             const admin2 = {
-              name:response.data.name,
-              contact:response.data.contact_number,
+              name:response.data.branch.company_name,
+              contact:response.data.branch.contact_number,
               access_token:response.data.access_token ,
-              profile_url:response.data.profile_url ,
-              branch_id:response.data.branch_id ,
+              profile_url:response.data.branch.profile_url ,
+              branch_id:response.data.branch.branch_id ,
+              address:response.data.branch.address,
+              group_id:response.data.branch.group_id,
             };
             admin2Store = {
-              name:response.data.name,
-              contact:response.data.contact_number,
-              profile_url:response.data.profile_url ,
-              branch_id:response.data.branch_id ,
+              name:response.data.branch.company_name,
+              contact:response.data.branch.contact_number,
+              profile_url:response.data.branch.profile_url ,
+              branch_id:response.data.branch.branch_id ,
+              address:response.data.branch.address,
+              group_id:response.data.branch.group_id,
             };
             cookies.set("admin2",admin2,60 * 60 * 24 * 1);
             console.log("name cookie",cookies.get('admin2').name)

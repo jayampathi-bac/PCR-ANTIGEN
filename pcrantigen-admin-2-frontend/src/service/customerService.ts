@@ -9,19 +9,19 @@ const config = {headers: {Authorization: "Bearer " + cookies.get('admin2').acces
 const branch_id = cookies.get('admin2').branch_id
 
 export default class CustomerService {
-  getCustomers = () => axios.get(`${basic_url}/v1/admin/customer/all/${branch_id}`, config)
+  getCustomers = (pageId: number) => axios.get(`${basic_url}/v1/admin/customer/all/${branch_id}/${pageId}`, config)
     .then((response) => ({
-      data: response.data.data,
+      data: response.data,
     }));
 
-  postCustomer = (customer: { profile_url: string; password: string; email: string; contact_number: string; name: string; branch_id:string}
+  postCustomer = (customer: { profile_url: string; password: string; email: string; contact_number: string; name: string}
   ) => axios.post(`${basic_url}/v1/admin/customer`, {
     name: customer.name,
     contact_number: customer.contact_number,
     email: customer.email,
     password: customer.password,
     profile_url: customer.profile_url,
-    branch_id: customer.branch_id
+    branch_id: branch_id
   }, config)
     .then((response) => ({
       data: response,

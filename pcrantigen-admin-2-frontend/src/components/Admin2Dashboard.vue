@@ -55,7 +55,11 @@ onMounted(() => {
                   >
                     <template #icon>
                       <V-IconBox color="orange" rounded>
-                        <i aria-hidden="true" class="lnil lnil-syringe"></i>
+                        <i
+                          aria-hidden="true"
+                          class="iconify"
+                          data-icon="feather:user-check"
+                        ></i>
                       </V-IconBox>
                     </template>
                   </V-Block>
@@ -73,7 +77,8 @@ onMounted(() => {
                       <V-IconBox color="purple" rounded>
                         <i
                           aria-hidden="true"
-                          class="lnil lnil-analytics-alt-1"
+                          class="iconify"
+                          data-icon="feather:layers"
                         ></i>
                       </V-IconBox>
                     </template>
@@ -92,7 +97,11 @@ onMounted(() => {
                   >
                     <template #icon>
                       <V-IconBox color="green" rounded>
-                        <i aria-hidden="true" class="lnil lnil-diamond-alt"></i>
+                        <i
+                          aria-hidden="true"
+                          class="iconify"
+                          data-icon="feather:pocket"
+                        ></i>
                       </V-IconBox>
                     </template>
                   </V-Block>
@@ -109,7 +118,11 @@ onMounted(() => {
                   >
                     <template #icon>
                       <V-IconBox color="info" rounded>
-                        <i aria-hidden="true" class="lnil lnil-bank"></i>
+                        <i
+                          aria-hidden="true"
+                          class="iconify"
+                          data-icon="feather:users"
+                        ></i>
                       </V-IconBox>
                     </template>
                   </V-Block>

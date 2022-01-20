@@ -8,16 +8,17 @@ import useNotyf from '/@src/composable/useNotyf'
 import BrandService from '/@src/service/brandService';
 
 import {useCookies} from "vue3-cookies";
+import {useRoute} from "vue-router";
 
 const swal = inject('$swal')
 
 const {cookies} = useCookies();
-
+const route = useRoute()
 const brandService = new BrandService();
 
 const notif = useNotyf()
 
-const { searchAllBrands, brands } = getBrands();
+const {searchAllBrands, brands, allBrandsCount} = getBrands();
 
 const centeredActionsOpen = ref(false)
 const editActionsOpen = ref(false)
@@ -45,6 +46,7 @@ const brand_company_name = ref('')
 const branch_id = ref(cookies.get('admin2').branch_id)
 const description = ref('')
 
+const edit_brand_id = ref('')
 const edit_brand_name = ref('')
 const edit_brand_company_name = ref('')
 const edit_description = ref('')
@@ -53,7 +55,7 @@ const saveBrandFunc = () => {
   console.log("saving")
   if (brand_name.value && brand_company_name.value && branch_id.value && description.value) {
     console.log("working")
-    const brand  = {
+    const brand = {
       brand_name: brand_name.value,
       brand_company_name: brand_company_name.value,
       branch_id: branch_id.value,
@@ -61,13 +63,13 @@ const saveBrandFunc = () => {
     }
     brandService.saveBrand(brand)
       .then(function (response) {
-        console.log('response',response)
-        if (response.data.success){
+        console.log('response', response)
+        if (response.data.success) {
           swal.fire('Saving Successful!', '', 'success')
           notif.success(response.data.message)
-          searchAllBrands()
+          searchAllBrands(currentPage.value)
           centeredActionsOpen.value = false
-        }else{
+        } else {
           notif.warning(response.data.message)
         }
       })
@@ -82,21 +84,22 @@ const editBrandFunc = () => {
   console.log("editing")
   if (edit_brand_name.value && edit_brand_company_name.value && branch_id.value && edit_description.value) {
     console.log("working")
-    const brand  = {
+    const brand = {
+      id: edit_brand_id.value,
       brand_name: edit_brand_name.value,
       brand_company_name: edit_brand_company_name.value,
       branch_id: branch_id.value,
-      description: edit_description.value
+      description: edit_description.value,
     }
     brandService.editBrand(brand)
       .then(function (response) {
-        console.log('response',response)
-        if (response.data.success){
+        console.log('response', response)
+        if (response.data.success) {
           swal.fire('Editing Successful!', '', 'success')
           notif.success(response.data.message)
-          searchAllBrands()
+          searchAllBrands(currentPage.value)
           editActionsOpen.value = false
-        }else{
+        } else {
           swal.fire('Editing Failed!', '', 'error')
           notif.warning(response.data.message)
           editActionsOpen.value = false
@@ -109,8 +112,6 @@ const editBrandFunc = () => {
     notif.warning('Empty Fields.!!')
   }
 }
-
-
 
 const fireBrandFuncAlert = () => {
   centeredActionsOpen.value = false;
@@ -139,15 +140,15 @@ const fireEditBrandFuncAlert = () => {
 }
 
 const deleteBrandFunc = (brand) => {
-  console.log('delete this',brand)
+  console.log('delete this', brand)
   brandService.deleteBrand(brand.id)
     .then(function (response) {
-      console.log('response',response)
-      if (response.data.success){
+      console.log('response', response)
+      if (response.data.success) {
         swal.fire('Deleting Successful!', '', 'success')
         notif.success(response.data.message)
-        searchAllBrands()
-      }else{
+        searchAllBrands(currentPage.value)
+      } else {
         swal.fire('Deleting Failed!', '', 'error')
         notif.warning(response.data.message)
       }
@@ -170,15 +171,26 @@ const fireDeleteBrandAlert = (brand) => {
 }
 
 const openEditActionsOpen = (brand) => {
+  console.log("currentPage", currentPage)
   editActionsOpen.value = true
+  edit_brand_id.value = brand.id;
   edit_brand_name.value = brand.brand_name;
   edit_brand_company_name.value = brand.brand_company_name;
   edit_description.value = brand.description;
 }
 
+const currentPage = computed(() => {
+  try {
+    console.log("currentPage", Number.parseInt(route.query.page as string) || 1)
+    searchAllBrands(Number.parseInt(route.query.page as string) || 1)
+    return Number.parseInt(route.query.page as string) || 1
+  } catch {
+  }
+  return 1
+})
 
 onMounted(async () => {
-  searchAllBrands();
+  searchAllBrands(1);
 })
 </script>
 
@@ -268,10 +280,10 @@ onMounted(async () => {
 
         <!--Table Pagination-->
         <V-FlexPagination
-          v-if="filteredData.length > 5"
+          v-if="filteredData.length > 0"
           :item-per-page="10"
-          :total-items="873"
-          :current-page="42"
+          :total-items="allBrandsCount"
+          :current-page="currentPage"
           :max-links-displayed="7"
         />
       </div>

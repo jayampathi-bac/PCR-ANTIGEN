@@ -4,13 +4,16 @@ import CustomerService from '/@src/service/customerService';
 
 const getCustomers = () => {
   const customers = ref([]);
+  const allCustomerCount = ref(0);
+
 
   const customerService = new CustomerService();
 
-  const search = () => {
+  const search = (pageId: number) => {
     console.log("searching customers")
-    customerService.getCustomers().then((result: { data: never[]; }) => {
-      customers.value = result.data;
+    customerService.getCustomers(pageId).then((result: { data: any; }) => {
+      customers.value = result.data.data;
+      allCustomerCount.value = result.data.meta;
     }).catch((e: any) => {
       console.log('error: ', e);
     });
@@ -31,6 +34,7 @@ const getCustomers = () => {
     saveCustomer,
     search,
     customers,
+    allCustomerCount
   };
 };
 

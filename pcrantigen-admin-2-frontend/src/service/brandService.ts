@@ -14,9 +14,9 @@ export default class BrandService {
       data: response.data.data,
     }));
 
-  getBrandsByBranch = () => axios.get(`${basic_url}/v1/admin/testkit/all/${branch_id}`, config)
+  getBrandsByBranch = (pageId: number) => axios.get(`${basic_url}/v1/admin/testkit/all/${branch_id}/${pageId}`, config)
     .then((response) => ({
-      data: response.data.data,
+      data: response.data,
     }));
 
   saveBrand = (brand: { brand_name: string; branch_id: string; description: string; brand_company_name: string; }
@@ -29,8 +29,9 @@ export default class BrandService {
     data: response.data,
   }));
 
-  editBrand = (brand: { brand_name: string; branch_id: string; description: string; brand_company_name: string; }
+  editBrand = (brand: { brand_name: string; branch_id: string; description: string; brand_company_name: string; id: number }
   ) => axios.put(`${basic_url}/v1/admin/testkit/`, {
+    id: brand.id,
     brand_name: brand.brand_name,
     brand_company_name: brand.brand_company_name,
     branch_id: brand.branch_id,
@@ -41,7 +42,7 @@ export default class BrandService {
 
   deleteBrand = (testkit_id: string) => axios.delete(`${basic_url}/v1/admin/testkit/${testkit_id}/${branch_id}`, config)
     .then((response) => ({
-      data: response.data.data,
+      data: response.data,
     }));
 
 }

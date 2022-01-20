@@ -9,33 +9,26 @@ const config = {headers: {Authorization: "Bearer " + cookies.get('admin2').acces
 const branch_id = cookies.get('admin2').branch_id
 
 export default class UserService {
-  getCustomers = () => axios.get(`${basic_url}/v1/admin/customer/all/${branch_id}`, config)
-    .then((response) => ({
-      data: response.data.data,
-    }));
 
-  postCustomer = (customer: { profile_url: string; password: string; email: string; contact_number: string; name: string; branch_id: string }
-  ) => axios.post(`${basic_url}/v1/admin/customer`, {
-    name: customer.name,
-    contact_number: customer.contact_number,
-    email: customer.email,
-    password: customer.password,
-    profile_url: customer.profile_url,
-    branch_id: customer.branch_id
+  editUserProfile = (company: { company_name: string; address: string; contact_number: string; profile_url: string; }
+  ) => axios.put(`${basic_url}/v1/admin/level2`, {
+    company_name: company.company_name,
+    address: company.address,
+    contact_number: company.contact_number,
+    profile_url: company.profile_url,
+    branch_id: branch_id,
   }, config)
     .then((response) => ({
-      data: response,
+      data: response.data,
     }));
 
-  editCustomer = (customer: { email: string; contact_number: string; name: string }
-  ) => axios.put(`${basic_url}/v1/admin/customer`, {
-    name: customer.name,
-    contact_number: customer.contact_number,
-    email: customer.email,
-    profile_url: '',
+  editUserAccount = (user: { current_password: string; new_password: string; contact_number: string; }
+  ) => axios.put(`${basic_url}/v1/admin/level2/updatePassword`, {
+    current_password: user.current_password,
+    new_password: user.new_password,
+    contact_number: user.contact_number
   }, config)
     .then((response) => ({
-      data: response,
+      data: response.data,
     }));
-
 }

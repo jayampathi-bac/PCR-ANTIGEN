@@ -222,8 +222,8 @@ const callingWebSocket2 = (contact) => {
   connection2.onopen = function (event) {
     console.log('connection2 onopen',event)
     console.log("Successfully connected to the echo websocket server 2...")
-    console.log("contact number here here here",contact)
-    console.log("contact number here here here",JSON.stringify({'contact_number': contact, "status": "INCOMPLETE", "branch_id":cookies.get('admin2').branch_id}))
+    // console.log("contact number here here here",contact)
+    // console.log("contact number here here here",JSON.stringify({'contact_number': contact, "status": "INCOMPLETE", "branch_id":cookies.get('admin2').branch_id}))
     // setInterval(() => connection.send(JSON.stringify({ event: "ping" })), 10000);
     connection2.send(JSON.stringify({'contact_number': contact, "status": "INCOMPLETE", "branch_id":cookies.get('admin2').branch_id}));
   }
@@ -245,13 +245,15 @@ const callingWebSocket = () => {
 
 
   connection.onmessage = function (event) {
-    console.log("response came")
-    console.log(event);
-    const myObj = JSON.parse(event.data);
-    console.log(myObj);
-    if (cookies.get('admin2').branch_id === parseInt(myObj.branch_id) && myObj.condition === "true") {
-      console.log("true true true")
-      search();
+    // console.log("response came")
+    // console.log(event);
+    if (event.data !== 'ALREDY HEREE 2') {
+      const myObj = JSON.parse(event.data);
+      // console.log("myObj",myObj);
+      if (cookies.get('admin2').branch_id === parseInt(myObj.branch_id) && myObj.condition === "true") {
+        // console.log("true true true")
+        search();
+      }
     }
   }
 
@@ -276,7 +278,11 @@ onMounted(async () => {
 
 })
 
-onBeforeUnmount()
+const refreshSearch = () => {
+
+  search()
+}
+
 </script>
 
 <template>
@@ -292,11 +298,11 @@ onBeforeUnmount()
         </V-Control>
       </V-Field>
 
-<!--      <V-Buttons>-->
-<!--        <V-Button color="primary" icon="fas fa-plus" elevated>-->
-<!--          Add Test-->
-<!--        </V-Button>-->
-<!--      </V-Buttons>-->
+      <V-Buttons>
+        <V-Button @click="refreshSearch()" color="primary" icon="feather:refresh-cw" elevated>
+          Refresh
+        </V-Button>
+      </V-Buttons>
     </div>
 
     <div class="page-content-inner">

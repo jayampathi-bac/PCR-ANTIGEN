@@ -8,6 +8,7 @@ import useNotyf from '/@src/composable/useNotyf'
 import CustomerService from '/@src/service/customerService';
 
 import {useCookies} from "vue3-cookies";
+import {useRoute} from "vue-router";
 
 const swal = inject('$swal')
 
@@ -17,9 +18,11 @@ const customerService = new CustomerService();
 
 const notif = useNotyf()
 
-const {search, saveCustomer, customers} = getCustomers();
+const {search, saveCustomer, customers, allCustomerCount} = getCustomers();
 
 const centeredActionsOpen = ref(false)
+
+const route = useRoute()
 
 
 const filters = ref('')
@@ -69,7 +72,7 @@ const saveCustomerFunc = () => {
               swal.fire('Saving Successful!', '', 'success')
               notif.success(response.data.data.message)
               centeredActionsOpen.value = false;
-              search();
+              search(currentPage.value);
             }else{
               notif.warning(response.data.data.message)
             }
@@ -130,7 +133,7 @@ const editCustomerFunc = () => {
           swal.fire('Editing Successful!', '', 'success')
           editCustomerAction.value = false;
           editName.value = '';
-          search();
+          search(currentPage.value);
         }else{
           notif.warning(response.data.data.message)
         }
@@ -156,8 +159,16 @@ const fireEditCustomerAlert = () => {
   })
 }
 
+const currentPage = computed(() => {
+  try {
+    search(Number.parseInt(route.query.page as string) || 1 )
+    return Number.parseInt(route.query.page as string) || 1
+  } catch {}
+  return 1
+})
+
 onMounted(async () => {
-  search();
+  search(1);
 })
 </script>
 
@@ -241,10 +252,10 @@ onMounted(async () => {
 
         <!--Table Pagination-->
         <V-FlexPagination
-          v-if="filteredData.length > 5"
+          v-if="filteredData.length > 0"
           :item-per-page="10"
-          :total-items="873"
-          :current-page="42"
+          :total-items="allCustomerCount"
+          :current-page="currentPage"
           :max-links-displayed="7"
         />
       </div>

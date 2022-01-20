@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useWindowScroll } from '@vueuse/core'
-import {computed, onBeforeMount, ref} from 'vue'
+import {computed, inject, onBeforeMount, ref} from 'vue'
 import useNotyf from '/@src/composable/useNotyf'
 import sleep from '/@src/utils/sleep'
 import axios from "axios";
@@ -9,8 +9,10 @@ import {basic_url} from "/@src/utils/basic_config";
 
 import { useCookies } from "vue3-cookies";
 
+import UserService from '/@src/service/userService';
 
-
+const userService = new UserService();
+const swal = inject('$swal')
 const { cookies } = useCookies();
 const notyf = useNotyf()
 const { y } = useWindowScroll()
@@ -27,33 +29,52 @@ const isScrolling = computed(() => {
   return y.value > 30
 })
 
+const fireEditAccountAlert = () => {
+  isLoading.value = true
+  if (current_password.value && new_password.value && confirm_password.value) {
+    if (new_password.value === confirm_password.value){
+      swal.fire({
+        title: `Do you want to edit profile ?`,
+        showCancelButton: true,
+        confirmButtonText: 'Save',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          onSave()
+        }
+      })
+    }else{
+      notyf.warning('Passwords do not match. Please try again..!')
+      isLoading.value = false
+    }
+
+  } else{
+    notyf.warning('Fields are empty..!')
+    isLoading.value = false
+  }
+}
+
 const current_password = ref(null);
 const new_password = ref(null);
 const confirm_password = ref(null);
 
 const onSave = async () => {
   isLoading.value = true
-  if (current_password.value && new_password.value && confirm_password.value) {
-    if (new_password.value === confirm_password.value){
-      let data = {current_password: current_password.value, new_password: new_password.value, contact_number: store.state.auth.user.contact_number}
-      let config = {headers: {Authorization: "Bearer " + cookies.get('user').access_token}}
-      const res = await axios.put(`${basic_url}/v1/customer/updatePassword`,data, config);
-      // console.log("updating password response : ",res)
-      if (res.data.success){
+  let data = {current_password: current_password.value, new_password: new_password.value, contact_number: store.state.auth.admin2.contact}
+  userService.editUserAccount(data)
+    .then(function (response) {
+      if (response.data.success) {
         notyf.success('Your changes have been successfully saved!')
+        swal.fire('Saving Successful!', '', 'success')
         isLoading.value = false
-      }else{
-        notyf.warning(res.data.message)
+      } else {
+        swal.fire('Saving Failed!', '', 'error')
+        notyf.warning('Please try again!')
         isLoading.value = false
       }
-    }else{
-      notyf.warning('Passwords do not match. Please try again..!')
-      isLoading.value = false
-    }
-  }else{
-    notyf.warning('Fields are empty..!')
+    }).catch(function (error) {
+    console.log(error);
     isLoading.value = false
-  }
+  });
 }
 
 
@@ -81,7 +102,7 @@ const onSave = async () => {
               color="primary"
               raised
               :loading="isLoading"
-              @click="onSave"
+              @click="fireEditAccountAlert"
             >
               Save Changes
             </V-Button>
@@ -89,7 +110,7 @@ const onSave = async () => {
         </div>
       </div>
     </div>
-    <form class="form-body" @submit.prevent="onSave">
+    <form class="form-body" @submit.prevent="">
       <!--Fieldset-->
       <div class="fieldset">
         <div class="fieldset-heading">
@@ -105,7 +126,7 @@ const onSave = async () => {
                 <input
                   type="password"
                   class="input"
-                  placeholder="Old Password"
+                  placeholder="Current Password"
                   autocomplete="current-password"
                   v-model="current_password"
                 />
@@ -247,3 +268,13 @@ const onSave = async () => {
     </form>
   </div>
 </template>
+<style lang="scss">
+.swal2-title {
+  font-size: 20px !important;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: #41b883 !important;
+}
+
+</style>
