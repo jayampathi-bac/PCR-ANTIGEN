@@ -111,22 +111,22 @@ const onSave = async () => {
                           {
                             value: 'english',
                             name: 'English',
-                            icon: '/images/icons/flags/united-states-of-america.svg',
+                            icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
                           },
                           {
                             value: 'french',
                             name: 'French',
-                            icon: '/images/icons/flags/france.svg',
+                            icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
                           },
                           {
                             value: 'german',
                             name: 'German',
-                            icon: '/images/icons/flags/germany.svg',
+                            icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
                           },
                           {
                             value: 'spanish',
                             name: 'Spanish',
-                            icon: '/images/icons/flags/spain.svg',
+                            icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
                           },
                         ]"
                       >
@@ -219,7 +219,7 @@ const onSave = async () => {
             <!--Experience Item-->
             <div class="setting-item">
               <V-IconWrap
-                picture="/images/icons/flags/united-states-of-america.svg"
+                picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
               />
 
               <div class="meta">
@@ -233,7 +233,7 @@ const onSave = async () => {
 
             <!--Experience Item-->
             <div class="setting-item">
-              <V-IconWrap picture="/images/icons/flags/france.svg" />
+              <V-IconWrap picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
 
               <div class="meta">
                 <span class="dark-inverted">French</span>
@@ -246,7 +246,7 @@ const onSave = async () => {
 
             <!--Experience Item-->
             <div class="setting-item">
-              <V-IconWrap picture="/images/icons/flags/germany.svg" />
+              <V-IconWrap picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
 
               <div class="meta">
                 <span class="dark-inverted">German</span>
@@ -259,7 +259,7 @@ const onSave = async () => {
 
             <!--Experience Item-->
             <div class="setting-item">
-              <V-IconWrap picture="/images/icons/flags/spain.svg" />
+              <V-IconWrap picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
 
               <div class="meta">
                 <span class="dark-inverted">Spanish</span>

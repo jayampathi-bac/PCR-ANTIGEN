@@ -3,7 +3,7 @@ import { themeColors } from '/@src/utils/themeColors'
 export const teamGaugeOptions = {
   series: [76],
   title: {
-    text: 'Team Efficiency',
+    text: 'Test Completed Proportion',
   },
   chart: {
     height: 455,

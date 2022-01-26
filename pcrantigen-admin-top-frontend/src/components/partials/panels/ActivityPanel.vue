@@ -52,8 +52,8 @@ const activeTab = ref<TabId>('team')
             <!--Team Member-->
             <div class="team-card">
               <V-Avatar
-                picture="/demo/avatars/12.jpg"
-                badge="/images/icons/flags/united-states-of-america.svg"
+                picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                badge="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
               />
 
               <div class="meta">
@@ -79,8 +79,8 @@ const activeTab = ref<TabId>('team')
             <!--Team Member-->
             <div class="team-card">
               <V-Avatar
-                picture="/demo/avatars/25.jpg"
-                badge="/images/icons/flags/united-states-of-america.svg"
+                picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                badge="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
               />
 
               <div class="meta">
@@ -107,7 +107,7 @@ const activeTab = ref<TabId>('team')
             <div class="team-card">
               <V-Avatar
                 picture="/demo/avatars/18.jpg"
-                badge="/images/icons/flags/united-states-of-america.svg"
+                badge="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
               />
 
               <div class="meta">
@@ -133,8 +133,8 @@ const activeTab = ref<TabId>('team')
             <!--Team Member-->
             <div class="team-card">
               <V-Avatar
-                picture="/demo/avatars/13.jpg"
-                badge="/images/icons/flags/united-states-of-america.svg"
+                picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                badge="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
               />
 
               <div class="meta">
@@ -168,7 +168,7 @@ const activeTab = ref<TabId>('team')
               <div class="project-inner">
                 <img
                   class="project-avatar"
-                  src="/images/icons/logos/slicer.svg"
+                  src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                   alt=""
                   @error.once="
                     $event.target.src = 'https://via.placeholder.com/150x150'
@@ -199,8 +199,8 @@ const activeTab = ref<TabId>('team')
 
                   <div class="avatar-stack">
                     <V-Avatar size="small" picture="/demo/avatars/5.jpg" />
-                    <V-Avatar size="small" picture="/demo/avatars/7.jpg" />
-                    <V-Avatar size="small" picture="/demo/avatars/8.jpg" />
+                    <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                    <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                   </div>
                 </div>
               </div>
@@ -211,7 +211,7 @@ const activeTab = ref<TabId>('team')
               <div class="project-inner">
                 <img
                   class="project-avatar"
-                  src="/images/icons/logos/metamovies.svg"
+                  src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                   alt=""
                   @error.once="
                     $event.target.src = 'https://via.placeholder.com/150x150'
@@ -241,7 +241,7 @@ const activeTab = ref<TabId>('team')
                   <span>28 / 31</span>
 
                   <div class="avatar-stack">
-                    <V-Avatar size="small" picture="/demo/avatars/13.jpg" />
+                    <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                     <V-Avatar size="small" picture="/demo/avatars/18.jpg" />
                   </div>
                 </div>
@@ -253,7 +253,7 @@ const activeTab = ref<TabId>('team')
               <div class="project-inner">
                 <img
                   class="project-avatar"
-                  src="/images/icons/logos/fastpizza.svg"
+                  src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                   alt=""
                   @error.once="
                     $event.target.src = 'https://via.placeholder.com/150x150'
@@ -283,8 +283,8 @@ const activeTab = ref<TabId>('team')
                   <span>25 / 39</span>
 
                   <div class="avatar-stack">
-                    <V-Avatar size="small" picture="/demo/avatars/7.jpg" />
-                    <V-Avatar size="small" picture="/demo/avatars/25.jpg" />
+                    <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                    <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                   </div>
                 </div>
               </div>
@@ -317,7 +317,7 @@ const activeTab = ref<TabId>('team')
                 <div class="timeline-icon">
                   <img
                     class="avatar"
-                    src="/demo/avatars/7.jpg"
+                    src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                     alt=""
                     @error.once="
                       $event.target.src = 'https://via.placeholder.com/150x150'

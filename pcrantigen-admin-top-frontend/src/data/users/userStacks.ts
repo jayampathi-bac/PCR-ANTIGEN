@@ -1,7 +1,7 @@
 export const userStack1 = [
   {
     id: 0,
-    picture: '/demo/avatars/7.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     initials: 'AC',
     color: 'info',
   },
@@ -13,7 +13,7 @@ export const userStack1 = [
   },
   {
     id: 2,
-    picture: '/demo/avatars/8.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     initials: 'EK',
     color: 'purple',
   },
@@ -31,13 +31,13 @@ export const userStack1 = [
   },
   {
     id: 5,
-    picture: '/demo/avatars/12.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     initials: 'VD',
     color: 'warning',
   },
   {
     id: 6,
-    picture: '/demo/avatars/39.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     initials: 'GE',
     color: 'info',
   },
@@ -46,7 +46,7 @@ export const userStack1 = [
 export const userStack2 = [
   {
     id: 5,
-    picture: '/demo/avatars/12.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     initials: 'JS',
     color: 'info',
   },
@@ -76,19 +76,19 @@ export const userStack2 = [
   },
   {
     id: 5,
-    picture: '/demo/avatars/12.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     initials: 'VD',
     color: 'warning',
   },
   {
     id: 6,
-    picture: '/demo/avatars/39.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     initials: 'GE',
     color: 'info',
   },
   {
     id: 0,
-    picture: '/demo/avatars/7.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     initials: 'AC',
     color: 'info',
   },

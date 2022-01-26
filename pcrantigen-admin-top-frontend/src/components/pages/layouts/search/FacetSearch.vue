@@ -30,7 +30,7 @@ const people = [
   {
     name: 'Alejandro Badajoz',
     role: 'Business Analyst',
-    avatar: '/demo/avatars/39.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
   },
   {
     name: 'Greta Kroppfer',
@@ -53,7 +53,7 @@ const records = [
   {
     name: 'Tech Summit Expenses',
     date: 'XLS file',
-    preview: '/images/icons/files/sheet.svg',
+    preview: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     squared: true,
   },
   {

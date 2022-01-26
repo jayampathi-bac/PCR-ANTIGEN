@@ -9,7 +9,7 @@ export const tasks = reactive([
     participants: [
       {
         color: 'warning',
-        picture: '/demo/avatars/7.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
     ],
   },
@@ -21,7 +21,7 @@ export const tasks = reactive([
     participants: [
       {
         color: 'info',
-        picture: '/demo/avatars/8.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
     ],
   },
@@ -33,7 +33,7 @@ export const tasks = reactive([
     participants: [
       {
         color: 'danger',
-        picture: '/demo/avatars/12.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
       {
         picture: '/demo/avatars/26.jpg',
@@ -51,7 +51,7 @@ export const tasks = reactive([
     participants: [
       {
         color: 'success',
-        picture: '/demo/avatars/13.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
     ],
   },
@@ -75,7 +75,7 @@ export const tasks = reactive([
     participants: [
       {
         color: 'warning',
-        picture: '/demo/avatars/8.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
     ],
   },
@@ -87,7 +87,7 @@ export const tasks = reactive([
     participants: [
       {
         color: 'success',
-        picture: '/demo/avatars/12.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
     ],
   },
@@ -114,7 +114,7 @@ export const tasks = reactive([
     participants: [
       {
         color: 'primary',
-        picture: '/demo/avatars/13.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
     ],
   },

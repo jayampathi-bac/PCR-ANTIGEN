@@ -36,7 +36,7 @@ const dropdown = useDropdown(dropdownElement)
                 <img
                   class="user-photo"
                   alt=""
-                  src="/demo/avatars/7.jpg"
+                  src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                   @error.once="
                     $event.target.src = 'https://via.placeholder.com/150x150'
                   "
@@ -56,7 +56,7 @@ const dropdown = useDropdown(dropdownElement)
                 <img
                   class="user-photo"
                   alt=""
-                  src="/demo/avatars/12.jpg"
+                  src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                   @error.once="
                     $event.target.src = 'https://via.placeholder.com/150x150'
                   "
@@ -76,7 +76,7 @@ const dropdown = useDropdown(dropdownElement)
                 <img
                   class="user-photo"
                   alt=""
-                  src="/demo/avatars/13.jpg"
+                  src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                   @error.once="
                     $event.target.src = 'https://via.placeholder.com/150x150'
                   "
@@ -96,7 +96,7 @@ const dropdown = useDropdown(dropdownElement)
                 <img
                   class="user-photo"
                   alt=""
-                  src="/demo/avatars/25.jpg"
+                  src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                   @error.once="
                     $event.target.src = 'https://via.placeholder.com/150x150'
                   "

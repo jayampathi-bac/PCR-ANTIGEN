@@ -7,7 +7,7 @@ export const users = [
     roleColor: 'primary',
     medias: {
       avatar: '/demo/avatars/5.jpg',
-      flag: '/images/icons/flags/united-states-of-america.svg',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 14,
@@ -16,7 +16,7 @@ export const users = [
     },
     teams: [
       { picture: '/demo/avatars/9.jpg' },
-      { picture: '/demo/avatars/8.jpg' },
+      { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
     ],
   },
   {
@@ -35,7 +35,7 @@ export const users = [
       posts: 5,
     },
     teams: [
-      { picture: '/demo/avatars/12.jpg' },
+      { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
       { picture: '/demo/avatars/22.jpg' },
       { picture: '/demo/avatars/40.jpg' },
     ],
@@ -47,8 +47,8 @@ export const users = [
     role: 'Product Manager',
     roleColor: 'secondary',
     medias: {
-      avatar: '/demo/avatars/8.jpg',
-      flag: '/images/icons/flags/united-states-of-america.svg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 14,
@@ -56,7 +56,7 @@ export const users = [
       posts: 16,
     },
     teams: [
-      { picture: '/demo/avatars/7.jpg' },
+      { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
       { picture: '/demo/avatars/23.jpg' },
     ],
   },
@@ -68,7 +68,7 @@ export const users = [
     roleColor: 'orange',
     medias: {
       avatar: '/demo/avatars/40.jpg',
-      flag: '/images/icons/flags/france.svg',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 6,
@@ -77,13 +77,13 @@ export const users = [
     },
     teams: [
       { picture: '/demo/avatars/18.jpg' },
-      { picture: '/demo/avatars/13.jpg' },
-      { picture: '/demo/avatars/8.jpg' },
-      { picture: '/demo/avatars/8.jpg' },
-      { picture: '/demo/avatars/8.jpg' },
-      { picture: '/demo/avatars/8.jpg' },
-      { picture: '/demo/avatars/8.jpg' },
-      { picture: '/demo/avatars/8.jpg' },
+      { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+      { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+      { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+      { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+      { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+      { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+      { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
     ],
   },
   {
@@ -94,7 +94,7 @@ export const users = [
     roleColor: 'primary',
     medias: {
       avatar: '/demo/avatars/27.jpg',
-      flag: '/images/icons/flags/spain.svg',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 8,
@@ -111,7 +111,7 @@ export const users = [
     roleColor: 'green',
     medias: {
       avatar: '/demo/avatars/9.jpg',
-      flag: '/images/icons/flags/united-states-of-america.svg',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 19,
@@ -119,7 +119,7 @@ export const users = [
       posts: 12,
     },
     teams: [
-      { picture: '/demo/avatars/8.jpg' },
+      { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
       { picture: '/demo/avatars/5.jpg' },
     ],
   },
@@ -131,7 +131,7 @@ export const users = [
     roleColor: 'green',
     medias: {
       avatar: '/demo/avatars/18.jpg',
-      flag: '/images/icons/flags/united-states-of-america.svg',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 59,
@@ -159,7 +159,7 @@ export const users = [
     roleColor: 'primary',
     medias: {
       avatar: '/demo/avatars/10.jpg',
-      flag: '/images/icons/flags/united-states-of-america.svg',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 42,
@@ -178,8 +178,8 @@ export const users = [
     role: 'Web Developer',
     roleColor: 'orange',
     medias: {
-      avatar: '/demo/avatars/25.jpg',
-      flag: '/images/icons/flags/united-states-of-america.svg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 17,
@@ -189,7 +189,7 @@ export const users = [
     teams: [
       { picture: '/demo/avatars/26.jpg' },
       { picture: '/demo/avatars/38.jpg' },
-      { picture: '/demo/avatars/21.jpg' },
+      { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
       { picture: '/demo/avatars/5.jpg' },
       { picture: '/demo/avatars/5.jpg' },
     ],
@@ -201,8 +201,8 @@ export const users = [
     role: 'Software Engineer',
     roleColor: 'orange',
     medias: {
-      avatar: '/demo/avatars/7.jpg',
-      flag: '/images/icons/flags/united-states-of-america.svg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+      flag: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     stats: {
       projects: 31,
@@ -211,7 +211,7 @@ export const users = [
     },
     teams: [
       { picture: '/demo/avatars/9.jpg' },
-      { picture: '/demo/avatars/8.jpg' },
+      { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
     ],
   },
 ]

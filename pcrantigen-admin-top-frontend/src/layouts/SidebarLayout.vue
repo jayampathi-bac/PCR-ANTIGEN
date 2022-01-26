@@ -92,12 +92,12 @@ watch(
       @toggle="isMobileSidebarOpen = !isMobileSidebarOpen"
     >
       <template #brand>
-        <RouterLink :to="{ name: 'sidebar-blank-page-1' }" class="navbar-item is-brand">
+        <RouterLink :to="{ name: 'sidebar-layouts-admindashboard' }" class="navbar-item is-brand">
           <img src="../../src/assets/jvpd.png" alt=""/>
         </RouterLink>
 
         <div class="brand-end">
-          <NotificationsMobileDropdown/>
+<!--          <NotificationsMobileDropdown/>-->
           <UserProfileDropdown/>
         </div>
       </template>
@@ -109,6 +109,24 @@ watch(
       @toggle="isMobileSidebarOpen = !isMobileSidebarOpen"
     >
       <template #links>
+        <li>
+          <RouterLink :to="{ name: 'sidebar-layouts-branches' }">
+            <i
+              aria-hidden="true"
+              class="iconify"
+              data-icon="feather:home"
+            ></i>
+          </RouterLink>
+        </li>
+        <li>
+          <RouterLink :to="{ name: 'sidebar-layouts-groups' }">
+            <i
+              aria-hidden="true"
+              class="iconify"
+              data-icon="feather:key"
+            ></i>
+          </RouterLink>
+        </li>
         <li>
           <RouterLink :to="{ name: 'sidebar-layouts-results' }">
             <i
@@ -137,7 +155,7 @@ watch(
           </RouterLink>
         </li>
         <li>
-          <RouterLink :to="{ name: 'sidebar-layouts-brands' }">
+          <RouterLink :to="{ name: 'sidebar-layouts-reports' }">
             <i
               aria-hidden="true"
               class="iconify"
@@ -147,51 +165,51 @@ watch(
         </li>
       </template>
 
-      <template #bottom-links>
-        <li>
-          <a href="#">
-            <i
-              aria-hidden="true"
-              class="iconify"
-              data-icon="feather:settings"
-            ></i>
-          </a>
-        </li>
-      </template>
+<!--      <template #bottom-links>-->
+<!--        <li>-->
+<!--          <a href="#">-->
+<!--            <i-->
+<!--              aria-hidden="true"-->
+<!--              class="iconify"-->
+<!--              data-icon="feather:settings"-->
+<!--            ></i>-->
+<!--          </a>-->
+<!--        </li>-->
+<!--      </template>-->
     </MobileSidebar>
 
 
 
     <!-- Desktop navigation -->
-    <CircularMenu/>
+<!--    <CircularMenu/>-->
 
     <Sidebar :theme="props.theme" :is-open="isDesktopSidebarOpen">
       <template #links>
-        <!-- Results -->
+        <!-- Branches -->
         <li>
           <RouterLink
             id="open-settings"
-            :to="{ name: 'sidebar-layouts-results' }"
+            :to="{ name: 'sidebar-layouts-branches' }"
             data-content="elements"
           >
             <i
               aria-hidden="true"
               class="iconify sidebar-svg"
-              data-icon="feather:activity"
+              data-icon="feather:home"
             ></i>
           </RouterLink>
         </li>
-        <!-- Customers -->
+        <!-- groups -->
         <li>
           <RouterLink
             id="open-settings"
-            :to="{ name: 'sidebar-layouts-customers' }"
+            :to="{ name: 'sidebar-layouts-groups' }"
             data-content="elements"
           >
             <i
               aria-hidden="true"
               class="iconify sidebar-svg"
-              data-icon="feather:users"
+              data-icon="feather:key"
             ></i>
           </RouterLink>
         </li>
@@ -209,11 +227,25 @@ watch(
             ></i>
           </RouterLink>
         </li>
+        <!-- Customers -->
+        <li>
+          <RouterLink
+            id="open-settings"
+            :to="{ name: 'sidebar-layouts-customers' }"
+            data-content="elements"
+          >
+            <i
+              aria-hidden="true"
+              class="iconify sidebar-svg"
+              data-icon="feather:users"
+            ></i>
+          </RouterLink>
+        </li>
         <!-- Brands -->
         <li>
           <RouterLink
             id="open-settings"
-            :to="{ name: 'sidebar-layouts-brands' }"
+            :to="{ name: 'sidebar-layouts-reports' }"
             data-content="elements"
           >
             <i
@@ -234,19 +266,19 @@ watch(
 
 
         <!-- Settings -->
-        <li>
-          <RouterLink
-            id="open-settings"
-            :to="{ name: 'sidebar-layouts-profile-settings' }"
-            data-content="Settings"
-          >
-            <i
-              aria-hidden="true"
-              class="iconify sidebar-svg"
-              data-icon="feather:settings"
-            ></i>
-          </RouterLink>
-        </li>
+<!--        <li>-->
+<!--          <RouterLink-->
+<!--            id="open-settings"-->
+<!--            :to="{ name: 'sidebar-layouts-profile-settings' }"-->
+<!--            data-content="Settings"-->
+<!--          >-->
+<!--            <i-->
+<!--              aria-hidden="true"-->
+<!--              class="iconify sidebar-svg"-->
+<!--              data-icon="feather:settings"-->
+<!--            ></i>-->
+<!--          </RouterLink>-->
+<!--        </li>-->
 
         <!-- Profile Dropdown -->
         <li>

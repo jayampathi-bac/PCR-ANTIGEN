@@ -4,7 +4,7 @@ export const profitChartOptions = {
   series: [
     {
       name: 'Ratio',
-      data: [2.3, 3.1, 4.0, 10.1, 4.0],
+      data: [2.3, 3.1, 4.0, 10.1, 4.0, 2, 3, 4, 3, 2, 1, 4],
     },
   ],
   chart: {
@@ -33,7 +33,7 @@ export const profitChartOptions = {
     },
   },
   xaxis: {
-    categories: ['May', 'Jun', 'Jul', 'Aug', 'Sep'],
+    categories: ['Jan','Feb','Mar','Apr','May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     position: 'top',
     axisBorder: {
       show: false,
@@ -73,7 +73,7 @@ export const profitChartOptions = {
   },
   colors: [themeColors.green, themeColors.secondary, themeColors.orange],
   title: {
-    text: 'Profit Evolution',
+    text: 'Customers',
     align: 'left',
   },
 }

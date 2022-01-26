@@ -9,14 +9,14 @@ const token = cookies.get('admintop') ? cookies.get('admintop').access_token : n
 const config = {headers: {Authorization: "Bearer " +token}}
 // @ts-ignore
 
-export default class CustomerService {
+export default class BranchReportsService {
   // getCustomers = (pageId: number) => axios.get(`${basic_url}/v1/admin/customer/all/${pageId}`, config)
-  getCustomersNormal = (pageId: number,searchData: {branch_id: string, start_date: string, end_date: string}) => axios.post(`${basic_url}/v1/report/customer/${pageId}`,searchData)
+  getBranchesNormal = (pageId: number,searchData: {group_id: number, orderby: number}) => axios.post(`${basic_url}/v1/report/branch/${pageId}`,searchData)
     .then((response) => ({
       data: response.data,
     }));
 
-  getAllBranches = () => axios.get(`${basic_url}/v1/report/allbranch/`)
+  getAllGroups = () => axios.get(`${basic_url}/v1/report/allgroup/`)
     .then((response) => ({
       data: response.data,
     }));

@@ -38,7 +38,7 @@ const filteredData = computed(() => {
 const users = [
   {
     id: 5,
-    picture: '/demo/avatars/12.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     initials: 'JS',
     color: 'info',
   },

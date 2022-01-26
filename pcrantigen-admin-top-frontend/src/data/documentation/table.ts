@@ -8,7 +8,7 @@ export const flexRowsBasic = [
     contacts: [
       {
         id: 0,
-        picture: '/demo/avatars/25.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'AC',
         color: 'info',
       },
@@ -20,7 +20,7 @@ export const flexRowsBasic = [
       },
       {
         id: 2,
-        picture: '/demo/avatars/8.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'EK',
         color: 'h-purple',
       },
@@ -68,7 +68,7 @@ export const flexRowsBasic = [
       },
       {
         id: 9,
-        picture: '/demo/avatars/7.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'AC',
         color: 'h-purple',
       },
@@ -83,7 +83,7 @@ export const flexRowsBasic = [
     contacts: [
       {
         id: 7,
-        picture: '/demo/avatars/13.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'TS',
         color: 'info',
       },
@@ -98,7 +98,7 @@ export const flexRowsBasic = [
     contacts: [
       {
         id: 0,
-        picture: '/demo/avatars/25.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'AC',
         color: 'info',
       },
@@ -123,15 +123,15 @@ export const flexRowsAdvanced = [
     id: 0,
     username: 'Erik K.',
     position: 'Product Manager',
-    picture: '/demo/avatars/8.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     location: 'Las Vegas, NV',
     industry: 'Software',
     status: 'Active',
     contacts: [
       {
         id: 0,
-        picture: '/demo/avatars/25.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'AC',
         color: 'info',
       },
@@ -143,7 +143,7 @@ export const flexRowsAdvanced = [
       },
       {
         id: 2,
-        picture: '/demo/avatars/8.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'EK',
         color: 'h-purple',
       },
@@ -166,7 +166,7 @@ export const flexRowsAdvanced = [
     username: 'Jimmy H.',
     position: 'Project Manager',
     picture: '/demo/avatars/22.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     location: 'Los Angeles, CA',
     industry: 'Business',
     status: 'New',
@@ -183,8 +183,8 @@ export const flexRowsAdvanced = [
     id: 2,
     username: 'Melany W.',
     position: 'Web Developer',
-    picture: '/demo/avatars/25.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     location: 'San Jose, CA',
     industry: 'Design',
     status: 'Active',
@@ -197,7 +197,7 @@ export const flexRowsAdvanced = [
       },
       {
         id: 9,
-        picture: '/demo/avatars/7.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'AC',
         color: 'h-purple',
       },
@@ -207,15 +207,15 @@ export const flexRowsAdvanced = [
     id: 3,
     username: 'Joshua S.',
     position: 'Backend Developer',
-    picture: '/demo/avatars/12.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     location: 'Las Vegas, NV',
     industry: 'Accounting',
     status: 'Disabled',
     contacts: [
       {
         id: 7,
-        picture: '/demo/avatars/13.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'TS',
         color: 'info',
       },
@@ -225,15 +225,15 @@ export const flexRowsAdvanced = [
     id: 4,
     username: 'Tina C.',
     position: 'Business Analyst',
-    picture: '/demo/avatars/13.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     location: 'Los Angeles, CA',
     industry: 'Finance',
     status: 'Suspended',
     contacts: [
       {
         id: 0,
-        picture: '/demo/avatars/25.jpg',
+        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         initials: 'AC',
         color: 'info',
       },

@@ -3,28 +3,23 @@ import axios from "axios";
 import { useCookies } from "vue3-cookies";
 
 const { cookies } = useCookies();
-const user = cookies.get('user')
-// const contact = cookies.get('user').contact
-// const user = {
-//   access_token: userToken,
-//   contact:contact
-// };
+const admintop = cookies.get('admintop')
 
-const initialState = (user)
-    ? { status: { loggedIn: true }, user}
-    : { status: { loggedIn: false }, user: null };
+const initialState = (admintop)
+    ? { status: { loggedIn: true }, admintop}
+    : { status: { loggedIn: false }, admintop: null };
 
 export const authModule = {
     namespaced: true,
     state: initialState,
     actions: {
-        login({ commit }, user) {
-            return AuthService.login(user).then(
+        login({ commit }, admintop) {
+            return AuthService.login(admintop).then(
 
-                user => {
-                    commit('loginSuccess', user);
+              admintop => {
+                    commit('loginSuccess', admintop);
 
-                    return Promise.resolve(user);
+                    return Promise.resolve(admintop);
                 },
                 error => {
                     commit('loginFailure');
@@ -41,26 +36,26 @@ export const authModule = {
         },
     },
     mutations: {
-        loginSuccess(state, user) {
-            console.log("login Success")
+        loginSuccess(state, admintop) {
+            console.log("login Success",admintop)
             state.status.loggedIn = true;
-            state.user = user;
+            state.admintop = admintop;
         },
         loginFailure(state) {
             console.log("login Failure")
             state.status.loggedIn = false;
-            state.user = null;
+            state.admintop = null;
         },
         logout(state) {
             console.log("logout Success")
             state.status.loggedIn = false;
-            state.user = null;
+            state.admintop = null;
         },
         UpdateUserState(state, data) {
             console.log("UpdateUserState Success")
-            state.user.name = data.name;
-            state.user.email = data.email;
-            state.user.profile_url = data.profile_url;
+            state.admintop.name = data.name;
+            state.admintop.email = data.email;
+            state.admintop.profile_url = data.profile_url;
         }
     }
 };

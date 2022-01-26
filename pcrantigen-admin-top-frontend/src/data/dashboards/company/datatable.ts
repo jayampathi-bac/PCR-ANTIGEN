@@ -49,7 +49,7 @@ export const optionsCompany = {
     data: [
       [
         0,
-        '/demo/avatars/8.jpg',
+        'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         'Erik Kovalsky',
         'Product Manager',
         'busy',
@@ -57,7 +57,7 @@ export const optionsCompany = {
       ],
       [
         1,
-        '/demo/avatars/7.jpg',
+        'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         'Alice Carasca',
         'Software Engineer',
         'offline',
@@ -65,7 +65,7 @@ export const optionsCompany = {
       ],
       [
         2,
-        '/demo/avatars/13.jpg',
+        'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         'Tara Svenson',
         'UI/UX Designer',
         'offline',

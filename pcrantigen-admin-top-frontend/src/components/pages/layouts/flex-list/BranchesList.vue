@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import {computed, onMounted, ref, inject} from 'vue'
 
-import getBrands from '/@src/composable/brandsData'
+import getBranches from '/@src/composable/branchData'
 
 import useNotyf from '/@src/composable/useNotyf'
 
-import BrandService from '/@src/service/brandService';
+import BranchService from '/@src/service/branchService';
 
 import {useCookies} from "vue3-cookies";
 import {useRoute} from "vue-router";
@@ -14,11 +14,11 @@ const swal = inject('$swal')
 
 const {cookies} = useCookies();
 const route = useRoute()
-const brandService = new BrandService();
+const branchService = new BranchService();
 
 const notif = useNotyf()
 
-const {searchAllBrands, brands, allBrandsCount} = getBrands();
+const {searchAllBranches, searchAllGroupsToBranch, allBranchesCount, branches, groups} = getBranches();
 
 const centeredActionsOpen = ref(false)
 const editActionsOpen = ref(false)
@@ -28,128 +28,245 @@ const filters = ref('')
 
 const filteredData = computed(() => {
   if (!filters.value) {
-    return brands.value
+    return branches.value
   } else {
-    return brands.value.filter((item) => {
+    return branches.value.filter((item) => {
       return (
-        item.brand_name.match(new RegExp(filters.value, 'i')) ||
-        item.brand_company_name.match(new RegExp(filters.value, 'i')) ||
-        item.description.match(new RegExp(filters.value, 'i'))
+        item.company_name.match(new RegExp(filters.value, 'i')) ||
+        item.address.match(new RegExp(filters.value, 'i')) ||
+        item.contact_number.match(new RegExp(filters.value, 'i')) ||
+        item.group_id.match(new RegExp(filters.value, 'i')) ||
+        item.start_date.match(new RegExp(filters.value, 'i')) ||
+        item.end_date.match(new RegExp(filters.value, 'i')) ||
+        item.start_time.match(new RegExp(filters.value, 'i')) ||
+        item.end_time.match(new RegExp(filters.value, 'i'))
       )
     })
   }
 });
+// company_name;  address:  contact_number:  group_id:  username:  password; start_date; end_date; start_time; end_time; profile_url;
+const company_name = ref('')
+const address = ref('')
+const contact_number = ref('')
+const group_id = ref(0)
+const username = ref('')
+const password = ref('')
+const confirm_password = ref('')
+const start_date = ref()
+const end_date = ref()
+const profile_url = ref('https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png')
 
-//profile_url: string; password: string; email: string; contact_number: string; name: string;
-const brand_name = ref('')
-const brand_company_name = ref('')
-const branch_id = ref(cookies.get('admin2').branch_id)
-const description = ref('')
+const start_time = ref()
+const end_time = ref()
 
-const edit_brand_id = ref('')
-const edit_brand_name = ref('')
-const edit_brand_company_name = ref('')
-const edit_description = ref('')
+let start_time_test = ref(new Date());
+start_time_test.value.setMinutes(0, 0, 0);
 
-const saveBrandFunc = () => {
+let end_time_test = ref(new Date());
+end_time_test.value.setMinutes(0, 0, 0);
+
+
+const edit_company_id = ref('')
+const edit_company_name = ref('')
+const edit_address = ref('')
+const edit_contact_number = ref('')
+const edit_group_id = ref(0)
+const edit_username = ref('')
+const edit_password = ref('')
+const edit_confirm_password = ref('')
+const edit_start_date = ref('')
+const edit_end_date = ref('')
+const edit_start_time = ref()
+const edit_start_time_saved = ref()
+const edit_end_time = ref()
+const edit_end_time_saved = ref()
+const edit_profile_url = ref('')
+
+
+// Save branch
+const fireSaveBranchFuncAlert = () => {
+  console.log("groups", groups.value, group_id.value)
+  if (company_name.value && address.value && contact_number.value && (group_id.value !== 0) && password.value && confirm_password.value && start_date.value && end_date.value) {
+    if (password.value === confirm_password.value) {
+      console.log("date", start_date.value, end_date.value)
+      centeredActionsOpen.value = false;
+      swal.fire({
+        title: `Do you want to save the Branch ?`,
+        showCancelButton: true,
+        confirmButtonText: 'Save',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          saveBranchFunc()
+        }
+      })
+    } else {
+      notif.warning('Passwords do not Match.!!')
+    }
+  } else {
+    notif.warning('Empty Fields.!!')
+  }
+
+}
+
+const saveBranchFunc = () => {
   console.log("saving")
-  if (brand_name.value && brand_company_name.value && branch_id.value && description.value) {
-    console.log("working")
-    const brand = {
-      brand_name: brand_name.value,
-      brand_company_name: brand_company_name.value,
-      branch_id: branch_id.value,
-      description: description.value
-    }
-    brandService.saveBrand(brand)
-      .then(function (response) {
-        console.log('response', response)
-        if (response.data.success) {
-          swal.fire('Saving Successful!', '', 'success')
-          notif.success(response.data.message)
-          searchAllBrands(currentPage.value)
-          centeredActionsOpen.value = false
-        } else {
-          notif.warning(response.data.message)
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+
+  start_date.value = start_date.value.toISOString().slice(0, 10)
+  end_date.value = end_date.value.toISOString().slice(0, 10)
+  start_time.value = start_time_test.value.toLocaleTimeString('en-US', {
+    hour12: false,
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric"
+  })
+  end_time.value = end_time_test.value.toLocaleTimeString('en-US', {
+    hour12: false,
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric"
+  })
+
+  const branch = {
+    company_name: company_name.value,
+    address: address.value,
+    contact_number: contact_number.value,
+    group_id: group_id.value,
+    username: contact_number.value,
+    password: password.value,
+    start_date: start_date.value,
+    end_date: end_date.value,
+    start_time: start_time.value,
+    end_time: end_time.value,
+    profile_url: profile_url.value,
+  }
+  branchService.saveBranch(branch)
+    .then(function (response) {
+      console.log('response', response)
+      if (response.data.success) {
+        swal.fire('Saving Successful!', '', 'success')
+        notif.success(response.data.message)
+        searchAllBranches(currentPage.value)
+        clearFields()
+        centeredActionsOpen.value = false
+      } else {
+        notif.warning(response.data.message)
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+}
+
+
+// Edit branch
+const openEditActionsOpen = (branch) => {
+  console.log("openEditActionsOpen", branch, parseInt(branch.group_id))
+  // company_name;  address:  contact_number:  group_id:  username:  password; start_date; end_date; start_time; end_time; profile_url;
+  editActionsOpen.value = true
+  const date = new Date().toISOString().slice(0, 10).toString()
+
+  edit_company_id.value = branch.branch_id;
+  edit_company_name.value = branch.company_name;
+  edit_address.value = branch.address;
+  edit_contact_number.value = branch.contact_number;
+  edit_group_id.value = parseInt(branch.group_id);
+  edit_start_date.value = branch.start_date;
+  edit_end_date.value = branch.end_date;
+  edit_start_time.value = new Date(date + " " + branch.start_time + ":00").setMinutes(0, 0, 0);
+  edit_end_time.value = new Date(date + " " + branch.end_time + ":00").setMinutes(0, 0, 0);
+  edit_profile_url.value = branch.profile_url;
+}
+
+const fireEditBranchFuncAlert = () => {
+  console.log("fireEditBranchFuncAlert")
+  if (edit_company_id.value && edit_company_name.value && edit_address.value && edit_contact_number.value && edit_group_id.value && edit_start_date.value && edit_end_date.value && edit_start_time.value && edit_end_time.value && edit_profile_url.value) {
+    swal.fire({
+      title: `Do you want to edit the Branch ?`,
+      showCancelButton: true,
+      confirmButtonText: 'Edit',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        editBranchFunc()
+      }
+    })
   } else {
     notif.warning('Empty Fields.!!')
   }
 }
-const editBrandFunc = () => {
-  console.log("editing")
-  if (edit_brand_name.value && edit_brand_company_name.value && branch_id.value && edit_description.value) {
-    console.log("working")
-    const brand = {
-      id: edit_brand_id.value,
-      brand_name: edit_brand_name.value,
-      brand_company_name: edit_brand_company_name.value,
-      branch_id: branch_id.value,
-      description: edit_description.value,
-    }
-    brandService.editBrand(brand)
-      .then(function (response) {
-        console.log('response', response)
-        if (response.data.success) {
-          swal.fire('Editing Successful!', '', 'success')
-          notif.success(response.data.message)
-          searchAllBrands(currentPage.value)
-          editActionsOpen.value = false
-        } else {
-          swal.fire('Editing Failed!', '', 'error')
-          notif.warning(response.data.message)
-          editActionsOpen.value = false
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  } else {
-    notif.warning('Empty Fields.!!')
+
+const editBranchFunc = () => {
+  console.log("editing",edit_company_id.value)
+  edit_start_time_saved.value = new Date(edit_start_time.value).toLocaleTimeString('en-US', {
+    hour12: false,
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric"
+  })
+  edit_end_time_saved.value = new Date(edit_end_time.value).toLocaleTimeString('en-US', {
+    hour12: false,
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric"
+  })
+
+  const branch = {
+    branch_id: edit_company_id.value,
+    company_name: edit_company_name.value,
+    address: edit_address.value,
+    contact_number: edit_contact_number.value,
+    group_id: edit_group_id.value,
+    start_date: edit_start_date.value,
+    end_date: edit_end_date.value,
+    start_time: edit_start_time_saved.value,
+    end_time: edit_end_time_saved.value,
+    profile_url: edit_profile_url.value,
   }
+  branchService.editBranch(branch)
+    .then(function (response) {
+      console.log('response', response)
+      if (response.data.success) {
+        swal.fire('Editing Successful!', '', 'success')
+        notif.success(response.data.message)
+        searchAllBranches(currentPage.value)
+        editActionsOpen.value = false
+      } else {
+        swal.fire('Editing Failed!', '', 'error')
+        notif.warning(response.data.message)
+        editActionsOpen.value = false
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 }
 
-const fireBrandFuncAlert = () => {
-  centeredActionsOpen.value = false;
+
+// delete branch
+const fireDeleteBrandAlert = (branch_id: number) => {
+  console.log("fireDeleteBrandAlert", branch_id)
   swal.fire({
-    title: `Do you want to save the Brand ?`,
+    title: `Do you want to delete the Branch ?`,
     showCancelButton: true,
-    confirmButtonText: 'Save',
-  }).then((result) => {
+    confirmButtonText: 'Delete',
+  }).then((result: any) => {
     if (result.isConfirmed) {
-      saveBrandFunc()
+      deleteBranchFunc(branch_id)
     }
   })
 }
 
-const fireEditBrandFuncAlert = () => {
-  console.log("fireEditBrandFuncAlert")
-  swal.fire({
-    title: `Do you want to edit the Brand ?`,
-    showCancelButton: true,
-    confirmButtonText: 'Edit',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      editBrandFunc()
-    }
-  })
-}
-
-const deleteBrandFunc = (brand) => {
-  console.log('delete this', brand)
-  brandService.deleteBrand(brand.id)
+const deleteBranchFunc = (branch_id: number) => {
+  console.log('delete this', branch_id)
+  branchService.deleteBranch(branch_id)
     .then(function (response) {
       console.log('response', response)
       if (response.data.success) {
         swal.fire('Deleting Successful!', '', 'success')
         notif.success(response.data.message)
-        searchAllBrands(currentPage.value)
+        searchAllBranches(currentPage.value)
       } else {
-        swal.fire('Deleting Failed!', '', 'error')
+        swal.fire(response.data.message, '', 'error')
         notif.warning(response.data.message)
       }
     })
@@ -158,31 +275,24 @@ const deleteBrandFunc = (brand) => {
     });
 }
 
-const fireDeleteBrandAlert = (brand) => {
-  swal.fire({
-    title: `Do you want to delete the Brand ?`,
-    showCancelButton: true,
-    confirmButtonText: 'Delete',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      deleteBrandFunc(brand)
-    }
-  })
-}
 
-const openEditActionsOpen = (brand) => {
-  console.log("currentPage", currentPage)
-  editActionsOpen.value = true
-  edit_brand_id.value = brand.id;
-  edit_brand_name.value = brand.brand_name;
-  edit_brand_company_name.value = brand.brand_company_name;
-  edit_description.value = brand.description;
+// clear fields after saving
+const clearFields = () => {
+  company_name.value = ''
+  address.value = ''
+  contact_number.value = ''
+  group_id.value = 0
+  username.value = ''
+  password.value = ''
+  confirm_password.value = ''
+  start_date.value = null
+  end_date.value = null
 }
 
 const currentPage = computed(() => {
   try {
     console.log("currentPage", Number.parseInt(route.query.page as string) || 1)
-    searchAllBrands(Number.parseInt(route.query.page as string) || 1)
+    searchAllBranches(Number.parseInt(route.query.page as string) || 1)
     return Number.parseInt(route.query.page as string) || 1
   } catch {
   }
@@ -190,7 +300,9 @@ const currentPage = computed(() => {
 })
 
 onMounted(async () => {
-  searchAllBrands(1);
+  searchAllBranches(1);
+  searchAllGroupsToBranch();
+
 })
 </script>
 
@@ -210,7 +322,7 @@ onMounted(async () => {
       <V-Buttons>
         <!--        <V-Button dark="3">View Reports</V-Button>-->
         <V-Button color="primary" icon="fas fa-plus" elevated @click="centeredActionsOpen = true">
-          Add Brand
+          Add Branch
         </V-Button>
       </V-Buttons>
     </div>
@@ -234,9 +346,15 @@ onMounted(async () => {
             class="flex-table-header"
             :class="[filteredData.length === 0 && 'is-hidden']"
           >
-            <span class="is-grow">Brand Name</span>
-            <span class="is-grow">Company Name</span>
-            <span class="is-grow">Description</span>
+            <span class="is-grow">Company</span>
+            <!--            <span class="is-grow">Address</span>-->
+            <span class="is-grow">Address</span>
+            <span class="is-grow">Group</span>
+            <!--            <span class="is-grow">Username</span>-->
+            <span class="is-grow">Start Date</span>
+            <span class="is-grow">End Date</span>
+            <span class="is-grow">Start Time</span>
+            <span class="is-grow">End Time</span>
             <span class="is-grow cell-end">Actions</span>
           </div>
 
@@ -244,34 +362,76 @@ onMounted(async () => {
             <transition-group name="list" tag="div">
               <!--Table item-->
               <div
-                v-for="brand in filteredData"
-                :key="brand.id"
+                v-for="branch in filteredData"
+                :key="branch.branch_id"
                 class="flex-table-item"
               >
-                <div class="flex-table-cell is-grow" data-th="Brand Name">
-                  <span class="light-text">{{ brand.brand_name }}</span>
+                <div class="flex-table-cell is-media is-grow">
+                  <V-Avatar
+                    :picture="branch.profile_url"
+                    size="medium"
+                  />
+                  <div>
+                    <span class="item-name dark-inverted">{{
+                        branch.company_name
+                      }}</span>
+                    <span class="item-meta">
+                      <span>{{ branch.contact_number }}</span>
+                    </span>
+                  </div>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="Company Name">
-                  <span class="light-text">{{ brand.brand_company_name }}</span>
+                <div class="flex-table-cell is-grow" data-th="Address">
+                  <span class="light-text">{{ branch.address }}</span>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="Description">
-                  <span class="light-text">{{ brand.description }}</span>
+                <div class="flex-table-cell is-grow" data-th="Group">
+                  <span class="light-text">{{ branch.group_name }}</span>
+                </div>
+                <!--                <div class="flex-table-cell is-grow" data-th="Industry">-->
+                <!--                  <span class="light-text">{{ branch.username }}</span>-->
+                <!--                </div>-->
+                <div class="flex-table-cell is-grow" data-th="Start Date">
+                  <span class="light-text">{{ branch.start_date }}</span>
+                </div>
+                <div class="flex-table-cell is-grow" data-th="End Date">
+                  <span class="light-text">{{ branch.end_date }}</span>
+                </div>
+                <div class="flex-table-cell is-grow" data-th="Start Time">
+                  <span class="light-text">{{ branch.start_time }}</span>
+                </div>
+                <div class="flex-table-cell is-grow" data-th="End Time">
+                  <span class="light-text">{{ branch.end_time }}</span>
                 </div>
                 <div class="flex-table-cell is-grow cell-end" data-th="Actions">
-                  <span class="mr-2">
-                    <VButton
-                      @click="openEditActionsOpen(brand)"
-                      color="primary"
-                      outlined
-                    > Edit
-                    </VButton>
-                  </span>
-                  <span>
-                    <VButton
-                      @click="fireDeleteBrandAlert(brand)"
-                      color="danger"
-                      outlined> Delete</VButton>
-                  </span>
+                  <V-Dropdown
+                    icon="feather:more-vertical"
+                    class="is-pushed-mobile"
+                    spaced
+                    right
+                  >
+                    <template #content>
+                      <a role="menuitem" class="dropdown-item is-media" @click="openEditActionsOpen(branch)">
+                        <div class="icon">
+                          <i aria-hidden="true" class="lnil lnil-eye"></i>
+                        </div>
+                        <div class="meta">
+                          <span>Edit</span>
+                          <span>Edit Branch details</span>
+                        </div>
+                      </a>
+
+                      <hr class="dropdown-divider"/>
+
+                      <a role="menuitem" class="dropdown-item is-media" @click="fireDeleteBrandAlert(branch.branch_id)">
+                        <div class="icon">
+                          <i aria-hidden="true" class="lnil lnil-trash-can-alt"></i>
+                        </div>
+                        <div class="meta">
+                          <span>Delete</span>
+                          <span>Delete {{ branch.company_name }}</span>
+                        </div>
+                      </a>
+                    </template>
+                  </V-Dropdown>
                 </div>
               </div>
             </transition-group>
@@ -282,7 +442,7 @@ onMounted(async () => {
         <V-FlexPagination
           v-if="filteredData.length > 0"
           :item-per-page="10"
-          :total-items="allBrandsCount"
+          :total-items="allBranchesCount"
           :current-page="currentPage"
           :max-links-displayed="7"
         />
@@ -293,7 +453,7 @@ onMounted(async () => {
       size="medium"
       actions="center"
       @close="centeredActionsOpen = false"
-      title="Add a New Brand"
+      title="Add a New Branch"
     >
       <template #content>
         <form class="form-layout is-split" @submit.prevent>
@@ -301,37 +461,145 @@ onMounted(async () => {
             <div class="form-section is-grey">
               <div>
                 <V-Field>
+                  <label>Branch Name</label>
                   <V-Control icon="feather:pocket">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Brand Name"
-                      autocomplete="brand_name"
-                      v-model="brand_name"
+                      placeholder="Branch Name"
+                      autocomplete="branch_name"
+                      v-model="company_name"
                     />
                   </V-Control>
                 </V-Field>
                 <V-Field>
-                  <V-Control icon="feather:home">
+                  <label>Branch Address</label>
+                  <V-Control icon="feather:map-pin">
+                    <input
+                      type="text"
+                      class="input"
+                      placeholder="Address"
+                      autocomplete="Address"
+                      inputmode="Address"
+                      v-model="address"
+                    />
+                  </V-Control>
+                </V-Field>
+                <V-Field>
+                  <label>Contact Number</label>
+                  <V-Control icon="feather:phone">
                     <input
                       type="tel"
                       class="input"
-                      placeholder="Company Name"
-                      autocomplete="company_brand"
-                      inputmode="company_brand"
-                      v-model="brand_company_name"
+                      placeholder="Contact Number"
+                      autocomplete="contact_number"
+                      inputmode="contact_number"
+                      v-model="contact_number"
+                    />
+                  </V-Control>
+                </V-Field>
+                <V-Field class="is-autocomplete-select">
+                  <label>Group</label>
+                  <VControl icon="feather:search">
+                    <Multiselect
+                      v-model="group_id"
+                      :options="groups"
+                      placeholder="Search a Group"
+                      :searchable="true"
+                    >
+                    </Multiselect>
+                  </VControl>
+                </V-Field>
+                <V-Field>
+                  <V-Control>
+                    <v-date-picker v-model="start_date" color="green" trim-weeks>
+                      <template #default="{ inputValue, inputEvents }">
+                        <V-Field>
+                          <label>Start Date</label>
+                          <V-Control icon="feather:calendar">
+                            <input
+                              class="input"
+                              type="text"
+                              placeholder="Start Date"
+                              :value="inputValue"
+                              v-on="inputEvents"
+                            />
+                          </V-Control>
+                        </V-Field>
+                      </template>
+                    </v-date-picker>
+                  </V-Control>
+                </V-Field>
+                <V-Field>
+                  <V-Control>
+                    <v-date-picker v-model="end_date" color="green" trim-weeks>
+                      <template #default="{ inputValue, inputEvents }">
+                        <V-Field>
+                          <label>End Date</label>
+                          <V-Control icon="feather:calendar">
+                            <input
+                              class="input"
+                              type="text"
+                              placeholder="End Date"
+                              :value="inputValue"
+                              v-on="inputEvents"
+                            />
+                          </V-Control>
+                        </V-Field>
+                      </template>
+                    </v-date-picker>
+                  </V-Control>
+                </V-Field>
+                <V-Field>
+                  <V-Control>
+                    <v-date-picker v-model="start_time_test" mode="time" is24hr>
+                      <template #default="{ inputValue, inputEvents }">
+                        <V-Field>
+                          <label>Start time</label>
+                          <V-Control icon="feather:clock">
+                            <input class="input" :value="inputValue" v-on="inputEvents" placeholder="Start Time"/>
+                          </V-Control>
+                        </V-Field>
+                      </template>
+                    </v-date-picker>
+                    <!--                    end_time_test-->
+                  </V-Control>
+                </V-Field>
+                <V-Field>
+                  <V-Control>
+                    <v-date-picker v-model="end_time_test" mode="time" is24hr>
+                      <template #default="{ inputValue, inputEvents }">
+                        <V-Field>
+                          <label>End time</label>
+                          <V-Control icon="feather:clock">
+                            <input class="input" :value="inputValue" v-on="inputEvents" placeholder="End Time"/>
+                          </V-Control>
+                        </V-Field>
+                      </template>
+                    </v-date-picker>
+                  </V-Control>
+                </V-Field>
+                <V-Field>
+                  <label>Password</label>
+                  <V-Control icon="feather:lock">
+                    <input
+                      type="password"
+                      class="input"
+                      placeholder="Password"
+                      autocomplete="password"
+                      v-model="password"
                     />
                   </V-Control>
                 </V-Field>
                 <V-Field>
-                  <V-Control icon="feather:file-text">
+                  <label>Confirm Password</label>
+                  <V-Control icon="feather:lock">
                     <input
-                      type="email"
+                      type="password"
                       class="input"
-                      placeholder="Description"
-                      autocomplete="description"
-                      inputmode="description"
-                      v-model="description"
+                      placeholder="Confirm Password"
+                      autocomplete="confirm-password"
+                      v-model="confirm_password"
                     />
                   </V-Control>
                 </V-Field>
@@ -343,7 +611,7 @@ onMounted(async () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="fireBrandFuncAlert">Add Brand</VButton>
+        <VButton color="primary" raised @click="fireSaveBranchFuncAlert">Add Branch</VButton>
       </template>
     </VModal>
     <VModal
@@ -351,7 +619,7 @@ onMounted(async () => {
       size="medium"
       actions="center"
       @close="editActionsOpen = false"
-      title="Edit Brand"
+      title="Edit Branch"
     >
       <template #content>
         <form class="form-layout is-split" @submit.prevent>
@@ -359,38 +627,135 @@ onMounted(async () => {
             <div class="form-section is-grey">
               <div>
                 <V-Field>
+                  <label>Branch ID</label>
                   <V-Control icon="feather:pocket">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Brand Name"
-                      autocomplete="brand_name"
-                      v-model="edit_brand_name"
+                      placeholder="Branch ID"
+                      autocomplete="branch_id"
+                      v-model="edit_company_id"
+                      readonly
                     />
                   </V-Control>
                 </V-Field>
                 <V-Field>
-                  <V-Control icon="feather:home">
+                  <label>Branch Name</label>
+                  <V-Control icon="feather:pocket">
+                    <input
+                      type="text"
+                      class="input"
+                      placeholder="Branch Name"
+                      autocomplete="branch_name"
+                      v-model="edit_company_name"
+                    />
+                  </V-Control>
+                </V-Field>
+                <V-Field>
+                  <label>Branch Address</label>
+                  <V-Control icon="feather:map-pin">
+                    <input
+                      type="text"
+                      class="input"
+                      placeholder="Address"
+                      autocomplete="Address"
+                      inputmode="Address"
+                      v-model="edit_address"
+                    />
+                  </V-Control>
+                </V-Field>
+                <V-Field>
+                  <label>Contact Number</label>
+                  <V-Control icon="feather:phone">
                     <input
                       type="tel"
                       class="input"
-                      placeholder="Company Brand Name"
-                      autocomplete="company_brand"
-                      inputmode="company_brand"
-                      v-model="edit_brand_company_name"
+                      placeholder="Contact Number"
+                      autocomplete="contact_number"
+                      inputmode="contact_number"
+                      v-model="edit_contact_number"
                     />
                   </V-Control>
                 </V-Field>
+                <V-Field class="is-autocomplete-select">
+                  <label>Test Kit</label>
+                  <VControl icon="feather:search">
+                    <Multiselect
+                      v-model="edit_group_id"
+                      :options="groups"
+                      placeholder="Search a Test Kit"
+                      :searchable="true"
+                    >
+                    </Multiselect>
+                  </VControl>
+                </V-Field>
                 <V-Field>
-                  <V-Control icon="feather:file-text">
-                    <input
-                      type="email"
-                      class="input"
-                      placeholder="Description"
-                      autocomplete="description"
-                      inputmode="description"
-                      v-model="edit_description"
-                    />
+                  <V-Control>
+                    <v-date-picker v-model="edit_start_date" color="green" trim-weeks>
+                      <template #default="{ inputValue, inputEvents }">
+                        <V-Field>
+                          <label>Start Date</label>
+                          <V-Control icon="feather:calendar">
+                            <input
+                              class="input"
+                              type="text"
+                              placeholder="Start Date"
+                              :value="inputValue"
+                              v-on="inputEvents"
+                            />
+                          </V-Control>
+                        </V-Field>
+                      </template>
+                    </v-date-picker>
+                  </V-Control>
+                </V-Field>
+                <V-Field>
+                  <V-Control>
+                    <v-date-picker v-model="edit_end_date" color="green" trim-weeks>
+                      <template #default="{ inputValue, inputEvents }">
+                        <V-Field>
+                          <label>End Date</label>
+                          <V-Control icon="feather:calendar">
+                            <input
+                              class="input"
+                              type="text"
+                              placeholder="End Date"
+                              :value="inputValue"
+                              v-on="inputEvents"
+                            />
+                          </V-Control>
+                        </V-Field>
+                      </template>
+                    </v-date-picker>
+                  </V-Control>
+                </V-Field>
+                <V-Field>
+                  <V-Control>
+                    <v-date-picker v-model="edit_start_time" mode="time" is24hr>
+                      <template #default="{ inputValue, inputEvents }">
+                        <V-Field>
+                          <label>Start time</label>
+                          <V-Control icon="feather:clock">
+                            <input class="input" :value="inputValue" v-on="inputEvents" placeholder="Start Time"/>
+                          </V-Control>
+                        </V-Field>
+                      </template>
+                    </v-date-picker>
+                    <!--                    end_time_test-->
+                  </V-Control>
+                </V-Field>
+                <V-Field>
+                  <V-Control>
+                    <v-date-picker v-model="edit_end_time" mode="time" is24hr>
+                      <template #default="{ inputValue, inputEvents }">
+                        <V-Field>
+                          <label>End time</label>
+                          <V-Control icon="feather:clock">
+                            <input class="input" :value="inputValue" v-on="inputEvents" placeholder="End Time"/>
+                          </V-Control>
+                        </V-Field>
+                      </template>
+                    </v-date-picker>
                   </V-Control>
                 </V-Field>
               </div>
@@ -401,7 +766,7 @@ onMounted(async () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="fireEditBrandFuncAlert">Edit Brand</VButton>
+        <VButton color="primary" raised @click="fireEditBranchFuncAlert">Edit Brand</VButton>
       </template>
     </VModal>
   </div>
@@ -419,4 +784,13 @@ onMounted(async () => {
     margin-left: auto;
   }
 }
+
+.swal2-title {
+  font-size: 20px !important;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: #41b883 !important;
+}
+
 </style>

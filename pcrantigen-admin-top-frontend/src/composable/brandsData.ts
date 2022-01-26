@@ -4,32 +4,24 @@ import BrandService from '/@src/service/brandService';
 
 const getBrands = () => {
   const brands = ref([]);
+  const allBrandsCount = ref(0);
 
   const brandService = new BrandService();
 
-  const searchAllBrands = () => {
+  const searchAllBrands = (pageId: number) => {
     console.log("searching brands")
-    brandService.getBrands().then((result: { data: never[]; }) => {
-      brands.value = result.data;
+    brandService.getBrandsByBranch(pageId).then((result: { data: any; }) => {
+      brands.value = result.data.data;
+      allBrandsCount.value = result.data.meta;
     }).catch((e: any) => {
       console.log('error: ', e);
     });
   };
-  // const saveCustomer = (customer: { profile_url: string; password: string; email: string; contact_number: string; name: string; }) => {
-  //   console.log("searching customers")
-  //   customerService.postCustomer(customer)
-  //     .then(function a(response) {
-  //     console.log('response',response)
-  //   })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
-
 
   return {
     searchAllBrands,
-    brands
+    brands,
+    allBrandsCount
   };
 };
 

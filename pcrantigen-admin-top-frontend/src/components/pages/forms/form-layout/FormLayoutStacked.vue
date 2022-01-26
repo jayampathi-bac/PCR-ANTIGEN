@@ -182,7 +182,7 @@ const isStuck = computed(() => {
                         interactive
                         placement="top-start"
                       >
-                        <V-Avatar picture="/demo/avatars/8.jpg" />
+                        <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                         <template #content>
                           <UserPopoverContent :user="popovers.user8" />
                         </template>
@@ -226,7 +226,7 @@ const isStuck = computed(() => {
                         interactive
                         placement="top-start"
                       >
-                        <V-Avatar picture="/demo/avatars/7.jpg" />
+                        <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                         <template #content>
                           <UserPopoverContent :user="popovers.user7" />
                         </template>
@@ -373,22 +373,22 @@ const isStuck = computed(() => {
                         {
                           name: 'Erik K.',
                           value: 'eric',
-                          icon: '/demo/avatars/8.jpg',
+                          icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
                         },
                         {
                           name: 'Joshua S.',
                           value: 'joshua',
-                          icon: '/demo/avatars/12.jpg',
+                          icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
                         },
                         {
                           name: 'Melany W.',
                           value: 'melany',
-                          icon: '/demo/avatars/25.jpg',
+                          icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
                         },
                         {
                           name: 'Alice C.',
                           value: 'alice',
-                          icon: '/demo/avatars/7.jpg',
+                          icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
                         },
                         {
                           name: 'Esteban C.',

@@ -1,7 +1,7 @@
 import { themeColors } from '/@src/utils/themeColors'
 
 export const gaugeOptions = {
-  series: [57, 86],
+  series: [100, 50],
   chart: {
     height: 220,
     type: 'radialBar',
@@ -48,5 +48,5 @@ export const gaugeOptions = {
   stroke: {
     lineCap: 'round',
   },
-  labels: ['Efficiency', 'Productivity'],
+  labels: ['Completed', 'Inomplete'],
 }

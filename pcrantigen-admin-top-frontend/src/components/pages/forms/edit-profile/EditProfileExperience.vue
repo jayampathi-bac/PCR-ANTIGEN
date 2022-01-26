@@ -193,7 +193,7 @@ const onSave = async () => {
             <!--Experience Item-->
             <div class="setting-item">
               <img
-                src="/demo/photos/brands/airbnb.svg"
+                src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                 alt=""
                 @error.once="
                   $event.target.src = 'https://via.placeholder.com/50x50'
@@ -216,7 +216,7 @@ const onSave = async () => {
             <!--Experience Item-->
             <div class="setting-item">
               <img
-                src="/demo/photos/brands/facebook.svg"
+                src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                 alt=""
                 @error.once="
                   $event.target.src = 'https://via.placeholder.com/50x50'
@@ -239,7 +239,7 @@ const onSave = async () => {
             <!--Experience Item-->
             <div class="setting-item">
               <img
-                src="/demo/photos/brands/atlassian.svg"
+                src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                 alt=""
                 @error.once="
                   $event.target.src = 'https://via.placeholder.com/50x50'
@@ -262,7 +262,7 @@ const onSave = async () => {
             <!--Experience Item-->
             <div class="setting-item">
               <img
-                src="/demo/photos/brands/github.svg"
+                src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                 alt=""
                 @error.once="
                   $event.target.src = 'https://via.placeholder.com/50x50'
@@ -285,7 +285,7 @@ const onSave = async () => {
             <!--Experience Item-->
             <div class="setting-item">
               <img
-                src="/demo/photos/brands/slack.svg"
+                src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                 alt=""
                 @error.once="
                   $event.target.src = 'https://via.placeholder.com/50x50'
@@ -308,7 +308,7 @@ const onSave = async () => {
             <!--Experience Item-->
             <div class="setting-item">
               <img
-                src="/demo/photos/brands/gitlab.svg"
+                src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
                 alt=""
                 @error.once="
                   $event.target.src = 'https://via.placeholder.com/50x50'

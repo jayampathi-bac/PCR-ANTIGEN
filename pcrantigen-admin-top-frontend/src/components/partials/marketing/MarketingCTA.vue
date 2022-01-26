@@ -5,7 +5,7 @@
         <div class="boxed-cta">
           <V-Avatar
             class="v-avatar-1"
-            picture="/demo/avatars/8.jpg"
+            picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
             size="xl"
           />
           <V-Avatar
@@ -15,12 +15,12 @@
           />
           <V-Avatar
             class="v-avatar-3"
-            picture="/demo/avatars/7.jpg"
+            picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
             size="large"
           />
           <V-Avatar
             class="v-avatar-4"
-            picture="/demo/avatars/13.jpg"
+            picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
             size="xl"
           />
           <V-Avatar
@@ -30,7 +30,7 @@
           />
           <V-Avatar
             class="v-avatar-6"
-            picture="/demo/avatars/12.jpg"
+            picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
             size="xl"
           />
           <V-Avatar
@@ -50,7 +50,7 @@
           />
           <V-Avatar
             class="v-avatar-10"
-            picture="/demo/avatars/25.jpg"
+            picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
             size="medium"
           />
           <V-Avatar
@@ -60,7 +60,7 @@
           />
           <V-Avatar
             class="v-avatar-12"
-            picture="/demo/avatars/21.jpg"
+            picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
             size="xl"
           />
           <V-Avatar

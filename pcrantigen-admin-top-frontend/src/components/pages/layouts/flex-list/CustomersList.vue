@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, onMounted, ref} from 'vue'
+import {computed, inject, onMounted, ref} from 'vue'
 
 import getCustomers from '/@src/composable/customersData'
 
@@ -7,13 +7,23 @@ import useNotyf from '/@src/composable/useNotyf'
 
 import CustomerService from '/@src/service/customerService';
 
+import {useCookies} from "vue3-cookies";
+import {useRoute} from "vue-router";
+
+const swal = inject('$swal')
+
+const {cookies} = useCookies();
+
 const customerService = new CustomerService();
 
 const notif = useNotyf()
 
-const {search, saveCustomer, customers} = getCustomers();
+const {search, saveCustomer, customers, allCustomerCount} = getCustomers();
 
 const centeredActionsOpen = ref(false)
+
+const route = useRoute()
+
 
 const filters = ref('')
 
@@ -52,13 +62,17 @@ const saveCustomerFunc = () => {
           email: email.value,
           contact_number: contact_number.value,
           password: password.value,
-          profile_url: profile_url.value
+          profile_url: profile_url.value,
+          branch_id: cookies.get('admin2').branch_id
         }
         customerService.postCustomer(customer)
           .then(function (response) {
             console.log('response',response)
             if (response.data.data.success){
+              swal.fire('Saving Successful!', '', 'success')
               notif.success(response.data.data.message)
+              centeredActionsOpen.value = false;
+              search(currentPage.value);
             }else{
               notif.warning(response.data.data.message)
             }
@@ -76,9 +90,85 @@ const saveCustomerFunc = () => {
     notif.warning('Empty Fields.!!')
   }
 }
+const fireSaveCustomerAlert = () => {
+  centeredActionsOpen.value = false
+  swal.fire({
+    title: `Do you want to save the customer ?`,
+    showCancelButton: true,
+    confirmButtonText: 'Save',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      saveCustomerFunc()
+    }
+  })
+}
+
+//Edit Customer Section
+const editCustomerAction = ref(false)
+const editName = ref('')
+const editEmail = ref('')
+const editContactNumber = ref('')
+
+const editCustomerModelOpen = (customer) => {
+  editCustomerAction.value = true
+  editName.value = customer.name;
+  editEmail.value = customer.email;
+  editContactNumber.value = customer.contact_number;
+}
+
+const editCustomerFunc = () => {
+  console.log("editing")
+  if (editName.value && editContactNumber.value && editEmail.value) {
+    console.log("working edit")
+    const customerObj  = {
+      name: editName.value,
+      email: editEmail.value,
+      contact_number: editContactNumber.value,
+    }
+    customerService.editCustomer(customerObj)
+      .then(function (response) {
+        console.log('response',response)
+        if (response.data.data.success){
+          notif.success('Editing customer is Successful..!')
+          swal.fire('Editing Successful!', '', 'success')
+          editCustomerAction.value = false;
+          editName.value = '';
+          search(currentPage.value);
+        }else{
+          notif.warning(response.data.data.message)
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  } else {
+    notif.warning('Empty Fields.!!')
+  }
+}
+
+const fireEditCustomerAlert = () => {
+  editCustomerAction.value = false
+  swal.fire({
+    title: `Do you want to edit the customer ?`,
+    showCancelButton: true,
+    confirmButtonText: 'Edit',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      editCustomerFunc()
+    }
+  })
+}
+
+const currentPage = computed(() => {
+  try {
+    search(Number.parseInt(route.query.page as string) || 1 )
+    return Number.parseInt(route.query.page as string) || 1
+  } catch {}
+  return 1
+})
 
 onMounted(async () => {
-  search();
+  search(1);
 })
 </script>
 
@@ -95,12 +185,12 @@ onMounted(async () => {
         </V-Control>
       </V-Field>
 
-      <V-Buttons>
-        <!--        <V-Button dark="3">View Reports</V-Button>-->
-        <V-Button color="primary" icon="fas fa-plus" elevated @click="centeredActionsOpen = true">
-          Add Customer
-        </V-Button>
-      </V-Buttons>
+<!--      <V-Buttons>-->
+<!--        &lt;!&ndash;        <V-Button dark="3">View Reports</V-Button>&ndash;&gt;-->
+<!--        <V-Button color="primary" icon="fas fa-plus" elevated @click="centeredActionsOpen = true">-->
+<!--          Add Customer-->
+<!--        </V-Button>-->
+<!--      </V-Buttons>-->
     </div>
 
     <div class="page-content-inner">
@@ -123,9 +213,9 @@ onMounted(async () => {
             :class="[filteredData.length === 0 && 'is-hidden']"
           >
             <span class="is-grow">Customer</span>
-            <span>Email</span>
-            <span>Contact</span>
-            <span class="cell-end">Action</span>
+            <span class="is-grow">Email</span>
+            <span class="is-grow">Contact</span>
+            <span class="is-grow cell-end">Branch Name</span>
           </div>
 
           <div class="flex-list-inner">
@@ -146,14 +236,14 @@ onMounted(async () => {
                     <span class="item-name dark-inverted">{{ customer.name }}</span>
                   </div>
                 </div>
-                <div class="flex-table-cell" data-th="Email">
+                <div class="flex-table-cell is-grow" data-th="Email">
                   <span class="light-text">{{ customer.email }}</span>
                 </div>
-                <div class="flex-table-cell" data-th="Contact Number">
+                <div class="flex-table-cell is-grow" data-th="Contact Number">
                   <span class="light-text">{{ customer.contact_number }}</span>
                 </div>
-                <div class="flex-table-cell cell-end" data-th="Actions">
-                  <VButton color="primary" outlined> More</VButton>
+                <div class="flex-table-cell  is-grow cell-end" data-th="Actions">
+                  <span class="light-text">{{ customer.branch_name }}</span>
                 </div>
               </div>
             </transition-group>
@@ -162,10 +252,10 @@ onMounted(async () => {
 
         <!--Table Pagination-->
         <V-FlexPagination
-          v-if="filteredData.length > 5"
+          v-if="filteredData.length > 0"
           :item-per-page="10"
-          :total-items="873"
-          :current-page="42"
+          :total-items="allCustomerCount"
+          :current-page="currentPage"
           :max-links-displayed="7"
         />
       </div>
@@ -258,7 +348,65 @@ onMounted(async () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="saveCustomerFunc">Add Customer</VButton>
+        <VButton color="primary" raised @click="fireSaveCustomerAlert">Add Customer</VButton>
+      </template>
+    </VModal>
+    <VModal
+      :open="editCustomerAction"
+      size="medium"
+      actions="center"
+      @close="editCustomerAction = false"
+      title="Edit Customer"
+    >
+      <template #content>
+        <form class="form-layout is-split" @submit.prevent>
+          <div class="form-outer">
+            <div class="form-section is-grey">
+              <div>
+                <V-Field>
+                  <V-Control icon="feather:user">
+                    <input
+                      type="text"
+                      class="input"
+                      placeholder="Name"
+                      autocomplete="name"
+                      v-model="editName"
+                    />
+                  </V-Control>
+                </V-Field>
+                <V-Field>
+                  <V-Control icon="feather:phone">
+                    <input
+                      type="tel"
+                      class="input"
+                      placeholder="Phone Number"
+                      autocomplete="tel"
+                      inputmode="tel"
+                      v-model="editContactNumber"
+                      readonly
+                    />
+                  </V-Control>
+                </V-Field>
+                <V-Field>
+                  <V-Control icon="feather:mail">
+                    <input
+                      type="email"
+                      class="input"
+                      placeholder="Email Address"
+                      autocomplete="email"
+                      inputmode="email"
+                      v-model="editEmail"
+                    />
+                  </V-Control>
+                </V-Field>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </template>
+      <template #action>
+        <VButton color="primary" raised @click="fireEditCustomerAlert">Edit Customer</VButton>
       </template>
     </VModal>
   </div>
@@ -276,4 +424,12 @@ onMounted(async () => {
     margin-left: auto;
   }
 }
+.swal2-title {
+  font-size: 20px !important;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: #41b883 !important;
+}
+
 </style>

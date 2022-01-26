@@ -4,13 +4,14 @@ import {useCookies} from "vue3-cookies";
 
 const {cookies} = useCookies();
 // @ts-ignore
-const config = {headers: {Authorization: "Bearer " + cookies.get('admin2').access_token}}
+// const config = {headers: {Authorization: "Bearer " + cookies.get('admin2').access_token}}
 // @ts-ignore
-const branch_id = cookies.get('admin2').branch_id
+// const branch_id = cookies.get('admin2').branch_id
 
 export default class DashboardService {
 
-  getDashboardData = () => axios.get(`${basic_url}/v1/dashboard/${branch_id}`, config)
+  // getDashboardData = () => axios.get(`${basic_url}/admin/v1/dashboard`, config)
+  getDashboardData = () => axios.get(`${basic_url}/v1/dashboard`)
     .then((response) => ({
       data: response.data.data,
     }));

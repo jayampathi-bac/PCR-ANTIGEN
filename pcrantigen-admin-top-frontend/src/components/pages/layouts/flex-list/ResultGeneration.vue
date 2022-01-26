@@ -1,20 +1,30 @@
 <script setup lang="ts">
-import {computed, onMounted, ref} from 'vue'
-
-// import SockJS from "sockjs-client";
-// import Stomp from "webstomp-client";
+import {computed, onMounted, ref, inject, watch} from 'vue'
 
 import getResults from '/@src/composable/resultData'
-import CaptureUserImage from "/@src/components/CaptureUserImage.vue";
-import CaptureTestImage from "/@src/components/CaptureTestImage.vue";
+import ResultService from '/@src/service/resultService';
 
-const {search, results, generateResult} = getResults();
+import {useCookies} from "vue3-cookies";
+import useNotyf from "/@src/composable/useNotyf";
+
+import {socket_url, socket_url2} from "/@src/utils/basic_config";
+
+const notif = useNotyf()
+
+const resultService = new ResultService();
+
+const {cookies} = useCookies();
+
+const {search, results, brands, searchAllBrandsToResults} = getResults();
 
 const sendResutlsModelOpen = ref(false)
 const captureUserImageModel = ref(false)
 const captureTestImageModel = ref(false)
 const capturedCustomerImage = ref(null)
 const capturedTestImage = ref(null)
+const test_name = ref('PCR Antigen')
+
+const swal = inject('$swal')
 
 const filters = ref('')
 
@@ -24,41 +34,104 @@ const filteredData = computed(() => {
   } else {
     return results.value.filter((item) => {
       return (
-        item.contact_number.match(new RegExp(filters.value, 'i')) ||
-        item.user_image_url.match(new RegExp(filters.value, 'i')) ||
-        item.created_at.match(new RegExp(filters.value, 'i')) ||
-        item.record_status.match(new RegExp(filters.value, 'i'))
+        item.customer_contact.match(new RegExp(filters.value, 'i')) ||
+        item.profile_url.match(new RegExp(filters.value, 'i')) ||
+        item.logged_at.match(new RegExp(filters.value, 'i')) ||
+        item.name.match(new RegExp(filters.value, 'i'))
       )
     })
   }
 });
 
 // VModel Data
-const selected_customer_id = ref('');
+//selected_customer object data = c
+const selected_customer = ref('');
 const date = ref(new Date())
 let result = ref('Negative')
-const testResult = ref(0)
+const testResult = ref(null)
 const resultOptions = [
   'Positive',
   'Negative',
 ]
 
-const loadSendResult = (customerID: string) => {
+const selectedBrand = ref(0)
+const brandOptions = ref([
+  {value: '1', label: 'Batman'},
+  {value: '2', label: 'Robin'},
+  {value: '3', label: 'Joker'},
+])
+
+
+const loadSendResult = (customer: string) => {
   sendResutlsModelOpen.value = true
-  selected_customer_id.value = customerID
+  selected_customer.value = customer
 }
 
-const issueResult = (customerID: string) => {
-  // console.log("capturedCustomerImage",capturedCustomerImage.value)
-  // console.log("capturedTestImage",capturedTestImage.value)
-  generateResult({
-    created_at:'2020-02-02',
-    contact_number:1234,
-    record_status:'Positive',
-    script_image_url:'https://www.testing.com/test.jpg',
-    user_image_url:'https://www.testing.com/test.jpg',
-    branch_id:1234
-  })
+const issueResult = () => {
+  if (testResult.value && selectedBrand.value !== 0) {
+    console.log("here here")
+    sendResutlsModelOpen.value = false
+    swal.fire({
+      title: `Do you want to send results to ${selected_customer.value.name}?`,
+      showCancelButton: true,
+      confirmButtonText: 'Send',
+    }).then((result) => {
+      console.log("result", result)
+      if (result.isConfirmed) {
+        resultService.generateResult({
+          contact_number: selected_customer.value.customer_contact,
+          script_image_url: 'https://www.testing.com/test.jpg',
+          user_image_url: 'https://www.testing.com/test.jpg',
+          test_result: (testResult.value === 'Negative') ? 0 : 1,
+          record_state: 1,
+          testkit_id: selectedBrand.value,
+          branch_id: cookies.get('admin2').branch_id
+        }).then(function (response) {
+          console.log('response', response)
+          if (response.data.success) {
+            callingWebSocket2(selected_customer.value.customer_contact)
+            // resultService.updateAvailableLogStatus({
+            //   contact_number: selected_customer.value.customer_contact,
+            //   status: 'COMPLETE',
+            //   branch_id: cookies.get('admin2').branch_id
+            // }).then(function (response) {
+            //   if (response.data.success) {
+            //     notif.success(response.data.message)
+            //     swal.fire('Saved!', '', 'success')
+            //     clearFields();
+            //     search();
+            //   }else{
+            //     notif.warning(response.data.message)
+            //     swal.fire('Saving Failed!', '', 'error')
+            //     clearFields();
+            //     search();
+            //   }
+            // }).catch(function (error) {
+            //   notif.warning(error)
+            //   clearFields();
+            //   search();
+            // });
+          } else {
+            notif.warning(response.data.message)
+          }
+        }).catch(function (error) {
+          console.log(error);
+        });
+      } else if (result.isDenied) {
+        swal.fire('Changes are not saved', '', 'info')
+      } else if (result.isDismissed) {
+        sendResutlsModelOpen.value = true
+      }
+    })
+  } else {
+    notif.warning("Please fill all fields..!")
+  }
+
+}
+
+const clearFields = () => {
+  testResult.value = null
+  selectedBrand.value = 0
 }
 
 const openCaptureUserImageModel = () => {
@@ -67,44 +140,149 @@ const openCaptureUserImageModel = () => {
 const openCaptureTestImageModel = () => {
   captureTestImageModel.value = true
 }
+const closeCaptureUserImageModel = () => {
+  captureUserImageModel.value = false
+}
+const closeCaptureTestImageModel = () => {
+  captureTestImageModel.value = false
+}
 
 const savedCustomerImage = (value: any) => {
   capturedCustomerImage.value = value
   // console.log('savedCustomerImage',value);
 };
 
+const isDisabled = (customer: object) => (customer.status === 'COMPLETE' || customer.status === 'INCOMPLETE');
+
 const savedTestImage = (value: any) => {
   capturedTestImage.value = value
-  console.log('savedTestImage',value);
+  console.log('savedTestImage', value);
 };
+
+const selectedCustomerVoid = ref({})
+
+const voidCustomer = (customer: object) => {
+  selectedCustomerVoid.value = customer
+  console.log('voidCustomer', customer);
+  swal.fire({
+    title: `Do you want to void ${customer.name}?`,
+    showCancelButton: true,
+    confirmButtonText: 'Void',
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      callingWebSocket2(customer.customer_contact)
+      // resultService.updateAvailableLogStatus({
+      //   contact_number: customer.customer_contact,
+      //   status: 'INCOMPLETE',
+      //   branch_id: cookies.get('admin2').branch_id,
+      // })
+      //   .then(function (response) {
+      //     console.log('response', response)
+      //     if (response.data.success) {
+      //       notif.success(response.data.message)
+      //       swal.fire('Void Successful!', '', 'success')
+      //       search();
+      //     } else {
+      //       notif.warning(response.data.message)
+      //     }
+      //   }).catch(function (error) {
+      //   console.log(error);
+      // });
+
+    }
+  })
+};
+
+let connection = null
+let connection2 = null
+
+//websocket connection 2
+const callingWebSocket2 = (contact) => {
+  console.log("Starting connection to WebSocket Server 2")
+  connection2 = new WebSocket(socket_url2)
+
+  connection2.onmessage = function (event) {
+    console.log("connection2 response came")
+    console.log("connection2",event.data);
+    if (event.data === 'updated') {
+          notif.success('Send Successfully..')
+          swal.fire('Saved!', '', 'success')
+          clearFields();
+          search();
+    } else  {
+      notif.warning('Send Failed..!')
+      swal.fire('Saving Failed.!', '', 'error')
+      clearFields();
+      search();
+    }
+
+  }
+
+  connection2.onopen = function (event) {
+    console.log('connection2 onopen',event)
+    console.log("Successfully connected to the echo websocket server 2...")
+    // console.log("contact number here here here",contact)
+    // console.log("contact number here here here",JSON.stringify({'contact_number': contact, "status": "INCOMPLETE", "branch_id":cookies.get('admin2').branch_id}))
+    // setInterval(() => connection.send(JSON.stringify({ event: "ping" })), 10000);
+    connection2.send(JSON.stringify({'contact_number': contact, "status": "INCOMPLETE", "branch_id":cookies.get('admin2').branch_id}));
+  }
+
+  // contact_number: customer.customer_contact,
+  //   status: 'INCOMPLETE',
+  //   branch_id: cookies.get('admin2').branch_id,
+  // connection2.send('{"contact_number": "0998765434","branch_id":"1"}');
+
+  connection2.onclose = function(){
+    console.log('connection2 onclose')
+    connection2 = new WebSocket(socket_url2)
+  };
+}
+
+const callingWebSocket = () => {
+  console.log("Starting connection to WebSocket Server")
+  connection = new WebSocket(socket_url)
+
+
+  connection.onmessage = function (event) {
+    // console.log("response came")
+    // console.log(event);
+    if (event.data !== 'ALREDY HEREE 2') {
+      const myObj = JSON.parse(event.data);
+      // console.log("myObj",myObj);
+      if (cookies.get('admin2').branch_id === parseInt(myObj.branch_id) && myObj.condition === "true") {
+        // console.log("true true true")
+        search();
+      }
+    }
+  }
+
+  connection.onopen = function (event) {
+    console.log(event)
+    console.log("Successfully connected to the echo websocket server...")
+    // setInterval(() => connection.send(JSON.stringify({ event: "ping" })), 10000);
+  }
+
+  connection.onclose = function(){
+    connection = new WebSocket(socket_url)
+  };
+}
 
 const connected = ref(false);
 const received_messages = ref([]);
 
-// const connect = () => {
-//   let socket = new SockJS("http://localhost:8080/gs-guide-websocket");
-//   let stompClient = Stomp.over(socket);
-//   stompClient.connect(
-//     {},
-//     frame => {
-//       connected.value = true;
-//       console.log(frame);
-//       stompClient.subscribe("/topic/greetings", tick => {
-//         console.log(tick);
-//         received_messages.value.push(JSON.parse(tick.body).content);
-//       });
-//     },
-//     error => {
-//       console.log(error);
-//       connected.value = false;
-//     }
-//   );
-// }
-
 onMounted(async () => {
-  search('1');
-  // connect();
+  search();
+  callingWebSocket();
+  searchAllBrandsToResults();
+
 })
+
+const refreshSearch = () => {
+
+  search()
+}
+
 </script>
 
 <template>
@@ -121,8 +299,8 @@ onMounted(async () => {
       </V-Field>
 
       <V-Buttons>
-        <V-Button color="primary" icon="fas fa-plus" elevated>
-          Add Test
+        <V-Button @click="refreshSearch()" color="primary" icon="feather:refresh-cw" elevated>
+          Refresh
         </V-Button>
       </V-Buttons>
     </div>
@@ -147,10 +325,10 @@ onMounted(async () => {
             :class="[filteredData.length === 0 && 'is-hidden']"
           >
             <span class="is-grow">Customer ID</span>
-            <span>Time Logged</span>
-            <span>Test State</span>
-            <span>Test Type</span>
-            <span class="cell-end">Actions</span>
+            <span class="is-grow">Time Logged</span>
+            <span class="is-grow">Test State</span>
+            <span class="is-grow">Test Type</span>
+            <span class="is-grow cell-end">Actions</span>
           </div>
 
           <div class="flex-list-inner">
@@ -158,48 +336,47 @@ onMounted(async () => {
               <!--Table item-->
               <div
                 v-for="customer in filteredData"
-                :key="customer.customer_contact_number"
+                :key="customer.customer_contact"
                 class="flex-table-item"
               >
                 <div class="flex-table-cell is-media is-grow">
                   <V-Avatar
-                    :picture="customer.user_image_url"
+                    :picture="customer.profile_url"
                     size="medium"
                   />
                   <div>
-                    <span class="item-name dark-inverted">{{ customer.customer_contact_number }}</span>
+                    <span class="item-name dark-inverted m-1">{{ customer.name }}</span>
+                    <span class="item-meta">
+                      <span>{{ customer.customer_contact }}</span>
+                    </span>
                   </div>
                 </div>
-                <div class="flex-table-cell" data-th="Time Logged">
-                  <span class="light-text">{{ customer.created_at }}</span>
+                <div class="flex-table-cell is-grow" data-th="Time Logged">
+                  <span class="light-text">{{ customer.logged_at }}</span>
                 </div>
-                <div class="flex-table-cell" data-th="State">
-                  <span class="light-text">{{ customer.record_status }}</span>
+                <div class="flex-table-cell is-grow" data-th="State">
+                  <span class="light-text">{{ customer.status }}</span>
                 </div>
-                <div class="flex-table-cell" data-th="Test Type">
-                  <span
-                    v-if="customer.record_status === '1'"
-                    class="tag is-success is-rounded"
-                  >
-                    Positive
-                  </span>
-                  <span
-                    v-if="customer.record_status === '0'"
-                    class="tag is-danger is-rounded"
-                  >Negative</span>
+                <div class="flex-table-cell is-grow" data-th="Test Type">
+                  <span class="light-text"> PCR Antigen </span>
                 </div>
-                <div class="flex-table-cell cell-end" data-th="Actions">
-                  <div class="m-2">
+                <div class="flex-table-cell is-grow cell-end" data-th="Actions">
+                  <span class="mr-2">
                     <VButton
-                      @click="loadSendResult(customer.customer_contact_number)"
+                      @click="loadSendResult(customer)"
                       color="primary"
                       outlined
+                      :disabled="isDisabled(customer)"
                     > Send Result
                     </VButton>
-                  </div>
-                  <div>
-                    <VButton color="danger" outlined> Void</VButton>
-                  </div>
+                  </span>
+                  <span>
+                    <VButton
+                      @click="voidCustomer(customer)"
+                      color="danger"
+                      :disabled="isDisabled(customer)"
+                      outlined> Void</VButton>
+                  </span>
                 </div>
               </div>
             </transition-group>
@@ -207,13 +384,13 @@ onMounted(async () => {
         </div>
 
         <!--Table Pagination-->
-        <V-FlexPagination
-          v-if="filteredData.length > 5"
-          :item-per-page="10"
-          :total-items="873"
-          :current-page="42"
-          :max-links-displayed="7"
-        />
+<!--        <V-FlexPagination-->
+<!--          v-if="filteredData.length > 5"-->
+<!--          :item-per-page="10"-->
+<!--          :total-items="873"-->
+<!--          :current-page="42"-->
+<!--          :max-links-displayed="7"-->
+<!--        />-->
       </div>
     </div>
     <VModal
@@ -230,20 +407,20 @@ onMounted(async () => {
               <div class="columns">
                 <div class="column is-12">
                   <V-Field>
-                    <V-Control icon="feather:user">
+                    <V-Control icon="feather:phone">
                       <input
                         type="text"
                         class="input"
                         readonly
                         placeholder="Customer ID"
                         autocomplete="customer-id"
-                        v-model="selected_customer_id"
+                        v-model="selected_customer.customer_contact"
                       />
                     </V-Control>
                   </V-Field>
                   <V-Field>
                     <V-Control icon="feather:calendar">
-                      <v-date-picker v-model="date" mode="dateTime">
+                      <v-date-picker v-model="date" mode="date">
                         <template #default="{ inputValue }">
                           <VField>
                             <VControl>
@@ -261,25 +438,39 @@ onMounted(async () => {
                         class="input"
                         placeholder="Test Name"
                         autocomplete="test-name"
+                        v-model="test_name"
+                        readonly
                       />
                     </V-Control>
                   </V-Field>
-                  <V-Field>
-                    <V-Control >
+                  <V-Field class="is-autocomplete-select">
+                    <VControl icon="feather:search">
+                      <Multiselect
+                        v-model="selectedBrand"
+                        :options="brands"
+                        placeholder="Select Test Kit"
+                        :searchable="true"
+                      >
+                      </Multiselect>
+                    </VControl>
+                  </V-Field>
+                  <V-Field class="is-autocomplete-select">
+                    <V-Control icon="feather:activity">
                       <Multiselect
                         v-model="testResult"
                         :options="resultOptions"
-                        :max-height="145"
+                        :searchable="true"
                         placeholder="Test Result"
                       />
                     </V-Control>
                   </V-Field>
                   <V-Field v-show="testResult === 'Negative'">
-                    <V-Control >
+                    <V-Control>
                       <VButtons class="is-centered">
                         <VButton @click="openCaptureUserImageModel()"
                                  color="info" icon="feather:user" raised rounded outlined
-                        > Capture Customer Image</VButton>
+                        > Capture Customer Image
+                        </VButton>
                         <VButton @click="openCaptureTestImageModel()"
                                  color="danger" icon="feather:activity" raised rounded outlined>
                           Capture Test Image
@@ -304,7 +495,7 @@ onMounted(async () => {
       :open="captureUserImageModel"
       size="large"
       actions="center"
-      @close="captureUserImageModel = false"
+      @close="closeCaptureUserImageModel"
       title="Capture Customer Image"
     >
       <template #content>
@@ -312,14 +503,14 @@ onMounted(async () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="issueResult()">Save Image</VButton>
+        <VButton color="primary" raised @click="closeCaptureUserImageModel">Save Image</VButton>
       </template>
     </VModal>
     <VModal
       :open="captureTestImageModel"
       size="large"
       actions="center"
-      @close="captureTestImageModel = false"
+      @close="closeCaptureTestImageModel"
       title="Capture Test Record Image"
     >
       <template #content>
@@ -327,7 +518,7 @@ onMounted(async () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="issueResult()">Save Image</VButton>
+        <VButton color="primary" raised @click="closeCaptureTestImageModel">Save Image</VButton>
       </template>
     </VModal>
   </div>
@@ -345,8 +536,17 @@ onMounted(async () => {
     margin-left: auto;
   }
 }
-.camera-frame{
+
+.camera-frame {
   border: 2px solid black;
   border-radius: 5px;
+}
+
+.swal2-title {
+  font-size: 20px !important;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: #41b883 !important;
 }
 </style>

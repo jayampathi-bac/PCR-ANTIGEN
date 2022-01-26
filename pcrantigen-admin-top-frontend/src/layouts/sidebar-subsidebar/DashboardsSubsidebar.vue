@@ -328,7 +328,7 @@ const emit = defineEmit(['close'])
         </li>
         <li class="divider"></li>
         <li>
-          <RouterLink :to="{ name: 'wizard-v1' }">Wizard</RouterLink>
+          <RouterLink :to="{ name: 'sidebar-layouts-admindashboard' }">Wizard</RouterLink>
         </li>
         <li class="divider"></li>
         <li v-has-nested-router-link class="has-children">
@@ -427,7 +427,7 @@ const emit = defineEmit(['close'])
           <ul>
             <li>
               <RouterLink
-                :to="{ name: 'sidebar-blank-page-1' }"
+                :to="{ name: 'sidebar-layouts-admindashboard' }"
                 class="is-submenu"
               >
                 <i aria-hidden="true" class="lnil lnil-layout"></i>

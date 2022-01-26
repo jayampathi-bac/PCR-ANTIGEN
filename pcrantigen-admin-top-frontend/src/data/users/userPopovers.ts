@@ -2,7 +2,7 @@ export const popovers = {
   user5: {
     id: 5,
     avatar: '/demo/avatars/5.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Mary L.',
     fullName: 'Mary Lebowski',
     initials: 'ML',
@@ -13,8 +13,8 @@ export const popovers = {
   },
   user7: {
     id: 7,
-    avatar: '/demo/avatars/7.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Alice C.',
     fullName: 'Alice Carasca',
     initials: 'AC',
@@ -25,8 +25,8 @@ export const popovers = {
   },
   user8: {
     id: 8,
-    avatar: '/demo/avatars/8.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Erik K.',
     fullName: 'Erik Kovalsky',
     initials: 'EK',
@@ -38,7 +38,7 @@ export const popovers = {
   user9: {
     id: 9,
     avatar: '/demo/avatars/9.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Anna B.',
     fullName: 'Anna Baker',
     initials: 'AB',
@@ -50,7 +50,7 @@ export const popovers = {
   user10: {
     id: 10,
     avatar: '/demo/avatars/10.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Henry G.',
     fullName: 'Henry Grobstone',
     initials: 'HG',
@@ -73,8 +73,8 @@ export const popovers = {
   },
   user12: {
     id: 12,
-    avatar: '/demo/avatars/12.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Joshua S.',
     fullName: 'Joshua Stevens',
     initials: 'JS',
@@ -85,8 +85,8 @@ export const popovers = {
   },
   user13: {
     id: 13,
-    avatar: '/demo/avatars/13.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Tara S.',
     fullName: 'Tara Svenson',
     initials: 'TS',
@@ -110,7 +110,7 @@ export const popovers = {
   user15: {
     id: 15,
     avatar: '/demo/avatars/15.jpg',
-    badge: '/images/icons/flags/germany.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Hilde V.',
     fullName: 'Hilde Von Strauss',
     initials: 'HV',
@@ -122,7 +122,7 @@ export const popovers = {
   user16: {
     id: 16,
     avatar: '/demo/avatars/16.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Jason G.',
     fullName: 'Jason Guarank',
     initials: 'JG',
@@ -134,7 +134,7 @@ export const popovers = {
   user18: {
     id: 18,
     avatar: '/demo/avatars/18.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Esteban C.',
     fullName: 'Esteban Castellanos',
     initials: 'EC',
@@ -146,7 +146,7 @@ export const popovers = {
   user19: {
     id: 19,
     avatar: '/demo/avatars/19.jpg',
-    badge: '/images/icons/flags/germany.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Greta K.',
     fullName: 'Greta Kroppfer',
     initials: 'GK',
@@ -157,7 +157,7 @@ export const popovers = {
   },
   user21: {
     id: 21,
-    avatar: '/demo/avatars/21.jpg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     badge: '/images/icons/flags/england.svg',
     username: 'Elisabeth F.',
     fullName: 'Elisabeth Fisher',
@@ -170,7 +170,7 @@ export const popovers = {
   user22: {
     id: 22,
     avatar: '/demo/avatars/22.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Dwayne H.',
     fullName: 'Dwayne Hicks',
     initials: 'DH',
@@ -182,7 +182,7 @@ export const popovers = {
   user23: {
     id: 23,
     avatar: '/demo/avatars/23.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Irina V.',
     fullName: 'Irina Vierbovsky',
     initials: 'IV',
@@ -194,7 +194,7 @@ export const popovers = {
   user24: {
     id: 24,
     avatar: '/demo/avatars/24.jpg',
-    badge: '/images/icons/flags/france.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Sandrine C.',
     fullName: 'Sandrine Coulart',
     initials: 'SC',
@@ -205,8 +205,8 @@ export const popovers = {
   },
   user25: {
     id: 25,
-    avatar: '/demo/avatars/25.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Melany W.',
     fullName: 'Melany Wallace',
     initials: 'MW',
@@ -230,7 +230,7 @@ export const popovers = {
   user27: {
     id: 27,
     avatar: '/demo/avatars/27.jpg',
-    badge: '/images/icons/flags/spain.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Carmen E.',
     fullName: 'Carmen Escudero',
     initials: 'CE',
@@ -242,7 +242,7 @@ export const popovers = {
   user28: {
     id: 28,
     avatar: '/demo/avatars/28.jpg',
-    badge: '/images/icons/flags/france.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Edouard F.',
     fullName: 'Edouard Falant',
     initials: 'EF',
@@ -254,7 +254,7 @@ export const popovers = {
   user29: {
     id: 29,
     avatar: '/demo/avatars/29.jpg',
-    badge: '/images/icons/flags/germany.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Hakeem C.',
     fullName: 'Hakeem Calami',
     initials: 'HC',
@@ -266,7 +266,7 @@ export const popovers = {
   user31: {
     id: 31,
     avatar: '/demo/avatars/31.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Yasseen A.',
     fullName: 'Yasseen Amzi',
     initials: 'YA',
@@ -278,7 +278,7 @@ export const popovers = {
   user32: {
     id: 32,
     avatar: '/demo/avatars/32.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Jonathan K.',
     fullName: 'Jonathan Krugger',
     initials: 'JK',
@@ -290,7 +290,7 @@ export const popovers = {
   user33: {
     id: 33,
     avatar: '/demo/avatars/33.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Harvey M.',
     fullName: 'Harvey Miller',
     initials: 'HM',
@@ -314,7 +314,7 @@ export const popovers = {
   user36: {
     id: 36,
     avatar: '/demo/avatars/36.jpg',
-    badge: '/images/icons/flags/france.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Benoit L.',
     fullName: 'Benoit Leblanc',
     initials: 'BL',
@@ -326,7 +326,7 @@ export const popovers = {
   user37: {
     id: 37,
     avatar: '/demo/avatars/37.jpg',
-    badge: '/images/icons/flags/france.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Helmut F.',
     initials: 'HF',
     fullName: 'Helmut Fritz',
@@ -338,7 +338,7 @@ export const popovers = {
   user38: {
     id: 38,
     avatar: '/demo/avatars/38.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Christie D.',
     fullName: 'Christie Dallas',
     initials: 'CD',
@@ -349,8 +349,8 @@ export const popovers = {
   },
   user39: {
     id: 39,
-    avatar: '/demo/avatars/39.jpg',
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Alejandro B.',
     fullName: 'Alejandro Badajoz',
     initials: 'AB',
@@ -362,7 +362,7 @@ export const popovers = {
   user40: {
     id: 40,
     avatar: '/demo/avatars/40.jpg',
-    badge: '/images/icons/flags/france.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Jeanne M.',
     fullName: 'Jeanne Marchand',
     initials: 'JM',
@@ -374,7 +374,7 @@ export const popovers = {
   user120: {
     id: 120,
     avatar: null,
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Sara C.',
     fullName: 'Sara Connor',
     initials: 'SC',
@@ -386,7 +386,7 @@ export const popovers = {
   user121: {
     id: 121,
     avatar: null,
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Naomi L.',
     fullName: 'Naomi Liversky',
     initials: 'NL',
@@ -398,7 +398,7 @@ export const popovers = {
   user122: {
     id: 122,
     avatar: null,
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Betty T.',
     fullName: 'Betty Trejo',
     initials: 'BT',
@@ -410,7 +410,7 @@ export const popovers = {
   user123: {
     id: 123,
     avatar: null,
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'John D.',
     fullName: 'John Daniels',
     initials: 'JD',
@@ -422,7 +422,7 @@ export const popovers = {
   user124: {
     id: 124,
     avatar: null,
-    badge: '/images/icons/flags/united-states-of-america.svg',
+    badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     username: 'Alan T.',
     fullName: 'Alan Thorne',
     initials: 'AT',

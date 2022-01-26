@@ -516,7 +516,7 @@ watch([() => route.fullPath, dropdownElement], () => {
 
               <div class="column-content" data-simplebar>
                 <RouterLink
-                  :to="{ name: 'auth-login-1' }"
+                  :to="{ name: 'auth-forget' }"
                   class="dropdown-item is-media"
                 >
                   <div class="icon">
@@ -560,7 +560,7 @@ watch([() => route.fullPath, dropdownElement], () => {
                   </div>
                 </RouterLink>
                 <RouterLink
-                  :to="{ name: 'auth-signup-3' }"
+                  :to="{ name: 'auth-signup' }"
                   class="dropdown-item is-media"
                 >
                   <div class="icon">

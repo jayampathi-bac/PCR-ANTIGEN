@@ -48,7 +48,7 @@ export const optionsUsers = {
     data: [
       [
         0,
-        '/demo/avatars/8.jpg',
+        'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         'Erik Kovalsky',
         'Product Manager',
         'busy',
@@ -56,7 +56,7 @@ export const optionsUsers = {
       ],
       [
         1,
-        '/demo/avatars/7.jpg',
+        'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         'Alice Carasca',
         'Software Engineer',
         'offline',
@@ -64,7 +64,7 @@ export const optionsUsers = {
       ],
       [
         2,
-        '/demo/avatars/13.jpg',
+        'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         'Tara Svenson',
         'UI/UX Designer',
         'offline',
@@ -144,7 +144,7 @@ export const optionsUsers = {
       ],
       [
         12,
-        '/demo/avatars/39.jpg',
+        'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         'Alejandro Badajoz',
         'Web Developer',
         'busy',
@@ -152,7 +152,7 @@ export const optionsUsers = {
       ],
       [
         13,
-        '/demo/avatars/21.jpg',
+        'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
         'Elizabeth Fisher',
         'Mobile Developer',
         'available',

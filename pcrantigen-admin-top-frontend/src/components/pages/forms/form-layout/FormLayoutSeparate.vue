@@ -91,22 +91,22 @@ const country = ref('')
                         {
                           value: 'english',
                           name: 'English',
-                          icon: '/images/icons/flags/united-states-of-america.svg',
+                          icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
                         },
                         {
                           value: 'french',
                           name: 'French',
-                          icon: '/images/icons/flags/france.svg',
+                          icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
                         },
                         {
                           value: 'german',
                           name: 'German',
-                          icon: '/images/icons/flags/germany.svg',
+                          icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
                         },
                         {
                           value: 'spanish',
                           name: 'Spanish',
-                          icon: '/images/icons/flags/spain.svg',
+                          icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
                         },
                       ]"
                     >

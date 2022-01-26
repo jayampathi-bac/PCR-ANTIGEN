@@ -101,7 +101,7 @@ const optionsSingle = [
                   </p>
                 </div>
                 <div class="tile-meta">
-                  <V-Avatar picture="/demo/avatars/39.jpg" size="small" />
+                  <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="small" />
                   <div class="meta-inner">
                     <span class="dark-inverted" data-filter-match>
                       Alejandro B.</span
@@ -383,7 +383,7 @@ const optionsSingle = [
                   </p>
                 </div>
                 <div class="tile-meta">
-                  <V-Avatar picture="/demo/avatars/8.jpg" size="small" />
+                  <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="small" />
                   <div class="meta-inner">
                     <span class="dark-inverted" data-filter-match>Erik K.</span>
                     <span>2 days ago</span>

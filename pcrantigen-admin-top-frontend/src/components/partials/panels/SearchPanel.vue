@@ -121,7 +121,7 @@ const filteredData = computed(() => {
                   :offset="[0, 10]"
                   placement="top-start"
                 >
-                  <V-Avatar size="small" picture="/demo/avatars/7.jpg" />
+                  <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                   <template #content>
                     <UserPopoverContent :user="popovers.user7" />
                   </template>
@@ -137,7 +137,7 @@ const filteredData = computed(() => {
                   :offset="[0, 10]"
                   placement="top-start"
                 >
-                  <V-Avatar size="small" picture="/demo/avatars/13.jpg" />
+                  <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                   <template #content>
                     <UserPopoverContent :user="popovers.user13" />
                   </template>

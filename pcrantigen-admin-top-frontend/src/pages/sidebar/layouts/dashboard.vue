@@ -3,15 +3,15 @@ import {useHead} from '@vueuse/head'
 
 import {pageTitle} from '/@src/state/sidebarLayoutState'
 
-pageTitle.value = 'Admin 2 Dashboard'
+pageTitle.value = 'Admin Dashboard'
 useHead({
-  title: 'Admin 2 Dashboard',
+  title: 'Admin Dashboard',
 })
 
 </script>
 
 <template>
   <div class="page-content-inner">
-    <Admin2Dashboard/>
+    <AdminDashboard/>
   </div>
 </template>

@@ -1,5 +1,5 @@
 {
-  "name": "jvpd",
+  "name": "jvpd-salesadmin",
   "version": "1.2.1",
   "private": "true",
   "license": "MIT",
@@ -70,8 +70,10 @@
     "vue": "3.0.11",
     "vue-3-socket.io": "^1.0.4",
     "vue-i18n": "9.1.4",
+    "vue-native-websocket-vue3": "^3.1.4",
     "vue-router": "4.0.6",
     "vue-scrollto": "2.20.0",
+    "vue-sweetalert2": "^5.0.2",
     "vue-tippy": "6.0.0-alpha.29",
     "vue-web-cam": "^1.9.0",
     "vue3-apexcharts": "1.4.0",

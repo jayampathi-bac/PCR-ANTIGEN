@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import {computed, onMounted, ref} from 'vue'
-
+import { useRoute } from 'vue-router'
 import useNotyf from '/@src/composable/useNotyf'
 
 import getAllTests from '/@src/composable/allTestData'
+const route = useRoute()
 
-const {allTests, searchAllTests, searchAllTestsByRange, searchAllTestsByMonth} = getAllTests();
+const {allTests, searchAllTests, totalTestsCount} = getAllTests();
 
 const notif = useNotyf()
 const filters = ref('')
@@ -16,9 +17,7 @@ const filteredData = computed(() => {
   } else {
     return allTests.value.filter((item) => {
       return (
-        item.customer_name.match(new RegExp(filters.value, 'i')) ||
-        item.customer_contact_number.match(new RegExp(filters.value, 'i')) ||
-        item.record_id.toString().match(new RegExp(filters.value, 'i')) ||
+        item.contact_number.match(new RegExp(filters.value, 'i')) ||
         item.test_result.match(new RegExp(filters.value, 'i')) ||
         item.record_state.match(new RegExp(filters.value, 'i')) ||
         item.created_at.match(new RegExp(filters.value, 'i'))
@@ -31,160 +30,28 @@ const dateRange = ref(null)
 const selectedMonth = ref('')
 const selectedMonthByNo = ref(0)
 
-const searchCustomerByRange = () => {
-  if (dateRange.value) {
-    searchAllTestsByRange(dateRange.value.start.toISOString().split('T')[0], dateRange.value.end.toISOString().split('T')[0])
-  } else {
-    notif.warning('Please enter start date and end date.!')
-  }
-}
 
-const searchCustomerByMonth = () => {
-  switch (selectedMonth.value) {
-    case 'January':
-      selectedMonthByNo.value = 1;
-      break;
-    case 'February':
-      selectedMonthByNo.value = 2;
-      break;
-    case 'March':
-      selectedMonthByNo.value = 3;
-      break;
-    case 'April':
-      selectedMonthByNo.value = 4;
-      break;
-    case 'May':
-      selectedMonthByNo.value = 5;
-      break;
-    case 'June':
-      selectedMonthByNo.value = 6;
-      break;
-    case 'July':
-      selectedMonthByNo.value = 7;
-      break;
-    case 'August':
-      selectedMonthByNo.value = 8;
-      break;
-    case 'September':
-      selectedMonthByNo.value = 9;
-      break;
-    case 'October':
-      selectedMonthByNo.value = 10;
-      break;
-    case 'November':
-      selectedMonthByNo.value = 11;
-      break;
-    case 'December':
-      selectedMonthByNo.value = 12;
-      break;
-  }
-  if (selectedMonthByNo.value != 0) {
-    searchAllTestsByMonth(selectedMonthByNo.value)
-  } else {
-    notif.warning('Please select a month.!')
-  }
-}
+
+// const refreshLoading = () => {
+//   searchAllTests(1)
+// }
+
+const currentPage = computed(() => {
+  try {
+    searchAllTests(Number.parseInt(route.query.page as string) || 1 )
+    return Number.parseInt(route.query.page as string) || 1
+  } catch {}
+  return 1
+})
 
 onMounted(() => {
-  searchAllTests('1')
+  searchAllTests(1)
 })
 
 </script>
 
 <template>
   <div>
-    <div class="s-card mb-5">
-      <div class="columns is-multiline">
-        <div class="column is-3">
-          <V-Field>
-            <label>Filter Search</label>
-            <V-Control>
-              <VRadio
-                v-model="selected"
-                value="range"
-                label="Date Range"
-                name="outlined_radio"
-                color="primary"
-              />
-              <VRadio
-                v-model="selected"
-                value="month"
-                label="Month"
-                name="outlined_radio"
-                color="info"
-              />
-            </V-Control>
-          </V-Field>
-        </div>
-        <div class="column is-6 ">
-          <div v-show="selected === 'range'" class=" mt-4">
-            <div class="data-picker-responsive">
-              <v-date-picker
-                v-model="dateRange"
-                is-range
-                color="green"
-                trim-weeks
-                class="column is-6"
-              >
-                <template #default="{ inputValue, inputEvents }">
-                  <div class="columns v-calendar-combo">
-                    <div class="column is-6">
-                      <V-Field>
-                        <!--                    <label>Meeting date</label>-->
-
-                        <V-Control icon="feather:calendar">
-                          <input
-                            placeholder="Start Date"
-                            :value="inputValue.start"
-                            class="input form-datepicker"
-                            v-on="inputEvents.start"
-                          />
-                        </V-Control>
-                      </V-Field>
-                    </div>
-                    <div class="column is-6">
-                      <V-Field>
-                        <!--                    <label class="is-vhidden">Meeting date</label>-->
-                        <V-Control icon="feather:calendar">
-                          <input
-                            placeholder="End Date"
-                            :value="inputValue.end"
-                            class="input form-datepicker"
-                            v-on="inputEvents.end"
-                          />
-                        </V-Control>
-                      </V-Field>
-                    </div>
-                  </div>
-                </template>
-              </v-date-picker>
-            </div>
-          </div>
-          <div v-show="selected === 'month'" class="mt-5">
-            <Multiselect
-              v-model="selectedMonth"
-              :options="['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']"
-              placeholder="Select a month"
-            />
-          </div>
-        </div>
-        <div class="column is-3-desktop-only  mt-5 is-flex is-justify-content-center">
-          <V-Buttons>
-            <V-Button v-show="selected === 'range'" color="info" icon="fas fa-search" elevated
-                      @click="searchCustomerByRange()">
-              Search
-            </V-Button>
-            <V-Button v-show="selected === 'month'" color="info" icon="fas fa-search" elevated
-                      @click="searchCustomerByMonth()">
-              Search
-            </V-Button>
-            <V-Button color="primary" icon="fas fa-download" elevated @click="centeredActionsOpen = true">
-              Download
-            </V-Button>
-          </V-Buttons>
-        </div>
-      </div>
-    </div>
     <div>
       <div class="">
         <div class="list-flex-toolbar flex-list-v1">
@@ -197,6 +64,13 @@ onMounted(() => {
               />
             </V-Control>
           </V-Field>
+
+<!--          <V-Buttons>-->
+<!--            &lt;!&ndash;        <V-Button dark="3">View Reports</V-Button>&ndash;&gt;-->
+<!--            <V-Button color="primary" icon="feather:refresh-cw" elevated @click="refreshLoading()">-->
+<!--              refresh-->
+<!--            </V-Button>-->
+<!--          </V-Buttons>-->
         </div>
         <div class="page-content-inner">
           <div class="flex-list-wrapper flex-list-v1">
@@ -216,44 +90,44 @@ onMounted(() => {
                 class="flex-table-header"
                 :class="[filteredData.length === 0 && 'is-hidden']"
               >
-                <span class="is-grow">Customer</span>
+<!--                <span class="is-grow">Customer</span>-->
                 <span class="is-grow">Contact Number</span>
-                <span>Record ID</span>
-                <span>Test Result</span>
-                <span>Record State</span>
-                <span class="cell-end">Created At</span>
+<!--                <span class="is-grow">Record ID</span>-->
+                <span class="is-grow">Test Result</span>
+                <span class="is-grow">Record State</span>
+                <span class="is-grow cell-end">Created At</span>
               </div>
               <div class="flex-list-inner">
                 <transition-group name="list" tag="div">
                   <!--Table item-->
                   <div
                     v-for="test in filteredData"
-                    :key="test.customer_contact_number"
+                    :key="test.contact_number"
                     class="flex-table-item"
                   >
-                    <div class="flex-table-cell is-media is-grow">
-                      <V-Avatar
-                        :picture="test.customer_img_url"
-                        color="info"
-                        size="medium"
-                      />
-                      <div>
-                        <span class="item-name dark-inverted">{{ test.customer_name }}</span>
-                      </div>
+<!--                    <div class="flex-table-cell is-media is-grow">-->
+<!--                      <V-Avatar-->
+<!--                        :picture="test.customer_img_url"-->
+<!--                        color="info"-->
+<!--                        size="medium"-->
+<!--                      />-->
+<!--                      <div>-->
+<!--                        <span class="item-name dark-inverted">{{ test.customer_name }}</span>-->
+<!--                      </div>-->
+<!--                    </div>-->
+                    <div class="flex-table-cell is-grow" data-th="Contact Number">
+                      <span class="light-text">{{ test.contact_number }}</span>
                     </div>
-                    <div class="flex-table-cell" data-th="Contact Number">
-                      <span class="light-text">{{ test.customer_contact_number }}</span>
-                    </div>
-                    <div class="flex-table-cell" data-th="Record ID">
-                      <span class="light-text">{{ test.record_id }}</span>
-                    </div>
-                    <div class="flex-table-cell" data-th="Test Result">
+<!--                    <div class="flex-table-cell is-grow" data-th="Record ID">-->
+<!--                      <span class="light-text">{{ test.record_id }}</span>-->
+<!--                    </div>-->
+                    <div class="flex-table-cell is-grow" data-th="Test Result">
                       <span class="light-text">{{ test.test_result }}</span>
                     </div>
-                    <div class="flex-table-cell" data-th="Record State">
+                    <div class="flex-table-cell is-grow" data-th="Record State">
                       <span class="light-text">{{ test.record_state }}</span>
                     </div>
-                    <div class="flex-table-cell cell-end" data-th="Created At">
+                    <div class="flex-table-cell is-grow cell-end" data-th="Created At">
                       <span class="light-text">{{ test.created_at }}</span>
                     </div>
                   </div>
@@ -262,10 +136,10 @@ onMounted(() => {
             </div>
             <!--Table Pagination-->
             <V-FlexPagination
-              v-if="filteredData.length > 5"
+              v-if="filteredData.length > 0"
               :item-per-page="10"
-              :total-items="873"
-              :current-page="42"
+              :total-items=totalTestsCount
+              :current-page="currentPage"
               :max-links-displayed="7"
             />
           </div>

@@ -4,7 +4,7 @@
  *
  * We can import and set activeSidebar (or use toggleSidebar) anywhere in our project
  * @see /src/components/navigation/desktop/sidebar/SidebarColorCurved.vue
- * @see /src/pages/sidebar-blank-page-1.vue
+ // * @see /src/pages/sidebar-blank-page-1.vue
  */
 
 import { ref, watchEffect } from 'vue'

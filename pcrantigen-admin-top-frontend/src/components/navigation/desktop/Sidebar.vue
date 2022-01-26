@@ -44,7 +44,7 @@ const themeClasses = computed(() => {
 <template>
   <div class="main-sidebar" :class="[themeClasses]">
     <div class="sidebar-brand">
-      <RouterLink :to="{ name: 'sidebar-layouts-dashboard' }">
+      <RouterLink :to="{ name: 'sidebar-layouts-admindashboard' }">
         <img src="../../../assets/jvpd.png" alt=""/>
       </RouterLink>
     </div>

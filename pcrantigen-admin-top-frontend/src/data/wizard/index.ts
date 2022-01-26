@@ -65,11 +65,11 @@ export const users = [
     name: 'Jonathan Krugger',
   },
   {
-    picture: '/demo/avatars/21.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     name: 'Elizabeth Fisher',
   },
   {
-    picture: '/demo/avatars/21.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     name: 'Tara Svenson',
   },
 ]

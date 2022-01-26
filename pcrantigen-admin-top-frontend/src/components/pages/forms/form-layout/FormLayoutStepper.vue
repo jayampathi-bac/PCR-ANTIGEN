@@ -28,7 +28,7 @@ const validateStep = async () => {
     await sleep(1000)
 
     router.push({
-      name: 'sidebar-layouts-dashboard',
+      name: 'sidebar-layouts-admindashboard',
     })
     return
   }

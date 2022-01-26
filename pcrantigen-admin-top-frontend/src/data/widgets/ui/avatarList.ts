@@ -6,12 +6,12 @@ export const avatarList = [
   },
   {
     id: 1,
-    picture: '/demo/avatars/7.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     name: 'Alice C.',
   },
   {
     id: 2,
-    picture: '/demo/avatars/8.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     name: 'Erik K.',
   },
 ]
@@ -25,13 +25,13 @@ export const avatarListCreative = [
   },
   {
     id: 1,
-    picture: '/demo/avatars/7.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     name: 'Alice C.',
     color: 'purple',
   },
   {
     id: 2,
-    picture: '/demo/avatars/8.jpg',
+    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     name: 'Erik K.',
     color: 'green',
   },

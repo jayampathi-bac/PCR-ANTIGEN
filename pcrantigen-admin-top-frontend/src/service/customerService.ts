@@ -1,21 +1,19 @@
 import axios from 'axios';
+import {basic_url} from "/@src/utils/basic_config";
+import {useCookies} from "vue3-cookies";
+
+const {cookies} = useCookies();
+// @ts-ignore
+const token = cookies.get('admintop') ? cookies.get('admintop').access_token : null
+
+const config = {headers: {Authorization: "Bearer " +token}}
+// @ts-ignore
 
 export default class CustomerService {
-  getCustomers = () => axios.get(`http://localhost:8080/v1/admin/customer/all`)
+  // getCustomers = (pageId: number) => axios.get(`${basic_url}/v1/admin/customer/all/${pageId}`, config)
+  getCustomers = (pageId: number) => axios.get(`${basic_url}/v1/admin/customer/all/${pageId}`)
     .then((response) => ({
-      data: response.data.data,
-    }));
-
-  postCustomer = (customer: { profile_url: string; password: string; email: string; contact_number: string; name: string; }
-  ) => axios.post(`http://localhost:8080/v1/admin/customer`, {
-    name: customer.name,
-    contact_number: customer.contact_number,
-    email: customer.email,
-    password: customer.password,
-    profile_url: customer.profile_url,
-  })
-    .then((response) => ({
-      data: response,
+      data: response.data,
     }));
 
 }

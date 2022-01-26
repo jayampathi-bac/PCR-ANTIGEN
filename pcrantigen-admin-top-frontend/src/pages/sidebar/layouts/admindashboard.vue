@@ -3,14 +3,14 @@ import { useHead } from '@vueuse/head'
 
 import { pageTitle } from '/@src/state/sidebarLayoutState'
 
-pageTitle.value = 'Banking 2'
+pageTitle.value = 'Admin Dashboard'
 useHead({
-  title: 'Banking 2 - Sidebar - Vuero',
+  title: 'Admin Dashboard',
 })
 </script>
 
 <template>
   <div class="page-content-inner">
-    <BankingDashboardV2 />
+    <admin-top-dashboard/>
   </div>
 </template>

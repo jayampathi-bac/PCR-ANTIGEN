@@ -343,7 +343,7 @@ const activeTab = ref<TabId>('dashboards')
                 <h4 class="column-heading">Sidebars</h4>
                 <ul>
                   <li>
-                    <RouterLink :to="{ name: 'sidebar-blank-page-1' }">
+                    <RouterLink :to="{ name: 'sidebar-layouts-admindashboard' }">
                       <i aria-hidden="true" class="lnil lnil-layout"></i>
                       <span>Regular Sidebar</span>
                       <i
@@ -601,7 +601,7 @@ const activeTab = ref<TabId>('dashboards')
                 <h4 class="column-heading">Wizard</h4>
                 <ul>
                   <li>
-                    <RouterLink :to="{ name: 'wizard-v1' }">
+                    <RouterLink :to="{ name: 'sidebar-layouts-admindashboard' }">
                       <span>Wizard V1</span>
                       <i
                         aria-hidden="true"

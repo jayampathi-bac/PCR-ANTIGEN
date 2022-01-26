@@ -1,13 +1,16 @@
-<template>
-$END$
-</template>
+<script setup lang="ts">
+import { useHead } from '@vueuse/head'
 
-<script>
-export default {
-name: "reports"
-}
+import { pageTitle } from '/@src/state/sidebarLayoutState'
+
+pageTitle.value = 'Reports'
+useHead({
+  title: 'Reports',
+})
 </script>
 
-<style scoped>
-
-</style>
+<template>
+  <div class="page-content-inner">
+    <ReportsList />
+  </div>
+</template>

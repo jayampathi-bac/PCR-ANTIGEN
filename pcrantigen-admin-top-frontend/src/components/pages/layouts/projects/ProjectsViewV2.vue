@@ -98,8 +98,8 @@
             <div class="foot-block">
               <h4 class="heading">Developers</h4>
               <div class="developers">
-                <V-Avatar size="small" picture="/demo/avatars/7.jpg" />
-                <V-Avatar size="small" picture="/demo/avatars/8.jpg" />
+                <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                 <V-Avatar size="small" color="danger" initials="DC" />
               </div>
             </div>
@@ -140,7 +140,7 @@
             <div class="foot-block">
               <h4 class="heading">Developers</h4>
               <div class="developers">
-                <V-Avatar size="small" picture="/demo/avatars/25.jpg" />
+                <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
               </div>
             </div>
             <div class="foot-block">
@@ -180,7 +180,7 @@
             <div class="foot-block">
               <h4 class="heading">Developers</h4>
               <div class="developers">
-                <V-Avatar size="small" picture="/demo/avatars/7.jpg" />
+                <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                 <V-Avatar size="small" picture="/demo/avatars/23.jpg" />
               </div>
             </div>
@@ -263,7 +263,7 @@
             <div class="foot-block">
               <h4 class="heading">Developers</h4>
               <div class="developers">
-                <V-Avatar size="small" picture="/demo/avatars/12.jpg" />
+                <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
               </div>
             </div>
             <div class="foot-block">
@@ -387,7 +387,7 @@
             <div class="foot-block">
               <h4 class="heading">Developers</h4>
               <div class="developers">
-                <V-Avatar size="small" picture="/demo/avatars/25.jpg" />
+                <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                 <V-Avatar size="small" color="info" initials="ET" />
               </div>
             </div>

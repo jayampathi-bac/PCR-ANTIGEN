@@ -4,7 +4,7 @@ export const members = {
     {
       id: 33,
       avatar: '/demo/avatars/33.jpg',
-      badge: '/images/icons/flags/united-states-of-america.svg',
+      badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       username: 'Harvey M.',
       fullName: 'Harvey Miller',
       initials: 'HM',
@@ -15,8 +15,8 @@ export const members = {
     },
     {
       id: 12,
-      avatar: '/demo/avatars/12.jpg',
-      badge: '/images/icons/flags/united-states-of-america.svg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+      badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       username: 'Joshua S.',
       fullName: 'Joshua Stevens',
       initials: 'JS',
@@ -28,7 +28,7 @@ export const members = {
     {
       id: 5,
       avatar: '/demo/avatars/5.jpg',
-      badge: '/images/icons/flags/united-states-of-america.svg',
+      badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       username: 'Mary L.',
       fullName: 'Mary Lebowski',
       initials: 'ML',
@@ -39,8 +39,8 @@ export const members = {
     },
     {
       id: 7,
-      avatar: '/demo/avatars/7.jpg',
-      badge: '/images/icons/flags/united-states-of-america.svg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+      badge: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       username: 'Alice C.',
       fullName: 'Alice Carasca',
       initials: 'AC',
@@ -64,7 +64,7 @@ export const featuredLeft = {
       duration: '01:43',
       author: {
         name: 'Erik K.',
-        avatar: '/demo/avatars/8.jpg',
+        avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
       comments: 2,
     },
@@ -77,7 +77,7 @@ export const featuredLeft = {
       duration: '05:17',
       author: {
         name: 'Alice C.',
-        avatar: '/demo/avatars/7.jpg',
+        avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
       comments: 3,
     },
@@ -90,7 +90,7 @@ export const featuredLeft = {
       duration: '03:12',
       author: {
         name: 'Tara S.',
-        avatar: '/demo/avatars/13.jpg',
+        avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
       comments: 0,
     },
@@ -109,7 +109,7 @@ export const featuredRight = {
       duration: '04:24',
       author: {
         name: 'Joshua S.',
-        avatar: '/demo/avatars/12.jpg',
+        avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
       },
       comments: 5,
     },
@@ -165,7 +165,7 @@ export const feed = [
     duration: '04:24',
     author: {
       name: 'Joshua S.',
-      avatar: '/demo/avatars/12.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     comments: 5,
   },
@@ -204,7 +204,7 @@ export const feed = [
     duration: '03:49',
     author: {
       name: 'Elizabeth F.',
-      avatar: '/demo/avatars/21.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     comments: 11,
   },
@@ -269,7 +269,7 @@ export const feed = [
     duration: '07:16',
     author: {
       name: 'Joshua S.',
-      avatar: '/demo/avatars/12.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     comments: 5,
   },
@@ -282,7 +282,7 @@ export const feed = [
     duration: '11:17',
     author: {
       name: 'Melany W.',
-      avatar: '/demo/avatars/25.jpg',
+      avatar: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
     },
     comments: 12,
   },

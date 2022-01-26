@@ -39,8 +39,8 @@ import { activePanel } from '/@src/state/activePanelState'
 
             <div class="participants-inner">
               <div class="avatar-stack">
-                <V-Avatar picture="/demo/avatars/7.jpg" />
-                <V-Avatar picture="/demo/avatars/8.jpg" />
+                <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                 <V-Avatar picture="/demo/avatars/5.jpg" />
               </div>
 
@@ -97,7 +97,7 @@ import { activePanel } from '/@src/state/activePanelState'
           <h3>Files</h3>
           <div class="task-files">
             <div class="file-box">
-              <img src="/images/icons/files/zip-format.svg" alt="" />
+              <img src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" alt="" />
               <div class="meta">
                 <span>Preliminary Sketches</span>
                 <span
@@ -108,7 +108,7 @@ import { activePanel } from '/@src/state/activePanelState'
               <FileCardDropdown />
             </div>
             <div class="file-box">
-              <img src="/images/icons/files/sheet.svg" alt="" />
+              <img src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" alt="" />
               <div class="meta">
                 <span>Project Budget</span>
                 <span
@@ -119,7 +119,7 @@ import { activePanel } from '/@src/state/activePanelState'
               <FileCardDropdown />
             </div>
             <div class="file-box">
-              <img src="/images/icons/files/video.svg" alt="" />
+              <img src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" alt="" />
               <div class="meta">
                 <span>POC Demo</span>
                 <span
@@ -145,7 +145,7 @@ import { activePanel } from '/@src/state/activePanelState'
             <div class="control is-textarea-addon">
               <div class="start">
                 <div class="avatar-stack">
-                  <V-Avatar size="small" picture="/demo/avatars/8.jpg" />
+                  <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
                 </div>
               </div>
               <div class="end">

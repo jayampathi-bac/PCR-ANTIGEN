@@ -53,12 +53,12 @@ watch([() => route.fullPath, dropdownElement], () => {
 
           <img
             class="placeholder-image light-image"
-            src="/@src/assets/illustrations/components/plugins.svg"
+            src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
             alt=""
           />
           <img
             class="placeholder-image dark-image"
-            src="/@src/assets/illustrations/components/plugins-dark.svg"
+            src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
             alt=""
           />
         </div>
@@ -444,7 +444,7 @@ watch([() => route.fullPath, dropdownElement], () => {
 
               <div class="column-content" data-simplebar="">
                 <RouterLink
-                  :to="{ name: 'sidebar-blank-page-1' }"
+                  :to="{ name: 'sidebar-layouts-admindashboard' }"
                   class="dropdown-item is-media"
                 >
                   <div class="icon">
@@ -710,7 +710,7 @@ watch([() => route.fullPath, dropdownElement], () => {
 
               <div class="column-content">
                 <RouterLink
-                  :to="{ name: 'wizard-v1' }"
+                  :to="{ name: 'sidebar-layouts-admindashboard' }"
                   class="dropdown-item is-media"
                 >
                   <div class="icon">

@@ -11,7 +11,7 @@ import getDashboardData from '/@src/composable/dashboardData'
 const {searchDashboardData, dashboardData, series, customerSeries,testCompletedProportion, dashboardQuickStats} = getDashboardData();
 
 const name = ref(cookies.get('admintop') ? cookies.get('admintop').name : 'John Doe')
-
+const profile_url = ref(cookies.get('admintop') ? cookies.get('admintop').profile_url : 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png')
 onMounted(() => {
   // searchDashboardData();
 })
@@ -23,7 +23,7 @@ onMounted(() => {
     <!--Personal Dashboard V1-->
     <!--Header-->
     <div class="dashboard-header">
-      <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="large"/>
+      <V-Avatar :picture="profile_url" size="large"/>
       <div class="start">
         <h3>Welcome back, {{name}}</h3>
         <p>We're very happy to see you again on your sales admin dashboard.</p>
