@@ -10,8 +10,8 @@ import getDashboardData from '/@src/composable/dashboardData'
 
 const {searchDashboardData, dashboardData, series, customerSeries,testCompletedProportion, dashboardQuickStats} = getDashboardData();
 
-const name = ref(cookies.get('admin2').name)
-
+const name = ref(cookies.get('admin2') ? cookies.get('admin2').name : 'John Doe')
+const profile_url = ref(cookies.get('admin2') ? cookies.get('admin2').profile_url : 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png')
 onMounted(() => {
   searchDashboardData();
 })
@@ -23,7 +23,7 @@ onMounted(() => {
     <!--Personal Dashboard V1-->
     <!--Header-->
     <div class="dashboard-header">
-      <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="large"/>
+      <V-Avatar :picture="profile_url" size="large"/>
       <div class="start">
         <h3>Welcome back, {{name}}</h3>
         <p>We're very happy to see you again on your sales admin dashboard.</p>
@@ -47,7 +47,7 @@ onMounted(() => {
                 <!--Stat-->
                 <div class="quick-stat">
                   <V-Block
-                    :title=dashboardQuickStats.new_customer
+                    :title="dashboardQuickStats.new_customer+''"
                     subtitle="Customers in this "
                     center
                     m-responsive
@@ -67,7 +67,7 @@ onMounted(() => {
                 <!--Stat-->
                 <div class="quick-stat">
                   <V-Block
-                    :title=dashboardQuickStats.test_done_by_month
+                    :title="dashboardQuickStats.test_done_by_month+''"
                     subtitle="Test kits issued"
                     center
                     m-responsive
@@ -89,7 +89,7 @@ onMounted(() => {
                 <!--Stat-->
                 <div class="quick-stat">
                   <V-Block
-                    :title=dashboardQuickStats.total_testkit_brand
+                    :title="dashboardQuickStats.total_testkit_brand+''"
                     subtitle="Total testkit brands"
                     center
                     m-responsive
@@ -110,7 +110,7 @@ onMounted(() => {
                 <!--Stat-->
                 <div class="quick-stat">
                   <V-Block
-                    :title=dashboardQuickStats.all_customers
+                    :title="dashboardQuickStats.all_customers+''"
                     subtitle="All Customers"
                     center
                     m-responsive

@@ -13,8 +13,8 @@ function handleLogOut() {
   router.push({name: "index"})
 };
 
-const name = ref(cookies.get('admin2').name)
-const profile_url = ref(cookies.get('admin2').profile_url)
+const name = ref(store.state.auth.admin2.name)
+const profile_url = ref(store.state.auth.admin2.profile_url)
 </script>
 
 <template>
@@ -25,16 +25,16 @@ const profile_url = ref(cookies.get('admin2').profile_url)
         aria-haspopup="true"
         @click="toggle"
       >
-        <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"/>
+        <V-Avatar :picture="store.state.auth.admin2.profile_url"/>
       </a>
     </template>
 
     <template #content>
       <div class="dropdown-head">
-        <V-Avatar size="large" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"/>
+        <V-Avatar size="large" :picture="store.state.auth.admin2.profile_url"/>
 
         <div class="meta">
-          <span>{{ name }}</span>
+          <span>{{ store.state.auth.admin2.name }}</span>
           <!--          <span>Product Manager</span>-->
         </div>
       </div>

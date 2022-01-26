@@ -4,9 +4,9 @@ import {useCookies} from "vue3-cookies";
 
 const {cookies} = useCookies();
 // @ts-ignore
-// const config = {headers: {Authorization: "Bearer " + cookies.get('admin2').access_token}}
-// // @ts-ignore
-// const branch_id = cookies.get('admin2').branch_id
+const config = {headers: {Authorization: "Bearer " + cookies.get('admin2').access_token}}
+// @ts-ignore
+const branch_id = cookies.get('admin2').branch_id
 
 export default class UserService {
 
@@ -16,8 +16,8 @@ export default class UserService {
     address: company.address,
     contact_number: company.contact_number,
     profile_url: company.profile_url,
-    branch_id: cookies.get('admin2').branch_id,
-  }, {headers: {Authorization: "Bearer " + cookies.get('admin2').access_token}})
+    branch_id: branch_id,
+  }, config)
     .then((response) => ({
       data: response.data,
     }));
@@ -27,7 +27,7 @@ export default class UserService {
     current_password: user.current_password,
     new_password: user.new_password,
     contact_number: user.contact_number
-  }, {headers: {Authorization: "Bearer " + cookies.get('admin2').access_token}})
+  }, config)
     .then((response) => ({
       data: response.data,
     }));

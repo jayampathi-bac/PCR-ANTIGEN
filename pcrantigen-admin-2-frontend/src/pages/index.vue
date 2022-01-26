@@ -23,14 +23,29 @@ const handleLogin = async () => {
       store.dispatch("auth/login", {
         username: userName1.value,
         password: ups.value
-      }).then(() => {
+      }).then((response) => {
+          console.log("resp resp",response)
           isLoading.value = false
           router.push({ name: 'sidebar-layouts-dashboard' })
           // console.log('hrere hrer',store.state.auth.admin2)
           notif.success(`Welcome ${store.state.auth.admin2.name} .!`)
         },
         (error) => {
-          notif.warning('Incorrect credentials.! Please try again..!')
+          // console.log("eror",error.response)
+          // if (error.response.data.error_description){
+          //
+          //   notif.warning(error.response.data.error_description )
+          // }else{
+          //   notif.warning(error)
+          // }
+          if(error.response !== undefined){
+            error.response.data.error_description === "Bad credentials" ? notif.warning('Invalid username or password..!'):
+              error.response.data.error_description === "Time in not Valid period" ? notif.warning('Not Within Valid Time Period..!'):
+                error.response.data.error_description === "Account Not Found" ? notif.warning('User Account Not Found..!'):
+                  notif.warning('Something went wrong!')
+          }else{
+            notif.warning('Connection was interrupted!')
+          }
           isLoading.value = false
         }
       );

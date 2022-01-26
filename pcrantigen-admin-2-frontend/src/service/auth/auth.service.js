@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useCookies } from "vue3-cookies";
+import {useCookies} from "vue3-cookies";
 import {basic_url} from "/@src/utils/basic_config";
 
 const { cookies } = useCookies();
@@ -24,6 +24,9 @@ class AuthService {
               branch_id:response.data.branch.branch_id ,
               address:response.data.branch.address,
               group_id:response.data.branch.group_id,
+              start_time:response.data.login.start_time,
+              end_time:response.data.login.end_time,
+              period_of_use:response.data.login.period_of_use,
             };
             admin2Store = {
               name:response.data.branch.company_name,
@@ -32,6 +35,9 @@ class AuthService {
               branch_id:response.data.branch.branch_id ,
               address:response.data.branch.address,
               group_id:response.data.branch.group_id,
+              start_time:response.data.login.start_time,
+              end_time:response.data.login.end_time,
+              period_of_use:response.data.login.period_of_use,
             };
             cookies.set("admin2",admin2,60 * 60 * 24 * 1);
             console.log("name cookie",cookies.get('admin2').name)
@@ -39,11 +45,9 @@ class AuthService {
           return admin2Store;
         })
     }
-
-
-    logout() {
-      cookies.remove("admin2");
-    }
+  logout() {
+    cookies.remove("admin2");
+  }
 }
 
 export default new AuthService();

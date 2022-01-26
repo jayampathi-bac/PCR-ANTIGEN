@@ -24,6 +24,7 @@ const skillsOptions = [
   {value: 'saas', label: 'SaaS'},
   {value: 'engineering', label: 'Engineering'},
 ]
+const image_in_base64 = ref();
 
 const notyf = useNotyf()
 const {y} = useWindowScroll()
@@ -32,12 +33,25 @@ const isScrolling = computed(() => {
   return y.value > 30
 })
 
+const getBase64 = (file: any) => {
+  console.log("basing")
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function () {
+    console.log(reader.result);
+    image_in_base64.value = reader.result;
+  };
+  reader.onerror = function (error) {
+    console.log('Error: ', error);
+  };
+}
+
 const onAddFile = (error: any, file: any) => {
   if (error) {
     console.error(error)
     return
   }
-
+  getBase64(file.file)
   console.log('file added', file)
 }
 
@@ -77,7 +91,7 @@ const onSave = async () => {
     company_name: name.value,
     contact_number: contact_number.value,
     address: address.value,
-    profile_url: profile_picture_url.value
+    profile_url: image_in_base64.value
   }
   userService.editUserProfile(data)
     .then(function (response) {
@@ -86,14 +100,15 @@ const onSave = async () => {
         swal.fire('Saving Successful!', '', 'success')
         store.dispatch("auth/updateUser", {
           name: name.value,
-          address: address.value
+          address: address.value,
+          profile_url:response.data.data.profile_url ,
         })
         const user = {
           name: name.value,
           contact: contact_number.value,
           address: address.value,
           access_token: cookies.get('admin2').access_token,
-          profile_url: profile_picture_url.value,
+          profile_url: response.data.data.profile_url,
         };
         cookies.set("admin2", user, 60 * 60 * 24 * 3);
         isLoading.value = false
@@ -109,7 +124,6 @@ const onSave = async () => {
 }
 
 onBeforeMount(() => {
-  const userToken = cookies.get('admin2').access_token
   name.value = cookies.get('admin2').name
   contact_number.value = cookies.get('admin2').contact
   address.value = cookies.get('admin2').address
@@ -246,7 +260,7 @@ onBeforeMount(() => {
                 <input
                   type="text"
                   class="input"
-                  placeholder="EAddress"
+                  placeholder="Address"
                   autocomplete="address"
                   v-model="address"
                 />

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import * as NProgress from 'nprogress'
-
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
 /**
  * routes are generated using vite-plugin-pages
  * each .vue files located in the ./src/pages are registered as a route
@@ -48,9 +49,31 @@ const router = createRouter({
 /**
  * Handle NProgress display on page changes
  */
-router.beforeEach(() => {
+// router.beforeEach(() => {
+//   NProgress.start()
+// })
+
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/','/auth/forget'];
+  const authRequired = !publicPages.includes(to.path);
+  // const loggedIn = localStorage.getItem('user');
+  // let checkingLoginAndTime = cookies.isKey("admin2") ? checkTimeService.checkTimeDuration() : false
+  let checkingLoginAndTime = cookies.isKey("admin2")
+  // const loggedIn = cookies.get('admin2') && checking;
   NProgress.start()
+  // console.log("checkTimeDuration",checkTimeService.checkTimeDuration())
+  if (authRequired && !checkingLoginAndTime) {
+    console.log("Hi cj")
+    next({ name: 'index' })
+  }
+  else {
+    console.log("else")
+    next()
+  }
 })
+
+
+
 router.afterEach(() => {
   NProgress.done()
 })

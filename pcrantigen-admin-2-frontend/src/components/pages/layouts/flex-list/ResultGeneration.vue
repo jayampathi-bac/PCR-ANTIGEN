@@ -55,12 +55,6 @@ const resultOptions = [
 ]
 
 const selectedBrand = ref(0)
-const brandOptions = ref([
-  {value: '1', label: 'Batman'},
-  {value: '2', label: 'Robin'},
-  {value: '3', label: 'Joker'},
-])
-
 
 const loadSendResult = (customer: string) => {
   sendResutlsModelOpen.value = true
@@ -76,6 +70,7 @@ const issueResult = () => {
       showCancelButton: true,
       confirmButtonText: 'Send',
     }).then((result) => {
+      console.log("testing negative",testResult.value)
       console.log("result", result)
       if (result.isConfirmed) {
         resultService.generateResult({
@@ -89,7 +84,7 @@ const issueResult = () => {
         }).then(function (response) {
           console.log('response', response)
           if (response.data.success) {
-            callingWebSocket2(selected_customer.value.customer_contact)
+            callingWebSocket2(selected_customer.value.customer_contact, "COMPLETE")
             // resultService.updateAvailableLogStatus({
             //   contact_number: selected_customer.value.customer_contact,
             //   status: 'COMPLETE',
@@ -171,7 +166,22 @@ const voidCustomer = (customer: object) => {
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      callingWebSocket2(customer.customer_contact)
+      resultService.generateResult({
+        contact_number: selectedCustomerVoid.value.customer_contact,
+        script_image_url: '',
+        user_image_url: '',
+        test_result: 2,
+        record_state: 0,
+        testkit_id: 1,
+        branch_id: cookies.get('admin2').branch_id
+      }).then(function (response) {
+        if (response.data.success) {
+          callingWebSocket2(customer.customer_contact, "INCOMPLETE")
+        }else {
+          notif.warning('Something went wrong..!')
+        }
+      })
+
       // resultService.updateAvailableLogStatus({
       //   contact_number: customer.customer_contact,
       //   status: 'INCOMPLETE',
@@ -198,7 +208,7 @@ let connection = null
 let connection2 = null
 
 //websocket connection 2
-const callingWebSocket2 = (contact) => {
+const callingWebSocket2 = (contact: any, state: string) => {
   console.log("Starting connection to WebSocket Server 2")
   connection2 = new WebSocket(socket_url2)
 
@@ -225,7 +235,7 @@ const callingWebSocket2 = (contact) => {
     // console.log("contact number here here here",contact)
     // console.log("contact number here here here",JSON.stringify({'contact_number': contact, "status": "INCOMPLETE", "branch_id":cookies.get('admin2').branch_id}))
     // setInterval(() => connection.send(JSON.stringify({ event: "ping" })), 10000);
-    connection2.send(JSON.stringify({'contact_number': contact, "status": "INCOMPLETE", "branch_id":cookies.get('admin2').branch_id}));
+    connection2.send(JSON.stringify({'contact_number': contact, "status": state, "branch_id":cookies.get('admin2').branch_id}));
   }
 
   // contact_number: customer.customer_contact,

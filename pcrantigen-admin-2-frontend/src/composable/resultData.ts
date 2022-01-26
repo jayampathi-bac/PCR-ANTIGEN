@@ -29,13 +29,14 @@ const getResults = () => {
   const searchAllBrandsToResults = () => {
     console.log("searching brands")
     resultService.getBrandsByBranch().then(function (result){
+      console.log("brands",result)
       // brands.value = result.data;
       for (let brand of result.data) {
         brands.value.push({
           // @ts-ignore
           'value' : brand.id,
           // @ts-ignore
-          'label' : brand.brand_name
+          'label' : brand.brand_name + ` - `+brand.brand_company_name
         })
       }
     }).catch((e: any) => {

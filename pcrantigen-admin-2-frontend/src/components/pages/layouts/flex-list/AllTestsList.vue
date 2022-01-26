@@ -409,7 +409,6 @@ onMounted(() => {
 @import '../../../../scss/abstracts/_variables.scss';
 @import '../../../../scss/abstracts/_mixins.scss';
 
-
 .columns {
   .column {
     height: fit-content;

@@ -1,7 +1,21 @@
 <script setup lang="ts">
-import {customersOptions} from '/@src/data/dashboards/personal-v1/customersChart'
-import {teamGaugeOptions} from '/@src/data/dashboards/personal-v1/teamGaugeChart'
-import {profitChartOptions} from '/@src/data/dashboards/personal-v1/profitChart'
+import {resultOptions} from '/@src/data/charts/resultsChart'
+import {testCompletedChartOptions} from '/@src/data/charts/testCompletedChart'
+import {customerChartOptions} from '/@src/data/charts/customersChart'
+import {useCookies} from "vue3-cookies";
+import {onMounted, ref} from "vue";
+const {cookies} = useCookies();
+
+import getDashboardData from '/@src/composable/dashboardData'
+
+const {searchDashboardData, dashboardData, series, customerSeries,testCompletedProportion, dashboardQuickStats} = getDashboardData();
+
+const name = ref(cookies.get('admintop') ? cookies.get('admintop').name : 'John Doe')
+
+onMounted(() => {
+  // searchDashboardData();
+})
+
 </script>
 
 <template>
@@ -11,8 +25,8 @@ import {profitChartOptions} from '/@src/data/dashboards/personal-v1/profitChart'
     <div class="dashboard-header">
       <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="large"/>
       <div class="start">
-        <h3>Welcome back, Chamod Jayamopathi</h3>
-        <p>We're very happy to see you again on your personal dashboard.</p>
+        <h3>Welcome back, {{name}}</h3>
+        <p>We're very happy to see you again on your sales admin dashboard.</p>
       </div>
 <!--      <div class="end">-->
 <!--        <V-Button dark="3">View Reports</V-Button>-->
@@ -33,8 +47,28 @@ import {profitChartOptions} from '/@src/data/dashboards/personal-v1/profitChart'
                 <!--Stat-->
                 <div class="quick-stat">
                   <V-Block
-                    title="2,870"
-                    subtitle="Test kits issued in this month"
+                    :title=dashboardQuickStats.new_customer
+                    subtitle="Customers in this "
+                    center
+                    m-responsive
+                    t-responsive
+                  >
+                    <template #icon>
+                      <V-IconBox color="orange" rounded>
+                        <i
+                          aria-hidden="true"
+                          class="iconify"
+                          data-icon="feather:user-check"
+                        ></i>
+                      </V-IconBox>
+                    </template>
+                  </V-Block>
+                </div>
+                <!--Stat-->
+                <div class="quick-stat">
+                  <V-Block
+                    :title=dashboardQuickStats.test_done_by_month
+                    subtitle="Test kits issued"
                     center
                     m-responsive
                     t-responsive
@@ -43,7 +77,30 @@ import {profitChartOptions} from '/@src/data/dashboards/personal-v1/profitChart'
                       <V-IconBox color="purple" rounded>
                         <i
                           aria-hidden="true"
-                          class="lnil lnil-analytics-alt-1"
+                          class="iconify"
+                          data-icon="feather:layers"
+                        ></i>
+                      </V-IconBox>
+                    </template>
+                  </V-Block>
+                </div>
+
+
+                <!--Stat-->
+                <div class="quick-stat">
+                  <V-Block
+                    :title=dashboardQuickStats.total_testkit_brand
+                    subtitle="Total testkit brands"
+                    center
+                    m-responsive
+                    t-responsive
+                  >
+                    <template #icon>
+                      <V-IconBox color="green" rounded>
+                        <i
+                          aria-hidden="true"
+                          class="iconify"
+                          data-icon="feather:pocket"
                         ></i>
                       </V-IconBox>
                     </template>
@@ -53,49 +110,19 @@ import {profitChartOptions} from '/@src/data/dashboards/personal-v1/profitChart'
                 <!--Stat-->
                 <div class="quick-stat">
                   <V-Block
-                    title="3313"
-                    subtitle="Customers in this month"
-                    center
-                    m-responsive
-                    t-responsive
-                  >
-                    <template #icon>
-                      <V-IconBox color="orange" rounded>
-                        <i aria-hidden="true" class="lnil lnil-syringe"></i>
-                      </V-IconBox>
-                    </template>
-                  </V-Block>
-                </div>
-
-                <!--Stat-->
-                <div class="quick-stat">
-                  <V-Block
-                    title="$398,49"
-                    subtitle="Brands issues in this month"
-                    center
-                    m-responsive
-                    t-responsive
-                  >
-                    <template #icon>
-                      <V-IconBox color="green" rounded>
-                        <i aria-hidden="true" class="lnil lnil-diamond-alt"></i>
-                      </V-IconBox>
-                    </template>
-                  </V-Block>
-                </div>
-
-                <!--Stat-->
-                <div class="quick-stat">
-                  <V-Block
-                    title="$6542,31"
-                    subtitle="Total balance"
+                    :title=dashboardQuickStats.all_customers
+                    subtitle="All Customers"
                     center
                     m-responsive
                     t-responsive
                   >
                     <template #icon>
                       <V-IconBox color="info" rounded>
-                        <i aria-hidden="true" class="lnil lnil-bank"></i>
+                        <i
+                          aria-hidden="true"
+                          class="iconify"
+                          data-icon="feather:users"
+                        ></i>
                       </V-IconBox>
                     </template>
                   </V-Block>
@@ -108,11 +135,47 @@ import {profitChartOptions} from '/@src/data/dashboards/personal-v1/profitChart'
         <!--Card-->
         <div class="column is-6">
           <div class="dashboard-card">
+             <apexchart
+              :height="resultOptions.chart.height"
+              :type="resultOptions.chart.type"
+              :series="series"
+              :options="resultOptions"
+            >
+            </apexchart>
+          </div>
+        </div>
+
+
+
+        <!--Card-->
+        <div class="column is-6 pb-2">
+          <div class="dashboard-card is-gauge">
+            <div class="people">
+              <V-Avatar picture="https://icon-library.com/images/completed-icon/completed-icon-6.jpg"/>
+<!--              <V-Avatar initials="SC" color="h-purple" />-->
+              <div class="m-1">
+                <VIconWrap icon="feather:x" color="danger" />
+              </div>
+              <V-Avatar picture="https://icon-library.com/images/145e4ee39c.svg.svg"/>
+            </div>
             <apexchart
-              :height="customersOptions.chart.height"
-              :type="customersOptions.chart.type"
-              :series="customersOptions.series"
-              :options="customersOptions"
+              :height="testCompletedChartOptions.chart.height"
+              :type="testCompletedChartOptions.chart.type"
+              :series="testCompletedProportion"
+              :options="testCompletedChartOptions"
+            >
+            </apexchart>
+          </div>
+        </div>
+
+        <!--Card-->
+        <div class="column is-6">
+          <div class="dashboard-card">
+            <apexchart
+              :height="customerChartOptions.chart.height"
+              :type="customerChartOptions.chart.type"
+              :series="customerSeries"
+              :options="customerChartOptions"
             >
             </apexchart>
           </div>
@@ -120,66 +183,21 @@ import {profitChartOptions} from '/@src/data/dashboards/personal-v1/profitChart'
 
         <!--Card-->
 <!--        <div class="column is-4">-->
-<!--          <div class="dashboard-card is-upgrade">-->
-<!--            <i aria-hidden="true" class="lnil lnil-crown-alt-1"></i>-->
-<!--            <div class="cta-content">-->
-<!--              <h4>Hey Erik, you're doing great.</h4>-->
-<!--              <p class="white-text">-->
-<!--                Start using our team and project management tools-->
-<!--              </p>-->
-<!--              <a class="link inverted-text">Learn More</a>-->
+<!--          <div class="dashboard-card is-gauge">-->
+<!--            <div class="people">-->
+<!--              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"/>-->
+<!--              <V-Avatar initials="SC" color="h-purple"/>-->
+<!--              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"/>-->
 <!--            </div>-->
+<!--            <apexchart-->
+<!--              :height="teamGaugeOptions.chart.height"-->
+<!--              :type="teamGaugeOptions.chart.type"-->
+<!--              :series="teamGaugeOptions.series"-->
+<!--              :options="teamGaugeOptions"-->
+<!--            >-->
+<!--            </apexchart>-->
 <!--          </div>-->
 <!--        </div>-->
-
-        <!--Card-->
-        <div class="column is-4">
-          <div class="dashboard-card is-gauge">
-            <div class="people">
-              <V-Avatar picture="/demo/avatars/21.jpg"/>
-              <V-Avatar initials="SC" color="h-purple"/>
-              <V-Avatar picture="/demo/avatars/39.jpg"/>
-            </div>
-            <apexchart
-              :height="teamGaugeOptions.chart.height"
-              :type="teamGaugeOptions.chart.type"
-              :series="teamGaugeOptions.series"
-              :options="teamGaugeOptions"
-            >
-            </apexchart>
-          </div>
-        </div>
-
-        <!--Card-->
-        <div class="column is-4">
-          <div class="dashboard-card">
-            <apexchart
-              :height="profitChartOptions.chart.height"
-              :type="profitChartOptions.chart.type"
-              :series="profitChartOptions.series"
-              :options="profitChartOptions"
-            >
-            </apexchart>
-          </div>
-        </div>
-
-        <!--Card-->
-        <div class="column is-4">
-          <div class="dashboard-card is-gauge">
-            <div class="people">
-              <V-Avatar picture="/demo/avatars/21.jpg"/>
-              <V-Avatar initials="SC" color="h-purple"/>
-              <V-Avatar picture="/demo/avatars/39.jpg"/>
-            </div>
-            <apexchart
-              :height="teamGaugeOptions.chart.height"
-              :type="teamGaugeOptions.chart.type"
-              :series="teamGaugeOptions.series"
-              :options="teamGaugeOptions"
-            >
-            </apexchart>
-          </div>
-        </div>
       </div>
     </div>
   </div>
