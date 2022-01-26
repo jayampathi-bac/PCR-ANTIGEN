@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useWindowScroll } from '@vueuse/core'
-import {computed, onBeforeMount, ref} from 'vue'
+import {computed, onBeforeMount, onMounted, ref} from 'vue'
 import useNotyf from '/@src/composable/useNotyf'
 import sleep from '/@src/utils/sleep'
 import {useStore} from 'vuex'
 import axios from "axios";
 import { useCookies } from "vue3-cookies";
-import {basic_url} from "/@src/utils/basic_config";
+import {basic_url,ip_address_for_image} from "/@src/utils/basic_config";
 
 const { cookies } = useCookies();
 const store = useStore()
@@ -30,6 +30,50 @@ const isScrolling = computed(() => {
   return y.value > 30
 })
 
+const image_in_base64 = ref();
+const image_file = ref();
+const image = ref();
+
+function getBase64(file) {
+  console.log("basing")
+  var reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function () {
+    console.log(reader.result);
+    image_in_base64.value = reader.result;
+    dataURItoBlob(reader.result)
+  };
+  reader.onerror = function (error) {
+    console.log('Error: ', error);
+  };
+}
+
+
+const dataURItoBlob = (dataURI) => {
+  // convert base64 to raw binary data held in a string
+  // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+  const byteString = atob(dataURI.split(',')[1]);
+
+  // separate out the mime component
+  const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+  // write the bytes of the string to an ArrayBuffer
+  const ab = new ArrayBuffer(byteString.length);
+
+  // create a view into the buffer
+  const ia = new Uint8Array(ab);
+
+  // set the bytes of the buffer to the correct values
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+
+  // write the ArrayBuffer to a blob, and you're done
+  const blob = new Blob([ab], {type: mimeString});
+  image_file.value = blob;
+}
+
+
 const onAddFile = (error: any, file: any) => {
   if (error) {
     console.error(error)
@@ -37,7 +81,11 @@ const onAddFile = (error: any, file: any) => {
   }
 
   console.log('file added', file)
+  getBase64(file.file)
 }
+
+
+
 const onRemoveFile = (error: any, file: any) => {
   if (error) {
     console.error(error)
@@ -47,34 +95,50 @@ const onRemoveFile = (error: any, file: any) => {
   console.log('file removed', file)
 }
 const name = ref(store.state.auth.user.name);
-const contact_number = ref(store.state.auth.user.contact_number);
+const contact_number = ref(store.state.auth.user.contact);
 const email = ref(store.state.auth.user.email);
-const profile_picture_url = ref(store.state.auth.user.profile_url ? store.state.auth.user.profile_url : "https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png");
+const profile_picture_url = ref(store.state.auth.user.profile_url ? store.state.auth.user.profile_url : "https://resource.jvpdtest.com/User.png");
+
+
 
 const onSave = async () => {
   isLoading.value = true
 
   if (name.value && email.value) {
-    let data = {name: name.value, contact_number: contact_number.value, email: email.value, profile_picture_url : profile_picture_url.value}
-    let config = {headers: {Authorization: "Bearer " + cookies.get('user').access_token}}
-    const res = await axios.put(`${basic_url}/v1/customer`,data, config);
+    let data = {name: name.value, contact_number: contact_number.value, email: email.value, profile_url : image_in_base64.value ? image_in_base64.value : ''}
+    let formData = new FormData();
+    formData.append("name",name.value);
+    formData.append("contact_number",contact_number.value);
+    formData.append("email",email.value);
+    // formData.append("profile_url",image_file.value, contact_number.value+'.jpg');
+    formData.append("profile_url",image_in_base64.value);
+
+
+    let config = {
+      headers: {
+        Authorization: "Bearer " + cookies.get('user').access_token,
+      }}
+    const res = await axios.post(`${basic_url}/v1/customer/post`,data, config);
     // console.log("updating response : ",res)
     if (res.data.success){
+      console.log("response ",res)
       notyf.success('Your changes have been successfully saved!')
       store.dispatch("auth/updateUser", {
         name: name.value,
-        email: email.value
+        email: email.value,
+        profile_url: res.data.data.profile_url,
       })
       const user = {
         name:name.value,
-        contact:contact_number.value,
+        contact_number:contact_number.value,
         email:email.value ,
         access_token:cookies.get('user').access_token ,
-        profile_url:profile_picture_url.value ,
+        profile_url:res.data.data.profile_url ,
       };
       cookies.set("user",user,60 * 60 * 24 * 3);
     }else{
-      notyf.warning('Please try again!')
+      console.log("response ",res)
+      notyf.warning(res.data.message)
     }
   }else{
     notyf.warning('Fields are empty..!')
@@ -86,9 +150,12 @@ const onSave = async () => {
 onBeforeMount(() => {
   const userToken = cookies.get('user').access_token
   name.value = cookies.get('user').name
-  contact_number.value = cookies.get('user').contact
+  contact_number.value =  cookies.get('user').contact_number
   email.value = cookies.get('user').email
-  profile_picture_url.value = cookies.get('user').profile_url
+  profile_picture_url.value = store.getters['auth/getUser'].name
+})
+onMounted( () => {
+  console.log("store", store.getters['auth/getUser'].profile_url)
 })
 </script>
 
@@ -134,7 +201,7 @@ onBeforeMount(() => {
             <img
               v-if="!isUploading"
               class="avatar"
-              src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+              :src="store.getters['auth/getUser'] ? store.getters['auth/getUser'].profile_url : 'https://resource.jvpdtest.com/User.png'"
               alt=""
               @error.once="
                 $event.target.src = 'https://via.placeholder.com/150x150'

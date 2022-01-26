@@ -3,7 +3,7 @@
     <div class="profile-header has-text-centered">
       <V-Avatar
         size="xl"
-        picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+        picture="https://resource.jvpdtest.com/User.png"
         badge=""
       />
 
@@ -217,9 +217,9 @@
                     </div>
                     <div class="people">
                       <V-Avatar size="small" initials="BT" color="warning" />
-                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
                       <V-Avatar size="small" initials="JD" color="info" />
-                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
                       <V-Avatar size="small" initials="38" />
                     </div>
                   </div>
@@ -233,10 +233,10 @@
                       <span>4 years of experience</span>
                     </div>
                     <div class="people">
-                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
                       <V-Avatar size="small" initials="AT" color="success" />
-                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
-                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
+                      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
                       <V-Avatar size="small" initials="27" />
                     </div>
                   </div>
@@ -250,10 +250,10 @@
                       <span>10+ years of experience</span>
                     </div>
                     <div class="people">
-                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
-                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
+                      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
                       <V-Avatar size="small" initials="SC" color="h-purple" />
-                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
                       <V-Avatar size="small" initials="19" />
                     </div>
                   </div>
@@ -267,10 +267,10 @@
                       <span>10+ years of experience</span>
                     </div>
                     <div class="people">
-                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
                       <V-Avatar size="small" initials="SC" color="h-purple" />
-                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
-                      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
+                      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
                       <V-Avatar size="small" initials="31" />
                     </div>
                   </div>
@@ -297,7 +297,7 @@
                   <div class="recommendations-item">
                     <V-Avatar
                       size="large"
-                      picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                      picture="https://resource.jvpdtest.com/User.png"
                       badge=""
                     />
                     <h3 class="dark-inverted">Project Manager</h3>
@@ -316,7 +316,7 @@
                   <div class="recommendations-item">
                     <V-Avatar
                       size="large"
-                      picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                      picture="https://resource.jvpdtest.com/User.png"
                       badge=""
                     />
 
@@ -423,7 +423,7 @@
                   <!--People-->
                   <a href="#" class="people-item">
                     <V-Avatar
-                      picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                      picture="https://resource.jvpdtest.com/User.png"
                       badge="/images/icons/stacks/js.svg"
                     />
 
@@ -436,7 +436,7 @@
                   <!--People-->
                   <a href="#" class="people-item">
                     <V-Avatar
-                      picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                      picture="https://resource.jvpdtest.com/User.png"
                       badge="/images/icons/stacks/python.svg"
                     />
 
@@ -449,7 +449,7 @@
                   <!--People-->
                   <a href="#" class="people-item">
                     <V-Avatar
-                      picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                      picture="https://resource.jvpdtest.com/User.png"
                       badge="/images/icons/stacks/vuejs.svg"
                     />
 
@@ -462,7 +462,7 @@
                   <!--People-->
                   <a href="#" class="people-item">
                     <V-Avatar
-                      picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                      picture="https://resource.jvpdtest.com/User.png"
                       badge="/images/icons/stacks/angular.svg"
                     />
 
@@ -475,7 +475,7 @@
                   <!--People-->
                   <a href="#" class="people-item">
                     <V-Avatar
-                      picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                      picture="https://resource.jvpdtest.com/User.png"
                       badge="/images/icons/stacks/cplus.svg"
                     />
 

@@ -182,7 +182,7 @@ const isStuck = computed(() => {
                         interactive
                         placement="top-start"
                       >
-                        <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                        <V-Avatar picture="https://resource.jvpdtest.com/User.png" />
                         <template #content>
                           <UserPopoverContent :user="popovers.user8" />
                         </template>
@@ -204,7 +204,7 @@ const isStuck = computed(() => {
                         interactive
                         placement="top-start"
                       >
-                        <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                        <V-Avatar picture="https://resource.jvpdtest.com/User.png" />
                         <template #content>
                           <UserPopoverContent :user="popovers.user18" />
                         </template>
@@ -226,7 +226,7 @@ const isStuck = computed(() => {
                         interactive
                         placement="top-start"
                       >
-                        <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                        <V-Avatar picture="https://resource.jvpdtest.com/User.png" />
                         <template #content>
                           <UserPopoverContent :user="popovers.user7" />
                         </template>
@@ -373,27 +373,27 @@ const isStuck = computed(() => {
                         {
                           name: 'Erik K.',
                           value: 'eric',
-                          icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+                          icon: 'https://resource.jvpdtest.com/User.png',
                         },
                         {
                           name: 'Joshua S.',
                           value: 'joshua',
-                          icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+                          icon: 'https://resource.jvpdtest.com/User.png',
                         },
                         {
                           name: 'Melany W.',
                           value: 'melany',
-                          icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+                          icon: 'https://resource.jvpdtest.com/User.png',
                         },
                         {
                           name: 'Alice C.',
                           value: 'alice',
-                          icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+                          icon: 'https://resource.jvpdtest.com/User.png',
                         },
                         {
                           name: 'Esteban C.',
                           value: 'esteban',
-                          icon: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+                          icon: 'https://resource.jvpdtest.com/User.png',
                         },
                       ]"
                     >

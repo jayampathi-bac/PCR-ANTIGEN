@@ -20,6 +20,9 @@ export const authModule = {
     getters: {
       getContactNo: state => {
         return state.user.contact
+      },
+      getUser: state => {
+        return state.user
       }
     },
     actions: {

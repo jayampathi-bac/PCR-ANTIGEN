@@ -12,7 +12,7 @@
           <div class="content-wrap">
             <div class="content-box">
               <div class="status"></div>
-              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+              <V-Avatar picture="https://resource.jvpdtest.com/User.png" />
 
               <div class="box-text">
                 <div class="meta-text">
@@ -24,7 +24,7 @@
                 </div>
               </div>
               <div class="box-end">
-                <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
               </div>
             </div>
           </div>
@@ -39,7 +39,7 @@
           <div class="content-wrap">
             <div class="content-box">
               <div class="status"></div>
-              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+              <V-Avatar picture="https://resource.jvpdtest.com/User.png" />
 
               <div class="box-text">
                 <div class="meta-text">
@@ -63,7 +63,7 @@
           <div class="content-wrap">
             <div class="content-box">
               <div class="status"></div>
-              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+              <V-Avatar picture="https://resource.jvpdtest.com/User.png" />
 
               <div class="box-text">
                 <div class="meta-text">
@@ -76,7 +76,7 @@
               </div>
               <div class="box-end">
                 <V-Avatar size="small" color="warning" initials="BT" />
-                <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
                 <V-Avatar size="small" color="info" initials="JD" />
               </div>
             </div>
@@ -92,7 +92,7 @@
           <div class="content-wrap">
             <div class="content-box">
               <div class="status"></div>
-              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+              <V-Avatar picture="https://resource.jvpdtest.com/User.png" />
 
               <div class="box-text">
                 <div class="meta-text">
@@ -119,7 +119,7 @@
           <div class="content-wrap">
             <div class="content-box">
               <div class="status"></div>
-              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+              <V-Avatar picture="https://resource.jvpdtest.com/User.png" />
 
               <div class="box-text">
                 <div class="meta-text">
@@ -155,7 +155,7 @@
           <div class="content-wrap">
             <div class="content-box">
               <div class="status"></div>
-              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+              <V-Avatar picture="https://resource.jvpdtest.com/User.png" />
 
               <div class="box-text">
                 <div class="meta-text">
@@ -167,7 +167,7 @@
                 </div>
               </div>
               <div class="box-end">
-                <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
               </div>
             </div>
           </div>
@@ -182,7 +182,7 @@
           <div class="content-wrap">
             <div class="content-box">
               <div class="status"></div>
-              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+              <V-Avatar picture="https://resource.jvpdtest.com/User.png" />
 
               <div class="box-text">
                 <div class="meta-text">
@@ -206,7 +206,7 @@
           <div class="content-wrap">
             <div class="content-box">
               <div class="status"></div>
-              <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+              <V-Avatar picture="https://resource.jvpdtest.com/User.png" />
 
               <div class="box-text">
                 <div class="meta-text">

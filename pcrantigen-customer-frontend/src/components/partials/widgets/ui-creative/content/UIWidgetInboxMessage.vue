@@ -15,7 +15,7 @@ defineProps({
   picture: {
     type: String,
     required: true,
-    default: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    default: 'https://resource.jvpdtest.com/User.png',
   },
   time: {
     type: String,

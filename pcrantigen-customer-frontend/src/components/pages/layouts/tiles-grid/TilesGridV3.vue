@@ -101,7 +101,7 @@ const optionsSingle = [
                   </p>
                 </div>
                 <div class="tile-meta">
-                  <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="small" />
+                  <V-Avatar picture="https://resource.jvpdtest.com/User.png" size="small" />
                   <div class="meta-inner">
                     <span class="dark-inverted" data-filter-match>
                       Alejandro B.</span
@@ -134,7 +134,7 @@ const optionsSingle = [
                   </p>
                 </div>
                 <div class="tile-meta">
-                  <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="small" />
+                  <V-Avatar picture="https://resource.jvpdtest.com/User.png" size="small" />
                   <div class="meta-inner">
                     <span class="dark-inverted" data-filter-match>
                       Hilde V.</span
@@ -167,7 +167,7 @@ const optionsSingle = [
                   </p>
                 </div>
                 <div class="tile-meta">
-                  <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="small" />
+                  <V-Avatar picture="https://resource.jvpdtest.com/User.png" size="small" />
                   <div class="meta-inner">
                     <span class="dark-inverted" data-filter-match>
                       Sandrine C.</span
@@ -206,7 +206,7 @@ const optionsSingle = [
                       </p>
                     </div>
                     <div class="tile-meta">
-                      <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="small" />
+                      <V-Avatar picture="https://resource.jvpdtest.com/User.png" size="small" />
                       <div class="meta-inner">
                         <span class="dark-inverted" data-filter-match>
                           Carmen E.</span
@@ -238,7 +238,7 @@ const optionsSingle = [
                       </p>
                     </div>
                     <div class="tile-meta">
-                      <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="small" />
+                      <V-Avatar picture="https://resource.jvpdtest.com/User.png" size="small" />
                       <div class="meta-inner">
                         <span class="dark-inverted" data-filter-match>
                           Henry G.</span
@@ -271,7 +271,7 @@ const optionsSingle = [
                       </p>
                     </div>
                     <div class="tile-meta">
-                      <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="small" />
+                      <V-Avatar picture="https://resource.jvpdtest.com/User.png" size="small" />
                       <div class="meta-inner">
                         <span class="dark-inverted" data-filter-match>
                           Jimmy H.</span
@@ -309,7 +309,7 @@ const optionsSingle = [
                     </p>
                   </div>
                   <div class="tile-meta">
-                    <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="small" />
+                    <V-Avatar picture="https://resource.jvpdtest.com/User.png" size="small" />
                     <div class="meta-inner">
                       <span class="dark-inverted" data-filter-match>
                         Jason G.</span
@@ -347,7 +347,7 @@ const optionsSingle = [
                   </p>
                 </div>
                 <div class="tile-meta">
-                  <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="small" />
+                  <V-Avatar picture="https://resource.jvpdtest.com/User.png" size="small" />
                   <div class="meta-inner">
                     <span class="dark-inverted" data-filter-match>
                       Courtney W.</span
@@ -383,7 +383,7 @@ const optionsSingle = [
                   </p>
                 </div>
                 <div class="tile-meta">
-                  <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="small" />
+                  <V-Avatar picture="https://resource.jvpdtest.com/User.png" size="small" />
                   <div class="meta-inner">
                     <span class="dark-inverted" data-filter-match>Erik K.</span>
                     <span>2 days ago</span>
@@ -414,7 +414,7 @@ const optionsSingle = [
                   </p>
                 </div>
                 <div class="tile-meta">
-                  <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="small" />
+                  <V-Avatar picture="https://resource.jvpdtest.com/User.png" size="small" />
                   <div class="meta-inner">
                     <span class="dark-inverted" data-filter-match>
                       Jeanne M.</span
@@ -450,7 +450,7 @@ const optionsSingle = [
                   </p>
                 </div>
                 <div class="tile-meta">
-                  <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="small" />
+                  <V-Avatar picture="https://resource.jvpdtest.com/User.png" size="small" />
                   <div class="meta-inner">
                     <span class="dark-inverted" data-filter-match>Ana B.</span>
                     <span>3 days ago</span>
@@ -481,7 +481,7 @@ const optionsSingle = [
                   </p>
                 </div>
                 <div class="tile-meta">
-                  <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="small" />
+                  <V-Avatar picture="https://resource.jvpdtest.com/User.png" size="small" />
                   <div class="meta-inner">
                     <span class="dark-inverted" data-filter-match>
                       Greta K.</span
@@ -514,7 +514,7 @@ const optionsSingle = [
                   </p>
                 </div>
                 <div class="tile-meta">
-                  <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="small" />
+                  <V-Avatar picture="https://resource.jvpdtest.com/User.png" size="small" />
                   <div class="meta-inner">
                     <span class="dark-inverted" data-filter-match>
                       Harvey M.</span

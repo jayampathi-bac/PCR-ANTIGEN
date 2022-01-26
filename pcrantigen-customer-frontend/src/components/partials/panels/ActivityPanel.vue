@@ -52,7 +52,7 @@ const activeTab = ref<TabId>('team')
             <!--Team Member-->
             <div class="team-card">
               <V-Avatar
-                picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                picture="https://resource.jvpdtest.com/User.png"
                 badge=""
               />
 
@@ -79,7 +79,7 @@ const activeTab = ref<TabId>('team')
             <!--Team Member-->
             <div class="team-card">
               <V-Avatar
-                picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                picture="https://resource.jvpdtest.com/User.png"
                 badge=""
               />
 
@@ -106,7 +106,7 @@ const activeTab = ref<TabId>('team')
             <!--Team Member-->
             <div class="team-card">
               <V-Avatar
-                picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                picture="https://resource.jvpdtest.com/User.png"
                 badge=""
               />
 
@@ -133,7 +133,7 @@ const activeTab = ref<TabId>('team')
             <!--Team Member-->
             <div class="team-card">
               <V-Avatar
-                picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                picture="https://resource.jvpdtest.com/User.png"
                 badge=""
               />
 
@@ -198,9 +198,9 @@ const activeTab = ref<TabId>('team')
 <!--                  <span>5 / 24</span>-->
 
 <!--                  <div class="avatar-stack">-->
-<!--                    <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />-->
-<!--                    <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />-->
-<!--                    <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />-->
+<!--                    <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />-->
+<!--                    <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />-->
+<!--                    <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />-->
 <!--                  </div>-->
 <!--                </div>-->
 <!--              </div>-->

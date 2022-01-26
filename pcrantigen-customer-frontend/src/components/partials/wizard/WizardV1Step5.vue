@@ -107,7 +107,7 @@ watchEffect(() => {
       <div class="project-team-header">
         <V-Avatar
           size="big"
-          picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+          picture="https://resource.jvpdtest.com/User.png"
           badge=""
         />
         <h3 class="title is-4 is-narrow is-thin">Erik Kovalsky</h3>

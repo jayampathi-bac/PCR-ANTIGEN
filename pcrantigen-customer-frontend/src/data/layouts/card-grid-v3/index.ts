@@ -19,7 +19,7 @@ export const projects = [
       },
       {
         id: 18,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Esteban C.',
         initials: 'EC',
         color: 'h-purple',
@@ -33,7 +33,7 @@ export const projects = [
       },
       {
         id: 7,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Alice C.',
         initials: 'AC',
         color: 'success',
@@ -53,7 +53,7 @@ export const projects = [
     team: [
       {
         id: 21,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Elizabet F.',
         initials: 'EF',
         color: 'warning',
@@ -67,7 +67,7 @@ export const projects = [
       },
       {
         id: 39,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Alejandro B.',
         initials: 'AB',
         color: 'danger',
@@ -87,7 +87,7 @@ export const projects = [
     team: [
       {
         id: 21,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Elizabet F.',
         initials: 'EF',
         color: 'warning',
@@ -101,7 +101,7 @@ export const projects = [
       },
       {
         id: 39,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Alejandro B.',
         initials: 'AB',
         color: 'danger',
@@ -121,14 +121,14 @@ export const projects = [
     team: [
       {
         id: 28,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Edouard F.',
         initials: 'EF',
         color: 'info',
       },
       {
         id: 33,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Harvey M.',
         initials: 'HM',
         color: 'warning',
@@ -155,7 +155,7 @@ export const projects = [
       },
       {
         id: 23,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Irina V.',
         initials: 'IV',
         color: 'danger',
@@ -182,7 +182,7 @@ export const projects = [
       },
       {
         id: 18,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Esteban C.',
         initials: 'EC',
         color: 'h-purple',
@@ -216,7 +216,7 @@ export const projects = [
       },
       {
         id: 27,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Carmen E.',
         initials: 'CE',
         color: 'info',
@@ -243,7 +243,7 @@ export const projects = [
       },
       {
         id: 27,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Carmen E.',
         initials: 'CE',
         color: 'info',
@@ -270,7 +270,7 @@ export const projects = [
       },
       {
         id: 23,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Irina V.',
         initials: 'IV',
         color: 'danger',
@@ -297,7 +297,7 @@ export const projects = [
       },
       {
         id: 23,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Irina V.',
         initials: 'IV',
         color: 'danger',
@@ -324,7 +324,7 @@ export const projects = [
       },
       {
         id: 18,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Esteban C.',
         initials: 'EC',
         color: 'h-purple',
@@ -338,7 +338,7 @@ export const projects = [
       },
       {
         id: 7,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Alice C.',
         initials: 'AC',
         color: 'success',
@@ -358,7 +358,7 @@ export const projects = [
     team: [
       {
         id: 21,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Elizabet F.',
         initials: 'EF',
         color: 'warning',
@@ -372,7 +372,7 @@ export const projects = [
       },
       {
         id: 39,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Alejandro B.',
         initials: 'AB',
         color: 'danger',
@@ -399,7 +399,7 @@ export const projects = [
       },
       {
         id: 31,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Yasseen A.',
         initials: 'YA',
         color: 'h-purple',
@@ -419,14 +419,14 @@ export const projects = [
     team: [
       {
         id: 33,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Harvey M.',
         initials: 'HM',
         color: 'warning',
       },
       {
         id: 26,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Courtney W.',
         initials: 'CW',
         color: 'info',
@@ -446,7 +446,7 @@ export const projects = [
     team: [
       {
         id: 21,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Elizabet F.',
         initials: 'EF',
         color: 'warning',
@@ -460,7 +460,7 @@ export const projects = [
       },
       {
         id: 39,
-        picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+        picture: 'https://resource.jvpdtest.com/User.png',
         name: 'Alejandro B.',
         initials: 'AB',
         color: 'danger',

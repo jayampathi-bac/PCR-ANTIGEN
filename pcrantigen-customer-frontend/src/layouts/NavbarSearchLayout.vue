@@ -38,19 +38,19 @@ const filteredData = computed(() => {
 const users = [
   {
     id: 5,
-    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    picture: 'https://resource.jvpdtest.com/User.png',
     initials: 'JS',
     color: 'info',
   },
   {
     id: 22,
-    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    picture: 'https://resource.jvpdtest.com/User.png',
     initials: 'JH',
     color: 'info',
   },
   {
     id: 40,
-    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    picture: 'https://resource.jvpdtest.com/User.png',
     initials: 'SM',
     color: 'h-purple',
   },

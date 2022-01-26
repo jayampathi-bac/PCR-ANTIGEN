@@ -18,7 +18,7 @@ class AuthService {
             // localStorage.setItem('contact',JSON.stringify(response.data.contact_number));
             const user = {
               name:response.data.name,
-              contact:response.data.contact_number,
+              contact_number:response.data.contact_number,
               email:response.data.email ,
               access_token:response.data.access_token ,
               profile_url:response.data.profile_url ,
@@ -31,7 +31,7 @@ class AuthService {
     }
 
     logout() {
-        localStorage.removeItem('user');
+      cookies.remove("user");
     }
 }
 

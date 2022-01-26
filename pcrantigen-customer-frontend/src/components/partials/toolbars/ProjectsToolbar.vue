@@ -8,12 +8,12 @@
     </div>
 
     <div class="avatar-stack">
-      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
-      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
-      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
-      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
-      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
-      <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
+      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
+      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
+      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
+      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
+      <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
     </div>
 
     <a class="button v-button is-primary is-raised is-bold">

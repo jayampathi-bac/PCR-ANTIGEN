@@ -6,15 +6,15 @@
         aria-haspopup="true"
         @click="toggle"
       >
-        <V-Avatar :picture="profile_url ? profile_url : 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png'" />
+        <V-Avatar :picture="store.state.auth.user ? store.state.auth.user.profile_url : ''" />
       </a>
     </template>
 
     <template #content>
       <div class="dropdown-head">
-        <V-Avatar size="large" :picture="profile_url"/>
+        <V-Avatar size="large" :picture="store.state.auth.user ? store.state.auth.user.profile_url : ''"/>
         <div class="meta">
-          <span>{{ username }}</span>
+          <span>{{ store.state.auth.user ? store.state.auth.user.name : '' }}</span>
           <span></span>
         </div>
       </div>
@@ -94,6 +94,6 @@ function handleLogOut(){
   router.push({ name: "index" })
 };
 
-const username = ref(cookies.get('user').name)
-const profile_url = ref(cookies.get('user').profile_url)
+const username = ref(store.state.auth.user.name)
+const profile_url = ref(store.state.auth.user.profile_url)
 </script>

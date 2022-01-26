@@ -114,8 +114,8 @@ const filterProjects = ref(0)
                 <V-AvatarStack
                   size="small"
                   :avatars="[
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
                   ]"
                 />
 
@@ -150,15 +150,15 @@ const filterProjects = ref(0)
                 <V-AvatarStack
                   size="small"
                   :avatars="[
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
                     { color: 'info', initials: 'JD' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
                   ]"
                 />
 
@@ -193,7 +193,7 @@ const filterProjects = ref(0)
               <div class="item-people">
                 <V-AvatarStack
                   size="small"
-                  :avatars="[{ picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' }]"
+                  :avatars="[{ picture: 'https://resource.jvpdtest.com/User.png' }]"
                 />
 
                 <span class="label">1 week left</span>
@@ -227,11 +227,11 @@ const filterProjects = ref(0)
                 <V-AvatarStack
                   size="small"
                   :avatars="[
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
                   ]"
                 />
 
@@ -266,10 +266,10 @@ const filterProjects = ref(0)
                 <V-AvatarStack
                   size="small"
                   :avatars="[
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
                   ]"
                 />
 
@@ -305,8 +305,8 @@ const filterProjects = ref(0)
                 <V-AvatarStack
                   size="small"
                   :avatars="[
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
                   ]"
                 />
 
@@ -341,10 +341,10 @@ const filterProjects = ref(0)
                 <V-AvatarStack
                   size="small"
                   :avatars="[
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
                   ]"
                 />
 
@@ -379,9 +379,9 @@ const filterProjects = ref(0)
                 <V-AvatarStack
                   size="small"
                   :avatars="[
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
                   ]"
                 />
 
@@ -416,9 +416,9 @@ const filterProjects = ref(0)
                 <V-AvatarStack
                   size="small"
                   :avatars="[
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                    { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
+                    { picture: 'https://resource.jvpdtest.com/User.png' },
                   ]"
                 />
 

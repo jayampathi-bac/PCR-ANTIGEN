@@ -121,7 +121,7 @@ const filteredData = computed(() => {
                   :offset="[0, 10]"
                   placement="top-start"
                 >
-                  <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                  <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
                   <template #content>
                     <UserPopoverContent :user="popovers.user7" />
                   </template>
@@ -137,7 +137,7 @@ const filteredData = computed(() => {
                   :offset="[0, 10]"
                   placement="top-start"
                 >
-                  <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                  <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
                   <template #content>
                     <UserPopoverContent :user="popovers.user13" />
                   </template>
@@ -153,7 +153,7 @@ const filteredData = computed(() => {
                   :offset="[0, 10]"
                   placement="top-start"
                 >
-                  <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                  <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
                   <template #content>
                     <UserPopoverContent :user="popovers.user22" />
                   </template>

@@ -26,7 +26,7 @@ import { products } from '/@src/data/widgets/ui/productList'
 
       <!--Widget-->
       <ContactWidget
-        picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+        picture="https://resource.jvpdtest.com/User.png"
         username="Erik K."
         email="erikkovalsky@vuero.io"
         company="Vuero Ltd."
@@ -107,7 +107,7 @@ import { products } from '/@src/data/widgets/ui/productList'
 
       <!--Widget-->
       <ContactWidget
-        picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+        picture="https://resource.jvpdtest.com/User.png"
         username="Erik K."
         email="erikkovalsky@vuero.io"
         company="Vuero Ltd."
@@ -146,7 +146,7 @@ import { products } from '/@src/data/widgets/ui/productList'
       <!--Widget-->
       <CallWidget
         picture="/@src/assets/illustrations/widgets/6.svg"
-        badge="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+        badge="https://resource.jvpdtest.com/User.png"
         username="Alice"
       />
 

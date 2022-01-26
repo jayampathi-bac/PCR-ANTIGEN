@@ -35,7 +35,7 @@ const dropdown2 = useDropdown(dropdownElement2)
     <div class="header-area">
       <img
         class="sender-pic"
-        src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+        src="https://resource.jvpdtest.com/User.png"
         alt=""
         @error.once="$event.target.src = 'https://via.placeholder.com/150x150'"
       />
@@ -195,7 +195,7 @@ const dropdown2 = useDropdown(dropdownElement2)
         <div class="reply-bubble">
           <div class="reply-as">
             <img
-              src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+              src="https://resource.jvpdtest.com/User.png"
               alt=""
               @error.once="
                 $event.target.src = 'https://via.placeholder.com/150x150'

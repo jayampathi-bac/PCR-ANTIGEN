@@ -136,11 +136,11 @@
                 size="small"
                 :limit="3"
                 :avatars="[
-                  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                  { picture: 'https://resource.jvpdtest.com/User.png' },
                   { color: 'info', initials: 'JD' },
-                  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                  { picture: 'https://resource.jvpdtest.com/User.png' },
+                  { picture: 'https://resource.jvpdtest.com/User.png' },
+                  { picture: 'https://resource.jvpdtest.com/User.png' },
                 ]"
               />
             </div>
@@ -195,7 +195,7 @@
                 size="small"
                 :avatars="[
                   { color: 'success', initials: 'BT' },
-                  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                  { picture: 'https://resource.jvpdtest.com/User.png' },
                 ]"
               />
             </div>
@@ -222,7 +222,7 @@
               <V-AvatarStack
                 class="is-pushed-mobile"
                 size="small"
-                :avatars="[{ picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' }]"
+                :avatars="[{ picture: 'https://resource.jvpdtest.com/User.png' }]"
               />
             </div>
             <div class="flex-table-cell cell-end" data-th="Actions">
@@ -249,9 +249,9 @@
                 class="is-pushed-mobile"
                 size="small"
                 :avatars="[
-                  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                  { picture: 'https://resource.jvpdtest.com/User.png' },
+                  { picture: 'https://resource.jvpdtest.com/User.png' },
+                  { picture: 'https://resource.jvpdtest.com/User.png' },
                 ]"
               />
             </div>

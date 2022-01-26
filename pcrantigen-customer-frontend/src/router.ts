@@ -58,7 +58,6 @@ router.beforeEach((to, from, next) => {
   const loggedIn = cookies.get('user');
   NProgress.start()
   if (authRequired && !loggedIn) {
-    console.log("Hi cj")
     next({ name: 'index' })
   }
   else {

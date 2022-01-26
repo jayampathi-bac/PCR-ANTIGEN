@@ -69,7 +69,7 @@ const dropdown = useDropdown(dropdownElement)
                     <img
                       class="user-photo"
                       alt=""
-                      src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                      src="https://resource.jvpdtest.com/User.png"
                       @error.once="
                         $event.target.src =
                           'https://via.placeholder.com/150x150'
@@ -90,7 +90,7 @@ const dropdown = useDropdown(dropdownElement)
                     <img
                       class="user-photo"
                       alt=""
-                      src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                      src="https://resource.jvpdtest.com/User.png"
                       @error.once="
                         $event.target.src =
                           'https://via.placeholder.com/150x150'
@@ -111,7 +111,7 @@ const dropdown = useDropdown(dropdownElement)
                     <img
                       class="user-photo"
                       alt=""
-                      src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                      src="https://resource.jvpdtest.com/User.png"
                       @error.once="
                         $event.target.src =
                           'https://via.placeholder.com/150x150'
@@ -132,7 +132,7 @@ const dropdown = useDropdown(dropdownElement)
                     <img
                       class="user-photo"
                       alt=""
-                      src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+                      src="https://resource.jvpdtest.com/User.png"
                       @error.once="
                         $event.target.src =
                           'https://via.placeholder.com/150x150'

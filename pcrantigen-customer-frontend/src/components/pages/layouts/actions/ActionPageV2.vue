@@ -32,7 +32,7 @@ const accept = async () => {
           <div class="box-content">
             <V-Avatar
               size="big"
-              picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+              picture="https://resource.jvpdtest.com/User.png"
               badge="https://www.pngarts.com//apps/9.png"
             />
 
@@ -54,7 +54,7 @@ const accept = async () => {
             <div class="people-wrap">
               <div class="people">
                 <tippy class="has-help-cursor" interactive placement="bottom">
-                  <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                  <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
                   <template #content>
                     <UserPopoverContent :user="popovers.user21" />
                   </template>
@@ -68,7 +68,7 @@ const accept = async () => {
                 </tippy>
 
                 <tippy class="has-help-cursor" interactive placement="bottom">
-                  <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                  <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
                   <template #content>
                     <UserPopoverContent :user="popovers.user39" />
                   </template>

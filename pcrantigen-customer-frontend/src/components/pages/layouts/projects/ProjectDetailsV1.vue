@@ -6,13 +6,13 @@ import { activePanel } from '/@src/state/activePanelState'
 const filterTasks = ref(0)
 
 const participants = [
-  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-  { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+  { picture: 'https://resource.jvpdtest.com/User.png' },
+  { picture: 'https://resource.jvpdtest.com/User.png' },
+  { picture: 'https://resource.jvpdtest.com/User.png' },
+  { picture: 'https://resource.jvpdtest.com/User.png' },
+  { picture: 'https://resource.jvpdtest.com/User.png' },
+  { picture: 'https://resource.jvpdtest.com/User.png' },
+  { picture: 'https://resource.jvpdtest.com/User.png' },
 ]
 
 const props = defineProps({
@@ -295,7 +295,7 @@ const props = defineProps({
               <div class="column is-6 has-border-bottom">
                 <V-Block center title="Alice C." subtitle="Software Engineer">
                   <template #icon>
-                    <V-Avatar size="medium" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                    <V-Avatar size="medium" picture="https://resource.jvpdtest.com/User.png" />
                   </template>
 
                   <template #action>
@@ -313,7 +313,7 @@ const props = defineProps({
               <div class="column is-6 has-border-bottom">
                 <V-Block center title="Anna B." subtitle="UX Designer">
                   <template #icon>
-                    <V-Avatar size="medium" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                    <V-Avatar size="medium" picture="https://resource.jvpdtest.com/User.png" />
                   </template>
 
                   <template #action>
@@ -331,7 +331,7 @@ const props = defineProps({
               <div class="column is-6 has-border-bottom">
                 <V-Block center title="Joshua S." subtitle="Backend Developer">
                   <template #icon>
-                    <V-Avatar size="medium" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                    <V-Avatar size="medium" picture="https://resource.jvpdtest.com/User.png" />
                   </template>
 
                   <template #action>
@@ -349,7 +349,7 @@ const props = defineProps({
               <div class="column is-6 has-border-bottom">
                 <V-Block center title="Erik K." subtitle="Product Manager">
                   <template #icon>
-                    <V-Avatar size="medium" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                    <V-Avatar size="medium" picture="https://resource.jvpdtest.com/User.png" />
                   </template>
 
                   <template #action>
@@ -367,7 +367,7 @@ const props = defineProps({
               <div class="column is-6 has-border-bottom">
                 <V-Block center title="Melany W." subtitle="Web Developer">
                   <template #icon>
-                    <V-Avatar size="medium" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                    <V-Avatar size="medium" picture="https://resource.jvpdtest.com/User.png" />
                   </template>
 
                   <template #action>
@@ -385,7 +385,7 @@ const props = defineProps({
               <div class="column is-6 has-border-bottom">
                 <V-Block center title="Tara S." subtitle="UI/UX Designer">
                   <template #icon>
-                    <V-Avatar size="medium" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                    <V-Avatar size="medium" picture="https://resource.jvpdtest.com/User.png" />
                   </template>
 
                   <template #action>
@@ -403,7 +403,7 @@ const props = defineProps({
               <div class="column is-6">
                 <V-Block center title="Esteban C." subtitle="UI/UX Designer">
                   <template #icon>
-                    <V-Avatar size="medium" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                    <V-Avatar size="medium" picture="https://resource.jvpdtest.com/User.png" />
                   </template>
 
                   <template #action>
@@ -421,7 +421,7 @@ const props = defineProps({
               <div class="column is-6">
                 <V-Block center title="Mary L." subtitle="Project Manager">
                   <template #icon>
-                    <V-Avatar size="medium" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                    <V-Avatar size="medium" picture="https://resource.jvpdtest.com/User.png" />
                   </template>
 
                   <template #action>
@@ -474,9 +474,9 @@ const props = defineProps({
                       <V-AvatarStack
                         size="small"
                         :avatars="[
-                          { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                          { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                          { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                          { picture: 'https://resource.jvpdtest.com/User.png' },
+                          { picture: 'https://resource.jvpdtest.com/User.png' },
+                          { picture: 'https://resource.jvpdtest.com/User.png' },
                         ]"
                       />
                       <div class="attachments">
@@ -503,7 +503,7 @@ const props = defineProps({
                     <div class="left">
                       <V-AvatarStack
                         size="small"
-                        :avatars="[{ picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' }]"
+                        :avatars="[{ picture: 'https://resource.jvpdtest.com/User.png' }]"
                       />
                       <div class="attachments">
                         <i aria-hidden="true" class="lnil lnil-paperclip"></i>
@@ -529,7 +529,7 @@ const props = defineProps({
                     <div class="left">
                       <V-AvatarStack
                         size="small"
-                        :avatars="[{ picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' }]"
+                        :avatars="[{ picture: 'https://resource.jvpdtest.com/User.png' }]"
                       />
                       <div class="attachments">
                         <i aria-hidden="true" class="lnil lnil-paperclip"></i>
@@ -556,8 +556,8 @@ const props = defineProps({
                       <V-AvatarStack
                         size="small"
                         :avatars="[
-                          { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                          { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                          { picture: 'https://resource.jvpdtest.com/User.png' },
+                          { picture: 'https://resource.jvpdtest.com/User.png' },
                         ]"
                       />
                       <div class="attachments">
@@ -584,7 +584,7 @@ const props = defineProps({
                     <div class="left">
                       <V-AvatarStack
                         size="small"
-                        :avatars="[{ picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' }]"
+                        :avatars="[{ picture: 'https://resource.jvpdtest.com/User.png' }]"
                       />
                       <div class="attachments">
                         <i aria-hidden="true" class="lnil lnil-paperclip"></i>
@@ -611,8 +611,8 @@ const props = defineProps({
                       <V-AvatarStack
                         size="small"
                         :avatars="[
-                          { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                          { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                          { picture: 'https://resource.jvpdtest.com/User.png' },
+                          { picture: 'https://resource.jvpdtest.com/User.png' },
                         ]"
                       />
                       <div class="attachments">
@@ -640,8 +640,8 @@ const props = defineProps({
                       <V-AvatarStack
                         size="small"
                         :avatars="[
-                          { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                          { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                          { picture: 'https://resource.jvpdtest.com/User.png' },
+                          { picture: 'https://resource.jvpdtest.com/User.png' },
                         ]"
                       />
                       <div class="attachments">
@@ -669,8 +669,8 @@ const props = defineProps({
                       <V-AvatarStack
                         size="small"
                         :avatars="[
-                          { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
-                          { picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png' },
+                          { picture: 'https://resource.jvpdtest.com/User.png' },
+                          { picture: 'https://resource.jvpdtest.com/User.png' },
                         ]"
                       />
                       <div class="attachments">

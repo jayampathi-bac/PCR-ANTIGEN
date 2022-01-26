@@ -39,9 +39,9 @@ import { activePanel } from '/@src/state/activePanelState'
 
             <div class="participants-inner">
               <div class="avatar-stack">
-                <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
-                <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
-                <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                <V-Avatar picture="https://resource.jvpdtest.com/User.png" />
+                <V-Avatar picture="https://resource.jvpdtest.com/User.png" />
+                <V-Avatar picture="https://resource.jvpdtest.com/User.png" />
               </div>
 
               <button>
@@ -145,7 +145,7 @@ import { activePanel } from '/@src/state/activePanelState'
             <div class="control is-textarea-addon">
               <div class="start">
                 <div class="avatar-stack">
-                  <V-Avatar size="small" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />
+                  <V-Avatar size="small" picture="https://resource.jvpdtest.com/User.png" />
                 </div>
               </div>
               <div class="end">

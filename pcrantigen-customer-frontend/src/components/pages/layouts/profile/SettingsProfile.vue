@@ -3,7 +3,7 @@
     <div class="profile-header has-text-centered">
       <V-Avatar
         size="xl"
-        picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+        picture="https://resource.jvpdtest.com/User.png"
         badge=""
       />
 

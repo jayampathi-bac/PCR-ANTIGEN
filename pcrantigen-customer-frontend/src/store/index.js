@@ -13,7 +13,7 @@ const store = createStore({
   getters: {
     getBranchID: state => {
       return state.branch_id
-    }
+    },
   },
   modules: {
     auth: authModule,

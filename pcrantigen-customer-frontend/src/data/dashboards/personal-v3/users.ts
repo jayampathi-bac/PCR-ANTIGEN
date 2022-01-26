@@ -1,19 +1,19 @@
 export const userStack = [
   {
     id: 5,
-    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    picture: 'https://resource.jvpdtest.com/User.png',
     initials: 'ML',
     color: 'info',
   },
   {
     id: 18,
-    picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    picture: 'https://resource.jvpdtest.com/User.png',
     initials: 'EC',
     color: 'warning',
   },
   {
     id: 26,
-    // picture: 'https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png',
+    // picture: 'https://resource.jvpdtest.com/User.png',
     initials: 'CW',
     color: 'h-purple',
   },

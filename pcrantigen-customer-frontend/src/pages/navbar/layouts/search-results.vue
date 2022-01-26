@@ -5,7 +5,7 @@ import { pageTitle } from '/@src/state/navbarLayoutState'
 import {defineProps, ref, toRefs} from "vue";
 pageTitle.value = 'Search Results'
 useHead({
-  title: 'Search Results - Navbar - Vuero',
+  title: 'Search Results - Navbar',
 })
 </script>
 

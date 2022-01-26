@@ -2,9 +2,6 @@
 import {defineProps, onMounted, ref, toRefs} from 'vue'
 import axios from "axios";
 import {useStore} from 'vuex'
-import GeneratedCard from "/@src/components/GeneratedCard.vue";
-import html2canvas from 'html2canvas';
-import IDCardGenerator from "/@src/components/IDCardGenerator.vue";
 import { useCookies } from "vue3-cookies";
 import {basic_url} from "/@src/utils/basic_config";
 
@@ -13,6 +10,8 @@ const { cookies } = useCookies();
 const store = useStore()
 
 const centeredActionsOpen = ref(false)
+
+const save_idcard = ref(0)
 
 
 let result = ref(null)
@@ -35,7 +34,7 @@ const formData = ref({
 
 async function getData() {
   let userToken = cookies.get('user').access_token;
-  let contact = cookies.get('user').contact;
+  let contact = cookies.get('user').contact_number;
   const res = await axios
     .get(`${basic_url}/v1/test/${contact}`, {headers: {Authorization: "Bearer " + userToken}})
     .then(response => {
@@ -58,18 +57,6 @@ onMounted(async () => {
   getData();
 })
 
-async function generateCard() {
-  // console.log("Button clicked");
-  const canvas = await html2canvas(document.getElementById("generatedIdCard"));
-  canvas.style.display = "none";
-  document.body.appendChild(canvas);
-  const image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-  const a = document.createElement("a");
-  a.setAttribute("download", `TestResultID.png`);
-  a.setAttribute("href", image);
-  a.click();
-}
-
 </script>
 
 <template>
@@ -87,13 +74,13 @@ async function generateCard() {
             <!--            <img src="./src/assets/id.png" alt="">-->
 <!--            <generated-card :formData="formData"/>-->
 <!--            <i-d-card-generator :formData="formData"/>-->
-            <result-i-d-card/>
+            <result-i-d-card :foo="save_idcard"/>
           </div>
         </template>
         <template #action>
-          <VButton color="primary" raised @click="generateCard()"> PNG</VButton>
-          <VButton color="primary" raised> PDF</VButton>
-          <VButton color="primary" raised> PRINT</VButton>
+          <VButton color="primary" raised @click="save_idcard = 1"> PNG</VButton>
+          <VButton color="primary" raised @click="save_idcard = 2"> PDF</VButton>
+          <VButton color="primary" raised @click="save_idcard = 3"> PRINT</VButton>
         </template>
       </V-Modal>
     </div>
