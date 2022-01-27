@@ -242,7 +242,7 @@ onMounted(async () => {
                 <div class="flex-table-cell is-grow" data-th="Contact Number">
                   <span class="light-text">{{ customer.contact_number }}</span>
                 </div>
-                <div class="flex-table-cell  is-grow cell-end" data-th="Actions">
+                <div class="flex-table-cell  is-grow cell-end" data-th="Branch Name">
                   <span class="light-text">{{ customer.branch_name }}</span>
                 </div>
               </div>

@@ -135,15 +135,15 @@ watch(
             ></i>
           </RouterLink>
         </li>
-        <li>
-          <RouterLink :to="{ name: 'sidebar-layouts-results' }">
-            <i
-              aria-hidden="true"
-              class="iconify"
-              data-icon="feather:activity"
-            ></i>
-          </RouterLink>
-        </li>
+<!--        <li>-->
+<!--          <RouterLink :to="{ name: 'sidebar-layouts-results' }">-->
+<!--            <i-->
+<!--              aria-hidden="true"-->
+<!--              class="iconify"-->
+<!--              data-icon="feather:activity"-->
+<!--            ></i>-->
+<!--          </RouterLink>-->
+<!--        </li>-->
         <li>
           <RouterLink :to="{ name: 'sidebar-layouts-customers' }">
             <i
@@ -293,7 +293,7 @@ watch(
 <!--            ></i>-->
 <!--          </RouterLink>-->
 <!--        </li>-->
-        <!-- Components -->
+        <!-- reports-list -->
         <li>
           <a
             :class="[activeMobileSubsidebar === 'reports-list' && 'is-active']"

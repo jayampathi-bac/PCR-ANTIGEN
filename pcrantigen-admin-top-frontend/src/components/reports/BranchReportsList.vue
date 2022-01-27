@@ -82,7 +82,7 @@ onMounted(async () => {
       <div class="s-card mb-5">
         <div class="columns is-multiline">
           <div class="column is-6">
-            <div class=" ">
+            <div class=" mt-5">
               <V-Field>
                 <V-Control>
                   <Multiselect

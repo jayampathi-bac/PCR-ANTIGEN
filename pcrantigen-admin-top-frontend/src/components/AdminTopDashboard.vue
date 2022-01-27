@@ -169,7 +169,7 @@ onMounted(() => {
                     </div>
                     <div class="monthly-summary-item">
                       <span>Negative</span>
-                      <span class="is-expense">{{ dashboardData.positive_test_result_count }}</span>
+                      <span class="is-expense">{{ dashboardData.negative_test_result_count }}</span>
                     </div>
                   </div>
                 </div>

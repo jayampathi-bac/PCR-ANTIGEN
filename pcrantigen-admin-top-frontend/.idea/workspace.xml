@@ -2,32 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c0548c6-4aa0-4240-9656-b01354080f4a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/layouts/mobile-subsidebars/ReportsMobileSubsidebar.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/sidebar-subsidebar/ReportsSubSideBar.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/sidebar/layouts/reports-list/branches.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/sidebar/layouts/reports-list/customer.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/sidebar/layouts/reports-list/tests.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/CaptureTestImage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/CaptureTestImage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admintopdist.rar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ReportsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReportsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/BranchesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/BranchesList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adimntopdist.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdminTopDashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminTopDashboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/CustomersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/CustomersList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/reports/BranchReportsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reports/BranchReportsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/reports/CustomerReportsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reports/CustomerReportsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/reports/TestReportsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reports/TestReportsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/composable/reports/branchReportsData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/composable/reports/branchReportsData.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/composable/reports/customerReportsData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/composable/reports/customerReportsData.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/SidebarLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/SidebarLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/customer dist.rar" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/customer dist.rar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/ResultIDCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/ResultIDCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/pages/layouts/search/FacetSearch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/pages/layouts/search/FacetSearch.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +84,7 @@
       <workItem from="1643237652928" duration="309000" />
       <workItem from="1643238163681" duration="611000" />
       <workItem from="1643274112805" duration="12378000" />
-      <workItem from="1643288890334" duration="4656000" />
+      <workItem from="1643288890334" duration="7241000" />
     </task>
     <servers />
   </component>
@@ -129,6 +110,12 @@
           <url>file://$PROJECT_DIR$/src/layouts/SidebarLayout.vue</url>
           <line>282</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/layouts/SidebarLayout.vue</url>
+          <line>119</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
