@@ -27,7 +27,7 @@ export default class CustomerService {
       .get(`${basic_url}/v1/test/${contact}`, config)
       .then(response => {
         console.log("getCustomerIDCard response : ", response)
-        return response.data.data;
+        return response.data;
       });
   }
 

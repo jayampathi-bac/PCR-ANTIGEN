@@ -22,18 +22,20 @@ const test_result = ref("Negative （-）")
 const test_done_at = ref("2022/01/02 - 17:25 PM")
 const test_validity = ref("2022/01/02 - 2022/01/02")
 const contact_number = ref(store.state.auth.user.contact_number);
+const isIdCardAvailable = ref(false)
 
 async function getData() {
   customerService.getCustomerIDCard(contact_number.value)
     .then(function (response) {
-      console.log('response', response)
-      test_done_at.value = response.created_at
-      brand_name.value = response.brand_name
-      test_validity.value = response.validity
+      isIdCardAvailable.value = !!response.success
+      console.log('response --------', response)
+      test_done_at.value = response.data.created_at
+      brand_name.value = response.data.brand_name
+      test_validity.value = response.data.validity
       // profile_url.value = response.user_image_url
       // testkit_image .value = response.script_image_url
-      getBase64FromImageUrlProfile(response.user_image_url)
-      getBase64FromImageUrlTestKit(response.script_image_url)
+      getBase64FromImageUrlProfile(response.data.user_image_url)
+      getBase64FromImageUrlTestKit(response.data.script_image_url)
     })
     .catch(function (error) {
       console.log(error);
@@ -177,7 +179,7 @@ onMounted(async () => {
               <h4>Your test results within the 72 hours validly is shown below.</h4>
             </div>
 
-            <div class="search-results-list" v-if="test_result">
+            <div class="search-results-list" v-if="isIdCardAvailable">
               <!--Item-->
               <div
                 class="search-results-item"
