@@ -20,8 +20,8 @@ const {search, results, brands, searchAllBrandsToResults} = getResults();
 const sendResutlsModelOpen = ref(false)
 const captureUserImageModel = ref(false)
 const captureTestImageModel = ref(false)
-const capturedCustomerImage = ref(null)
-const capturedTestImage = ref(null)
+const capturedCustomerImage = ref('')
+const capturedTestImage = ref('')
 const test_name = ref('PCR Antigen')
 
 const swal = inject('$swal')
@@ -69,49 +69,44 @@ const issueResult = () => {
       title: `Do you want to send results to ${selected_customer.value.name}?`,
       showCancelButton: true,
       confirmButtonText: 'Send',
-    }).then((result) => {
+    }).then((result: any) => {
       console.log("testing negative",testResult.value)
       console.log("result", result)
       if (result.isConfirmed) {
-        resultService.generateResult({
-          contact_number: selected_customer.value.customer_contact,
-          script_image_url: 'https://www.testing.com/test.jpg',
-          user_image_url: 'https://www.testing.com/test.jpg',
-          test_result: (testResult.value === 'Negative') ? 0 : 1,
-          record_state: 1,
-          testkit_id: selectedBrand.value,
-          branch_id: cookies.get('admin2').branch_id
-        }).then(function (response) {
-          console.log('response', response)
-          if (response.data.success) {
-            callingWebSocket2(selected_customer.value.customer_contact, "COMPLETE")
-            // resultService.updateAvailableLogStatus({
-            //   contact_number: selected_customer.value.customer_contact,
-            //   status: 'COMPLETE',
-            //   branch_id: cookies.get('admin2').branch_id
-            // }).then(function (response) {
-            //   if (response.data.success) {
-            //     notif.success(response.data.message)
-            //     swal.fire('Saved!', '', 'success')
-            //     clearFields();
-            //     search();
-            //   }else{
-            //     notif.warning(response.data.message)
-            //     swal.fire('Saving Failed!', '', 'error')
-            //     clearFields();
-            //     search();
-            //   }
-            // }).catch(function (error) {
-            //   notif.warning(error)
-            //   clearFields();
-            //   search();
-            // });
-          } else {
-            notif.warning(response.data.message)
-          }
-        }).catch(function (error) {
-          console.log(error);
-        });
+        let formdata = new FormData()
+        formdata.append('contact_number', selected_customer.value.customer_contact)
+        formdata.append('record_state', '1')
+        formdata.append('testkit_id', selectedBrand.value.toString())
+        formdata.append('branch_id', cookies.get('admin2').branch_id.toString())
+        if (testResult.value === 'Negative') {
+          formdata.append('script_image_url', capturedTestImage.value);
+          formdata.append('user_image_url', capturedCustomerImage.value);
+          formdata.append('test_result', '0');
+          resultService.generateResult(formdata).then(function (response) {
+            console.log('response', response)
+            if (response.data.success) {
+              callingWebSocket2(selected_customer.value.customer_contact, "COMPLETE")
+            } else {
+              notif.warning(response.data.message)
+            }
+          }).catch(function (error) {
+            console.log(error);
+          });
+        }else {
+          formdata.append('script_image_url', '');
+          formdata.append('user_image_url', '');
+          formdata.append('test_result', '1');
+          resultService.generateResult(formdata).then(function (response) {
+            console.log('response', response)
+            if (response.data.success) {
+              callingWebSocket2(selected_customer.value.customer_contact, "COMPLETE")
+            } else {
+              notif.warning(response.data.message)
+            }
+          }).catch(function (error) {
+            console.log(error);
+          });
+        }
       } else if (result.isDenied) {
         swal.fire('Changes are not saved', '', 'info')
       } else if (result.isDismissed) {
@@ -144,7 +139,7 @@ const closeCaptureTestImageModel = () => {
 
 const savedCustomerImage = (value: any) => {
   capturedCustomerImage.value = value
-  // console.log('savedCustomerImage',value);
+  console.log('savedCustomerImage',value);
 };
 
 const isDisabled = (customer: object) => (customer.status === 'COMPLETE' || customer.status === 'INCOMPLETE');

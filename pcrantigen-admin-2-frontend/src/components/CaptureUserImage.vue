@@ -92,7 +92,8 @@ export default {
       this.imageCaptured = true
       this.photo = this.dataURItoBlob(canvas.toDataURL())
       this.disableCamera()
-      this.$emit('savedCustomerImage', this.photo)
+      // this.$emit('savedCustomerImage', this.photo)
+      this.$emit('savedCustomerImage', canvas.toDataURL())
     },
     swapCamera() {
       console.log("shouldFaceUser", this.shouldFaceUser)

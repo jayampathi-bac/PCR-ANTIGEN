@@ -64,6 +64,7 @@ export default {
       locationLoading: false,
       notif: useNotyf(),
       shouldFaceUser: false,
+      customerImageToBase64: null,
     }
   },
   methods: {
@@ -90,9 +91,11 @@ export default {
       let context = canvas.getContext('2d')
       context.drawImage(video, 0, 0, canvas.width, canvas.height)
       this.imageCaptured = true
+      this.customerImageToBase64 = canvas.toDataURL();
       this.photo = this.dataURItoBlob(canvas.toDataURL())
       this.disableCamera()
-      this.$emit('savedTestImage', this.photo)
+      // this.$emit('savedTestImage', this.photo)
+      this.$emit('savedTestImage', canvas.toDataURL())
     },
     swapCamera() {
       console.log("shouldFaceUser", this.shouldFaceUser)
