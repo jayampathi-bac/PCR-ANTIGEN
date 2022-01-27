@@ -3,11 +3,12 @@ module.exports = {
   env: {
     browser: true,
     node: true,
+    'vue/setup-compiler-macros': true,
   },
   parserOptions: {
-    parser: '@typescript-eslint/parser',
-    sourceType: 'module',
-    tsconfigRootDir: __dirname,
+    parser: '@babel/eslint-parser',
+    ecmaVersion: 2018,
+    requireConfigFile: false, // This will prevent Babel from looking for a config file you possibly don’t have or need.
   },
   extends: [
     'plugin:@typescript-eslint/eslint-recommended',

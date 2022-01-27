@@ -1,13 +1,26 @@
-<script setup>
-import {ref,toRefs, onMounted, defineProps, watch} from 'vue'
+<script setup lang="ts">
+
+import {ref,toRefs, onMounted, defineProps, watch,defineEmit } from 'vue'
 import html2canvas from "html2canvas";
-import CustomerService from '../../src/service/customerService.ts';
+import CustomerService from '../../src/service/customerService';
 import {useStore} from "vuex";
 import jsPDF from 'jspdf';
 
 const props = defineProps({
   foo: Number
 })
+
+const emit = defineEmit(['btnChanged'])
+
+// const emit =defineEmit({
+//   btnChanged() {
+//     return -1
+//   },
+// })
+
+const handleClose = () => {
+  emit('btnChanged')
+}
 
 const { foo } = toRefs(props);
 
@@ -42,6 +55,8 @@ const downloadPNG = () => {
     link.href = canvas.toDataURL()
     link.click();
   });
+  handleClose();
+  emit('btnChanged')
 };
 
 const bindInputToElement = (inputEl, elementEl) => {
@@ -104,7 +119,7 @@ const PrintImage = () => {
 }
 
 watch(() => props.foo, (first, second) => {
-  console.log("Watch props:", first, second);
+  // console.log("Watch props:", first, second);
   first === 1 ? downloadPNG() :
     first === 2 ? downloadPDF() :
       first === 3 ? PrintImage() : null
@@ -128,6 +143,8 @@ onMounted(() => {
       // getBase64FromImageUrlTestKit('https://i.ibb.co/GcycDhP/testkit.png')
       getBase64FromImageUrlProfile(response.user_image_url)
       getBase64FromImageUrlTestKit(response.script_image_url)
+      // getBase64FromImageUrlProfile('https://sample.jvpdtest.com/User.jpg')
+      // getBase64FromImageUrlTestKit('https://sample.jvpdtest.com/testkit.jpg')
     })
     .catch(function (error) {
       console.log(error);
