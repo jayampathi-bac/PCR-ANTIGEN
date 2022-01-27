@@ -16,8 +16,18 @@ export default class ResultService {
       data: response.data.data,
     }));
 
-  generateResult = (result: any) => axios.post(`${basic_url}/v1/admin/test`, result,
-    {headers: {Authorization: "Bearer " + cookies.get('admin2').access_token}})
+  // @ts-ignore
+  // config = {
+  //   headers: {
+  //     Authorization: "Bearer " + cookies.get('admin2').access_token,
+  //     "Content-Type": "multipart/form-data"
+  //   }}
+
+  generateResult = (result: any) => axios.post(`${basic_url}/v1/admin/test`, result,{
+    headers: {
+      'Authorization': 'Bearer ' + cookies.get('admin2').access_token,
+      'content-type': 'multipart/form-data'
+    }})
     .then((response) => ({
       data: response.data,
     }));

@@ -91,7 +91,7 @@ const onSave = async () => {
     company_name: name.value,
     contact_number: contact_number.value,
     address: address.value,
-    profile_url: image_in_base64.value
+    profile_url: image_in_base64.value ? image_in_base64.value : ''
   }
   userService.editUserProfile(data)
     .then(function (response) {
@@ -173,7 +173,7 @@ onBeforeMount(() => {
             <img
               v-if="!isUploading"
               class="avatar"
-              src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
+              :src="store.state.auth.admin2.profile_url"
               alt=""
               @error.once="
                 $event.target.src = 'https://via.placeholder.com/150x150'
