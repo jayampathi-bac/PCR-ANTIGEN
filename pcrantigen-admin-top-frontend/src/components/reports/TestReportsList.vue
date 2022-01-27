@@ -71,6 +71,7 @@ watch(
 )
 
 onMounted(async () => {
+  console.log("Test loading---------------------------------------------------")
   searchTests(1,{start_date: '', end_date: '', result: 0, status: 0})
 })
 </script>

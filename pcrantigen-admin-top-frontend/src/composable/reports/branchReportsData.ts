@@ -21,7 +21,7 @@ const getBranchesReport = () => {
     });
   };
 
-  const searchGroups = () => {
+  const searchGroupsToBranch = () => {
     console.log("searchGroups")
     branchReportsService.getAllGroups().then((result: { data: any; }) => {
       console.log("searchGroups",result.data.data)
@@ -35,7 +35,7 @@ const getBranchesReport = () => {
 
   return {
     searchBranches,
-    searchGroups,
+    searchGroupsToBranch,
     branches,
     allGroups,
     allBranchesCount

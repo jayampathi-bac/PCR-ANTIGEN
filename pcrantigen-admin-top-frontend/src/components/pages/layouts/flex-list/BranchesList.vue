@@ -227,7 +227,7 @@ const editBranchFunc = () => {
       console.log('response', response)
       if (response.data.success) {
         swal.fire('Editing Successful!', '', 'success')
-        notif.success(response.data.message)
+        notif.success('Editing Successful!')
         searchAllBranches(currentPage.value)
         editActionsOpen.value = false
       } else {
@@ -674,6 +674,7 @@ onMounted(async () => {
                       autocomplete="contact_number"
                       inputmode="contact_number"
                       v-model="edit_contact_number"
+                      readonly
                     />
                   </V-Control>
                 </V-Field>

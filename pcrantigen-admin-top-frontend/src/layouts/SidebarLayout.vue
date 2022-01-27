@@ -39,11 +39,19 @@ const props = defineProps({
 })
 
 const route = useRoute()
+console.log('route.path',route.path);
+if (route.path == ''){
+
+}
+
+
 const isMobileSidebarOpen = ref(false)
 const isDesktopSidebarOpen = ref(props.openOnMounted)
 const activeMobileSubsidebar = ref(props.defaultSidebar)
 
 function switchSidebar(id: string) {
+
+  console.log('switchSidebar',id)
   if (id === activeMobileSubsidebar.value) {
     isDesktopSidebarOpen.value = !isDesktopSidebarOpen.value
   } else {
@@ -154,14 +162,22 @@ watch(
             ></i>
           </RouterLink>
         </li>
-        <li>
-          <RouterLink :to="{ name: 'sidebar-layouts-reports' }">
-            <i
-              aria-hidden="true"
-              class="iconify"
-              data-icon="feather:pocket"
-            ></i>
-          </RouterLink>
+<!--        <li>-->
+<!--          <RouterLink :to="{ name: 'sidebar-layouts-reports-customer' }">-->
+<!--            <i-->
+<!--              aria-hidden="true"-->
+<!--              class="iconify"-->
+<!--              data-icon="feather:pocket"-->
+<!--            ></i>-->
+<!--          </RouterLink>-->
+<!--        </li>-->
+        <li
+          :class="[activeMobileSubsidebar === 'reports-list' && 'is-active']"
+          @click="activeMobileSubsidebar = 'reports-list'"
+        >
+          <a>
+            <i aria-hidden="true" class="iconify" data-icon="feather:pocket"></i>
+          </a>
         </li>
       </template>
 
@@ -179,6 +195,28 @@ watch(
     </MobileSidebar>
 
 
+    <!-- Mobile subsidebar links -->
+    <transition name="slide-x">
+<!--      <LayoutsMobileSubsidebar-->
+<!--        v-if="isMobileSidebarOpen && activeMobileSubsidebar === 'layout'"-->
+<!--      />-->
+<!--      <DashboardsMobileSubsidebar-->
+<!--        v-else-if="-->
+<!--          isMobileSidebarOpen && activeMobileSubsidebar === 'dashboard'-->
+<!--        "-->
+<!--      />-->
+<!--      <ComponentsMobileSubsidebar-->
+<!--        v-else-if="-->
+<!--          isMobileSidebarOpen && activeMobileSubsidebar === 'components'-->
+<!--        "-->
+<!--      />-->
+<!--      <ElementsMobileSubsidebar-->
+<!--        v-else-if="isMobileSidebarOpen && activeMobileSubsidebar === 'elements'"-->
+<!--      />-->
+      <ReportsMobileSubsidebar
+        v-if="isMobileSidebarOpen && activeMobileSubsidebar === 'reports-list'"
+      />
+    </transition>
 
     <!-- Desktop navigation -->
 <!--    <CircularMenu/>-->
@@ -241,20 +279,36 @@ watch(
             ></i>
           </RouterLink>
         </li>
-        <!-- Brands -->
+        <!-- Reports -->
+<!--        <li>-->
+<!--          <RouterLink-->
+<!--            id="open-settings"-->
+<!--            :to="{ name: 'sidebar-layouts-reports-customer' }"-->
+<!--            data-content="elements"-->
+<!--          >-->
+<!--            <i-->
+<!--              aria-hidden="true"-->
+<!--              class="iconify sidebar-svg"-->
+<!--              data-icon="feather:pocket"-->
+<!--            ></i>-->
+<!--          </RouterLink>-->
+<!--        </li>-->
+        <!-- Components -->
         <li>
-          <RouterLink
-            id="open-settings"
-            :to="{ name: 'sidebar-layouts-reports' }"
-            data-content="elements"
+          <a
+            :class="[activeMobileSubsidebar === 'reports-list' && 'is-active']"
+            @click="switchSidebar('reports-list')"
+            data-content="Reports"
           >
             <i
               aria-hidden="true"
               class="iconify sidebar-svg"
               data-icon="feather:pocket"
             ></i>
-          </RouterLink>
+          </a>
         </li>
+
+
 
       </template>
 
@@ -288,8 +342,8 @@ watch(
     </Sidebar>
 
     <transition name="slide-x">
-      <ComponentsSubsidebar
-        v-if="isDesktopSidebarOpen && activeMobileSubsidebar === 'components'"
+      <ReportsSubSideBar
+        v-if="isDesktopSidebarOpen && activeMobileSubsidebar === 'reports-list'"
         @close="isDesktopSidebarOpen = false"
       />
       <ElementsSubsidebar

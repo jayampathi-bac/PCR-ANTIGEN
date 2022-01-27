@@ -18,7 +18,7 @@ const customerReportsService = new CustomerReportsService();
 
 const notif = useNotyf()
 
-const {searchCustomers, searchBranches, customers, allCustomerCount, allBranches} = getCustomersReport();
+const {searchCustomers, searchBranchesToCustomer, customers, allCustomerCount, allBranches} = getCustomersReport();
 
 const centeredActionsOpen = ref(false)
 
@@ -67,7 +67,7 @@ const emptySearchData = {
 
 const selectedBranch = ref('')
 
-const currentPage = computed(() => {
+const currentPageCustomer = computed(() => {
   try {
     searchCustomers((Number.parseInt(route.query.page as string) || 1), emptySearchData)
     return Number.parseInt(route.query.page as string) || 1
@@ -79,7 +79,7 @@ const currentPage = computed(() => {
 const selectingBranchFunc = () => {
   console.log("selectingBranchFunc",selectedBranch.value)
   // console.log('date range', date.value.start.toISOString().split('T')[0])
-  searchCustomers(currentPage.value,{
+  searchCustomers(currentPageCustomer.value,{
     branch_id: selectedBranch.value,
     start_date: date.value.start ? date.value.start.toISOString().split('T')[0] : '',
     end_date : date.value.end ? date.value.end.toISOString().split('T')[0] : '',
@@ -88,7 +88,7 @@ const selectingBranchFunc = () => {
 
 const selectingDateFunc = () => {
   // console.log('date range', date.value.start.toISOString().split('T')[0])
-  searchCustomers(currentPage.value,{
+  searchCustomers(currentPageCustomer.value,{
     branch_id: selectedBranch.value !== '' ? selectedBranch.value : '',
     start_date: date.value.start ? date.value.start.toISOString().split('T')[0] : '',
     end_date : date.value.end ? date.value.end.toISOString().split('T')[0] : '',
@@ -113,9 +113,14 @@ const refreshFunc = () => {
   // console.log('date range', date.value.start.toISOString().split('T')[0])
 }
 
+const testingFunc = (value: number) => {
+  console.log("testingFunc---------------------------------------------------",value)
+}
+
 onMounted(async () => {
-  searchCustomers(1, emptySearchData);
-  searchBranches();
+  console.log("Customer loading---------------------------------------------------")
+  searchCustomers(1, {branch_id: '', start_date: '', end_date: ''});
+  searchBranchesToCustomer();
 })
 </script>
 
@@ -264,8 +269,9 @@ onMounted(async () => {
           v-if="filteredData.length > 0"
           :item-per-page="10"
           :total-items="allCustomerCount"
-          :current-page="currentPage"
+          :current-page="currentPageCustomer"
           :max-links-displayed="7"
+          @update:currentPageCustomer="testingFunc"
         />
       </div>
     </div>

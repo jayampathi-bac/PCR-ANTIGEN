@@ -18,7 +18,7 @@ const customerService = new CustomerService();
 
 const notif = useNotyf()
 
-const {allBranchesCount, branches, searchBranches, searchGroups, allGroups} = getBranchesReport();
+const {allBranchesCount, branches, searchBranches, searchGroupsToBranch, allGroups} = getBranchesReport();
 
 const centeredActionsOpen = ref(false)
 
@@ -41,7 +41,7 @@ const filteredData = computed(() => {
   }
 });
 
-const currentPage = computed(() => {
+const currentPageBranch = computed(() => {
   try {
     searchBranches(Number.parseInt(route.query.page as string) || 1, {group_id: 0, orderby: 0})
     return Number.parseInt(route.query.page as string) || 1
@@ -55,7 +55,7 @@ const selectedFilter = ref(3)
 
 const selectingFunc = () => {
   console.log("selectingGroupFunc", selectedGroup.value)
-  searchBranches(currentPage.value, {
+  searchBranches(currentPageBranch.value, {
     group_id: selectedGroup.value,
     orderby: selectedFilter.value === 3 ? 0 : selectedFilter.value
   })
@@ -68,8 +68,9 @@ const refreshFunc = () => {
 }
 
 onMounted(async () => {
+  console.log("Branch loading---------------------------------------------------")
   searchBranches(1, {group_id: 0, orderby: 0})
-  searchGroups()
+  searchGroupsToBranch()
 })
 </script>
 
@@ -81,7 +82,7 @@ onMounted(async () => {
       <div class="s-card mb-5">
         <div class="columns is-multiline">
           <div class="column is-6">
-            <div class=" mt-5">
+            <div class=" ">
               <V-Field>
                 <V-Control>
                   <Multiselect
@@ -102,7 +103,7 @@ onMounted(async () => {
                   <Multiselect
                     v-model="selectedFilter"
                     :options="[{value: 0, label : 'All'}, {value: 1, label : 'Min to Max'}, {value: 2, label : 'Max to Min'}]"
-                    placeholder="Filter by: "
+                    placeholder="Filter by Tests Count: "
                     :searchable="true"
                     @select="selectingFunc"
                   />
@@ -144,7 +145,8 @@ onMounted(async () => {
             <span class="is-grow">Company</span>
             <span class="is-grow">Contact Number</span>
             <span class="is-grow">Address</span>
-            <span class="is-grow cell-end">Group</span>
+            <span class="is-grow">Group</span>
+            <span class="is-grow cell-end">Tests Count</span>
           </div>
 
           <div class="flex-list-inner">
@@ -170,8 +172,11 @@ onMounted(async () => {
                 <div class="flex-table-cell is-grow" data-th="Address">
                   <span class="light-text">{{ branch.address }}</span>
                 </div>
-                <div class="flex-table-cell is-grow cell-end" data-th="Group">
+                <div class="flex-table-cell is-grow" data-th="Group">
                   <span class="light-text">{{ branch.group_name }}</span>
+                </div>
+                <div class="flex-table-cell is-grow cell-end" data-th="Tests Count">
+                  <span class="light-text">{{ branch.count }}</span>
                 </div>
               </div>
             </transition-group>
@@ -183,8 +188,9 @@ onMounted(async () => {
           v-if="filteredData.length > 0"
           :item-per-page="10"
           :total-items="allBranchesCount"
-          :current-page="currentPage"
+          :current-page="currentPageBranch"
           :max-links-displayed="7"
+
         />
       </div>
     </div>

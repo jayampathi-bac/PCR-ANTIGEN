@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { defineProps, ref } from 'vue'
+import {onMounted} from 'vue'
+import { defineProps, ref, watch } from 'vue'
 import { activePanel } from '/@src/state/activePanelState'
 
 const filterTasks = ref(0)
@@ -20,55 +21,87 @@ const props = defineProps({
     type: String as PropType<'project' | 'content' | 'brands'>,
     default: 'project',
   },
-})
+});
+
+watch(
+  () => activePanel,
+  (count, prevCount) => {
+    console.log("activePanel",count,prevCount)
+  }
+)
+
+
+
+
+
 </script>
 
 <template>
-  <div class="project-details">
-    <div class="tabs-wrapper is-triple-slider">
-      <div class="tabs-inner">
-        <div class="tabs">
-          <ul>
-            <li :class="[activeTab === 'project' && 'is-active']">
-              <a @click="activeTab = 'project'"><span>Customer</span></a>
-            </li>
-            <li :class="[activeTab === 'team' && 'is-active']">
-              <a @click="activeTab = 'team'"><span>Branch</span></a>
-            </li>
-            <li :class="[activeTab === 'tasks' && 'is-active']">
-              <a @click="activeTab = 'tasks'"><span>Tests</span></a>
-            </li>
-            <li class="tab-naver"></li>
-          </ul>
-        </div>
-      </div>
+<!--  <div class="project-details">-->
+<!--    <div class="tabs-wrapper is-triple-slider">-->
+<!--      <div class="tabs-inner">-->
+<!--        <div class="tabs">-->
+<!--          <ul>-->
+<!--            <li :class="[activeTab === 'project' && 'is-active']">-->
+<!--              <a @click="activeTab = 'project'"><span>Customer</span></a>-->
+<!--            </li>-->
+<!--            <li :class="[activeTab === 'team' && 'is-active']">-->
+<!--              <a @click="activeTab = 'team'"><span>Branch</span></a>-->
+<!--            </li>-->
+<!--            <li :class="[activeTab === 'tasks' && 'is-active']">-->
+<!--              <a @click="activeTab = 'tasks'"><span>Tests</span></a>-->
+<!--            </li>-->
+<!--            <li class="tab-naver"></li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </div>-->
 
-      <div
-        id="project-tab"
-        class="tab-content"
-        :class="[activeTab === 'project' && 'is-active']"
-      >
+<!--      <div-->
+<!--        id="project-tab"-->
+<!--        class="tab-content"-->
+<!--        :class="[activeTab === 'project' && 'is-active']"-->
+<!--      >-->
+<!--        <CustomerReportsList/>-->
+<!--      </div>-->
+
+<!--      &lt;!&ndash;Project Team&ndash;&gt;-->
+<!--      <div-->
+<!--        id="team-tab"-->
+<!--        class="tab-content"-->
+<!--        :class="[activeTab === 'team' && 'is-active']"-->
+<!--      >-->
+<!--        <BranchReportsList/>-->
+<!--      </div>-->
+
+<!--      <div-->
+<!--        id="tasks-tab"-->
+<!--        class="tab-content"-->
+<!--        :class="[activeTab === 'tasks' && 'is-active']"-->
+<!--      >-->
+<!--        <TestReportsList/>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+  <VTabs
+    selected="team"
+    :tabs="[
+      { label: 'Team', value: 'team' },
+      { label: 'Projects', value: 'projects' },
+      { label: 'Tasks', value: 'tasks' },
+    ]"
+  >
+    <template #tab="{ activeValue }">
+      <div v-if="activeValue === 'team'">
         <CustomerReportsList/>
       </div>
-
-      <!--Project Team-->
-      <div
-        id="team-tab"
-        class="tab-content"
-        :class="[activeTab === 'team' && 'is-active']"
-      >
+      <div v-else-if="activeValue === 'projects'">
         <BranchReportsList/>
       </div>
-
-      <div
-        id="tasks-tab"
-        class="tab-content"
-        :class="[activeTab === 'tasks' && 'is-active']"
-      >
+      <div v-else-if="activeValue === 'tasks'">
         <TestReportsList/>
       </div>
-    </div>
-  </div>
+    </template>
+  </VTabs>
 </template>
 
 <style lang="scss">

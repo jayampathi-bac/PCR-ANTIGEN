@@ -21,7 +21,7 @@ const getCustomersReport = () => {
     });
   };
 
-  const searchBranches = () => {
+  const searchBranchesToCustomer = () => {
     console.log("searchBranches")
     customerReportsService.getAllBranches().then((result: { data: any; }) => {
       // console.log("searchBranches",result.data.data)
@@ -35,7 +35,7 @@ const getCustomersReport = () => {
 
   return {
     searchCustomers,
-    searchBranches,
+      searchBranchesToCustomer,
     customers,
     allBranches,
     allCustomerCount
