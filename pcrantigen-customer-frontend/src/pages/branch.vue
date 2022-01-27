@@ -69,7 +69,7 @@ const callingWebSocket = () => {
 const sendMessage = () => {
   console.log(connection);
   // console.log("hi",store.getters['auth/getContactNo'])
-  connection.send(`{"contact_number": "${cookies.get('user').contact}","branch_id":"${store.getters.getBranchID}"}`);
+  connection.send(`{"contact_number": "${cookies.get('user').contact_number}","branch_id":"${store.getters.getBranchID}"}`);
 }
 
 const branch_id = ref()
