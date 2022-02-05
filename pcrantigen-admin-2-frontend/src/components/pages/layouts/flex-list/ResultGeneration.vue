@@ -10,7 +10,7 @@ import useNotyf from "/@src/composable/useNotyf";
 import {socket_url, socket_url2} from "/@src/utils/basic_config";
 
 const notif = useNotyf()
-
+const isLoaderActive = ref(false)
 const resultService = new ResultService();
 
 const {cookies} = useCookies();
@@ -62,6 +62,7 @@ const loadSendResult = (customer: string) => {
 }
 
 const issueResult = () => {
+  isLoaderActive.value = !isLoaderActive.value
   if (testResult.value && selectedBrand.value !== 0) {
     console.log("here here")
     sendResutlsModelOpen.value = false
@@ -89,8 +90,10 @@ const issueResult = () => {
             } else {
               notif.warning(response.data.message)
             }
+            isLoaderActive.value = !isLoaderActive.value
           }).catch(function (error) {
             console.log(error);
+            isLoaderActive.value = !isLoaderActive.value
           });
         }else {
           formdata.append('script_image_url', '');
@@ -103,18 +106,24 @@ const issueResult = () => {
             } else {
               notif.warning(response.data.message)
             }
+            isLoaderActive.value = !isLoaderActive.value
           }).catch(function (error) {
             console.log(error);
+            isLoaderActive.value = !isLoaderActive.value
           });
+
         }
       } else if (result.isDenied) {
         swal.fire('Changes are not saved', '', 'info')
+        isLoaderActive.value = !isLoaderActive.value
       } else if (result.isDismissed) {
         sendResutlsModelOpen.value = true
+        isLoaderActive.value = !isLoaderActive.value
       }
     })
   } else {
     notif.warning("Please fill all fields..!")
+    isLoaderActive.value = !isLoaderActive.value
   }
 
 }
@@ -161,15 +170,17 @@ const voidCustomer = (customer: object) => {
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      resultService.generateResult({
-        contact_number: selectedCustomerVoid.value.customer_contact,
-        script_image_url: '',
-        user_image_url: '',
-        test_result: 2,
-        record_state: 0,
-        testkit_id: 1,
-        branch_id: cookies.get('admin2').branch_id
-      }).then(function (response) {
+      //[[[[[[[[[[[[[[[[[
+      let formdata = new FormData()
+      formdata.append('contact_number', selectedCustomerVoid.value.customer_contact)
+      formdata.append('record_state', '0')
+      formdata.append('testkit_id', '1')
+      formdata.append('branch_id', cookies.get('admin2').branch_id.toString())
+      formdata.append('script_image_url', '');
+      formdata.append('user_image_url', '');
+      formdata.append('test_result', '2');
+      //[[[[[[[[[[[[[[[[[
+      resultService.generateResult(formdata).then(function (response) {
         if (response.data.success) {
           callingWebSocket2(customer.customer_contact, "INCOMPLETE")
         }else {
@@ -211,10 +222,10 @@ const callingWebSocket2 = (contact: any, state: string) => {
     console.log("connection2 response came")
     console.log("connection2",event.data);
     if (event.data === 'updated') {
-          notif.success('Send Successfully..')
-          swal.fire('Saved!', '', 'success')
-          clearFields();
-          search();
+        notif.success('Send Successfully..')
+        swal.fire('Saved!', '', 'success')
+        clearFields();
+        search();
     } else  {
       notif.warning('Send Failed..!')
       swal.fire('Saving Failed.!', '', 'error')
@@ -275,12 +286,26 @@ const callingWebSocket = () => {
 
 const connected = ref(false);
 const received_messages = ref([]);
+const hasCameraSupport = ref(true);
+
+const checkCameraSupport = () => {
+  navigator.mediaDevices.getUserMedia({
+    video: {
+      facingMode: 'environment'
+    },
+  }).then(stream => {
+
+  }).catch(error => {
+    hasCameraSupport.value = false
+  })
+}
+
 
 onMounted(async () => {
   search();
   callingWebSocket();
   searchAllBrandsToResults();
-
+  checkCameraSupport();
 })
 
 const refreshSearch = () => {
@@ -291,6 +316,7 @@ const refreshSearch = () => {
 </script>
 
 <template>
+  <VLoader size="large"  center="smooth" lighter="true" translucent="true" :active="isLoaderActive">
   <div>
     <div class="list-flex-toolbar flex-list-v1">
       <V-Field>
@@ -474,9 +500,11 @@ const refreshSearch = () => {
                       <VButtons class="is-centered">
                         <VButton @click="openCaptureUserImageModel()"
                                  color="info" icon="feather:user" raised rounded outlined
+                                 :disabled="!hasCameraSupport"
                         > Capture Customer Image
                         </VButton>
                         <VButton @click="openCaptureTestImageModel()"
+                                 :disabled="!hasCameraSupport"
                                  color="danger" icon="feather:activity" raised rounded outlined>
                           Capture Test Image
                         </VButton>
@@ -527,7 +555,7 @@ const refreshSearch = () => {
       </template>
     </VModal>
   </div>
-
+  </VLoader>
 </template>
 
 <style lang="scss">

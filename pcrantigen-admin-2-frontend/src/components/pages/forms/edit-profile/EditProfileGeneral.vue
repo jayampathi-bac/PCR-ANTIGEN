@@ -8,6 +8,7 @@ import axios from "axios";
 import {useCookies} from "vue3-cookies";
 import {basic_url} from "/@src/utils/basic_config";
 import UserService from '/@src/service/userService';
+import html2canvas from "html2canvas";
 
 const userService = new UserService();
 
@@ -69,6 +70,13 @@ const address = ref(store.state.auth.admin2.address);
 const profile_picture_url = ref(store.state.auth.admin2.profile_url ? store.state.auth.admin2.profile_url : "https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png");
 
 
+const QrCodeActionsOpen = ref(false)
+
+const downloadQR = () => {
+  QrCodeActionsOpen.value = true;
+
+}
+
 const fireEditProfileAlert = () => {
   if (name.value && address.value) {
     swal.fire({
@@ -95,6 +103,7 @@ const onSave = async () => {
   }
   userService.editUserProfile(data)
     .then(function (response) {
+      console.log('userService response--------',response)
       if (response.data.success) {
         notyf.success('Your changes have been successfully saved!')
         swal.fire('Saving Successful!', '', 'success')
@@ -106,6 +115,7 @@ const onSave = async () => {
         const user = {
           name: name.value,
           contact: contact_number.value,
+          branch_id: response.data.data.branch_id,
           address: address.value,
           access_token: cookies.get('admin2').access_token,
           profile_url: response.data.data.profile_url,
@@ -123,11 +133,49 @@ const onSave = async () => {
   });
 }
 
+const downloadPNG = () => {
+  const node = document.getElementById('id-card');
+
+  html2canvas(node).then(canvas => {
+    var link = document.createElement('a');
+    link.download = 'idcard.png';
+    link.href = canvas.toDataURL()
+    link.click();
+  });
+};
+
+
+function getBase64FromImageUrlQR(url : any) {
+  const img = new Image();
+
+  img.setAttribute('crossOrigin', 'anonymous');
+
+  img.onload = function () {
+    const canvas = document.createElement("canvas");
+    canvas.width =this.width;
+    canvas.height =this.height;
+
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(this, 0, 0);
+
+    const dataURL = canvas.toDataURL("image/png");
+
+    // alert(dataURL.replace(/^data:image\/(png|jpg);base64,/, ""));
+
+    const img2 = document.getElementById('qr-img');
+    img2.src = dataURL;
+  };
+
+  img.src = url;
+}
+
+
 onBeforeMount(() => {
   name.value = cookies.get('admin2').name
   contact_number.value = cookies.get('admin2').contact
   address.value = cookies.get('admin2').address
   profile_picture_url.value = cookies.get('admin2').profile_url
+  getBase64FromImageUrlQR(store.state.auth.admin2.qr_code_url)
 })
 </script>
 
@@ -218,15 +266,26 @@ onBeforeMount(() => {
 
       <!--Fieldset-->
       <div class="fieldset">
-        <div class="fieldset-heading">
-          <h4>Personal Info</h4>
-          <p>Update your personal details here. </p>
-        </div>
+       <div class="columns is-multiline">
+         <div class="column is-9">
+           <div class="fieldset-heading">
+             <h4>Personal Info</h4>
+             <p>Update your personal details here. </p>
+           </div>
+         </div>
+         <div class="column is-2">
+           <div class="fieldset-heading">
+<!--             <VButton icon="feather:eye" outlined> QR Code </VButton>-->
+             <VButton icon="feather:eye" color="primary" outlined @click="QrCodeActionsOpen = true">  QR Code </VButton>
+           </div>
+         </div>
+       </div>
 
         <div class="columns is-multiline">
           <!--Field-->
           <div class="column is-12">
             <V-Field>
+              <label>Full Name</label>
               <V-Control icon="feather:user">
                 <input
                   type="text"
@@ -241,6 +300,7 @@ onBeforeMount(() => {
           <!--Field-->
           <div class="column is-12">
             <V-Field>
+              <label>Contact Number</label>
               <V-Control icon="feather:phone">
                 <input
                   type="text"
@@ -256,6 +316,7 @@ onBeforeMount(() => {
           <!--Field-->
           <div class="column is-12">
             <V-Field>
+              <label>Address</label>
               <V-Control icon="feather:mail">
                 <input
                   type="text"
@@ -270,6 +331,28 @@ onBeforeMount(() => {
         </div>
       </div>
     </div>
+    <VModal
+      :open="QrCodeActionsOpen"
+      size="medium"
+      actions="center"
+      @close="QrCodeActionsOpen = false"
+      title="QR Code"
+    >
+      <template #content>
+        <form class="form-layout is-split" @submit.prevent>
+          <div class="form-outer">
+            <div class="form-section is-grey">
+              <div id="id-card">
+                <img id="qr-img" :src="store.state.auth.admin2.qr_code_url" alt="qrcode-1" border="0">
+              </div>
+            </div>
+          </div>
+        </form>
+      </template>
+      <template #action>
+        <VButton color="primary" raised @click="downloadPNG">Download</VButton>
+      </template>
+    </VModal>
   </div>
 </template>
 

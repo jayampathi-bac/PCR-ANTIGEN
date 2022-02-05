@@ -24,9 +24,7 @@ class AuthService {
               branch_id:response.data.branch.branch_id ,
               address:response.data.branch.address,
               group_id:response.data.branch.group_id,
-              start_time:response.data.login.start_time,
-              end_time:response.data.login.end_time,
-              period_of_use:response.data.login.period_of_use,
+              qr_code_url:response.data.branch.qr_code_url,
             };
             admin2Store = {
               name:response.data.branch.company_name,
@@ -35,9 +33,7 @@ class AuthService {
               branch_id:response.data.branch.branch_id ,
               address:response.data.branch.address,
               group_id:response.data.branch.group_id,
-              start_time:response.data.login.start_time,
-              end_time:response.data.login.end_time,
-              period_of_use:response.data.login.period_of_use,
+              qr_code_url:response.data.branch.qr_code_url,
             };
             cookies.set("admin2",admin2,60 * 60 * 24 * 1);
             console.log("name cookie",cookies.get('admin2').name)
