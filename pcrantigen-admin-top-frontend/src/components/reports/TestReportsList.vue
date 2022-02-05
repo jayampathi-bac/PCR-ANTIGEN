@@ -2,10 +2,14 @@
 import {computed, onMounted, ref, watch} from 'vue'
 
 import getTestsReport from '/@src/composable/reports/testReportsData'
+import getCustomersReport from "/@src/composable/reports/customerReportsData";
+import getBranchesReport from '/@src/composable/reports/branchReportsData'
 
 import {useRoute} from "vue-router";
 
 const {tests, searchTests, allTestsCount} = getTestsReport();
+const {searchBranchesToCustomer, allBranches} = getCustomersReport();
+const {searchGroupsToBranch, allGroups} = getBranchesReport();
 
 const route = useRoute()
 
@@ -28,10 +32,19 @@ const filteredData = computed(() => {
 
 const selectedResult = ref(5)
 const selectedState = ref(5)
+const selectedBranch = ref(0)
+const selectedGroup = ref(0)
 
 const currentPage = computed(() => {
   try {
-    searchTests(Number.parseInt(route.query.page as string) || 1, {start_date: '', end_date: '', result: 0, status: 0})
+    searchTests(Number.parseInt(route.query.page as string) || 1, {
+      start_date: '',
+      end_date: '',
+      result: 0,
+      status: 0,
+      branch_id: 0,
+      group_id: 0
+    })
     return Number.parseInt(route.query.page as string) || 1
   } catch {
   }
@@ -44,35 +57,79 @@ const date = ref({
 })
 
 const selectingFunc = () => {
-  console.log("selectingGroupFunc",selectedResult.value,selectedState.value, date.value.start, date.value.end)
+  console.log("selectingGroupFunc", selectedResult.value, selectedState.value, date.value.start, date.value.end)
   searchTests(currentPage.value, {
     start_date: date.value.start ? date.value.start.toISOString().split('T')[0] : '',
     end_date: date.value.end ? date.value.end.toISOString().split('T')[0] : '',
     result: selectedResult.value === 5 ? 0 : selectedResult.value,
-    status: selectedState.value === 5 ? 0 : selectedState.value
+    status: selectedState.value === 5 ? 0 : selectedState.value,
+    branch_id: selectedBranch.value,
+    group_id: selectedGroup.value,
   })
 }
 
 const refreshFunc = () => {
-  selectedResult.value = 0
-  selectedState.value = 0
+  selectedResult.value = 5
+  selectedState.value = 5
+  selectedBranch.value = 0
+  selectedGroup.value = 0
   date.value = {
     start: null,
     end: null,
   }
-  searchTests(1,{start_date: '', end_date: '', result: 0, status: 0})
+  searchTests(1, {start_date: '', end_date: '', result: 0, status: 0, branch_id: 0, group_id: 0})
+}
+
+const exportToCsv = (filename: any) => {
+  const json = tests.value;
+  const fields = Object.keys(json[0]);
+  const replacer = function (key, value) {
+    return value === null ? '' : value
+  };
+  let csvFile = json.map(function (row) {
+    return fields.map(function (fieldName) {
+      return JSON.stringify(row[fieldName], replacer)
+    }).join(',')
+  });
+  csvFile.unshift(fields.join(',')) // add header column
+  csvFile = csvFile.join('\r\n');
+
+  const blob = new Blob([csvFile], {type: 'text/csv;charset=utf-8;'});
+  if (navigator.msSaveBlob) { // IE 10+
+    navigator.msSaveBlob(blob, filename);
+  } else {
+    const link = document.createElement("a");
+    if (link.download !== undefined) { // feature detection
+      // Browsers that support HTML5 download attribute
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute("download", filename);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  }
+}
+
+const downloadCSVFunc = () => {
+  exportToCsv('all_test_records.csv')
 }
 
 watch(
   () => date.value,
   (count, prevCount) => {
+    // console.log("date------------",date.value)
+    // console.log("date------------", date.value.start.toISOString().split('T')[0],date.value.end.toISOString().split('T')[0])
     selectingFunc()
   }
 )
 
 onMounted(async () => {
-  console.log("Test loading---------------------------------------------------")
-  searchTests(1,{start_date: '', end_date: '', result: 0, status: 0})
+  console.log("--------------------------Test loading--------------------------")
+  searchTests(1, {start_date: '', end_date: '', result: 0, status: 0, branch_id: 0, group_id: 0})
+  searchBranchesToCustomer();
+  searchGroupsToBranch();
 })
 </script>
 
@@ -81,10 +138,10 @@ onMounted(async () => {
     <div>
       <br>
       <br>
-      <div class="s-card mb-5">
+      <div class="s-card mb-2">
         <div class="columns is-multiline">
-          <div class="column is-3">
-            <div class=" mt-5">
+          <div class="column is-3 ">
+            <div class=" ">
               <V-Field>
                 <V-Control>
                   <Multiselect
@@ -99,7 +156,7 @@ onMounted(async () => {
             </div>
           </div>
           <div class="column is-3">
-            <div class=" mt-5">
+            <div class=" ">
               <V-Field>
                 <V-Control>
                   <Multiselect
@@ -113,8 +170,39 @@ onMounted(async () => {
               </V-Field>
             </div>
           </div>
-          <div class="column is-3 ">
-            <div class=" mt-3">
+
+          <div class="column is-3">
+            <div class=" ">
+              <V-Field>
+                <V-Control>
+                  <Multiselect
+                    v-model="selectedGroup"
+                    :options="allGroups"
+                    placeholder="By Group"
+                    :searchable="true"
+                    @select="selectingFunc"
+                  />
+                </V-Control>
+              </V-Field>
+            </div>
+          </div>
+          <div class="column is-3">
+            <div class=" ">
+              <V-Field>
+                <V-Control>
+                  <Multiselect
+                    v-model="selectedBranch"
+                    :options="allBranches"
+                    placeholder="By branch"
+                    :searchable="true"
+                    @select="selectingFunc"
+                  />
+                </V-Control>
+              </V-Field>
+            </div>
+          </div>
+          <div class="column is-6 ">
+            <div class="">
               <div class="data-picker-responsive">
                 <v-date-picker
                   v-model="date"
@@ -161,8 +249,11 @@ onMounted(async () => {
         </div>
       </div>
     </div>
-    <div class="list-flex-toolbar flex-list-v1">
+    <div class="list-flex-toolbar flex-list-v1 m-4">
       <V-Buttons>
+        <V-Button color="info" icon="fas fa-download" elevated @click="downloadCSVFunc">
+          Download
+        </V-Button>
         <V-Button color="primary" icon="fas fa-sync" elevated @click="refreshFunc">
           refresh
         </V-Button>
@@ -190,6 +281,8 @@ onMounted(async () => {
             <span class="is-grow">Contact Number</span>
             <span class="is-grow">Test Result</span>
             <span class="is-grow">Record State</span>
+            <span class="is-grow">Branch</span>
+            <span class="is-grow">Group</span>
             <span class="is-grow cell-end">Created At</span>
           </div>
           <div class="flex-list-inner">
@@ -208,6 +301,12 @@ onMounted(async () => {
                 </div>
                 <div class="flex-table-cell is-grow" data-th="Record State">
                   <span class="light-text">{{ test.record_state }}</span>
+                </div>
+                <div class="flex-table-cell is-grow" data-th="Branch">
+                  <span class="light-text">{{ test.branch_name }}</span>
+                </div>
+                <div class="flex-table-cell is-grow" data-th="Group">
+                  <span class="light-text">{{ test.group_name }}</span>
                 </div>
                 <div class="flex-table-cell is-grow cell-end" data-th="Created At">
                   <span class="light-text">{{ test.created_at }}</span>
@@ -331,6 +430,7 @@ onMounted(async () => {
       &:first-child {
         padding-left: 0 !important;
       }
+
       &:last-child {
         padding-right: 0 !important;
       }

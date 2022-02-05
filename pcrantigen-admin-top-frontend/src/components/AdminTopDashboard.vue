@@ -3,8 +3,9 @@
 import { ref, onMounted } from 'vue'
 import { gaugeOptions } from '/@src/data/dashboards/analytics/goalChart'
 import getDashboardData from '/@src/composable/dashboardData'
+import {useStore} from "vuex";
 const {searchDashboardData, dashboardData,topBranchThree, topBranchOne, topBranchTwo,chartSeries} = getDashboardData();
-
+const store = useStore()
 const totalCustomers = ref()
 
 onMounted(() => {
@@ -18,7 +19,7 @@ onMounted(() => {
     <div class="dashboard-header">
       <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="large"/>
       <div class="start">
-        <h3>Welcome back, John Doe</h3>
+        <h3>Welcome back, {{store.state.auth.admintop.name}}</h3>
         <p>We're very happy to see you again on your admin dashboard.</p>
       </div>
       <!--      <div class="end">-->

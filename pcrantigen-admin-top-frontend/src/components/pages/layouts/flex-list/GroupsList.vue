@@ -15,7 +15,7 @@ const swal = inject('$swal')
 const {cookies} = useCookies();
 const route = useRoute()
 const groupService = new GroupService();
-
+const isLoaderActive = ref(false)
 const notif = useNotyf()
 
 const {searchAllGroups, allGroupsCount, groups} = getGroups();
@@ -50,6 +50,7 @@ const edit_area = ref('')
 const edit_description = ref('')
 
 const saveGroupFun = () => {
+  isLoaderActive.value = !isLoaderActive.value
   console.log("saveGroupFun")
   if (name.value && area.value && description.value) {
     const group = {
@@ -68,15 +69,19 @@ const saveGroupFun = () => {
         } else {
           notif.warning(response.data.message)
         }
+        isLoaderActive.value = !isLoaderActive.value
       })
       .catch(function (error) {
         console.log(error);
+        isLoaderActive.value = !isLoaderActive.value
       });
   } else {
     notif.warning('Empty Fields.!!')
+    isLoaderActive.value = !isLoaderActive.value
   }
 }
 const editGroupFunc = () => {
+  isLoaderActive.value = !isLoaderActive.value
   console.log("editGroupFunc")
   if (edit_group_id.value && edit_name.value && edit_area.value && edit_description.value) {
     // console.log("working")
@@ -99,12 +104,15 @@ const editGroupFunc = () => {
           notif.warning(response.data.message)
           editActionsOpen.value = false
         }
+        isLoaderActive.value = !isLoaderActive.value
       })
       .catch(function (error) {
         console.log(error);
+        isLoaderActive.value = !isLoaderActive.value
       });
   } else {
     notif.warning('Empty Fields.!!')
+    isLoaderActive.value = !isLoaderActive.value
   }
 }
 
@@ -135,6 +143,7 @@ const fireEditGroupFuncAlert = () => {
 }
 
 const deleteGroupFunc = (group) => {
+  isLoaderActive.value = !isLoaderActive.value
   console.log('delete this', group)
   groupService.deleteGroup(group.id)
     .then(function (response) {
@@ -147,6 +156,7 @@ const deleteGroupFunc = (group) => {
         swal.fire(response.data.message, '', 'error')
         notif.warning(response.data.message)
       }
+      isLoaderActive.value = !isLoaderActive.value
     })
     .catch(function (error) {
       console.log(error);
@@ -191,6 +201,7 @@ onMounted(async () => {
 </script>
 
 <template>
+  <VLoader size="large"  center="smooth" lighter="true" translucent="true" :active="isLoaderActive">
   <div>
     <div class="list-flex-toolbar flex-list-v1">
       <V-Field>
@@ -401,7 +412,7 @@ onMounted(async () => {
       </template>
     </VModal>
   </div>
-
+  </VLoader>
 </template>
 
 <style lang="scss">

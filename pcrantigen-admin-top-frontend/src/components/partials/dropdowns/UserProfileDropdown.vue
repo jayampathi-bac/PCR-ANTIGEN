@@ -14,7 +14,7 @@ function handleLogOut() {
 };
 
 const name = ref(cookies.get('admintop') ? cookies.get('admintop').name : null)
-const profile_url = ref(cookies.get('admintop') ? cookies.get('admin2').profile_url : null)
+const profile_url = ref(cookies.get('admintop') ? cookies.get('admintop').profile_url : null)
 </script>
 
 <template>
@@ -38,22 +38,22 @@ const profile_url = ref(cookies.get('admintop') ? cookies.get('admin2').profile_
           <!--          <span>Product Manager</span>-->
         </div>
       </div>
-      <RouterLink
-        :to="{ name: 'sidebar-layouts-profile-edit' }"
-        class="is-submenu"
-      >
-        <a href="#" role="menuitem" class="dropdown-item is-media">
-          <div class="icon">
-            <i aria-hidden="true" class="lnil lnil-user-alt"></i>
-          </div>
-          <div class="meta">
-            <span>Profile</span>
-            <span>View your profile</span>
-          </div>
-        </a>
-      </RouterLink>
+<!--      <RouterLink-->
+<!--        :to="{ name: 'sidebar-layouts-profile-edit' }"-->
+<!--        class="is-submenu"-->
+<!--      >-->
+<!--        <a href="#" role="menuitem" class="dropdown-item is-media">-->
+<!--          <div class="icon">-->
+<!--            <i aria-hidden="true" class="lnil lnil-user-alt"></i>-->
+<!--          </div>-->
+<!--          <div class="meta">-->
+<!--            <span>Profile</span>-->
+<!--            <span>View your profile</span>-->
+<!--          </div>-->
+<!--        </a>-->
+<!--      </RouterLink>-->
 
-      <hr class="dropdown-divider"/>
+<!--      <hr class="dropdown-divider"/>-->
       <!--      <a href="#" role="menuitem" class="dropdown-item is-media">-->
       <!--        <div class="icon">-->
       <!--          <i aria-hidden="true" class="lnil lnil-briefcase"></i>-->

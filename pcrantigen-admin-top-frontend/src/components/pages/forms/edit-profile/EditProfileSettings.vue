@@ -39,7 +39,7 @@ const fireEditAccountAlert = () => {
         confirmButtonText: 'Save',
       }).then((result) => {
         if (result.isConfirmed) {
-          onSave()
+          // onSave()
         }
       })
     }else{

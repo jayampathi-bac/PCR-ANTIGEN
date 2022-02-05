@@ -16,30 +16,30 @@ const userName1 = ref(null)
 const ups = ref(null)
 
 const handleLogin = async () => {
-  router.push({ name: 'sidebar-layouts-admindashboard' })
-  // if (!isLoading.value) {
-  //   isLoading.value = true
-  //   if (userName1.value && ups.value) {
-  //     store.dispatch("auth/login", {
-  //       username: userName1.value,
-  //       password: ups.value
-  //     }).then((response) => {
-  //         console.log("resp resp",response)
-  //         isLoading.value = false
-  //         router.push({ name: 'sidebar-layouts-admindashboard' })
-  //         // console.log('hrere hrer',store.state.auth.admin2)
-  //         notif.success(`Welcome ${store.state.auth.admin2.name} .!`)
-  //       },
-  //       (error) => {
-  //         notif.warning('Incorrect credentials.! Please try again..!')
-  //         isLoading.value = false
-  //       }
-  //     );
-  //   } else {
-  //     notif.warning("empty fields.!")
-  //     isLoading.value = false
-  //   }
-  // }
+  // router.push({ name: 'sidebar-layouts-admindashboard' })
+  if (!isLoading.value) {
+    isLoading.value = true
+    if (userName1.value && ups.value) {
+      store.dispatch("auth/login", {
+        username: userName1.value,
+        password: ups.value
+      }).then((response) => {
+          console.log("resp resp",response)
+          isLoading.value = false
+          router.push({ name: 'sidebar-layouts-admindashboard' })
+          // console.log('hrere hrer',store.state.auth.admintop.name)
+          notif.success(`Welcome ${store.state.auth.admintop.name} .!`)
+        },
+        (error) => {
+          notif.warning('Incorrect credentials.! Please try again..!')
+          isLoading.value = false
+        }
+      );
+    } else {
+      notif.warning("empty fields.!")
+      isLoading.value = false
+    }
+  }
 }
 
 useHead({
@@ -91,14 +91,13 @@ useHead({
             <div class="login-form">
               <!--              contact-->
               <V-Field>
-                <V-Control icon="feather:phone">
+                <V-Control icon="feather:user">
                   <input
                     class="input"
-                    type="number"
-                    pattern="[0-9]*"
-                    inputmode="numeric"
-                    placeholder="Contact Number"
-                    autocomplete="contact"
+                    type="text"
+                    inputmode="text"
+                    placeholder="User Name"
+                    autocomplete="username"
                     v-model="userName1"
                   />
                 </V-Control>

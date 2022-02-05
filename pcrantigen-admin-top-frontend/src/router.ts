@@ -53,8 +53,19 @@ const router = createRouter({
 /**
  * Handle NProgress display on page changes
  */
-router.beforeEach(() => {
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/'];
+  const authRequired = !publicPages.includes(to.path);
+  // const loggedIn = localStorage.getItem('user');
+  const loggedIn = cookies.get('admintop');
   NProgress.start()
+  if (authRequired && !loggedIn) {
+    next({ name: 'index' })
+  }
+  else {
+    console.log("else")
+    next()
+  }
 })
 
 // router.beforeEach((to, from, next) => {

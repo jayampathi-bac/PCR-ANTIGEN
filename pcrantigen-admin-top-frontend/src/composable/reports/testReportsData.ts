@@ -9,7 +9,7 @@ const getTestsReport = () => {
 
   const testReportsService = new TestReportsService();
 
-  const searchTests = (pageId: number, searchData: {result: number,status: number, start_date: string, end_date: string}) => {
+  const searchTests = (pageId: number, searchData: {result: number,status: number, start_date: string, end_date: string, branch_id: number, group_id: number}) => {
     console.log("searchTests")
     testReportsService.getTestsNormal(pageId, searchData).then((result: { data: any; }) => {
       tests.value = result.data.data;

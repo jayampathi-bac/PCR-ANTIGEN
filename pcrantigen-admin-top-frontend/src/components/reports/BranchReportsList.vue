@@ -53,6 +53,42 @@ const currentPageBranch = computed(() => {
 const selectedGroup = ref(0)
 const selectedFilter = ref(3)
 
+const exportToCsv = (filename : any) => {
+  const json = branches.value;
+  const fields = Object.keys(json[0]);
+  const replacer = function (key, value) {
+    return value === null ? '' : value
+  };
+  let csvFile = json.map(function (row) {
+    return fields.map(function (fieldName) {
+      return JSON.stringify(row[fieldName], replacer)
+    }).join(',')
+  });
+  csvFile.unshift(fields.join(',')) // add header column
+  csvFile = csvFile.join('\r\n');
+
+  const blob = new Blob([csvFile], {type: 'text/csv;charset=utf-8;'});
+  if (navigator.msSaveBlob) { // IE 10+
+    navigator.msSaveBlob(blob, filename);
+  } else {
+    const link = document.createElement("a");
+    if (link.download !== undefined) { // feature detection
+      // Browsers that support HTML5 download attribute
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute("download", filename);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  }
+}
+
+const downloadCSVFunc = () => {
+  exportToCsv('all_branches_records.csv')
+}
+
 const selectingFunc = () => {
   console.log("selectingGroupFunc", selectedGroup.value)
   searchBranches(currentPageBranch.value, {
@@ -117,6 +153,9 @@ onMounted(async () => {
     </div>
     <div class="list-flex-toolbar flex-list-v1">
       <V-Buttons>
+        <V-Button color="info" icon="fas fa-download" elevated @click="downloadCSVFunc">
+          Download
+        </V-Button>
         <V-Button color="primary" icon="fas fa-sync" elevated @click="refreshFunc">
           refresh
         </V-Button>
@@ -190,7 +229,6 @@ onMounted(async () => {
           :total-items="allBranchesCount"
           :current-page="currentPageBranch"
           :max-links-displayed="7"
-
         />
       </div>
     </div>

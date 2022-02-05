@@ -215,7 +215,7 @@ onMounted(async () => {
             <span class="is-grow">Customer</span>
             <span class="is-grow">Email</span>
             <span class="is-grow">Contact</span>
-            <span class="is-grow cell-end">Branch Name</span>
+            <span class="is-grow cell-end">Created At</span>
           </div>
 
           <div class="flex-list-inner">
@@ -242,8 +242,8 @@ onMounted(async () => {
                 <div class="flex-table-cell is-grow" data-th="Contact Number">
                   <span class="light-text">{{ customer.contact_number }}</span>
                 </div>
-                <div class="flex-table-cell  is-grow cell-end" data-th="Branch Name">
-                  <span class="light-text">{{ customer.branch_name }}</span>
+                <div class="flex-table-cell  is-grow cell-end" data-th="Created At">
+                  <span class="light-text">{{ customer.created_at }}</span>
                 </div>
               </div>
             </transition-group>

@@ -1,11 +1,10 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
-    <inspection_tool class="Eslint" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="16">
+          <list size="17">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -22,6 +21,7 @@
             <item index="13" class="java.lang.String" itemvalue="v-flexpagination" />
             <item index="14" class="java.lang.String" itemvalue="v-date-picker" />
             <item index="15" class="java.lang.String" itemvalue="vradio" />
+            <item index="16" class="java.lang.String" itemvalue="qr-code" />
           </list>
         </value>
       </option>

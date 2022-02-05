@@ -22,13 +22,13 @@ export default class BranchService {
     }));
 
 
-  saveBranch = (branch) => axios.post(`${basic_url}/v1/admin/branch`, {
+  saveBranch = (branch: any) => axios.post(`${basic_url}/v1/admin/branch`, {
     company_name: branch.company_name,
     address: branch.address,
     contact_number: branch.contact_number,
     group_id: branch.group_id,
     username: branch.username,
-    password: branch.password,
+    email: branch.branch_email,
     start_date: branch.start_date,
     end_date: branch.end_date,
     start_time: branch.start_time,
@@ -39,10 +39,11 @@ export default class BranchService {
     data: response.data,
   }));
 
-  editBranch = (branch) => axios.put(`${basic_url}/v1/admin/branch/`, {
+  editBranch = (branch: any) => axios.put(`${basic_url}/v1/admin/branch/`, {
     branch_id: branch.branch_id,
     company_name: branch.company_name,
     address: branch.address,
+    email: branch.branch_email,
     contact_number: branch.contact_number,
     group_id: branch.group_id,
     start_date: branch.start_date,

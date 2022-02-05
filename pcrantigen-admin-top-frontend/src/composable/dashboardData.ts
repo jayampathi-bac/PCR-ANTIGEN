@@ -38,8 +38,11 @@ const getDashboardData = () => {
       if (topBranchesCount.value === 1) {
         topBranchOne.value = topBranches.value[0]
       } else if (topBranchesCount.value === 2) {
+        topBranchOne.value = topBranches.value[0]
         topBranchTwo.value = topBranches.value[1]
       } else if (topBranchesCount.value === 3) {
+        topBranchOne.value = topBranches.value[0]
+        topBranchTwo.value = topBranches.value[1]
         topBranchThree.value = topBranches.value[2]
       }
       // @ts-ignore

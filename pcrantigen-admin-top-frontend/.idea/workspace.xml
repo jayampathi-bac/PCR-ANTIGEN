@@ -2,11 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c0548c6-4aa0-4240-9656-b01354080f4a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/CaptureTestImage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/CaptureTestImage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/CaptureUserImage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/CaptureUserImage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/pages/forms/edit-profile/EditProfileGeneral.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/pages/forms/edit-profile/EditProfileGeneral.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/pages/layouts/flex-list/ResultGeneration.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/pages/layouts/flex-list/ResultGeneration.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/composable/dashboardData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/composable/dashboardData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/service/auth/auth.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/service/auth/auth.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admintopdist.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdminTopDashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminTopDashboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/forms/edit-profile/EditProfileSettings.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/forms/edit-profile/EditProfileSettings.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/BranchesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/BranchesList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/CustomersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/CustomersList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/GroupsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/GroupsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/partials/dropdowns/UserProfileDropdown.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/partials/dropdowns/UserProfileDropdown.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/reports/BranchReportsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reports/BranchReportsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/reports/CustomerReportsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reports/CustomerReportsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/reports/TestReportsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reports/TestReportsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composable/dashboardData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/composable/dashboardData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composable/reports/testReportsData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/composable/reports/testReportsData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/auth/auth.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/auth/auth.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/branchService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/branchService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/pages/forms/edit-profile/EditProfileGeneral.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/pages/forms/edit-profile/EditProfileGeneral.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/pages/forms/edit-profile/EditProfileSettings.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/pages/forms/edit-profile/EditProfileSettings.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/pages/layouts/search/FacetSearch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/pages/layouts/search/FacetSearch.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/pages/auth/signup-3.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/pages/auth/signup-3.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/pages/branch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/pages/branch.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/pages/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/store/authModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/store/authModule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/pages/navbar-blank-page-1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/pages/navbar-blank-page-1.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,11 +83,13 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/layouts/mobile-subsidebars" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="node.js.selected.package.stylelint" value="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\node_modules\stylelint" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="MTHome" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
     <property name="ts.external.directory.path" value="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -82,7 +123,21 @@
       <workItem from="1643237652928" duration="309000" />
       <workItem from="1643238163681" duration="611000" />
       <workItem from="1643274112805" duration="12378000" />
-      <workItem from="1643288890334" duration="8028000" />
+      <workItem from="1643288890334" duration="8760000" />
+      <workItem from="1643357772734" duration="3945000" />
+      <workItem from="1643391869473" duration="327000" />
+      <workItem from="1643555742770" duration="5595000" />
+      <workItem from="1643635733883" duration="13111000" />
+      <workItem from="1643660945202" duration="1510000" />
+      <workItem from="1643704191408" duration="75000" />
+      <workItem from="1643738006475" duration="5011000" />
+      <workItem from="1643809453311" duration="1355000" />
+      <workItem from="1643813083025" duration="18000" />
+      <workItem from="1643818029507" duration="9554000" />
+      <workItem from="1643911292814" duration="4055000" />
+      <workItem from="1643995160905" duration="5419000" />
+      <workItem from="1644003685178" duration="3428000" />
+      <workItem from="1644036528285" duration="1881000" />
     </task>
     <servers />
   </component>
@@ -112,10 +167,13 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/layouts/SidebarLayout.vue</url>
           <line>119</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
