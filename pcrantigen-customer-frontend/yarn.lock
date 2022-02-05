@@ -11176,6 +11176,11 @@
     "@intlify/vue-devtools" "9.1.4"
     "@vue/devtools-api" "^6.0.0-beta.7"
 
+"vue-loading-overlay@^5.0.3":
+  "integrity" "sha512-6JWZalwlHF4do3HXsFZGt6PcWYseAI5FuNKpveEkljkzqskDWRr7rYmYHVx2kKu4qIvK0vLpL25T/hpFMNoevQ=="
+  "resolved" "https://registry.npmjs.org/vue-loading-overlay/-/vue-loading-overlay-5.0.3.tgz"
+  "version" "5.0.3"
+
 "vue-native-websocket-vue3@^3.1.4":
   "integrity" "sha512-Dqq+LaoV1ZgWhPGIEBKBIXMc+n+7Bh6BkAgnRrf3iV6NSOA7q42dQNOEPbJCzmn/L779ck56RT1UtoCZfIwq/w=="
   "resolved" "https://registry.npmjs.org/vue-native-websocket-vue3/-/vue-native-websocket-vue3-3.1.4.tgz"

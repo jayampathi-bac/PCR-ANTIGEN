@@ -68,7 +68,7 @@ const onSave = async () => {
         <div class="right">
           <div class="buttons">
             <V-Button
-              :to="{ name: 'navbar-blank-page-1' }"
+              :to="{ name: 'results' }"
               icon="lnir lnir-arrow-left rem-100"
               light
               dark-outlined

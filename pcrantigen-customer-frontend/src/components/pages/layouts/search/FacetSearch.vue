@@ -154,7 +154,12 @@ onMounted(async () => {
                   <p class="para">Test Name ：{{test_name}} - {{brand_name}}</p>
                   <p class="para">Result ：{{test_result}}</p>
                   <p class="para">Test Done At ：{{test_done_at}}</p>
-                  <p class="para">Validity : {{test_validity}}</p>
+
+
+                  <div>
+                    <p class="para">Validity : {{test_validity}}</p>
+<!--                    <p class="para">Validity : 2022-02-03 01:39 - 2022-02-06 01:39</p>-->
+                  </div>
                   <div class="rotated"></div>
                 </div>
               </div>
@@ -245,7 +250,7 @@ template {
 
 .id-card {
   width: 336px;
-  height: 192px;
+  height: 193px;
   background: #ffffff;
   padding: 10px;
   position: relative;
@@ -344,8 +349,10 @@ template {
 }
 
 #id-card-mugshot{
-  width: 95%;
+  width: 128px;
   border-radius: 5px;
+  height: 127px;
+  object-fit: fill;
 }
 
 #img2{
@@ -356,7 +363,7 @@ template {
 .para{
   font-family: 'PT Sans', sans-serif;
   color: black;
-  font-size: 7pt;
+  font-size: 6.3pt;
   font-weight: 400;
 }
 .topic{

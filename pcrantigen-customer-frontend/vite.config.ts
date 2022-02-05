@@ -44,6 +44,11 @@ export default defineConfig({
     ],
   },
 
+  server: {
+    host: true,
+    port: 3001,
+  },
+
   build: {
     sourcemap: process.env.SOURCE_MAP === 'true',
     /**
@@ -56,6 +61,7 @@ export default defineConfig({
     //   ]
     // }
   },
+
   plugins: [
     /**
      * plugin-vue plugin inject vue library and allow sfc files to work (*.vue)

@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import * as NProgress from 'nprogress'
 import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
@@ -43,7 +43,7 @@ import routes from 'pages-generated'
 console.log(routes)
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 })
 

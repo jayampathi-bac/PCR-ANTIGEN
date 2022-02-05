@@ -38,7 +38,7 @@ const handleLogin = async () => {
         password: ups.value
       }).then(() => {
           isLoading.value = false
-          router.push({name: 'navbar-blank-page-1'})
+          router.push({name: 'results'})
           notif.success(`Welcome ${store.state.auth.user.name} .!`)
           callingWebSocket();
 

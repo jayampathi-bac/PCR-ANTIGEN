@@ -49,7 +49,7 @@ const handleSignup = async () => {
             // console.log("signup response : ",response)
             if (response.data.success === true) {
               notif.success(response.data.message)
-              router.push({name: 'index'})
+              router.push({name: 'index', params: { data: identifier ? identifier.value  : 0}})
             } else {
               notif.warning(response.data.message)
             }

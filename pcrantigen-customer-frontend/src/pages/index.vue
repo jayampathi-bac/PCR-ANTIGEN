@@ -38,9 +38,9 @@ const handleLogin = async () => {
         password: ups.value
       }).then(() => {
           isLoading.value = false
-          router.push({name: 'navbar-blank-page-1'})
+          router.push({name: 'results'})
           notif.success(`Welcome ${store.state.auth.user.name} .!`)
-          if (route.query.identifier !== undefined){
+          if (identifier.value !== undefined){
             console.log("calling websocket")
             callingWebSocket();
           }
@@ -82,10 +82,15 @@ const identifier = ref('-1')
 
 onMounted(() => {
   console.log("hi this is the param",route.query.identifier)
+  console.log("hi this is the param data",route.params.data)
   // const branch_id = route.params.index;
-  store.commit('setBranchID', route.query.identifier)
   identifier.value = route.query.identifier ? route.query.identifier : 0
-
+  if(!route.query.identifier ){
+    console.log("testing data params",route.params.data)
+    identifier.value = (!route.params.data || route.params.data !== 0) ? route.params.data : 0
+    console.log("testing data params identifier",identifier.value)
+  }
+  store.commit('setBranchID', identifier.value)
 })
 
 

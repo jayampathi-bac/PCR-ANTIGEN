@@ -99,9 +99,12 @@ const contact_number = ref(store.state.auth.user.contact);
 const email = ref(store.state.auth.user.email);
 const profile_picture_url = ref(store.state.auth.user.profile_url ? store.state.auth.user.profile_url : "https://resource.jvpdtest.com/User.png");
 
+const isLoaderActive = ref(false)
+
 
 
 const onSave = async () => {
+  isLoaderActive.value = !isLoaderActive.value
   isLoading.value = true
 
   if (name.value && email.value) {
@@ -143,7 +146,7 @@ const onSave = async () => {
   }else{
     notyf.warning('Fields are empty..!')
   }
-
+  isLoaderActive.value = !isLoaderActive.value
   isLoading.value = false
 }
 
@@ -160,6 +163,7 @@ onMounted( () => {
 </script>
 
 <template>
+  <VLoader size="large"  center="smooth" lighter="true" translucent="true" :active="isLoaderActive">
   <div class="account-box is-form is-footerless">
     <div class="form-head stuck-header" :class="[isScrolling && 'is-stuck']">
       <div class="form-head-inner">
@@ -170,7 +174,7 @@ onMounted( () => {
         <div class="right">
           <div class="buttons">
             <V-Button
-              :to="{ name: 'navbar-blank-page-1' }"
+              :to="{ name: 'results' }"
               icon="lnir lnir-arrow-left rem-100"
               light
               dark-outlined
@@ -181,7 +185,7 @@ onMounted( () => {
               color="primary"
               raised
               :loading="isLoading"
-              @click="onSave"
+              @click.prevent="onSave"
             >
               Save Changes
             </V-Button>
@@ -463,4 +467,5 @@ onMounted( () => {
 <!--      </div>-->
     </div>
   </div>
+  </VLoader>
 </template>
