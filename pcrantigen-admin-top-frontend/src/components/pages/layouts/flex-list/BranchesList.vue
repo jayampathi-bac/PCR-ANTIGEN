@@ -40,11 +40,7 @@ const filteredData = computed(() => {
         item.address.match(new RegExp(filters.value, 'i')) ||
         item.email.match(new RegExp(filters.value, 'i')) ||
         item.contact_number.match(new RegExp(filters.value, 'i')) ||
-        item.group_id.match(new RegExp(filters.value, 'i')) ||
-        item.start_date.match(new RegExp(filters.value, 'i')) ||
-        item.end_date.match(new RegExp(filters.value, 'i')) ||
-        item.start_time.match(new RegExp(filters.value, 'i')) ||
-        item.end_time.match(new RegExp(filters.value, 'i'))
+        item.group_id.match(new RegExp(filters.value, 'i'))
       )
     })
   }
@@ -61,6 +57,7 @@ const start_date = ref()
 const end_date = ref()
 const branch_email = ref()
 const profile_url = ref('https://sample.jvpdtest.com/User.jpg')
+const unit_price = ref()
 
 const start_time = ref()
 const end_time = ref()
@@ -89,6 +86,7 @@ const edit_start_time_saved = ref()
 const edit_end_time = ref()
 const edit_end_time_saved = ref()
 const edit_profile_url = ref('')
+const edit_unit_price = ref();
 const selected_qr_code_url = ref('https://sample.jvpdtest.com/Qr/55360360-ddaf-4db6-9387-1000e5125967.png')
 const testurl = ref('https://sample.jvpdtest.com/Qr/55360360-ddaf-4db6-9387-1000e5125967.png')
 
@@ -96,23 +94,32 @@ const testurl = ref('https://sample.jvpdtest.com/Qr/55360360-ddaf-4db6-9387-1000
 // Save branch
 const fireSaveBranchFuncAlert = () => {
   console.log("groups", groups.value, group_id.value)
-  if (company_name.value && address.value && contact_number.value && (group_id.value !== 0) && branch_email.value && start_date.value && end_date.value) {
-    // console.log("date", start_date.value, end_date.value)
-    centeredActionsOpen.value = false;
-    swal.fire({
-      title: `Do you want to save the Branch ?`,
-      showCancelButton: true,
-      confirmButtonText: 'Save',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        saveBranchFunc()
-      }
-    })
+  if (company_name.value && address.value && contact_number.value && (group_id.value !== 0) && branch_email.value && start_date.value && end_date.value && unit_price.value) {
+    if ( contact_number.value.length === 11 || contact_number.value.length === 10) {
+      centeredActionsOpen.value = false;
+      swal.fire({
+        title: `Do you want to save the Branch ?`,
+        showCancelButton: true,
+        confirmButtonText: 'Save',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          saveBranchFunc()
+        }
+      })
+    }else {
+      notif.warning('Not a valid contact number..!!')
+    }
+
   } else {
     notif.warning('Empty Fields.!!')
   }
 
 }
+
+const formatter = new Intl.NumberFormat('en-US', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
 
 const saveBranchFunc = () => {
   console.log("saving")
@@ -144,6 +151,7 @@ const saveBranchFunc = () => {
     start_time: start_time.value,
     end_time: end_time.value,
     profile_url: profile_url.value,
+    unit_price: formatter.format(unit_price.value)
   }
   branchService.saveBranch(branch)
     .then(function (response) {
@@ -188,6 +196,7 @@ const openEditActionsOpen = (branch: any) => {
   edit_start_time.value = new Date(date + " " + branch.start_time + ":00").setMinutes(0, 0, 0);
   edit_end_time.value = new Date(date + " " + branch.end_time + ":00").setMinutes(0, 0, 0);
   edit_profile_url.value = branch.profile_url;
+  edit_unit_price.value = branch.unit_price;
 };
 
 // View branch
@@ -209,6 +218,7 @@ const openViewActionsOpen = (branch: any) => {
   edit_start_time.value = branch.start_time;
   edit_end_time.value = branch.end_time;
   edit_profile_url.value = branch.profile_url;
+  edit_unit_price.value = branch.unit_price;
 };
 
 
@@ -223,7 +233,7 @@ const openQRCodeModel = (qr_code_url: any) => {
 
 const fireEditBranchFuncAlert = () => {
   console.log("fireEditBranchFuncAlert")
-  if (edit_company_id.value && edit_company_name.value && edit_address.value && edit_branch_email.value && edit_contact_number.value && edit_group_id.value && edit_start_date.value && edit_end_date.value && edit_start_time.value && edit_end_time.value && edit_profile_url.value) {
+  if (edit_company_id.value && edit_company_name.value && edit_address.value && edit_branch_email.value && edit_contact_number.value && edit_group_id.value && edit_start_date.value && edit_end_date.value && edit_start_time.value && edit_end_time.value && edit_profile_url.value && edit_unit_price.value) {
     swal.fire({
       title: `Do you want to edit the Branch ?`,
       showCancelButton: true,
@@ -267,6 +277,7 @@ const editBranchFunc = () => {
     start_time: edit_start_time_saved.value,
     end_time: edit_end_time_saved.value,
     profile_url: edit_profile_url.value,
+    unit_price: formatter.format(edit_unit_price.value)
   }
   branchService.editBranch(branch)
     .then(function (response) {
@@ -364,6 +375,7 @@ const clearFields = () => {
   confirm_password.value = ''
   start_date.value = null
   end_date.value = null
+  unit_price.value = null
 }
 
 const currentPage = computed(() => {
@@ -565,6 +577,8 @@ onMounted(async () => {
         />
       </div>
     </div>
+
+<!--    Add a New Branch-->
     <VModal
       :open="centeredActionsOpen"
       size="medium"
@@ -619,7 +633,7 @@ onMounted(async () => {
                   <label>Contact Number</label>
                   <V-Control icon="feather:phone">
                     <input
-                      type="tel"
+                      type="number"
                       class="input"
                       placeholder="Contact Number"
                       autocomplete="contact_number"
@@ -638,6 +652,19 @@ onMounted(async () => {
                       :searchable="true"
                     >
                     </Multiselect>
+                  </VControl>
+                </V-Field>
+                <V-Field class="is-autocomplete-select">
+                  <label>Price per Unit</label>
+                  <VControl icon="feather:dollar-sign">
+                    <input
+                      type="number"
+                      class="input"
+                      placeholder="Unit Price"
+                      autocomplete="unit_price"
+                      inputmode="unit_price"
+                      v-model="unit_price"
+                    />
                   </VControl>
                 </V-Field>
                 <V-Field>
@@ -745,6 +772,8 @@ onMounted(async () => {
         <VButton color="primary" raised @click="fireSaveBranchFuncAlert">Add Branch</VButton>
       </template>
     </VModal>
+
+<!--    Edit Branch-->
     <VModal
       :open="editActionsOpen"
       size="medium"
@@ -832,6 +861,19 @@ onMounted(async () => {
                       :searchable="true"
                     >
                     </Multiselect>
+                  </VControl>
+                </V-Field>
+                <V-Field class="is-autocomplete-select">
+                  <label>Price per Unit</label>
+                  <VControl icon="feather:dollar-sign">
+                    <input
+                      type="number"
+                      class="input"
+                      placeholder="Unit Price"
+                      autocomplete="unit_price"
+                      inputmode="unit_price"
+                      v-model="edit_unit_price"
+                    />
                   </VControl>
                 </V-Field>
                 <V-Field>
@@ -1004,6 +1046,20 @@ onMounted(async () => {
                       autocomplete="Group"
                       inputmode="Group"
                       v-model="edit_group_name"
+                      readonly
+                    />
+                  </VControl>
+                </V-Field>
+                <V-Field class="is-autocomplete-select">
+                  <label>Price per Unit</label>
+                  <VControl icon="feather:dollar-sign">
+                    <input
+                      type="number"
+                      class="input"
+                      placeholder="Unit Price"
+                      autocomplete="unit_price"
+                      inputmode="unit_price"
+                      v-model="edit_unit_price"
                       readonly
                     />
                   </VControl>

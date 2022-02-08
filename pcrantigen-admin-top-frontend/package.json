@@ -79,6 +79,7 @@
     "vue-web-cam": "^1.9.0",
     "vue3-apexcharts": "1.4.0",
     "vue3-cookies": "^1.0.6",
+    "vue3-print-nb": "^0.1.4",
     "vuex": "^4.0.2",
     "webstomp-client": "^1.2.6"
   },

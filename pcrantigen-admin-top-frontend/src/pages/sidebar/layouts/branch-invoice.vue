@@ -3,14 +3,14 @@ import { useHead } from '@vueuse/head'
 
 import { pageTitle } from '/@src/state/sidebarLayoutState'
 
-pageTitle.value = 'Utility Invoice'
+pageTitle.value = 'Branch Invoice'
 useHead({
-  title: 'Utility Invoice - Sidebar - Vuero',
+  title: 'Branch Invoice',
 })
 </script>
 
 <template>
   <div class="page-content-inner">
-    <Invoice />
+    <BranchesInvoice />
   </div>
 </template>

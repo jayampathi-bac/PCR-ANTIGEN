@@ -2,50 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c0548c6-4aa0-4240-9656-b01354080f4a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/CaptureTestImage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/CaptureTestImage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/CaptureUserImage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/CaptureUserImage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/pages/forms/edit-profile/EditProfileGeneral.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/pages/forms/edit-profile/EditProfileGeneral.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/pages/layouts/flex-list/ResultGeneration.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/pages/layouts/flex-list/ResultGeneration.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/composable/dashboardData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/composable/dashboardData.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/service/auth/auth.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/service/auth/auth.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/vite.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/layouts/BranchesInvoice.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/composable/invoiceData.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sidebar/layouts/branch-invoice.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sidebar/layouts/group-invoice.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/invoiceService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admintopdist.rar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AdminTopDashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminTopDashboard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/forms/edit-profile/EditProfileSettings.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/forms/edit-profile/EditProfileSettings.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CaptureTestImage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CaptureTestImage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CaptureUserImage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CaptureUserImage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/BranchesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/BranchesList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/CustomersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/CustomersList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/GroupsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/GroupsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partials/dropdowns/UserProfileDropdown.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/partials/dropdowns/UserProfileDropdown.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/reports/BranchReportsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reports/BranchReportsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/reports/CustomerReportsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reports/CustomerReportsList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/reports/TestReportsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reports/TestReportsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/composable/dashboardData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/composable/dashboardData.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/composable/reports/testReportsData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/composable/reports/testReportsData.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/auth/auth.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/auth/auth.service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/branchService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/branchService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/groupService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/groupService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/pages/forms/edit-profile/EditProfileGeneral.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/pages/forms/edit-profile/EditProfileGeneral.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/pages/forms/edit-profile/EditProfileSettings.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/pages/forms/edit-profile/EditProfileSettings.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/pages/layouts/search/FacetSearch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/pages/layouts/search/FacetSearch.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/pages/auth/signup-3.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/pages/auth/signup-3.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/pages/branch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/pages/branch.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/pages/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/pages/navbar-blank-page-1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/pages/navbar-blank-page-1.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/vite.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,8 +29,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="Vue Single File Component" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -81,7 +55,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/layouts/mobile-subsidebars" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages/sidebar/layouts" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
@@ -95,11 +69,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\pages\sidebar\layouts" />
+      <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\components\reports" />
       <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\layouts\mobile-subsidebars" />
       <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\layouts\sidebar-subsidebar" />
       <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\service\reports" />
-      <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\components\pages\layouts\flex-list" />
-      <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\pages\sidebar\layouts" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\service" />
+      <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\components\pages\layouts" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -138,6 +116,9 @@
       <workItem from="1643995160905" duration="5419000" />
       <workItem from="1644003685178" duration="3428000" />
       <workItem from="1644036528285" duration="1881000" />
+      <workItem from="1644052026004" duration="62000" />
+      <workItem from="1644242919743" duration="7515000" />
+      <workItem from="1644296618280" duration="15084000" />
     </task>
     <servers />
   </component>

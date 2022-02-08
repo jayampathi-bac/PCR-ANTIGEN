@@ -1,5 +1,32 @@
 <script setup lang="ts">
 import { popovers } from '/@src/data/users/userPopovers'
+import {ref, onMounted} from 'vue'
+import {useRoute, useRouter} from "vue-router";
+import getInvoiceData from '/@src/composable/invoiceData'
+
+const route = useRoute()
+const router = useRouter()
+const {loadInvoiceBranchData, invoiceBranchDataList, invoiceBranchName, branchTotalPrice} = getInvoiceData();
+
+const invoiceData = ref()
+const startDate = ref()
+const endDate = ref()
+
+onMounted(() => {
+  // console.log("hi this is the param data",JSON.parse(route.params.data))
+  if (route.params.data){
+    invoiceData.value = JSON.parse(route.params.data)
+    loadInvoiceBranchData({
+      branch_id: invoiceData.value.branch_id,
+      start_date: invoiceData.value.start_date,
+      end_date: invoiceData.value.end_date,
+    })
+    startDate.value = invoiceData.value.start_date
+    endDate.value = invoiceData.value.end_date
+  }else{
+    router.push({name: 'sidebar-layouts-reports-list-tests'})
+  }
+})
 
 
 </script>
@@ -8,7 +35,7 @@ import { popovers } from '/@src/data/users/userPopovers'
   <div class="invoice-wrapper" >
     <div class="invoice-header">
       <div class="left">
-        <h3>Invoice FC-456-14</h3>
+        <h3>Brnach Invoice </h3>
       </div>
       <div class="right">
         <div class="controls">
@@ -52,143 +79,92 @@ import { popovers } from '/@src/data/users/userPopovers'
           </tippy>
 
           <div class="meta">
-            <h3>Tara Svenson</h3>
-            <span>tarasvenson@vuero.io</span>
-            <span>+1 546-5491</span>
+            <h3>{{invoiceBranchName}}</h3>
+            <span>branch@email.com</span>
+            <span>+1 123-4567</span>
           </div>
           <div class="end">
-            <h3>Invoice FC-456-14</h3>
-            <span>Issued: May 27, 2020</span>
-            <span>Payment Due: June 27, 2015</span>
+            <h3>Group Name </h3>
+            <span>Start-Date: {{startDate}}</span>
+            <span>End Date: {{endDate}}</span>
           </div>
         </div>
 
-        <div class="invoice-section is-flex is-bordered">
-          <V-Avatar
-            size="large"
-            class="is-customer"
-            picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png"
-          />
 
-          <div class="meta">
-            <h3>Airbnb</h3>
-            <span>888 Brannan St, San Francisco,</span>
-            <span>CA 94103, USA</span>
-          </div>
-          <div class="end is-left">
-            <h3>Description</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quod
-              equidem non reprehendo.
-            </p>
-          </div>
-        </div>
         <div class="invoice-section">
           <div class="flex-table">
             <!--Table header-->
             <div class="flex-table-header">
               <span class="is-grow">Description</span>
-              <span class="cell-end">Unit</span>
-              <span>Quantity</span>
-              <span>Rate</span>
+              <span class="cell-end">Unit Price</span>
+              <span>Test Count</span>
+<!--              <span>Rate</span>-->
               <span>Subtotal</span>
             </div>
 
             <!--Table item-->
-            <div class="flex-table-item">
+            <div class="flex-table-item" v-for="(item, key) in invoiceBranchDataList" :key="key">
               <div class="flex-table-cell is-grow" data-th="">
                 <span class="dark-text">Website Redesign</span>
               </div>
-              <div class="flex-table-cell cell-end" data-th="Unit">
-                <span class="light-text">hrs</span>
+              <div class="flex-table-cell cell-end" data-th="Unit Price">
+                <span class="light-text">{{item.unit_price}}</span>
               </div>
-              <div class="flex-table-cell" data-th="Quantity">
-                <span class="light-text">54</span>
+              <div class="flex-table-cell" data-th="Test Count">
+                <span class="light-text">{{item.test_count}}</span>
               </div>
-              <div class="flex-table-cell" data-th="Rate">
-                <span class="dark-inverted">$24</span>
-              </div>
+<!--              <div class="flex-table-cell" data-th="Rate">-->
+<!--                <span class="dark-inverted">$24</span>-->
+<!--              </div>-->
               <div class="flex-table-cell has-text-right" data-th="Subtotal">
-                <span class="dark-inverted">$1,296</span>
+                <span class="dark-inverted">${{item.total}}</span>
               </div>
             </div>
 
             <!--Table item-->
-            <div class="flex-table-item">
-              <div class="flex-table-cell is-grow" data-th="">
-                <span class="dark-text">Logo Design</span>
-              </div>
-              <div class="flex-table-cell cell-end" data-th="Unit">
-                <span class="light-text">hrs</span>
-              </div>
-              <div class="flex-table-cell" data-th="Quantity">
-                <span class="light-text">12</span>
-              </div>
-              <div class="flex-table-cell" data-th="Rate">
-                <span class="dark-inverted">$24</span>
-              </div>
-              <div class="flex-table-cell has-text-right" data-th="Subtotal">
-                <span class="dark-inverted">$288</span>
-              </div>
-            </div>
+
 
             <!--Table item-->
-            <div class="flex-table-item">
-              <div class="flex-table-cell is-grow" data-th="">
-                <span class="dark-text">Custom Illustrations</span>
-              </div>
-              <div class="flex-table-cell cell-end" data-th="Unit">
-                <span class="light-text">hrs</span>
-              </div>
-              <div class="flex-table-cell" data-th="Quantity">
-                <span class="light-text">7</span>
-              </div>
-              <div class="flex-table-cell" data-th="Rate">
-                <span class="dark-inverted">$32</span>
-              </div>
-              <div class="flex-table-cell has-text-right" data-th="Subtotal">
-                <span class="dark-inverted">$224</span>
-              </div>
-            </div>
+
           </div>
 
           <div class="flex-table sub-table">
             <!--Table item-->
-            <div class="flex-table-item">
-              <div class="flex-table-cell is-grow is-vhidden" data-th="">
-                <span class="dark-text">Website Development</span>
-              </div>
-              <div class="flex-table-cell cell-end is-vhidden" data-th="Unit">
-                <span class="light-text">hrs</span>
-              </div>
-              <div class="flex-table-cell is-vhidden" data-th="Quantity">
-                <span class="light-text">2</span>
-              </div>
-              <div class="flex-table-cell" data-th="">
-                <span class="table-label">Subtotal</span>
-              </div>
-              <div class="flex-table-cell has-text-right" data-th="">
-                <span class="table-total dark-inverted">$1,808</span>
-              </div>
-            </div>
+<!--            <div class="flex-table-item">-->
+<!--              <div class="flex-table-cell is-grow is-vhidden" data-th="">-->
+<!--                <span class="dark-text">Website Development</span>-->
+<!--              </div>-->
+<!--              <div class="flex-table-cell cell-end is-vhidden" data-th="Unit">-->
+<!--                <span class="light-text">hrs</span>-->
+<!--              </div>-->
+<!--              <div class="flex-table-cell is-vhidden" data-th="Quantity">-->
+<!--                <span class="light-text">2</span>-->
+<!--              </div>-->
+<!--              <div class="flex-table-cell" data-th="">-->
+<!--                <span class="table-label">Subtotal</span>-->
+<!--              </div>-->
+<!--              <div class="flex-table-cell has-text-right" data-th="">-->
+<!--                <span class="table-total dark-inverted">$1,808</span>-->
+<!--              </div>-->
+<!--            </div>-->
             <!--Table item-->
-            <div class="flex-table-item">
-              <div class="flex-table-cell is-grow is-vhidden" data-th="">
-                <span class="dark-text">Website Development</span>
-              </div>
-              <div class="flex-table-cell cell-end is-vhidden" data-th="Unit">
-                <span class="light-text">hrs</span>
-              </div>
-              <div class="flex-table-cell is-vhidden" data-th="Quantity">
-                <span class="light-text">2</span>
-              </div>
-              <div class="flex-table-cell" data-th="">
-                <span class="table-label">Taxes</span>
-              </div>
-              <div class="flex-table-cell has-text-right" data-th="">
-                <span class="table-total dark-inverted">$273</span>
-              </div>
-            </div>
+<!--            <div class="flex-table-item">-->
+<!--              <div class="flex-table-cell is-grow is-vhidden" data-th="">-->
+<!--                <span class="dark-text">Website Development</span>-->
+<!--              </div>-->
+<!--              <div class="flex-table-cell cell-end is-vhidden" data-th="Unit">-->
+<!--                <span class="light-text">hrs</span>-->
+<!--              </div>-->
+<!--              <div class="flex-table-cell is-vhidden" data-th="Quantity">-->
+<!--                <span class="light-text">2</span>-->
+<!--              </div>-->
+<!--              <div class="flex-table-cell" data-th="">-->
+<!--                <span class="table-label">Taxes</span>-->
+<!--              </div>-->
+<!--              <div class="flex-table-cell has-text-right" data-th="">-->
+<!--                <span class="table-total dark-inverted">$273</span>-->
+<!--              </div>-->
+<!--            </div>-->
             <!--Table item-->
             <div class="flex-table-item">
               <div class="flex-table-cell is-grow is-vhidden" data-th="">
@@ -204,7 +180,7 @@ import { popovers } from '/@src/data/users/userPopovers'
                 <span class="table-label">Total</span>
               </div>
               <div class="flex-table-cell has-text-right" data-th="">
-                <span class="table-total is-bigger dark-inverted">$2,081</span>
+                <span class="table-total is-bigger dark-inverted">${{branchTotalPrice}}</span>
               </div>
             </div>
           </div>

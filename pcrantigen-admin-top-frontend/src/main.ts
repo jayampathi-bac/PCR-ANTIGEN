@@ -19,6 +19,7 @@ import VueSlider from '@vueform/slider'
 import VueApexCharts from 'vue3-apexcharts'
 import VueCKEditor from '@ckeditor/ckeditor5-vue'
 import VueTippy from 'vue-tippy'
+import print from 'vue3-print-nb'
 
 // @ts-ignore
 
@@ -81,6 +82,7 @@ app.use(VueTippy, {
   },
 })
 app.use(VueSweetalert2);
+app.use(print)
 
 app.component(VueMultiselect.name, VueMultiselect)
 app.component(VueSlider.name, VueSlider)

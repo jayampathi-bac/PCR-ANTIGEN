@@ -15,7 +15,6 @@ class AuthService {
       return axios.post(`${basic_url}/oauth/token`,data,{auth:{username:'pcr',password:'1234'}})
         .then(response=>{
           if (response.data.access_token){
-            console.log("--------------------hii--------------------")
             const admintop = {
               name:'Admin',
               access_token:response.data.access_token ,

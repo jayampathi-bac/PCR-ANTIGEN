@@ -25,7 +25,7 @@ export default class GroupService {
     data: response.data,
   }));
 
-  editGroup = (group) => axios.put(`${basic_url}/v1/admin/group/`, {
+  editGroup = (group: any) => axios.put(`${basic_url}/v1/admin/group/`, {
     id: group.id,
     name: group.name,
     area: group.area,

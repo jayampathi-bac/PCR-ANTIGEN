@@ -11612,7 +11612,7 @@
   dependencies:
     "vue" "^2.6.10"
 
-"vue@*", "vue@^2.5.17 || ^2.6", "vue@^2.6.0 || >=3.0.0-rc.1", "vue@^3.0.0", "vue@^3.0.2", "vue@> 3.0.0", "vue@>=3", "vue@3.0.11", "vue@3.1.1":
+"vue@*", "vue@^2.5.17 || ^2.6", "vue@^2.6.0 || >=3.0.0-rc.1", "vue@^3.0.0", "vue@^3.0.2", "vue@^3.0.5", "vue@> 3.0.0", "vue@>=3", "vue@3.0.11", "vue@3.1.1":
   "integrity" "sha512-3/eUi4InQz8MPzruHYSTQPxtM3LdZ1/S/BvaU021zBnZi0laRUyH6pfuE4wtUeLvI8wmUNwj5wrZFvbHUXL9dw=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.0.11.tgz"
   "version" "3.0.11"
@@ -11637,6 +11637,13 @@
   "version" "1.0.6"
   dependencies:
     "vue" "^3.0.0"
+
+"vue3-print-nb@^0.1.4":
+  "integrity" "sha512-LExI7viEzplR6ZKQ2b+V4U0cwGYbVD4fut/XHvk3UPGlT5CcvIGs6VlwGp107aKgk6P8Pgx4rco3Rehv2lti3A=="
+  "resolved" "https://registry.npmjs.org/vue3-print-nb/-/vue3-print-nb-0.1.4.tgz"
+  "version" "0.1.4"
+  dependencies:
+    "vue" "^3.0.5"
 
 "vuex@^4.0.2":
   "integrity" "sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q=="

@@ -5,13 +5,15 @@ import getTestsReport from '/@src/composable/reports/testReportsData'
 import getCustomersReport from "/@src/composable/reports/customerReportsData";
 import getBranchesReport from '/@src/composable/reports/branchReportsData'
 
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
+
 
 const {tests, searchTests, allTestsCount} = getTestsReport();
 const {searchBranchesToCustomer, allBranches} = getCustomersReport();
 const {searchGroupsToBranch, allGroups} = getBranchesReport();
 
 const route = useRoute()
+const router = useRouter()
 
 const filters = ref('')
 
@@ -114,6 +116,16 @@ const exportToCsv = (filename: any) => {
 
 const downloadCSVFunc = () => {
   exportToCsv('all_test_records.csv')
+}
+
+const browseInvoice = () => {
+
+  const browseData = {
+    branch_id: selectedBranch.value,
+    start_date: date.value.start.toISOString().split('T')[0],
+    end_date: date.value.end.toISOString().split('T')[0],
+  }
+  router.push({name: 'sidebar-layouts-branch-invoice', params: { data: JSON.stringify(browseData)}})
 }
 
 watch(
@@ -251,6 +263,9 @@ onMounted(async () => {
     </div>
     <div class="list-flex-toolbar flex-list-v1 m-4">
       <V-Buttons>
+        <V-Button color="danger" icon="fas fa-print" elevated @click="browseInvoice">
+          Print
+        </V-Button>
         <V-Button color="info" icon="fas fa-download" elevated @click="downloadCSVFunc">
           Download
         </V-Button>
@@ -261,6 +276,7 @@ onMounted(async () => {
     </div>
 
     <div class="page-content-inner">
+
       <div class="flex-list-wrapper flex-list-v1">
         <!--List Empty Search Placeholder -->
         <V-PlaceholderPage

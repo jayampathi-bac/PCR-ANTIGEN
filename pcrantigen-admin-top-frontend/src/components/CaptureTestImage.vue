@@ -7,6 +7,8 @@
           ref="video"
           class="has-fullwidth"
           autoplay
+          muted
+          playsInline
         />
         <canvas
           v-show="imageCaptured"
