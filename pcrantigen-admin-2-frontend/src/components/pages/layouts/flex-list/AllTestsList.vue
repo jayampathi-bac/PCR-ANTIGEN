@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import {computed, onMounted, ref} from 'vue'
-import { useRoute } from 'vue-router'
+import {useRoute} from 'vue-router'
 import useNotyf from '/@src/composable/useNotyf'
-
+import AllTestsService from '/@src/service/allTestsService';
 import getAllTests from '/@src/composable/allTestData'
+import {useCookies} from "vue3-cookies";
+
 const route = useRoute()
 
-const {allTests, searchAllTests, searchAllTestsByRange, searchAllTestsByMonth,totalTests} = getAllTests();
-
+const {allTests, searchAllTests, searchAllTestsByRange, searchAllTestsByMonth, totalTests} = getAllTests();
+const allTestsService = new AllTestsService();
 const notif = useNotyf()
+const {cookies} = useCookies();
 const filters = ref('')
 const centeredActionsOpen = ref(false)
 const filteredData = computed(() => {
@@ -86,8 +89,10 @@ const searchCustomerByMonth = () => {
   }
 }
 
-const exportToCsv = (filename) => {
-  const json = allTests.value;
+const isLoaderActive = ref(false)
+
+const exportToCsv = (filename: any, data: any) => {
+  const json = data;
   const fields = Object.keys(json[0]);
   const replacer = function (key, value) {
     return value === null ? '' : value
@@ -116,10 +121,27 @@ const exportToCsv = (filename) => {
       document.body.removeChild(link);
     }
   }
+  isLoaderActive.value = !isLoaderActive.value
 }
 
+
 const downloadCSVFunc = () => {
-  exportToCsv('all_test_records.csv')
+  // exportToCsv('all_test_records.csv')
+  isLoaderActive.value = !isLoaderActive.value
+  allTestsService.getAllTestsForCSV(cookies.get('admin2').branch_id.toString())
+    .then(function (response) {
+      // console.log('exportToCsv', response.data.data)
+      if (response.data.success) {
+        exportToCsv('all_test_records.csv', response.data.data)
+      } else {
+        isLoaderActive.value = !isLoaderActive.value
+      }
+      // isLoaderActive.value = !isLoaderActive.value
+    })
+    .catch(function (error) {
+      isLoaderActive.value = !isLoaderActive.value
+      console.log(error);
+    });
 }
 
 const refreshLoading = () => {
@@ -128,9 +150,10 @@ const refreshLoading = () => {
 
 const currentPage = computed(() => {
   try {
-    searchAllTests(Number.parseInt(route.query.page as string) || 1 )
+    searchAllTests(Number.parseInt(route.query.page as string) || 1)
     return Number.parseInt(route.query.page as string) || 1
-  } catch {}
+  } catch {
+  }
   return 1
 })
 
@@ -141,268 +164,269 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <div class="s-card mb-5">
-      <div class="columns is-multiline">
-        <div class="column is-3">
-          <V-Field>
-            <label>Filter Search</label>
-            <V-Control>
-              <VRadio
-                v-model="selected"
-                value="range"
-                label="Date Range"
-                name="outlined_radio"
-                color="primary"
-              />
-              <VRadio
-                v-model="selected"
-                value="month"
-                label="Month"
-                name="outlined_radio"
-                color="info"
-              />
-            </V-Control>
-          </V-Field>
-        </div>
-        <div class="column is-6 ">
-          <div v-show="selected === 'range'" class=" mt-4">
-            <div class="data-picker-responsive">
-              <v-date-picker
-                v-model="dateRange"
-                is-range
-                color="green"
-                trim-weeks
-                class="column is-6"
-              >
-                <template #default="{ inputValue, inputEvents }">
-                  <div class="columns v-calendar-combo">
-                    <div class="column is-6">
-                      <V-Field>
-                        <!--                    <label>Meeting date</label>-->
-
-                        <V-Control icon="feather:calendar">
-                          <input
-                            placeholder="Start Date"
-                            :value="inputValue.start"
-                            class="input form-datepicker"
-                            v-on="inputEvents.start"
-                          />
-                        </V-Control>
-                      </V-Field>
-                    </div>
-                    <div class="column is-6">
-                      <V-Field>
-                        <!--                    <label class="is-vhidden">Meeting date</label>-->
-                        <V-Control icon="feather:calendar">
-                          <input
-                            placeholder="End Date"
-                            :value="inputValue.end"
-                            class="input form-datepicker"
-                            v-on="inputEvents.end"
-                          />
-                        </V-Control>
-                      </V-Field>
-                    </div>
-                  </div>
-                </template>
-              </v-date-picker>
-            </div>
-          </div>
-          <div v-show="selected === 'month'" class="mt-5">
-            <Multiselect
-              v-model="selectedMonth"
-              :options="['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']"
-              placeholder="Select a month"
-            />
-          </div>
-        </div>
-        <div class="column is-3-desktop-only  mt-5 is-flex is-justify-content-center">
-          <V-Buttons>
-            <V-Button v-show="selected === 'range'" color="info" icon="fas fa-search" elevated
-                      @click="searchCustomerByRange()">
-              Search
-            </V-Button>
-            <V-Button v-show="selected === 'month'" color="info" icon="fas fa-search" elevated
-                      @click="searchCustomerByMonth()">
-              Search
-            </V-Button>
-            <V-Button color="primary" icon="fas fa-download" elevated @click="downloadCSVFunc">
-              Download
-            </V-Button>
-          </V-Buttons>
-        </div>
-      </div>
-    </div>
+  <VLoader size="large" center="smooth" lighter="true" translucent="true" :active="isLoaderActive">
     <div>
-      <div class="">
-        <div class="list-flex-toolbar flex-list-v1">
-          <V-Field>
-            <V-Control icon="feather:search">
-              <input
-                v-model="filters"
-                class="input custom-text-filter"
-                placeholder="Search..."
-              />
-            </V-Control>
-          </V-Field>
+      <div class="s-card mb-5">
+        <div class="columns is-multiline">
+          <div class="column is-3">
+            <V-Field>
+              <label>Filter Search</label>
+              <V-Control>
+                <VRadio
+                  v-model="selected"
+                  value="range"
+                  label="Date Range"
+                  name="outlined_radio"
+                  color="primary"
+                />
+                <VRadio
+                  v-model="selected"
+                  value="month"
+                  label="Month"
+                  name="outlined_radio"
+                  color="info"
+                />
+              </V-Control>
+            </V-Field>
+          </div>
+          <div class="column is-6 ">
+            <div v-show="selected === 'range'" class=" mt-4">
+              <div class="data-picker-responsive">
+                <v-date-picker
+                  v-model="dateRange"
+                  is-range
+                  color="green"
+                  trim-weeks
+                  class="column is-6"
+                >
+                  <template #default="{ inputValue, inputEvents }">
+                    <div class="columns v-calendar-combo">
+                      <div class="column is-6">
+                        <V-Field>
+                          <!--                    <label>Meeting date</label>-->
 
-          <V-Buttons>
-            <!--        <V-Button dark="3">View Reports</V-Button>-->
-            <V-Button color="primary" icon="feather:refresh-cw" elevated @click="refreshLoading()">
-              refresh
-            </V-Button>
-          </V-Buttons>
-        </div>
-        <div class="page-content-inner">
-          <div class="flex-list-wrapper flex-list-v1">
-            <!--List Empty Search Placeholder -->
-            <V-PlaceholderPage
-              :class="[filteredData.length !== 0 && 'is-hidden']"
-              title="We couldn't find any matching results."
-              subtitle="Too bad. Looks like we couldn't find any matching results for the
-          search terms you've entered. Please try different search terms or
-          criteria."
-              larger
-            >
-            </V-PlaceholderPage>
-            <div class="flex-table">
-              <!--Table header-->
-              <div
-                class="flex-table-header"
-                :class="[filteredData.length === 0 && 'is-hidden']"
-              >
-                <span class="is-grow">Customer</span>
-                <span class="is-grow">Contact Number</span>
-                <span class="is-grow">Record ID</span>
-                <span class="is-grow">Test Result</span>
-                <span class="is-grow">Record State</span>
-                <span class="is-grow cell-end">Created At</span>
-              </div>
-              <div class="flex-list-inner">
-                <transition-group name="list" tag="div">
-                  <!--Table item-->
-                  <div
-                    v-for="test in filteredData"
-                    :key="test.customer_contact_number"
-                    class="flex-table-item"
-                  >
-                    <div class="flex-table-cell is-media is-grow">
-                      <V-Avatar
-                        :picture="test.customer_img_url"
-                        color="info"
-                        size="medium"
-                      />
-                      <div>
-                        <span class="item-name dark-inverted">{{ test.customer_name }}</span>
+                          <V-Control icon="feather:calendar">
+                            <input
+                              placeholder="Start Date"
+                              :value="inputValue.start"
+                              class="input form-datepicker"
+                              v-on="inputEvents.start"
+                            />
+                          </V-Control>
+                        </V-Field>
+                      </div>
+                      <div class="column is-6">
+                        <V-Field>
+                          <!--                    <label class="is-vhidden">Meeting date</label>-->
+                          <V-Control icon="feather:calendar">
+                            <input
+                              placeholder="End Date"
+                              :value="inputValue.end"
+                              class="input form-datepicker"
+                              v-on="inputEvents.end"
+                            />
+                          </V-Control>
+                        </V-Field>
                       </div>
                     </div>
-                    <div class="flex-table-cell is-grow" data-th="Contact Number">
-                      <span class="light-text">{{ test.customer_contact_number }}</span>
-                    </div>
-                    <div class="flex-table-cell is-grow" data-th="Record ID">
-                      <span class="light-text">{{ test.record_id }}</span>
-                    </div>
-                    <div class="flex-table-cell is-grow" data-th="Test Result">
-                      <span class="light-text">{{ test.test_result }}</span>
-                    </div>
-                    <div class="flex-table-cell is-grow" data-th="Record State">
-                      <span class="light-text">{{ test.record_state }}</span>
-                    </div>
-                    <div class="flex-table-cell is-grow cell-end" data-th="Created At">
-                      <span class="light-text">{{ test.created_at }}</span>
-                    </div>
-                  </div>
-                </transition-group>
+                  </template>
+                </v-date-picker>
               </div>
             </div>
-            <!--Table Pagination-->
-            <V-FlexPagination
-              v-if="filteredData.length > 0"
-              :item-per-page="10"
-              :total-items=totalTests
-              :current-page="currentPage"
-              :max-links-displayed="7"
-            />
+            <div v-show="selected === 'month'" class="mt-5">
+              <Multiselect
+                v-model="selectedMonth"
+                :options="['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']"
+                placeholder="Select a month"
+              />
+            </div>
+          </div>
+          <div class="column is-3-desktop-only  mt-5 is-flex is-justify-content-center">
+            <V-Buttons>
+              <V-Button v-show="selected === 'range'" color="info" icon="fas fa-search" elevated
+                        @click="searchCustomerByRange()">
+                Search
+              </V-Button>
+              <V-Button v-show="selected === 'month'" color="info" icon="fas fa-search" elevated
+                        @click="searchCustomerByMonth()">
+                Search
+              </V-Button>
+              <V-Button color="primary" icon="fas fa-download" elevated @click="downloadCSVFunc">
+                Download
+              </V-Button>
+            </V-Buttons>
           </div>
         </div>
       </div>
-      <VModal
-        :open="centeredActionsOpen"
-        size="large"
-        actions="center"
-        @close="centeredActionsOpen = false"
-        title="Test Details"
-      >
-        <template #content>
-          <form class="form-layout is-split" @submit.prevent>
-            <div class="form-outer">
-              <div class="form-section is-grey">
-                <div>
-                  <V-Field>
-                    <V-Control icon="feather:user">
-                      <input
-                        type="text"
-                        class="input"
-                        placeholder="Customer ID"
-                        autocomplete="customer-id"
-                      />
-                    </V-Control>
-                  </V-Field>
-                  <V-Field>
-                    <V-Control icon="feather:user">
-                      <input
-                        type="text"
-                        class="input"
-                        placeholder="Test Name"
-                        autocomplete="test-name"
-                      />
-                    </V-Control>
-                  </V-Field>
-                  <V-Field>
-                    <V-Control icon="feather:mail">
-                      <input
-                        type="email"
-                        class="input"
-                        placeholder="Email Address *"
-                        autocomplete="email"
-                        inputmode="email"
-                      />
-                    </V-Control>
-                  </V-Field>
-                  <V-Field>
-                    <V-Control icon="feather:phone">
-                      <input
-                        type="tel"
-                        class="input"
-                        placeholder="Phone Number *"
-                        autocomplete="tel"
-                        inputmode="tel"
-                      />
-                    </V-Control>
-                  </V-Field>
-                  <V-Field>
-                    <V-Control icon="feather:phone">
-                      <input
-                        type="tel"
-                        class="input"
-                        placeholder="Test Date"
-                        autocomplete="test-date"
-                      />
-                    </V-Control>
-                  </V-Field>
+      <div>
+        <div class="">
+          <div class="list-flex-toolbar flex-list-v1">
+            <V-Field>
+              <V-Control icon="feather:search">
+                <input
+                  v-model="filters"
+                  class="input custom-text-filter"
+                  placeholder="Search..."
+                />
+              </V-Control>
+            </V-Field>
+
+            <V-Buttons>
+              <!--        <V-Button dark="3">View Reports</V-Button>-->
+              <V-Button color="primary" icon="feather:refresh-cw" elevated @click="refreshLoading()">
+                refresh
+              </V-Button>
+            </V-Buttons>
+          </div>
+          <div class="page-content-inner">
+            <div class="flex-list-wrapper flex-list-v1">
+              <!--List Empty Search Placeholder -->
+              <V-PlaceholderPage
+                :class="[filteredData.length !== 0 && 'is-hidden']"
+                title="We couldn't find any matching results."
+                subtitle="Too bad. Looks like we couldn't find any matching results for the
+          search terms you've entered. Please try different search terms or
+          criteria."
+                larger
+              >
+              </V-PlaceholderPage>
+              <div class="flex-table">
+                <!--Table header-->
+                <div
+                  class="flex-table-header"
+                  :class="[filteredData.length === 0 && 'is-hidden']"
+                >
+                  <span class="is-grow">Customer</span>
+                  <span class="is-grow">Contact Number</span>
+                  <span class="is-grow">Record ID</span>
+                  <span class="is-grow">Test Result</span>
+                  <span class="is-grow">Record State</span>
+                  <span class="is-grow cell-end">Created At</span>
+                </div>
+                <div class="flex-list-inner">
+                  <transition-group name="list" tag="div">
+                    <!--Table item-->
+                    <div
+                      v-for="test in filteredData"
+                      :key="test.customer_contact_number"
+                      class="flex-table-item"
+                    >
+                      <div class="flex-table-cell is-media is-grow">
+                        <V-Avatar
+                          :picture="test.customer_img_url"
+                          color="info"
+                          size="medium"
+                        />
+                        <div>
+                          <span class="item-name dark-inverted">{{ test.customer_name }}</span>
+                        </div>
+                      </div>
+                      <div class="flex-table-cell is-grow" data-th="Contact Number">
+                        <span class="light-text">{{ test.customer_contact_number }}</span>
+                      </div>
+                      <div class="flex-table-cell is-grow" data-th="Record ID">
+                        <span class="light-text">{{ test.record_id }}</span>
+                      </div>
+                      <div class="flex-table-cell is-grow" data-th="Test Result">
+                        <span class="light-text">{{ test.test_result }}</span>
+                      </div>
+                      <div class="flex-table-cell is-grow" data-th="Record State">
+                        <span class="light-text">{{ test.record_state }}</span>
+                      </div>
+                      <div class="flex-table-cell is-grow cell-end" data-th="Created At">
+                        <span class="light-text">{{ test.created_at }}</span>
+                      </div>
+                    </div>
+                  </transition-group>
                 </div>
               </div>
+              <!--Table Pagination-->
+              <V-FlexPagination
+                v-if="filteredData.length > 0"
+                :item-per-page="10"
+                :total-items=totalTests
+                :current-page="currentPage"
+                :max-links-displayed="7"
+              />
             </div>
-          </form>
-        </template>
-        <template #action>
-          <VButton color="primary" raised>Issue Resultf</VButton>
-        </template>
-      </VModal>
+          </div>
+        </div>
+        <VModal
+          :open="centeredActionsOpen"
+          size="large"
+          actions="center"
+          @close="centeredActionsOpen = false"
+          title="Test Details"
+        >
+          <template #content>
+            <form class="form-layout is-split" @submit.prevent>
+              <div class="form-outer">
+                <div class="form-section is-grey">
+                  <div>
+                    <V-Field>
+                      <V-Control icon="feather:user">
+                        <input
+                          type="text"
+                          class="input"
+                          placeholder="Customer ID"
+                          autocomplete="customer-id"
+                        />
+                      </V-Control>
+                    </V-Field>
+                    <V-Field>
+                      <V-Control icon="feather:user">
+                        <input
+                          type="text"
+                          class="input"
+                          placeholder="Test Name"
+                          autocomplete="test-name"
+                        />
+                      </V-Control>
+                    </V-Field>
+                    <V-Field>
+                      <V-Control icon="feather:mail">
+                        <input
+                          type="email"
+                          class="input"
+                          placeholder="Email Address *"
+                          autocomplete="email"
+                          inputmode="email"
+                        />
+                      </V-Control>
+                    </V-Field>
+                    <V-Field>
+                      <V-Control icon="feather:phone">
+                        <input
+                          type="tel"
+                          class="input"
+                          placeholder="Phone Number *"
+                          autocomplete="tel"
+                          inputmode="tel"
+                        />
+                      </V-Control>
+                    </V-Field>
+                    <V-Field>
+                      <V-Control icon="feather:phone">
+                        <input
+                          type="tel"
+                          class="input"
+                          placeholder="Test Date"
+                          autocomplete="test-date"
+                        />
+                      </V-Control>
+                    </V-Field>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </template>
+          <template #action>
+            <VButton color="primary" raised>Issue Resultf</VButton>
+          </template>
+        </VModal>
+      </div>
     </div>
-  </div>
-
+  </VLoader>
 </template>
 
 <style lang="scss">

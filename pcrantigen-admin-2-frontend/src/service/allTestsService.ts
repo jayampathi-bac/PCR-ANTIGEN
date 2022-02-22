@@ -18,7 +18,8 @@ export default class AllTestsService {
 
   getAllTestsByRange = (start_date: string, end_date: string) => axios.get(`${basic_url}/v1/admin/test/allby/${cookies.get('admin2').branch_id}`, {
     // @ts-ignore
-    params: {start_date: start_date, end_date: end_date}, headers: {Authorization: "Bearer " + cookies.get('admin2').access_token}
+    params: {start_date: start_date, end_date: end_date},
+    headers: {Authorization: "Bearer " + cookies.get('admin2').access_token}
   })
     .then((response) => ({
       data: response.data,
@@ -27,6 +28,14 @@ export default class AllTestsService {
   getAllTestsByMonth = (selectedMonth: number) => axios.get(`${basic_url}/v1/admin/test/allbymonth/${cookies.get('admin2').branch_id}`, {
     // @ts-ignore
     params: {month: selectedMonth}, headers: {Authorization: "Bearer " + cookies.get('admin2').access_token}
+  })
+    .then((response) => ({
+      data: response.data,
+    }));
+
+  getAllTestsForCSV = (branch_id: string) => axios.get(`${basic_url}/v1/admin/test/allTestCSV/${branch_id}`, {
+    // @ts-ignore
+  headers: {Authorization: "Bearer " + cookies.get('admin2').access_token}
   })
     .then((response) => ({
       data: response.data,
