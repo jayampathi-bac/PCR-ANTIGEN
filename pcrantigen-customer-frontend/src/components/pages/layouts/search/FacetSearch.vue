@@ -6,6 +6,7 @@ import { useCookies } from "vue3-cookies";
 import {basic_url} from "/@src/utils/basic_config";
 import CustomerService from "/@src/service/customerService";
 import html2canvas from "html2canvas";
+
 import jsPDF from "jspdf";
 
 const { cookies } = useCookies();
