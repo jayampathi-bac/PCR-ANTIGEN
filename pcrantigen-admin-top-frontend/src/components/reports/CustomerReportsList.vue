@@ -77,17 +77,19 @@ const currentPageCustomer = computed(() => {
 })
 
 const selectingBranchFunc = () => {
-  console.log("selectingBranchFunc",selectedBranch.value)
+  console.log("selectingBranchFunc", selectedBranch.value)
   // console.log('date range', date.value.start.toISOString().split('T')[0])
-  searchCustomers(currentPageCustomer.value,{
+  searchCustomers(currentPageCustomer.value, {
     branch_id: selectedBranch.value,
     start_date: date.value.start ? date.value.start.toISOString().split('T')[0] : '',
-    end_date : date.value.end ? date.value.end.toISOString().split('T')[0] : '',
+    end_date: date.value.end ? date.value.end.toISOString().split('T')[0] : '',
   })
 }
 
-const exportToCsv = (filename : any) => {
-  const json = customers.value;
+const isLoaderActive = ref(false)
+
+const exportToCsv = (filename: any, data: any) => {
+  const json = data;
   const fields = Object.keys(json[0]);
   const replacer = function (key, value) {
     return value === null ? '' : value
@@ -116,18 +118,37 @@ const exportToCsv = (filename : any) => {
       document.body.removeChild(link);
     }
   }
+  isLoaderActive.value = !isLoaderActive.value
 }
 
+
+
 const downloadCSVFunc = () => {
-  exportToCsv('all_customer_records.csv')
+
+  isLoaderActive.value = !isLoaderActive.value
+  customerReportsService.getCustomersForCSV()
+    .then(function (response) {
+      // console.log('exportToCsv', response.data.data)
+      if (response.data.success) {
+        exportToCsv('all_customer_records.csv', response.data.data)
+      } else {
+        isLoaderActive.value = !isLoaderActive.value
+      }
+      // isLoaderActive.value = !isLoaderActive.value
+    })
+    .catch(function (error) {
+      isLoaderActive.value = !isLoaderActive.value
+      console.log(error);
+      // isLoaderActive.value = !isLoaderActive.value
+    });
 }
 
 const selectingDateFunc = () => {
   // console.log('date range', date.value.start.toISOString().split('T')[0])
-  searchCustomers(currentPageCustomer.value,{
+  searchCustomers(currentPageCustomer.value, {
     branch_id: selectedBranch.value !== '' ? selectedBranch.value : '',
     start_date: date.value.start ? date.value.start.toISOString().split('T')[0] : '',
-    end_date : date.value.end ? date.value.end.toISOString().split('T')[0] : '',
+    end_date: date.value.end ? date.value.end.toISOString().split('T')[0] : '',
   })
 }
 
@@ -150,7 +171,7 @@ const refreshFunc = () => {
 }
 
 const testingFunc = (value: number) => {
-  console.log("testingFunc---------------------------------------------------",value)
+  console.log("testingFunc---------------------------------------------------", value)
 }
 
 onMounted(async () => {
@@ -161,161 +182,162 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
+  <VLoader size="large" center="smooth" lighter="true" translucent="true" :active="isLoaderActive">
     <div>
-      <br>
-      <br>
-      <div class="s-card mb-5">
-        <div class="columns is-multiline">
-          <div class="column is-12-tablet is-6-desktop ">
-            <div class=" mt-5">
-              <V-Field>
-                <V-Control>
-                  <Multiselect
-                    v-model="selectedBranch"
-                    :options="allBranches"
-                    placeholder="By branch"
-                    :searchable="true"
-                    @select="selectingBranchFunc"
-                  />
-                </V-Control>
-              </V-Field>
-            </div>
-          </div>
-          <div class="column is-12-tablet is-6-desktop ">
-            <div class=" mt-3">
-              <div class="data-picker-responsive">
-                <v-date-picker
-                  v-model="date"
-                  is-range
-                  color="green"
-                  trim-weeks
-                  class="column is-6"
-                >
-                  <template #default="{ inputValue, inputEvents }">
-                    <div class="columns v-calendar-combo">
-                      <div class="column is-6">
-                        <V-Field>
-                          <!--                    <label>Meeting date</label>-->
-
-                          <V-Control icon="feather:calendar">
-                            <input
-                              placeholder="Start Date"
-                              :value="inputValue.start"
-                              class="input form-datepicker"
-                              v-on="inputEvents.start"
-                            />
-                          </V-Control>
-                        </V-Field>
-                      </div>
-                      <div class="column is-6">
-                        <V-Field>
-                          <!--                    <label class="is-vhidden">Meeting date</label>-->
-                          <V-Control icon="feather:calendar">
-                            <input
-                              placeholder="End Date"
-                              :value="inputValue.end"
-                              class="input form-datepicker"
-                              v-on="inputEvents.end"
-                            />
-                          </V-Control>
-                        </V-Field>
-                      </div>
-                    </div>
-                  </template>
-                </v-date-picker>
+      <div>
+        <br>
+        <br>
+        <div class="s-card mb-5">
+          <div class="columns is-multiline">
+            <div class="column is-12-tablet is-6-desktop ">
+              <div class=" mt-5">
+                <V-Field>
+                  <V-Control>
+                    <Multiselect
+                      v-model="selectedBranch"
+                      :options="allBranches"
+                      placeholder="By branch"
+                      :searchable="true"
+                      @select="selectingBranchFunc"
+                    />
+                  </V-Control>
+                </V-Field>
               </div>
             </div>
-          </div>
+            <div class="column is-12-tablet is-6-desktop ">
+              <div class=" mt-3">
+                <div class="data-picker-responsive">
+                  <v-date-picker
+                    v-model="date"
+                    is-range
+                    color="green"
+                    trim-weeks
+                    class="column is-6"
+                  >
+                    <template #default="{ inputValue, inputEvents }">
+                      <div class="columns v-calendar-combo">
+                        <div class="column is-6">
+                          <V-Field>
+                            <!--                    <label>Meeting date</label>-->
 
+                            <V-Control icon="feather:calendar">
+                              <input
+                                placeholder="Start Date"
+                                :value="inputValue.start"
+                                class="input form-datepicker"
+                                v-on="inputEvents.start"
+                              />
+                            </V-Control>
+                          </V-Field>
+                        </div>
+                        <div class="column is-6">
+                          <V-Field>
+                            <!--                    <label class="is-vhidden">Meeting date</label>-->
+                            <V-Control icon="feather:calendar">
+                              <input
+                                placeholder="End Date"
+                                :value="inputValue.end"
+                                class="input form-datepicker"
+                                v-on="inputEvents.end"
+                              />
+                            </V-Control>
+                          </V-Field>
+                        </div>
+                      </div>
+                    </template>
+                  </v-date-picker>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
-    </div>
-    <div class="list-flex-toolbar flex-list-v1">
-      <V-Buttons>
-        <V-Button color="info" icon="fas fa-download" elevated @click="downloadCSVFunc">
-          Download
-        </V-Button>
-        <V-Button @click="refreshFunc" color="primary" icon="fas fa-sync" elevated >
-          refresh
-        </V-Button>
-      </V-Buttons>
-    </div>
+      <div class="list-flex-toolbar flex-list-v1">
+        <V-Buttons>
+          <V-Button color="info" icon="fas fa-download" elevated @click="downloadCSVFunc">
+            Download
+          </V-Button>
+          <V-Button @click="refreshFunc" color="primary" icon="fas fa-sync" elevated>
+            refresh
+          </V-Button>
+        </V-Buttons>
+      </div>
 
-    <div class="page-content-inner">
-      <div class="flex-list-wrapper flex-list-v1">
-        <!--List Empty Search Placeholder -->
-        <V-PlaceholderPage
-          :class="[filteredData.length !== 0 && 'is-hidden']"
-          title="We couldn't find any matching results."
-          subtitle="Too bad. Looks like we couldn't find any matching results for the
+      <div class="page-content-inner">
+        <div class="flex-list-wrapper flex-list-v1">
+          <!--List Empty Search Placeholder -->
+          <V-PlaceholderPage
+            :class="[filteredData.length !== 0 && 'is-hidden']"
+            title="We couldn't find any matching results."
+            subtitle="Too bad. Looks like we couldn't find any matching results for the
           search terms you've entered. Please try different search terms or
           criteria."
-          larger
-        >
-        </V-PlaceholderPage>
-
-        <div class="flex-table">
-          <!--Table header-->
-          <div
-            class="flex-table-header"
-            :class="[filteredData.length === 0 && 'is-hidden']"
+            larger
           >
-            <span class="is-grow">Customer</span>
-            <span class="is-grow">Email</span>
-            <span class="is-grow">Contact</span>
-            <span class="is-grow">Created At</span>
-            <span class="is-grow cell-end">Branch Name</span>
-          </div>
+          </V-PlaceholderPage>
 
-          <div class="flex-list-inner">
-            <transition-group name="list" tag="div">
-              <!--Table item-->
-              <div
-                v-for="customer in filteredData"
-                :key="customer.contact_number"
-                class="flex-table-item"
-              >
-                <div class="flex-table-cell is-media is-grow">
-                  <V-Avatar
-                    :picture="customer.profile_url"
-                    color="info"
-                    size="medium"
-                  />
-                  <div>
-                    <span class="item-name dark-inverted">{{ customer.name }}</span>
+          <div class="flex-table">
+            <!--Table header-->
+            <div
+              class="flex-table-header"
+              :class="[filteredData.length === 0 && 'is-hidden']"
+            >
+              <span class="is-grow">Customer</span>
+              <span class="is-grow">Email</span>
+              <span class="is-grow">Contact</span>
+              <span class="is-grow">Created At</span>
+              <span class="is-grow cell-end">Branch Name</span>
+            </div>
+
+            <div class="flex-list-inner">
+              <transition-group name="list" tag="div">
+                <!--Table item-->
+                <div
+                  v-for="customer in filteredData"
+                  :key="customer.contact_number"
+                  class="flex-table-item"
+                >
+                  <div class="flex-table-cell is-media is-grow">
+                    <V-Avatar
+                      :picture="customer.profile_url"
+                      color="info"
+                      size="medium"
+                    />
+                    <div>
+                      <span class="item-name dark-inverted">{{ customer.name }}</span>
+                    </div>
+                  </div>
+                  <div class="flex-table-cell is-grow" data-th="Email">
+                    <span class="light-text">{{ customer.email }}</span>
+                  </div>
+                  <div class="flex-table-cell is-grow" data-th="Contact Number">
+                    <span class="light-text">{{ customer.contact_number }}</span>
+                  </div>
+                  <div class="flex-table-cell is-grow" data-th="Created At">
+                    <span class="light-text">{{ customer.created_at }}</span>
+                  </div>
+                  <div class="flex-table-cell  is-grow cell-end" data-th="Actions">
+                    <span class="light-text">{{ customer.branch_name }}</span>
                   </div>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="Email">
-                  <span class="light-text">{{ customer.email }}</span>
-                </div>
-                <div class="flex-table-cell is-grow" data-th="Contact Number">
-                  <span class="light-text">{{ customer.contact_number }}</span>
-                </div>
-                <div class="flex-table-cell is-grow" data-th="Created At">
-                  <span class="light-text">{{ customer.created_at }}</span>
-                </div>
-                <div class="flex-table-cell  is-grow cell-end" data-th="Actions">
-                  <span class="light-text">{{ customer.branch_name }}</span>
-                </div>
-              </div>
-            </transition-group>
+              </transition-group>
+            </div>
           </div>
-        </div>
 
-        <!--Table Pagination-->
-        <V-FlexPagination
-          v-if="filteredData.length > 0"
-          :item-per-page="10"
-          :total-items="allCustomerCount"
-          :current-page="currentPageCustomer"
-          :max-links-displayed="7"
-          @update:currentPageCustomer="testingFunc"
-        />
+          <!--Table Pagination-->
+          <V-FlexPagination
+            v-if="filteredData.length > 0"
+            :item-per-page="10"
+            :total-items="allCustomerCount"
+            :current-page="currentPageCustomer"
+            :max-links-displayed="7"
+            @update:currentPageCustomer="testingFunc"
+          />
+        </div>
       </div>
     </div>
-  </div>
-
+  </VLoader>
 </template>
 
 <style lang="scss">

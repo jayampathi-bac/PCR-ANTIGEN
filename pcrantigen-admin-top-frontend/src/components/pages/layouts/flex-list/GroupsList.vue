@@ -415,7 +415,7 @@ onMounted(async () => {
   </VLoader>
 </template>
 
-<style lang="scss">
+<style lang="scss" >
 @import '../../../../scss/abstracts/_variables.scss';
 
 .has-top-nav {

@@ -34,7 +34,7 @@ export default class BranchService {
     start_time: branch.start_time,
     end_time: branch.end_time,
     profile_url: branch.profile_url,
-    unit_price: branch.unit_price,
+    unit_price: parseFloat(branch.unit_price),
   // }, config).then((response) => ({
   }).then((response) => ({
     data: response.data,

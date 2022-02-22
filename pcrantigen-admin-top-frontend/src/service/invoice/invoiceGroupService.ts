@@ -9,10 +9,9 @@ const token = cookies.get('admintop') ? cookies.get('admintop').access_token : n
 
 const config = {headers: {Authorization: "Bearer " + token}}
 
-export default class InvoiceService {
+export default class InvoiceGroupService {
 
-
-  generateBranchInvoice = (invoiceData: { branch_id: number; start_date: string; end_date: string; }) => axios.post(`${basic_url}/v1/invoice/pdfBranch/`, invoiceData)
+  getGroupInvoice = (invoiceData: { group_id: number; start_date: string; end_date: string; }) => axios.post(`${basic_url}/v1/invoice/byGroup/`, invoiceData)
     .then((response) => ({
       data: response.data,
     }));
@@ -21,5 +20,4 @@ export default class InvoiceService {
     .then((response) => ({
       data: response.data,
     }));
-
 }

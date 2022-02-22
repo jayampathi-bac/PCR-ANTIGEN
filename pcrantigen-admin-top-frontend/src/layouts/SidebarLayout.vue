@@ -49,6 +49,8 @@ const isMobileSidebarOpen = ref(false)
 const isDesktopSidebarOpen = ref(props.openOnMounted)
 const activeMobileSubsidebar = ref(props.defaultSidebar)
 
+const isReportTabActive = ref('is-active')
+
 function switchSidebar(id: string) {
 
   console.log('switchSidebar',id)
@@ -58,6 +60,8 @@ function switchSidebar(id: string) {
     isDesktopSidebarOpen.value = true
     activeMobileSubsidebar.value = id
   }
+  id === 'reports-list' ? (isReportTabActive.value = 'is-active') : (isReportTabActive.value = 'is-not-active')
+
 }
 
 /**
@@ -88,6 +92,14 @@ watch(
     }
   }
 )
+
+// watch(
+//   () => isReportTabActive.value,
+//   (count, prevCount) => {
+//     console.log("isReportTabActive",count,prevCount)
+//   }
+// )
+
 </script>
 
 <template>
@@ -117,7 +129,7 @@ watch(
       @toggle="isMobileSidebarOpen = !isMobileSidebarOpen"
     >
       <template #links>
-        <li>
+        <li @click="isReportTabActive = 'is-not-active'">
           <RouterLink :to="{ name: 'sidebar-layouts-branches' }">
             <i
               aria-hidden="true"
@@ -126,7 +138,7 @@ watch(
             ></i>
           </RouterLink>
         </li>
-        <li>
+        <li @click="isReportTabActive = 'is-not-active'">
           <RouterLink :to="{ name: 'sidebar-layouts-groups' }">
             <i
               aria-hidden="true"
@@ -134,7 +146,7 @@ watch(
               data-icon="feather:key"
             ></i>
           </RouterLink>
-        </li>
+        </li >
 <!--        <li>-->
 <!--          <RouterLink :to="{ name: 'sidebar-layouts-results' }">-->
 <!--            <i-->
@@ -144,7 +156,7 @@ watch(
 <!--            ></i>-->
 <!--          </RouterLink>-->
 <!--        </li>-->
-        <li>
+        <li @click="isReportTabActive = 'is-not-active'">
           <RouterLink :to="{ name: 'sidebar-layouts-customers' }">
             <i
               aria-hidden="true"
@@ -153,7 +165,7 @@ watch(
             ></i>
           </RouterLink>
         </li>
-        <li>
+        <li @click="isReportTabActive = 'is-not-active'">
           <RouterLink :to="{ name: 'sidebar-layouts-tests' }">
             <i
               aria-hidden="true"
@@ -172,7 +184,7 @@ watch(
 <!--          </RouterLink>-->
 <!--        </li>-->
         <li
-          :class="[activeMobileSubsidebar === 'reports-list' && 'is-active']"
+          :class="[activeMobileSubsidebar === 'reports-list' && isReportTabActive]"
           @click="activeMobileSubsidebar = 'reports-list'"
         >
           <a>
@@ -224,7 +236,7 @@ watch(
     <Sidebar :theme="props.theme" :is-open="isDesktopSidebarOpen">
       <template #links>
         <!-- Branches -->
-        <li>
+        <li @click="isReportTabActive = 'is-not-active'">
           <RouterLink
             id="open-settings"
             :to="{ name: 'sidebar-layouts-branches' }"
@@ -238,7 +250,7 @@ watch(
           </RouterLink>
         </li>
         <!-- groups -->
-        <li>
+        <li @click="isReportTabActive = 'is-not-active'">
           <RouterLink
             id="open-settings"
             :to="{ name: 'sidebar-layouts-groups' }"
@@ -252,7 +264,7 @@ watch(
           </RouterLink>
         </li>
         <!-- Tests -->
-        <li>
+        <li @click="isReportTabActive = 'is-not-active'">
           <RouterLink
             id="open-settings"
             :to="{ name: 'sidebar-layouts-tests' }"
@@ -266,7 +278,7 @@ watch(
           </RouterLink>
         </li>
         <!-- Customers -->
-        <li>
+        <li @click="isReportTabActive = 'is-not-active'">
           <RouterLink
             id="open-settings"
             :to="{ name: 'sidebar-layouts-customers' }"
@@ -296,7 +308,7 @@ watch(
         <!-- reports-list -->
         <li>
           <a
-            :class="[activeMobileSubsidebar === 'reports-list' && 'is-active']"
+            :class="[activeMobileSubsidebar === 'reports-list' && isReportTabActive]"
             @click="switchSidebar('reports-list')"
             data-content="Reports"
           >

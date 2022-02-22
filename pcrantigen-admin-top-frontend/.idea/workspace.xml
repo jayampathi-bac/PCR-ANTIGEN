@@ -2,24 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c0548c6-4aa0-4240-9656-b01354080f4a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/pages/layouts/BranchesInvoice.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/composable/invoiceData.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/sidebar/layouts/branch-invoice.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/sidebar/layouts/group-invoice.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/invoiceService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/layouts/GroupsInvoice.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/composable/invoice/invoiceGroupData.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/invoice/invoiceBranchService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/invoice/invoiceGroupService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/pages/layouts/flex-list/AllTestsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/components/pages/layouts/flex-list/AllTestsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/service/allTestsService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-admin-2-frontend/src/service/allTestsService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admintopdist.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CaptureTestImage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CaptureTestImage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CaptureUserImage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CaptureUserImage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdminTopDashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminTopDashboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/layouts/BranchesInvoice.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/layouts/BranchesInvoice.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/BranchesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/BranchesList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/GroupsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/GroupsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/ResultGeneration.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/layouts/flex-list/ResultGeneration.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/reports/BranchReportsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reports/BranchReportsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/reports/CustomerReportsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reports/CustomerReportsList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/reports/TestReportsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reports/TestReportsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/auth/auth.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/auth/auth.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composable/invoiceData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/composable/invoice/invoiceBranchData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composable/reports/customerReportsData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/composable/reports/customerReportsData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/composable/reports/testReportsData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/composable/reports/testReportsData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/SidebarLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/SidebarLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sidebar/layouts/group-invoice.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sidebar/layouts/group-invoice.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/branchService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/branchService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/groupService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/groupService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/invoiceService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/invoiceService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/reports/branchReportsService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/reports/branchReportsService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/reports/customerReportsService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/reports/customerReportsService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/reports/testReportsService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/reports/testReportsService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/topdist.rar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/pages/layouts/search/FacetSearch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../pcrantigen-customer-frontend/src/components/pages/layouts/search/FacetSearch.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +68,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages/sidebar/layouts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/service/invoice" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
@@ -69,11 +82,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\service\invoice" />
+      <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\composable\invoice" />
+      <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\components\pages\layouts" />
       <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\pages\sidebar\layouts" />
       <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\components\reports" />
-      <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\layouts\mobile-subsidebars" />
-      <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\layouts\sidebar-subsidebar" />
-      <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\service\reports" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Admin\Documents\Workplace\vuero\git\PCR-ANTIGEN\pcrantigen-admin-top-frontend\src\service" />
@@ -118,7 +131,31 @@
       <workItem from="1644036528285" duration="1881000" />
       <workItem from="1644052026004" duration="62000" />
       <workItem from="1644242919743" duration="7515000" />
-      <workItem from="1644296618280" duration="15084000" />
+      <workItem from="1644296618280" duration="15279000" />
+      <workItem from="1644388328193" duration="8385000" />
+      <workItem from="1644411015134" duration="4056000" />
+      <workItem from="1644427476907" duration="3423000" />
+      <workItem from="1644515322692" duration="3712000" />
+      <workItem from="1644557408243" duration="2766000" />
+      <workItem from="1644603063157" duration="1406000" />
+      <workItem from="1644854281206" duration="2191000" />
+      <workItem from="1644901248546" duration="2158000" />
+      <workItem from="1644911049098" duration="1116000" />
+      <workItem from="1644946502308" duration="3237000" />
+      <workItem from="1644997001947" duration="2369000" />
+      <workItem from="1645011946610" duration="10047000" />
+      <workItem from="1645073461471" duration="1179000" />
+      <workItem from="1645074909986" duration="374000" />
+      <workItem from="1645075382977" duration="99000" />
+      <workItem from="1645075833182" duration="509000" />
+      <workItem from="1645099844707" duration="641000" />
+      <workItem from="1645127549235" duration="598000" />
+      <workItem from="1645155835278" duration="2166000" />
+      <workItem from="1645374500345" duration="4363000" />
+      <workItem from="1645379878049" duration="2441000" />
+      <workItem from="1645468043572" duration="3726000" />
+      <workItem from="1645532253582" duration="4312000" />
+      <workItem from="1645551880772" duration="195000" />
     </task>
     <servers />
   </component>
@@ -142,13 +179,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/layouts/SidebarLayout.vue</url>
-          <line>282</line>
-          <option name="timeStamp" value="2" />
+          <line>310</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/layouts/SidebarLayout.vue</url>
-          <line>119</line>
-          <option name="timeStamp" value="4" />
+          <line>355</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

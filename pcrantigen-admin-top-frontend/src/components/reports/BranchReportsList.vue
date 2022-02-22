@@ -5,7 +5,7 @@ import getBranchesReport from '/@src/composable/reports/branchReportsData'
 
 import useNotyf from '/@src/composable/useNotyf'
 
-import CustomerService from '/@src/service/customerService';
+import BranchReportsService from '/@src/service/reports/branchReportsService';
 
 import {useCookies} from "vue3-cookies";
 import {useRoute} from "vue-router";
@@ -14,7 +14,7 @@ const swal: any = inject('$swal')
 
 const {cookies} = useCookies();
 
-const customerService = new CustomerService();
+const branchReportsService = new BranchReportsService();
 
 const notif = useNotyf()
 
@@ -52,37 +52,56 @@ const currentPageBranch = computed(() => {
 
 const selectedGroup = ref(0)
 const selectedFilter = ref(3)
+const isLoaderActive = ref(false)
 
-const exportToCsv = (filename : any) => {
-  const json = branches.value;
-  const fields = Object.keys(json[0]);
-  const replacer = function (key, value) {
-    return value === null ? '' : value
-  };
-  let csvFile = json.map(function (row) {
-    return fields.map(function (fieldName) {
-      return JSON.stringify(row[fieldName], replacer)
-    }).join(',')
-  });
-  csvFile.unshift(fields.join(',')) // add header column
-  csvFile = csvFile.join('\r\n');
+const exportToCsv = (filename: any) => {
+  isLoaderActive.value = !isLoaderActive.value
+  branchReportsService.getBranchesForCSV()
+    .then(function (response) {
+      // console.log('exportToCsv', response.data.data)
+      if (response.data.success) {
+        const json = response.data.data;
+        const fields = Object.keys(json[0]);
+        const replacer = function (key, value) {
+          return value === null ? '' : value
+        };
+        let csvFile = json.map(function (row) {
+          return fields.map(function (fieldName) {
+            return JSON.stringify(row[fieldName], replacer)
+          }).join(',')
+        });
+        csvFile.unshift(fields.join(',')) // add header column
+        csvFile = csvFile.join('\r\n');
 
-  const blob = new Blob([csvFile], {type: 'text/csv;charset=utf-8;'});
-  if (navigator.msSaveBlob) { // IE 10+
-    navigator.msSaveBlob(blob, filename);
-  } else {
-    const link = document.createElement("a");
-    if (link.download !== undefined) { // feature detection
-      // Browsers that support HTML5 download attribute
-      const url = URL.createObjectURL(blob);
-      link.setAttribute("href", url);
-      link.setAttribute("download", filename);
-      link.style.visibility = 'hidden';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-  }
+        const blob = new Blob([csvFile], {type: 'text/csv;charset=utf-8;'});
+        if (navigator.msSaveBlob) { // IE 10+
+          navigator.msSaveBlob(blob, filename);
+        } else {
+          const link = document.createElement("a");
+          if (link.download !== undefined) { // feature detection
+            // Browsers that support HTML5 download attribute
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", filename);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }
+        }
+        isLoaderActive.value = !isLoaderActive.value
+      } else {
+        isLoaderActive.value = !isLoaderActive.value
+      }
+      // isLoaderActive.value = !isLoaderActive.value
+    })
+    .catch(function (error) {
+      isLoaderActive.value = !isLoaderActive.value
+      console.log(error);
+      // isLoaderActive.value = !isLoaderActive.value
+    });
+  // console.log(branches.value)
+
 }
 
 const downloadCSVFunc = () => {
@@ -111,6 +130,7 @@ onMounted(async () => {
 </script>
 
 <template>
+  <VLoader size="large" center="smooth" lighter="true" translucent="true" :active="isLoaderActive">
   <div>
     <div>
       <br>
@@ -233,7 +253,7 @@ onMounted(async () => {
       </div>
     </div>
   </div>
-
+  </VLoader>
 </template>
 
 <style lang="scss">

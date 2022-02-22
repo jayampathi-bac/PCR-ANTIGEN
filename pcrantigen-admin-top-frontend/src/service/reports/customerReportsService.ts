@@ -20,4 +20,9 @@ export default class CustomerService {
     .then((response) => ({
       data: response.data,
     }));
+
+  getCustomersForCSV = () => axios.get(`${basic_url}/v1/report/allCustomerCsv/`)
+    .then((response) => ({
+      data: response.data,
+    }));
 }

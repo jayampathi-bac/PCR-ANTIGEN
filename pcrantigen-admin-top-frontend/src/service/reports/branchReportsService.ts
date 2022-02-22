@@ -20,4 +20,9 @@ export default class BranchReportsService {
     .then((response) => ({
       data: response.data,
     }));
+
+  getBranchesForCSV = () => axios.get(`${basic_url}/v1/report/allBranchCsv/`)
+    .then((response) => ({
+      data: response.data,
+    }));
 }

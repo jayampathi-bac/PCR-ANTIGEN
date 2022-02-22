@@ -15,4 +15,14 @@ export default class TestReportsService {
     .then((response) => ({
       data: response.data,
     }));
+
+  getBranchesFromGroup = (group_id: number) => axios.get(`${basic_url}/v1/admin/branch/allbranch/${group_id}`)
+    .then((response) => ({
+      data: response.data,
+    }));
+
+  getAllTestsReportsForCSV = () => axios.get(`${basic_url}/v1/report/allTestCsv/`)
+    .then((response) => ({
+      data: response.data,
+    }));
 }

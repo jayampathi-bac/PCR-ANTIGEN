@@ -1,10 +1,18 @@
 <script setup lang="ts">
 
-import { ref, onMounted } from 'vue'
-import { gaugeOptions } from '/@src/data/dashboards/analytics/goalChart'
+import {ref, onMounted} from 'vue'
+import {gaugeOptions} from '/@src/data/dashboards/analytics/goalChart'
 import getDashboardData from '/@src/composable/dashboardData'
 import {useStore} from "vuex";
-const {searchDashboardData, dashboardData,topBranchThree, topBranchOne, topBranchTwo,chartSeries} = getDashboardData();
+
+const {
+  searchDashboardData,
+  dashboardData,
+  topBranchThree,
+  topBranchOne,
+  topBranchTwo,
+  chartSeries
+} = getDashboardData();
 const store = useStore()
 const totalCustomers = ref()
 
@@ -19,7 +27,7 @@ onMounted(() => {
     <div class="dashboard-header">
       <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="large"/>
       <div class="start">
-        <h3>Welcome back, {{store.state.auth.admintop.name}}</h3>
+        <h3>Welcome back, {{ store.state.auth.admintop.name }}</h3>
         <p>We're very happy to see you again on your admin dashboard.</p>
       </div>
       <!--      <div class="end">-->
@@ -89,23 +97,23 @@ onMounted(() => {
           <div class="inner-box">
             <div class="box-title">
               <h3>Total Tests Done</h3>
-<!--              <V-Field class="is-minimal-select">-->
-<!--                <V-Control>-->
-<!--                  <Multiselect-->
-<!--                    v-model="valueSingle"-->
-<!--                    :options="optionsSingle"-->
-<!--                    placeholder="Select an option"-->
-<!--                    :max-height="145"-->
-<!--                  />-->
-<!--                </V-Control>-->
-<!--              </V-Field>-->
+              <!--              <V-Field class="is-minimal-select">-->
+              <!--                <V-Control>-->
+              <!--                  <Multiselect-->
+              <!--                    v-model="valueSingle"-->
+              <!--                    :options="optionsSingle"-->
+              <!--                    placeholder="Select an option"-->
+              <!--                    :max-height="145"-->
+              <!--                  />-->
+              <!--                </V-Control>-->
+              <!--              </V-Field>-->
             </div>
 
             <!--Balance-->
             <div class="card-balance-wrap">
               <div class="card-balance">
                 <span>{{ dashboardData.test_result_count }}</span>
-<!--                <span>**** **** **** 4986</span>-->
+                <!--                <span>**** **** **** 4986</span>-->
               </div>
               <div class="card-balance-stats">
                 <div class="card-balance-stat">
@@ -212,7 +220,7 @@ onMounted(() => {
           <div class="inner-box">
             <div class="box-title">
               <h3>Top 3 branches</h3>
-<!--              <a class="action-link">View All</a>-->
+              <!--              <a class="action-link">View All</a>-->
             </div>
             <!--Transactions-->
             <div class="transactions">
@@ -244,9 +252,9 @@ onMounted(() => {
                 lighter
               >
                 <template #icon>
-<!--                  <V-IconBox color="orange" rounded>-->
-<!--                    <i aria-hidden="true" class="lnil lnil-analytics-alt-1"></i>-->
-<!--                  </V-IconBox>-->
+                  <!--                  <V-IconBox color="orange" rounded>-->
+                  <!--                    <i aria-hidden="true" class="lnil lnil-analytics-alt-1"></i>-->
+                  <!--                  </V-IconBox>-->
                   <V-IconBox color="orange" rounded>
                     <i
                       aria-hidden="true"
@@ -267,9 +275,9 @@ onMounted(() => {
                 lighter
               >
                 <template #icon>
-<!--                  <V-IconBox color="purple" rounded>-->
-<!--                    <i aria-hidden="true" class="lnil lnil-cart-alt"></i>-->
-<!--                  </V-IconBox>-->
+                  <!--                  <V-IconBox color="purple" rounded>-->
+                  <!--                    <i aria-hidden="true" class="lnil lnil-cart-alt"></i>-->
+                  <!--                  </V-IconBox>-->
                   <V-IconBox color="purple" rounded>
                     <i
                       aria-hidden="true"
@@ -283,10 +291,10 @@ onMounted(() => {
                 </template>
               </V-Block>
             </div>
-<!--            <div class="button-wrap">-->
-<!--              <V-Button color="primary" fullwidth elevated>New</V-Button>-->
-<!--              <V-Button fullwidth>Settings</V-Button>-->
-<!--            </div>-->
+            <!--            <div class="button-wrap">-->
+            <!--              <V-Button color="primary" fullwidth elevated>New</V-Button>-->
+            <!--              <V-Button fullwidth>Settings</V-Button>-->
+            <!--            </div>-->
           </div>
         </div>
       </div>
@@ -298,6 +306,9 @@ onMounted(() => {
 @import '../scss/abstracts/_variables.scss';
 @import '../scss/abstracts/_mixins.scss';
 
+.apexcharts-datalabels-group {
+  //display: none;
+}
 .banking-dashboard-v2 {
   .dashboard-header {
     display: flex;
@@ -326,6 +337,7 @@ onMounted(() => {
       }
     }
   }
+
   .dashboard-body {
     .dashboard-card {
       @include vuero-s-card();
@@ -441,6 +453,7 @@ onMounted(() => {
       }
     }
   }
+
   .dashboard-card {
     @include vuero-s-card();
 
@@ -810,6 +823,7 @@ onMounted(() => {
             }
           }
         }
+
         .radial-wrap {
           display: flex;
           flex-direction: column;
@@ -925,6 +939,7 @@ onMounted(() => {
         }
       }
     }
+
     .dashboard-card {
       @include vuero-card--dark();
 

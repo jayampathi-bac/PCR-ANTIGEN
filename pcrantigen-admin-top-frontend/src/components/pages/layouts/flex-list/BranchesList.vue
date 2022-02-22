@@ -132,13 +132,15 @@ const saveBranchFunc = () => {
     minute: "numeric",
     second: "numeric"
   })
+  // console.log("----------------start_time", start_time.value.split(":")[0],start_time.value.split(":")[1])
+  parseInt(start_time.value.split(":")[0]) === 24 ? (start_time.value = "00:"+start_time.value.split(":")[1]+":00") : null
   end_time.value = end_time_test.value.toLocaleTimeString('en-US', {
     hour12: false,
     hour: "numeric",
     minute: "numeric",
     second: "numeric"
   })
-
+  parseInt(end_time.value.split(":")[0]) === 24 ? (end_time.value = "00:"+end_time.value.split(":")[1]+":00") : null
   const branch = {
     company_name: company_name.value,
     address: address.value,
@@ -257,6 +259,7 @@ const editBranchFunc = () => {
     minute: "numeric",
     second: "numeric"
   })
+  parseInt(edit_start_time_saved.value.split(":")[0]) === 24 ? (edit_start_time_saved.value = "00:"+edit_start_time_saved.value.split(":")[1]+":00") : null
 
   edit_end_time_saved.value = new Date(edit_end_time.value).toLocaleTimeString('en-US', {
     hour12: false,
@@ -264,6 +267,7 @@ const editBranchFunc = () => {
     minute: "numeric",
     second: "numeric"
   })
+  parseInt(edit_end_time_saved.value.split(":")[0]) === 24 ? (edit_end_time_saved.value = "00:"+edit_end_time_saved.value.split(":")[1]+":00") : null
 
   const branch = {
     branch_id: edit_company_id.value,
@@ -953,7 +957,7 @@ onMounted(async () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="fireEditBranchFuncAlert">Edit Brand</VButton>
+        <VButton color="primary" raised @click="fireEditBranchFuncAlert">Edit Branch</VButton>
       </template>
     </VModal>
     <VModal

@@ -1,32 +1,23 @@
 <script setup lang="ts">
-import { popovers } from '/@src/data/users/userPopovers'
+import {popovers} from '/@src/data/users/userPopovers'
 import {ref, onMounted} from 'vue'
 import {useRoute, useRouter} from "vue-router";
-import getInvoiceBranchData from '/@src/composable/invoice/invoiceBranchData'
+import getInvoiceGroupData from '/@src/composable/invoice/invoiceGroupData'
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
 const route = useRoute()
 const router = useRouter()
-const {loadInvoiceBranchData, invoiceBranchDataList, invoiceBranchName, branchTotalPrice} = getInvoiceBranchData();
+const {loadInvoiceGroupData, invoiceGroupDataList, groupTotalPrice} = getInvoiceGroupData();
 
 const invoiceData = ref()
 const startDate = ref()
 const endDate = ref()
+const group_name = ref()
 
-const backToTestsPage = () => {
+const backtoTestsPage = () => {
   router.push({name: 'sidebar-layouts-reports-list-tests'})
 }
-
-// const print = () => {
-//   console.log("printing...")
-//   printJS({
-//     printable: 'printMe',
-//     type: 'html',
-//     style: '#printMe { background-color: red; }',
-//     targetStyles: ['*']
-//   })
-// }
 
 const downloadPDF = () => {
   const node = document.getElementById('printMe');
@@ -41,16 +32,18 @@ const downloadPDF = () => {
 
 onMounted(() => {
   // console.log("hi this is the param data",JSON.parse(route.params.data))
-  if (route.params.data){
+  if (route.params.data) {
+
     invoiceData.value = JSON.parse(route.params.data)
-    loadInvoiceBranchData({
-      branch_id: invoiceData.value.branch_id,
+    loadInvoiceGroupData({
+      group_id: invoiceData.value.group_id,
       start_date: invoiceData.value.start_date,
       end_date: invoiceData.value.end_date,
     })
     startDate.value = invoiceData.value.start_date
     endDate.value = invoiceData.value.end_date
-  }else{
+    group_name.value = invoiceData.value.group_name
+  } else {
     router.push({name: 'sidebar-layouts-reports-list-tests'})
   }
 })
@@ -59,15 +52,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="invoice-wrapper" >
+  <div class="invoice-wrapper">
     <div class="invoice-header">
       <div class="left">
-        <h3>Branch Invoice </h3>
+        <h3>Group Invoice </h3>
       </div>
       <div class="right">
         <div class="controls">
-<!--          <VButton color="primary" v-print="'#printMe'" raised>Print</VButton>-->
-<!--          <a class="action" v-print="'#printMe'" @click="print">-->
+          <!--          <VButton color="primary" v-print="'#printMe'" raised>Print</VButton>-->
           <a class="action" @click="downloadPDF" >
             <i
               aria-hidden="true"
@@ -76,17 +68,17 @@ onMounted(() => {
 
             ></i>
           </a>
-<!--          <a class="action">-->
-<!--            <i-->
-<!--              aria-hidden="true"-->
-<!--              class="iconify"-->
-<!--              data-icon="feather:download-cloud"-->
-<!--            ></i>-->
-<!--          </a>-->
-<!--          <a class="action">-->
-<!--            <i aria-hidden="true" class="iconify" data-icon="feather:mail"></i>-->
-<!--          </a>-->
-          <a class="action" @click="backToTestsPage">
+          <!--          <a class="action">-->
+          <!--            <i-->
+          <!--              aria-hidden="true"-->
+          <!--              class="iconify"-->
+          <!--              data-icon="feather:download-cloud"-->
+          <!--            ></i>-->
+          <!--          </a>-->
+          <!--          <a class="action">-->
+          <!--            <i aria-hidden="true" class="iconify" data-icon="feather:mail"></i>-->
+          <!--          </a>-->
+          <a class="action" @click="backtoTestsPage">
             <i
               aria-hidden="true"
               class="iconify"
@@ -96,25 +88,25 @@ onMounted(() => {
         </div>
       </div>
     </div>
-    <div class="invoice-body" >
+    <div class="invoice-body">
       <div class="invoice-card" style="background-color: #ffffff !important; color: black !important;" id="printMe">
         <div class="invoice-section is-flex is-bordered">
-<!--          <tippy class="has-help-cursor" interactive placement="bottom-start">-->
-<!--            <V-Avatar size="large" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />-->
-<!--            <template #content>-->
-<!--              <UserPopoverContent :user="popovers.user13" />-->
-<!--            </template>-->
-<!--          </tippy>-->
+          <!--          <tippy class="has-help-cursor" interactive placement="bottom-start">-->
+          <!--            <V-Avatar size="large" picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" />-->
+          <!--            <template #content>-->
+          <!--              <UserPopoverContent :user="popovers.user13" />-->
+          <!--            </template>-->
+          <!--          </tippy>-->
 
           <div class="meta">
-            <h3>{{invoiceBranchName}}</h3>
-            <span>branch@email.com</span>
-            <span>+1 123-4567</span>
+            <h3>{{ group_name }}</h3>
+            <!--            <span>branch@email.com</span>-->
+            <!--            <span>+1 123-4567</span>-->
           </div>
           <div class="end">
             <h3>Duration </h3>
-            <span>Start-Date: {{startDate}}</span>
-            <span>End Date: {{endDate}}</span>
+            <span>Start-Date: {{ startDate }}</span>
+            <span>End Date: {{ endDate }}</span>
           </div>
         </div>
 
@@ -126,26 +118,26 @@ onMounted(() => {
               <span class="is-grow">Description</span>
               <span class="cell-end">Unit Price</span>
               <span>Test Count</span>
-<!--              <span>Rate</span>-->
+              <!--              <span>Rate</span>-->
               <span>Subtotal</span>
             </div>
 
             <!--Table item-->
-            <div class="flex-table-item" v-for="(item, key) in invoiceBranchDataList" :key="key">
+            <div class="flex-table-item" v-for="(item, key) in invoiceGroupDataList" :key="key">
               <div class="flex-table-cell is-grow" data-th="">
-                <span class="dark-text">PCR Antigen</span>
+                <span class="dark-text">{{ item.branch_name }}</span>
               </div>
               <div class="flex-table-cell cell-end" data-th="Unit Price">
-                <span class="light-text">{{item.unit_price}}</span>
+                <span class="light-text">{{ item.unit_price }}</span>
               </div>
               <div class="flex-table-cell" data-th="Test Count">
-                <span class="light-text">{{item.test_count}}</span>
+                <span class="light-text">{{ item.test_count }}</span>
               </div>
-<!--              <div class="flex-table-cell" data-th="Rate">-->
-<!--                <span class="dark-inverted">$24</span>-->
-<!--              </div>-->
+              <!--              <div class="flex-table-cell" data-th="Rate">-->
+              <!--                <span class="dark-inverted">$24</span>-->
+              <!--              </div>-->
               <div class="flex-table-cell has-text-right" data-th="Subtotal">
-                <span class="dark-inverted">${{item.total}}</span>
+                <span class="dark-inverted">${{ item.total }}</span>
               </div>
             </div>
 
@@ -158,41 +150,41 @@ onMounted(() => {
 
           <div class="flex-table sub-table">
             <!--Table item-->
-<!--            <div class="flex-table-item">-->
-<!--              <div class="flex-table-cell is-grow is-vhidden" data-th="">-->
-<!--                <span class="dark-text">Website Development</span>-->
-<!--              </div>-->
-<!--              <div class="flex-table-cell cell-end is-vhidden" data-th="Unit">-->
-<!--                <span class="light-text">hrs</span>-->
-<!--              </div>-->
-<!--              <div class="flex-table-cell is-vhidden" data-th="Quantity">-->
-<!--                <span class="light-text">2</span>-->
-<!--              </div>-->
-<!--              <div class="flex-table-cell" data-th="">-->
-<!--                <span class="table-label">Subtotal</span>-->
-<!--              </div>-->
-<!--              <div class="flex-table-cell has-text-right" data-th="">-->
-<!--                <span class="table-total dark-inverted">$1,808</span>-->
-<!--              </div>-->
-<!--            </div>-->
+            <!--            <div class="flex-table-item">-->
+            <!--              <div class="flex-table-cell is-grow is-vhidden" data-th="">-->
+            <!--                <span class="dark-text">Website Development</span>-->
+            <!--              </div>-->
+            <!--              <div class="flex-table-cell cell-end is-vhidden" data-th="Unit">-->
+            <!--                <span class="light-text">hrs</span>-->
+            <!--              </div>-->
+            <!--              <div class="flex-table-cell is-vhidden" data-th="Quantity">-->
+            <!--                <span class="light-text">2</span>-->
+            <!--              </div>-->
+            <!--              <div class="flex-table-cell" data-th="">-->
+            <!--                <span class="table-label">Subtotal</span>-->
+            <!--              </div>-->
+            <!--              <div class="flex-table-cell has-text-right" data-th="">-->
+            <!--                <span class="table-total dark-inverted">$1,808</span>-->
+            <!--              </div>-->
+            <!--            </div>-->
             <!--Table item-->
-<!--            <div class="flex-table-item">-->
-<!--              <div class="flex-table-cell is-grow is-vhidden" data-th="">-->
-<!--                <span class="dark-text">Website Development</span>-->
-<!--              </div>-->
-<!--              <div class="flex-table-cell cell-end is-vhidden" data-th="Unit">-->
-<!--                <span class="light-text">hrs</span>-->
-<!--              </div>-->
-<!--              <div class="flex-table-cell is-vhidden" data-th="Quantity">-->
-<!--                <span class="light-text">2</span>-->
-<!--              </div>-->
-<!--              <div class="flex-table-cell" data-th="">-->
-<!--                <span class="table-label">Taxes</span>-->
-<!--              </div>-->
-<!--              <div class="flex-table-cell has-text-right" data-th="">-->
-<!--                <span class="table-total dark-inverted">$273</span>-->
-<!--              </div>-->
-<!--            </div>-->
+            <!--            <div class="flex-table-item">-->
+            <!--              <div class="flex-table-cell is-grow is-vhidden" data-th="">-->
+            <!--                <span class="dark-text">Website Development</span>-->
+            <!--              </div>-->
+            <!--              <div class="flex-table-cell cell-end is-vhidden" data-th="Unit">-->
+            <!--                <span class="light-text">hrs</span>-->
+            <!--              </div>-->
+            <!--              <div class="flex-table-cell is-vhidden" data-th="Quantity">-->
+            <!--                <span class="light-text">2</span>-->
+            <!--              </div>-->
+            <!--              <div class="flex-table-cell" data-th="">-->
+            <!--                <span class="table-label">Taxes</span>-->
+            <!--              </div>-->
+            <!--              <div class="flex-table-cell has-text-right" data-th="">-->
+            <!--                <span class="table-total dark-inverted">$273</span>-->
+            <!--              </div>-->
+            <!--            </div>-->
             <!--Table item-->
             <div class="flex-table-item">
               <div class="flex-table-cell is-grow is-vhidden" data-th="">
@@ -208,7 +200,7 @@ onMounted(() => {
                 <span class="table-label" style="color: black !important;">Total</span>
               </div>
               <div class="flex-table-cell has-text-right" data-th="">
-                <span class="table-total is-bigger dark-inverted">${{branchTotalPrice}}</span>
+                <span class="table-total is-bigger dark-inverted">${{ groupTotalPrice }}</span>
               </div>
             </div>
           </div>
@@ -254,11 +246,9 @@ onMounted(() => {
   color: black !important;
 }
 
-
 .invoice-wrapper {
   max-width: 740px;
   margin: 0 auto;
-
 
   &.is-navbar {
     margin-top: 30px;
