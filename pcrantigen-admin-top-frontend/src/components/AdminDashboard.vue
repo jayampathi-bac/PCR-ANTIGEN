@@ -25,7 +25,7 @@ onMounted(() => {
     <div class="dashboard-header">
       <V-Avatar :picture="profile_url" size="large"/>
       <div class="start">
-        <h3>Welcome back, {{name}}</h3>
+        <h3>ようこそ, {{name}}</h3>
         <p>We're very happy to see you again on your sales admin dashboard.</p>
       </div>
 <!--      <div class="end">-->

@@ -25,7 +25,7 @@ const onAddFile = (error: any, file: any) => {
     return
   }
 
-  console.log('file added', file)
+  // console.log('file added', file)
 }
 const onRemoveFile = (error: any, file: any) => {
   if (error) {
@@ -33,7 +33,7 @@ const onRemoveFile = (error: any, file: any) => {
     return
   }
 
-  console.log('file removed', file)
+  // console.log('file removed', file)
 }
 const addExperience = async () => {
   isUploading.value = false

@@ -9,7 +9,7 @@ const getResults = () => {
   const resultService = new ResultService();
 
   const search = () => {
-    console.log("searching Results")
+    // console.log("searching Results")
     resultService.getResults().then((result: { data: never[]; }) => {
       results.value = result.data;
     }).catch((e: any) => {
@@ -18,7 +18,7 @@ const getResults = () => {
   };
 
   const generateResult = (results: Object) => {
-    console.log("generating results")
+    // console.log("generating results")
     resultService.generateResult(results).then((res: { data: never[]; }) => {
       return res
     }).catch((e: any) => {
@@ -27,7 +27,7 @@ const getResults = () => {
   }
 
   const searchAllBrandsToResults = () => {
-    console.log("searching brands")
+    // console.log("searching brands")
     resultService.getBrandsByBranch().then(function (result){
       // brands.value = result.data;
       for (let brand of result.data) {

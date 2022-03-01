@@ -93,14 +93,16 @@ const testurl = ref('https://sample.jvpdtest.com/Qr/55360360-ddaf-4db6-9387-1000
 
 // Save branch
 const fireSaveBranchFuncAlert = () => {
-  console.log("groups", groups.value, group_id.value)
+  // console.log("groups", groups.value, group_id.value)
   if (company_name.value && address.value && contact_number.value && (group_id.value !== 0) && branch_email.value && start_date.value && end_date.value && unit_price.value) {
     if ( contact_number.value.length === 11 || contact_number.value.length === 10) {
       centeredActionsOpen.value = false;
       swal.fire({
         title: `Do you want to save the Branch ?`,
         showCancelButton: true,
-        confirmButtonText: 'Save',
+        confirmButtonText: '保存する',
+        cancelButtonText:'キャンセル',
+        confirmButtonColor: '#41b883',
       }).then((result) => {
         if (result.isConfirmed) {
           saveBranchFunc()
@@ -111,7 +113,7 @@ const fireSaveBranchFuncAlert = () => {
     }
 
   } else {
-    notif.warning('Empty Fields.!!')
+    notif.warning('未入力フィールドがございます。')
   }
 
 }
@@ -122,7 +124,7 @@ const formatter = new Intl.NumberFormat('en-US', {
 });
 
 const saveBranchFunc = () => {
-  console.log("saving")
+  // console.log("saving")
   isLoaderActive.value = !isLoaderActive.value
   start_date.value = start_date.value.toISOString().slice(0, 10)
   end_date.value = end_date.value.toISOString().slice(0, 10)
@@ -157,10 +159,15 @@ const saveBranchFunc = () => {
   }
   branchService.saveBranch(branch)
     .then(function (response) {
-      console.log('response', response)
+      // console.log('response', response)
       if (response.data.success) {
-        swal.fire('Saving Successful!', '', 'success')
-        notif.success(response.data.message)
+        swal.fire({
+          icon: 'success',
+          title: '保存完了',
+          confirmButtonText: 'Okay',
+          confirmButtonColor: '#41b883',
+        })
+        notif.success('保存完了')
         searchAllBranches(currentPage.value)
         clearFields()
         centeredActionsOpen.value = false
@@ -182,7 +189,7 @@ const saveBranchFunc = () => {
 
 // Edit branch
 const openEditActionsOpen = (branch: any) => {
-  console.log("openEditActionsOpen", branch, parseInt(branch.group_id))
+  // console.log("openEditActionsOpen", branch, parseInt(branch.group_id))
   // company_name;  address:  contact_number:  group_id:  username:  password; start_date; end_date; start_time; end_time; profile_url;
   editActionsOpen.value = true
   const date = new Date().toISOString().slice(0, 10).toString()
@@ -203,7 +210,7 @@ const openEditActionsOpen = (branch: any) => {
 
 // View branch
 const openViewActionsOpen = (branch: any) => {
-  console.log("openEditActionsOpen", branch, parseInt(branch.group_id))
+  // console.log("openEditActionsOpen", branch, parseInt(branch.group_id))
   // company_name;  address:  contact_number:  group_id:  username:  password; start_date; end_date; start_time; end_time; profile_url;
   viewActionsOpen.value = true
   const date = new Date().toISOString().slice(0, 10).toString()
@@ -234,25 +241,27 @@ const openQRCodeModel = (qr_code_url: any) => {
 }
 
 const fireEditBranchFuncAlert = () => {
-  console.log("fireEditBranchFuncAlert")
+  // console.log("fireEditBranchFuncAlert")
   if (edit_company_id.value && edit_company_name.value && edit_address.value && edit_branch_email.value && edit_contact_number.value && edit_group_id.value && edit_start_date.value && edit_end_date.value && edit_start_time.value && edit_end_time.value && edit_profile_url.value && edit_unit_price.value) {
     swal.fire({
       title: `Do you want to edit the Branch ?`,
       showCancelButton: true,
-      confirmButtonText: 'Edit',
+      confirmButtonText: '修正',
+      cancelButtonText:'キャンセル',
+      confirmButtonColor: '#41b883',
     }).then((result) => {
       if (result.isConfirmed) {
         editBranchFunc()
       }
     })
   } else {
-    notif.warning('Empty Fields.!!')
+    notif.warning('未入力フィールドがございます。')
   }
 }
 
 const editBranchFunc = () => {
   isLoaderActive.value = !isLoaderActive.value
-  console.log("editing", edit_company_id.value)
+  // console.log("editing", edit_company_id.value)
   edit_start_time_saved.value = new Date(edit_start_time.value).toLocaleTimeString('en-US', {
     hour12: false,
     hour: "numeric",
@@ -285,15 +294,26 @@ const editBranchFunc = () => {
   }
   branchService.editBranch(branch)
     .then(function (response) {
-      console.log('response', response)
+      // console.log('response', response)
       if (response.data.success) {
-        swal.fire('Editing Successful!', '', 'success')
-        notif.success('Editing Successful!')
+        swal.fire({
+          icon: 'success',
+          title: '編集完了',
+          confirmButtonText: 'Okay',
+          confirmButtonColor: '#41b883',
+        })
+        notif.success('編集完了')
         searchAllBranches(currentPage.value)
         editActionsOpen.value = false
         isLoaderActive.value = !isLoaderActive.value
       } else {
-        swal.fire('Editing Failed!', '', 'error')
+        // swal.fire('Editing Failed!', '', 'error')
+        swal.fire({
+          icon: 'error',
+          title: 'Editing Failed!',
+          confirmButtonText: 'Okay',
+          confirmButtonColor: '#41b883',
+        })
         notif.warning(response.data.message)
         editActionsOpen.value = false
         isLoaderActive.value = !isLoaderActive.value
@@ -308,11 +328,13 @@ const editBranchFunc = () => {
 
 // delete branch
 const fireDeleteBrandAlert = (branch_id: number) => {
-  console.log("fireDeleteBrandAlert", branch_id)
+  // console.log("fireDeleteBrandAlert", branch_id)
   swal.fire({
-    title: `Do you want to delete the Branch ?`,
+    title: `この薬局者を削除したいですか？`,
     showCancelButton: true,
-    confirmButtonText: 'Delete',
+    confirmButtonText: '削除',
+    cancelButtonText:'キャンセル',
+    confirmButtonColor: '#41b883',
   }).then((result: any) => {
     if (result.isConfirmed) {
       deleteBranchFunc(branch_id)
@@ -322,17 +344,29 @@ const fireDeleteBrandAlert = (branch_id: number) => {
 
 const deleteBranchFunc = (branch_id: number) => {
   isLoaderActive.value = !isLoaderActive.value
-  console.log('delete this', branch_id)
+  // console.log('delete this', branch_id)
   branchService.deleteBranch(branch_id)
     .then(function (response) {
 
-      console.log('response', response)
+      // console.log('response', response)
       if (response.data.success) {
-        swal.fire('Deleting Successful!', '', 'success')
-        notif.success(response.data.message)
+        // swal.fire('削除完了', '', 'success')
+        swal.fire({
+          icon: 'success',
+          title: '削除完了',
+          confirmButtonText: 'Okay',
+          confirmButtonColor: '#41b883',
+        })
+        notif.success('削除完了')
         searchAllBranches(currentPage.value)
       } else {
-        swal.fire(response.data.message, '', 'error')
+        // swal.fire(response.data.message, '', 'error')
+        swal.fire({
+          icon: 'error',
+          title: response.data.message,
+          confirmButtonText: 'Okay',
+          confirmButtonColor: '#41b883',
+        })
         notif.warning(response.data.message)
       }
       isLoaderActive.value = !isLoaderActive.value
@@ -384,7 +418,7 @@ const clearFields = () => {
 
 const currentPage = computed(() => {
   try {
-    console.log("currentPage", Number.parseInt(route.query.page as string) || 1)
+    // console.log("currentPage", Number.parseInt(route.query.page as string) || 1)
     searchAllBranches(Number.parseInt(route.query.page as string) || 1)
     return Number.parseInt(route.query.page as string) || 1
   } catch {
@@ -419,7 +453,7 @@ onMounted(async () => {
           <input
             v-model="filters"
             class="input custom-text-filter"
-            placeholder="Search..."
+            placeholder="検索"
           />
         </V-Control>
       </V-Field>
@@ -427,7 +461,7 @@ onMounted(async () => {
       <V-Buttons>
         <!--        <V-Button dark="3">View Reports</V-Button>-->
         <V-Button color="primary" icon="fas fa-plus" elevated @click="centeredActionsOpen = true">
-          Add Branch
+          薬局者を追加する
         </V-Button>
       </V-Buttons>
     </div>
@@ -451,18 +485,11 @@ onMounted(async () => {
             class="flex-table-header"
             :class="[filteredData.length === 0 && 'is-hidden']"
           >
-            <span class="is-grow">Company</span>
-            <!--            <span class="is-grow">Address</span>-->
-            <span class="is-grow">Address</span>
-            <span class="is-grow">Group</span>
-            <!--            <span class="is-grow">Username</span>-->
-<!--            <span class="is-grow">Start Date</span>-->
-<!--            <span class="is-grow">End Date</span>-->
-<!--            <span class="is-grow">Start Time</span>-->
-<!--            <span class="is-grow">End Time</span>-->
-            <span class="is-grow">Email</span>
-<!--            <span class="is-grow">Price Per Unit</span>-->
-            <span class="is-grow cell-end">Actions</span>
+            <span class="is-grow">薬局名</span>
+            <span class="is-grow">ご住所</span>
+            <span class="is-grow">グループ</span>
+            <span class="is-grow">メールアドレス</span>
+            <span class="is-grow cell-end">アクション</span>
           </div>
 
           <div class="flex-list-inner">
@@ -485,34 +512,17 @@ onMounted(async () => {
                     </span>
                   </div>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="Address">
+                <div class="flex-table-cell is-grow" data-th="ご住所">
                   <span class="light-text">{{ branch.address }}</span>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="Group">
+                <div class="flex-table-cell is-grow" data-th="グループ">
                   <span class="light-text">{{ branch.group_name }}</span>
                 </div>
-                <!--                <div class="flex-table-cell is-grow" data-th="Industry">-->
-                <!--                  <span class="light-text">{{ branch.username }}</span>-->
-                <!--                </div>-->
-<!--                <div class="flex-table-cell is-grow" data-th="Start Date">-->
-<!--                  <span class="light-text">{{ branch.start_date }}</span>-->
-<!--                </div>-->
-<!--                <div class="flex-table-cell is-grow" data-th="End Date">-->
-<!--                  <span class="light-text">{{ branch.end_date }}</span>-->
-<!--                </div>-->
-<!--                <div class="flex-table-cell is-grow" data-th="Start Time">-->
-<!--                  <span class="light-text">{{ branch.start_time }}</span>-->
-<!--                </div>-->
-<!--                <div class="flex-table-cell is-grow" data-th="End Time">-->
-<!--                  <span class="light-text">{{ branch.end_time }}</span>-->
-<!--                </div>-->
-                <div class="flex-table-cell is-grow" data-th="Email">
+
+                <div class="flex-table-cell is-grow" data-th="メールアドレス">
                   <span class="light-text">{{ branch.email }}</span>
                 </div>
-<!--                <div class="flex-table-cell is-grow" data-th="Email">-->
-<!--                  <span class="light-text">{{ branch.unit_price }}</span>-->
-<!--                </div>-->
-                <div class="flex-table-cell is-grow cell-end" data-th="Actions">
+                <div class="flex-table-cell is-grow cell-end" data-th="アクション">
                   <V-Dropdown
                     icon="feather:more-vertical"
                     class="is-pushed-mobile"
@@ -547,8 +557,8 @@ onMounted(async () => {
                           <i class="lnir lnir-cog" aria-hidden="true"></i>
                         </div>
                         <div class="meta">
-                          <span>Edit</span>
-                          <span>Edit Branch details</span>
+                          <span>編集</span>
+                          <span>薬局の情報編集</span>
                         </div>
                       </a>
 
@@ -559,8 +569,8 @@ onMounted(async () => {
                           <i aria-hidden="true" class="lnil lnil-trash-can-alt"></i>
                         </div>
                         <div class="meta">
-                          <span>Delete</span>
-                          <span>Delete {{ branch.company_name }}</span>
+                          <span>削除</span>
+                          <span>薬局編集 {{ branch.company_name }}</span>
                         </div>
                       </a>
                     </template>
@@ -588,7 +598,7 @@ onMounted(async () => {
       size="medium"
       actions="center"
       @close="centeredActionsOpen = false"
-      title="Add a New Branch"
+      title="薬局者を追加する"
     >
       <template #content>
         <form class="form-layout is-split" @submit.prevent>
@@ -596,24 +606,24 @@ onMounted(async () => {
             <div class="form-section is-grey">
               <div>
                 <V-Field>
-                  <label>Branch Name</label>
+                  <label>薬局名</label>
                   <V-Control icon="feather:pocket">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Branch Name"
+                      placeholder="薬局名"
                       autocomplete="branch_name"
                       v-model="company_name"
                     />
                   </V-Control>
                 </V-Field>
                 <V-Field>
-                  <label>Branch Email</label>
+                  <label>メールアドレス</label>
                   <V-Control icon="feather:mail">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Branch Email"
+                      placeholder="メールアドレス"
                       autocomplete="branch email"
                       inputmode="email"
                       v-model="branch_email"
@@ -621,12 +631,12 @@ onMounted(async () => {
                   </V-Control>
                 </V-Field>
                 <V-Field>
-                  <label>Branch Address</label>
+                  <label>薬局住所</label>
                   <V-Control icon="feather:map-pin">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Address"
+                      placeholder="薬局住所"
                       autocomplete="Address"
                       inputmode="Address"
                       v-model="address"
@@ -634,12 +644,12 @@ onMounted(async () => {
                   </V-Control>
                 </V-Field>
                 <V-Field>
-                  <label>Contact Number</label>
+                  <label>電話番号</label>
                   <V-Control icon="feather:phone">
                     <input
                       type="number"
                       class="input"
-                      placeholder="Contact Number"
+                      placeholder="電話番号"
                       autocomplete="contact_number"
                       inputmode="contact_number"
                       v-model="contact_number"
@@ -647,7 +657,7 @@ onMounted(async () => {
                   </V-Control>
                 </V-Field>
                 <V-Field class="is-autocomplete-select">
-                  <label>Group</label>
+                  <label>グループ</label>
                   <VControl icon="feather:search">
                     <Multiselect
                       v-model="group_id"
@@ -676,12 +686,12 @@ onMounted(async () => {
                     <v-date-picker v-model="start_date" color="green" trim-weeks>
                       <template #default="{ inputValue, inputEvents }">
                         <V-Field>
-                          <label>Start Date</label>
+                          <label>開始日</label>
                           <V-Control icon="feather:calendar">
                             <input
                               class="input"
                               type="text"
-                              placeholder="Start Date"
+                              placeholder="開始日"
                               :value="inputValue"
                               v-on="inputEvents"
                             />
@@ -696,12 +706,12 @@ onMounted(async () => {
                     <v-date-picker v-model="end_date" color="green" trim-weeks>
                       <template #default="{ inputValue, inputEvents }">
                         <V-Field>
-                          <label>End Date</label>
+                          <label>終了日</label>
                           <V-Control icon="feather:calendar">
                             <input
                               class="input"
                               type="text"
-                              placeholder="End Date"
+                              placeholder="終了日"
                               :value="inputValue"
                               v-on="inputEvents"
                             />
@@ -716,9 +726,9 @@ onMounted(async () => {
                     <v-date-picker v-model="start_time_test" mode="time" is24hr>
                       <template #default="{ inputValue, inputEvents }">
                         <V-Field>
-                          <label>Start time</label>
+                          <label>開始時間</label>
                           <V-Control icon="feather:clock">
-                            <input class="input" :value="inputValue" v-on="inputEvents" placeholder="Start Time"/>
+                            <input class="input" :value="inputValue" v-on="inputEvents" placeholder="開始時間"/>
                           </V-Control>
                         </V-Field>
                       </template>
@@ -731,40 +741,15 @@ onMounted(async () => {
                     <v-date-picker v-model="end_time_test" mode="time" is24hr>
                       <template #default="{ inputValue, inputEvents }">
                         <V-Field>
-                          <label>End time</label>
+                          <label>終了時間</label>
                           <V-Control icon="feather:clock">
-                            <input class="input" :value="inputValue" v-on="inputEvents" placeholder="End Time"/>
+                            <input class="input" :value="inputValue" v-on="inputEvents" placeholder="終了時間"/>
                           </V-Control>
                         </V-Field>
                       </template>
                     </v-date-picker>
                   </V-Control>
                 </V-Field>
-
-<!--                <V-Field>-->
-<!--                  <label>Password</label>-->
-<!--                  <V-Control icon="feather:lock">-->
-<!--                    <input-->
-<!--                      type="password"-->
-<!--                      class="input"-->
-<!--                      placeholder="Password"-->
-<!--                      autocomplete="password"-->
-<!--                      v-model="password"-->
-<!--                    />-->
-<!--                  </V-Control>-->
-<!--                </V-Field>-->
-<!--                <V-Field>-->
-<!--                  <label>Confirm Password</label>-->
-<!--                  <V-Control icon="feather:lock">-->
-<!--                    <input-->
-<!--                      type="password"-->
-<!--                      class="input"-->
-<!--                      placeholder="Confirm Password"-->
-<!--                      autocomplete="confirm-password"-->
-<!--                      v-model="confirm_password"-->
-<!--                    />-->
-<!--                  </V-Control>-->
-<!--                </V-Field>-->
               </div>
             </div>
           </div>
@@ -773,7 +758,8 @@ onMounted(async () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="fireSaveBranchFuncAlert">Add Branch</VButton>
+        <VButton @click="centeredActionsOpen = false"> キャンセル </VButton>
+        <VButton color="primary" raised @click="fireSaveBranchFuncAlert">薬局者を追加する</VButton>
       </template>
     </VModal>
 
@@ -783,7 +769,7 @@ onMounted(async () => {
       size="medium"
       actions="center"
       @close="editActionsOpen = false"
-      title="Edit Branch"
+      title="薬局編集"
     >
       <template #content>
         <form class="form-layout is-split" @submit.prevent>
@@ -791,12 +777,12 @@ onMounted(async () => {
             <div class="form-section is-grey">
               <div>
                 <V-Field>
-                  <label>Branch ID</label>
+                  <label>薬局ID</label>
                   <V-Control icon="feather:pocket">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Branch ID"
+                      placeholder="薬局ID"
                       autocomplete="branch_id"
                       v-model="edit_company_id"
                       readonly
@@ -804,24 +790,24 @@ onMounted(async () => {
                   </V-Control>
                 </V-Field>
                 <V-Field>
-                  <label>Branch Name</label>
+                  <label>薬局名</label>
                   <V-Control icon="feather:pocket">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Branch Name"
+                      placeholder="薬局名"
                       autocomplete="branch_name"
                       v-model="edit_company_name"
                     />
                   </V-Control>
                 </V-Field>
                 <V-Field>
-                  <label>Branch Email</label>
+                  <label>メールアドレス</label>
                   <V-Control icon="feather:mail">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Branch Email"
+                      placeholder="メールアドレス"
                       autocomplete="branch_email"
                       inputmode="branch_email"
                       v-model="edit_branch_email"
@@ -829,12 +815,12 @@ onMounted(async () => {
                   </V-Control>
                 </V-Field>
                 <V-Field>
-                  <label>Branch Address</label>
+                  <label>薬局住所</label>
                   <V-Control icon="feather:map-pin">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Address"
+                      placeholder="薬局住所"
                       autocomplete="Address"
                       inputmode="Address"
                       v-model="edit_address"
@@ -842,12 +828,12 @@ onMounted(async () => {
                   </V-Control>
                 </V-Field>
                 <V-Field>
-                  <label>Contact Number</label>
+                  <label>電話番号</label>
                   <V-Control icon="feather:phone">
                     <input
                       type="tel"
                       class="input"
-                      placeholder="Contact Number"
+                      placeholder="電話番号"
                       autocomplete="contact_number"
                       inputmode="contact_number"
                       v-model="edit_contact_number"
@@ -856,12 +842,12 @@ onMounted(async () => {
                   </V-Control>
                 </V-Field>
                 <V-Field class="is-autocomplete-select">
-                  <label>Group</label>
+                  <label>グループ</label>
                   <VControl icon="feather:search">
                     <Multiselect
                       v-model="edit_group_id"
                       :options="groups"
-                      placeholder="Search a Test Kit"
+                      placeholder="Search a Group"
                       :searchable="true"
                     >
                     </Multiselect>
@@ -885,12 +871,12 @@ onMounted(async () => {
                     <v-date-picker v-model="edit_start_date" color="green" trim-weeks>
                       <template #default="{ inputValue, inputEvents }">
                         <V-Field>
-                          <label>Start Date</label>
+                          <label>開始日</label>
                           <V-Control icon="feather:calendar">
                             <input
                               class="input"
                               type="text"
-                              placeholder="Start Date"
+                              placeholder="開始日"
                               :value="inputValue"
                               v-on="inputEvents"
                             />
@@ -905,12 +891,12 @@ onMounted(async () => {
                     <v-date-picker v-model="edit_end_date" color="green" trim-weeks>
                       <template #default="{ inputValue, inputEvents }">
                         <V-Field>
-                          <label>End Date</label>
+                          <label>終了日</label>
                           <V-Control icon="feather:calendar">
                             <input
                               class="input"
                               type="text"
-                              placeholder="End Date"
+                              placeholder="終了日"
                               :value="inputValue"
                               v-on="inputEvents"
                             />
@@ -925,9 +911,9 @@ onMounted(async () => {
                     <v-date-picker v-model="edit_start_time" mode="time" is24hr>
                       <template #default="{ inputValue, inputEvents }">
                         <V-Field>
-                          <label>Start time</label>
+                          <label>開始時間</label>
                           <V-Control icon="feather:clock">
-                            <input class="input" :value="inputValue" v-on="inputEvents" placeholder="Start Time"/>
+                            <input class="input" :value="inputValue" v-on="inputEvents" placeholder="開始時間"/>
                           </V-Control>
                         </V-Field>
                       </template>
@@ -940,9 +926,9 @@ onMounted(async () => {
                     <v-date-picker v-model="edit_end_time" mode="time" is24hr>
                       <template #default="{ inputValue, inputEvents }">
                         <V-Field>
-                          <label>End time</label>
+                          <label>終了時間</label>
                           <V-Control icon="feather:clock">
-                            <input class="input" :value="inputValue" v-on="inputEvents" placeholder="End Time"/>
+                            <input class="input" :value="inputValue" v-on="inputEvents" placeholder="終了時間"/>
                           </V-Control>
                         </V-Field>
                       </template>
@@ -957,7 +943,8 @@ onMounted(async () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="fireEditBranchFuncAlert">Edit Branch</VButton>
+        <VButton @click="editActionsOpen = false"> キャンセル </VButton>
+        <VButton color="primary" raised @click="fireEditBranchFuncAlert">薬局編集</VButton>
       </template>
     </VModal>
     <VModal
@@ -973,12 +960,12 @@ onMounted(async () => {
             <div class="form-section is-grey">
               <div>
                 <V-Field>
-                  <label>Branch ID</label>
+                  <label>薬局ID</label>
                   <V-Control icon="feather:pocket">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Branch ID"
+                      placeholder="薬局ID"
                       autocomplete="branch_id"
                       v-model="edit_company_id"
                       readonly
@@ -986,12 +973,12 @@ onMounted(async () => {
                   </V-Control>
                 </V-Field>
                 <V-Field>
-                  <label>Branch Name</label>
+                  <label>薬局名</label>
                   <V-Control icon="feather:pocket">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Branch Name"
+                      placeholder="薬局名"
                       autocomplete="branch_name"
                       v-model="edit_company_name"
                       readonly
@@ -999,12 +986,12 @@ onMounted(async () => {
                   </V-Control>
                 </V-Field>
                 <V-Field>
-                  <label>Branch Email</label>
+                  <label>メールアドレス</label>
                   <V-Control icon="feather:mail">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Branch Email"
+                      placeholder="メールアドレス"
                       autocomplete="branch_email"
                       inputmode="branch_email"
                       v-model="edit_branch_email"
@@ -1013,12 +1000,12 @@ onMounted(async () => {
                   </V-Control>
                 </V-Field>
                 <V-Field>
-                  <label>Branch Address</label>
+                  <label>薬局住所</label>
                   <V-Control icon="feather:map-pin">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Address"
+                      placeholder="薬局住所"
                       autocomplete="Address"
                       inputmode="Address"
                       v-model="edit_address"
@@ -1027,12 +1014,12 @@ onMounted(async () => {
                   </V-Control>
                 </V-Field>
                 <V-Field>
-                  <label>Contact Number</label>
+                  <label>電話番号</label>
                   <V-Control icon="feather:phone">
                     <input
                       type="tel"
                       class="input"
-                      placeholder="Contact Number"
+                      placeholder="電話番号"
                       autocomplete="contact_number"
                       inputmode="contact_number"
                       v-model="edit_contact_number"
@@ -1041,12 +1028,12 @@ onMounted(async () => {
                   </V-Control>
                 </V-Field>
                 <V-Field class="is-autocomplete-select">
-                  <label>Group Name</label>
+                  <label>グループ</label>
                   <VControl icon="feather:key">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Group"
+                      placeholder="グループ"
                       autocomplete="Group"
                       inputmode="Group"
                       v-model="edit_group_name"
@@ -1069,12 +1056,12 @@ onMounted(async () => {
                   </VControl>
                 </V-Field>
                 <V-Field class="is-autocomplete-select">
-                  <label>Start Date</label>
+                  <label>開始日</label>
                   <VControl icon="feather:calendar">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Start Date"
+                      placeholder="開始日"
                       autocomplete="Start Date"
                       inputmode="Start Date"
                       v-model="edit_start_date"
@@ -1083,12 +1070,12 @@ onMounted(async () => {
                   </VControl>
                 </V-Field>
                 <V-Field class="is-autocomplete-select">
-                  <label>End Date</label>
+                  <label>終了日</label>
                   <VControl icon="feather:calendar">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Start Date"
+                      placeholder="終了日"
                       autocomplete="Start Date"
                       inputmode="Start Date"
                       v-model="edit_end_date"
@@ -1097,12 +1084,12 @@ onMounted(async () => {
                   </VControl>
                 </V-Field>
                 <V-Field class="is-autocomplete-select">
-                  <label>Start Time</label>
+                  <label>開始時間</label>
                   <VControl icon="feather:clock">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Start Time"
+                      placeholder="開始時間"
                       autocomplete="Start Time"
                       inputmode="Start Time"
                       v-model="edit_start_time"
@@ -1111,14 +1098,14 @@ onMounted(async () => {
                   </VControl>
                 </V-Field>
                 <V-Field class="is-autocomplete-select">
-                  <label>End Time</label>
+                  <label>終了時間</label>
                   <VControl icon="feather:clock">
                     <input
                       type="text"
                       class="input"
-                      placeholder="Start Time"
-                      autocomplete="Start Time"
-                      inputmode="Start Time"
+                      placeholder="終了時間"
+                      autocomplete="End Time"
+                      inputmode="End Time"
                       v-model="edit_end_time"
                       readonly
                     />
@@ -1132,7 +1119,7 @@ onMounted(async () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="viewActionsOpen = false">Ok</VButton>
+        <VButton color="primary" raised @click="viewActionsOpen = false">Okay</VButton>
       </template>
     </VModal>
     <VModal
@@ -1164,7 +1151,7 @@ onMounted(async () => {
   </VLoader>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../../../scss/abstracts/_variables.scss';
 
 .has-top-nav {
@@ -1180,8 +1167,6 @@ onMounted(async () => {
   font-size: 20px !important;
 }
 
-.swal2-styled.swal2-confirm {
-  background-color: #41b883 !important;
-}
+
 
 </style>

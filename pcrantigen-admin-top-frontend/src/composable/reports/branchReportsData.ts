@@ -11,20 +11,20 @@ const getBranchesReport = () => {
   const branchReportsService = new BranchReportsService();
 
   const searchBranches = (pageId: number, searchData: {group_id: number, orderby: number}) => {
-    console.log("searching customers")
+    // console.log("searching customers")
     branchReportsService.getBranchesNormal(pageId, searchData).then((result: { data: any; }) => {
       branches.value = result.data.data;
       allBranchesCount.value = result.data.meta;
-      console.log("allBranchesCount",result.data.meta)
+      // console.log("allBranchesCount",result.data.meta)
     }).catch((e: any) => {
       console.log('error: ', e);
     });
   };
 
   const searchGroupsToBranch = () => {
-    console.log("searchGroups")
+    // console.log("searchGroups")
     branchReportsService.getAllGroups().then((result: { data: any; }) => {
-      console.log("searchGroups",result.data.data)
+      // console.log("searchGroups",result.data.data)
       allGroups.value = result.data.data;
     }).catch((e: any) => {
       console.log('error: ', e);

@@ -12,21 +12,21 @@ const getDashboardData = () => {
 
   const topBranchThree = ref({
     branch_id: 0,
-    branch_name: "Pending",
-    branch_contact: "Pending",
-    count: "Pending",
+    branch_name: "保留中",
+    branch_contact: "保留中",
+    count: "保留中",
   })
   const topBranchTwo = ref({
     branch_id: 0,
-    branch_name: "Pending",
-    branch_contact: "Pending",
-    count: "Pending",
+    branch_name: "保留中",
+    branch_contact: "保留中",
+    count: "保留中",
   })
   const topBranchOne = ref({
     branch_id: 0,
-    branch_name: "Pending",
-    branch_contact: "Pending",
-    count: "Pending",
+    branch_name: "保留中",
+    branch_contact: "保留中",
+    count: "保留中",
   })
 
   const searchDashboardData = () => {

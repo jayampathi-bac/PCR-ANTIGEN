@@ -9,7 +9,7 @@ const getBrands = () => {
   const brandService = new BrandService();
 
   const searchAllBrands = (pageId: number) => {
-    console.log("searching brands")
+    // console.log("searching brands")
     brandService.getBrandsByBranch(pageId).then((result: { data: any; }) => {
       brands.value = result.data.data;
       allBrandsCount.value = result.data.meta;

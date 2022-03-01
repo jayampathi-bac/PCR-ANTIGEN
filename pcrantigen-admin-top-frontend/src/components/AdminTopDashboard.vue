@@ -27,8 +27,8 @@ onMounted(() => {
     <div class="dashboard-header">
       <V-Avatar picture="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" size="large"/>
       <div class="start">
-        <h3>Welcome back, {{ store.state.auth.admintop.name }}</h3>
-        <p>We're very happy to see you again on your admin dashboard.</p>
+        <h3>ようこそ, {{ store.state.auth.admintop.name }}</h3>
+        <p>管理者画面へようこそ！</p>
       </div>
       <!--      <div class="end">-->
       <!--        <V-Button dark="3">View Reports</V-Button>-->
@@ -42,7 +42,7 @@ onMounted(() => {
           <!--Box-->
           <div class="dashboard-body">
             <div class="dashboard-card">
-              <h4 class="dark-inverted">Your Quick Stats</h4>
+              <h4 class="dark-inverted">ステータス</h4>
 
               <div class="quick-stats">
                 <div class="quick-stats-inner">
@@ -50,7 +50,7 @@ onMounted(() => {
                   <div class="quick-stat">
                     <V-Block
                       :title="dashboardData.customer_count+''"
-                      subtitle="Total Customers"
+                      subtitle="全ての顧客数"
                       center
                       m-responsive
                       t-responsive
@@ -71,7 +71,7 @@ onMounted(() => {
                   <div class="quick-stat">
                     <V-Block
                       :title="dashboardData.branch_count+''"
-                      subtitle="Total Merchants"
+                      subtitle="全ての薬局数"
                       center
                       m-responsive
                       t-responsive
@@ -96,7 +96,7 @@ onMounted(() => {
           <!--Box-->
           <div class="inner-box">
             <div class="box-title">
-              <h3>Total Tests Done</h3>
+              <h3>全ての検査</h3>
               <!--              <V-Field class="is-minimal-select">-->
               <!--                <V-Control>-->
               <!--                  <Multiselect-->
@@ -118,7 +118,7 @@ onMounted(() => {
               <div class="card-balance-stats">
                 <div class="card-balance-stat">
                   <div class="stat-title">
-                    <span>Completed</span>
+                    <span>検査済み</span>
                   </div>
                   <div class="stat-block">
                     <div class="stat-icon is-up">
@@ -135,7 +135,7 @@ onMounted(() => {
                 </div>
                 <div class="card-balance-stat">
                   <div class="stat-title">
-                    <span>Incomplete</span>
+                    <span>削除</span>
                   </div>
                   <div class="stat-block">
                     <div class="stat-icon is-down">
@@ -168,16 +168,16 @@ onMounted(() => {
               <!--Monthly Summary-->
               <div class="column is-6">
                 <div class="box-title">
-                  <h3>Total Cases</h3>
+                  <h3>全ての検査情報</h3>
                 </div>
                 <div class="monthly-summary-wrap">
                   <div class="monthly-summary">
                     <div class="monthly-summary-item">
-                      <span>Positive</span>
+                      <span>陽性（＋）</span>
                       <span class="is-income">{{ dashboardData.positive_test_result_count }}</span>
                     </div>
                     <div class="monthly-summary-item">
-                      <span>Negative</span>
+                      <span>陰性（―）</span>
                       <span class="is-expense">{{ dashboardData.negative_test_result_count }}</span>
                     </div>
                   </div>
@@ -186,7 +186,7 @@ onMounted(() => {
               <!--Chart-->
               <div class="column is-6">
                 <div class="box-title">
-                  <h3>Monthly Test Percentages</h3>
+                  <h3>月次検査実施実績率</h3>
                 </div>
                 <div class="">
                   <div class="radial-wrap">
@@ -200,11 +200,11 @@ onMounted(() => {
                     </apexchart>
                     <div class="radial-stats is-dark-bordered-12">
                       <div class="radial-stat is-dark-bordered-12">
-                        <span>Completed</span>
+                        <span>検査済み</span>
                         <span class="dark-inverted">{{ dashboardData.monthly_completed_test_result_count }} %</span>
                       </div>
                       <div class="radial-stat">
-                        <span>Inomplete</span>
+                        <span>削除</span>
                         <span class="dark-inverted">{{ dashboardData.monthly_incompleted_test_result_count }} %</span>
                       </div>
                     </div>
@@ -219,7 +219,7 @@ onMounted(() => {
           <!--Box-->
           <div class="inner-box">
             <div class="box-title">
-              <h3>Top 3 branches</h3>
+              <h3>優秀な薬局者</h3>
               <!--              <a class="action-link">View All</a>-->
             </div>
             <!--Transactions-->
@@ -305,6 +305,7 @@ onMounted(() => {
 <style lang="scss">
 @import '../scss/abstracts/_variables.scss';
 @import '../scss/abstracts/_mixins.scss';
+
 
 .apexcharts-datalabels-group {
   //display: none;

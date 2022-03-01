@@ -51,7 +51,7 @@ const edit_description = ref('')
 
 const saveGroupFun = () => {
   isLoaderActive.value = !isLoaderActive.value
-  console.log("saveGroupFun")
+  // console.log("saveGroupFun")
   if (name.value && area.value && description.value) {
     const group = {
       name: name.value,
@@ -62,8 +62,13 @@ const saveGroupFun = () => {
       .then(function (response) {
         // console.log('response', response)
         if (response.data.success) {
-          swal.fire('Saving Successful!', '', 'success')
-          notif.success(response.data.message)
+          swal.fire({
+            icon: 'success',
+            title: '保存完了',
+            confirmButtonText: 'Okay',
+            confirmButtonColor: '#41b883',
+          })
+          notif.success('保存完了')
           searchAllGroups(currentPage.value)
           centeredActionsOpen.value = false
         } else {
@@ -76,13 +81,13 @@ const saveGroupFun = () => {
         isLoaderActive.value = !isLoaderActive.value
       });
   } else {
-    notif.warning('Empty Fields.!!')
+    notif.warning('未入力フィールドがございます。')
     isLoaderActive.value = !isLoaderActive.value
   }
 }
 const editGroupFunc = () => {
   isLoaderActive.value = !isLoaderActive.value
-  console.log("editGroupFunc")
+  // console.log("editGroupFunc")
   if (edit_group_id.value && edit_name.value && edit_area.value && edit_description.value) {
     // console.log("working")
     const group = {
@@ -95,12 +100,24 @@ const editGroupFunc = () => {
       .then(function (response) {
         // console.log('response', response)
         if (response.data.success) {
-          swal.fire('Editing Successful!', '', 'success')
-          notif.success(response.data.message)
+          // swal.fire('Editing Successful!', '', 'success')
+          swal.fire({
+            icon: 'success',
+            title: '編集完了',
+            confirmButtonText: 'Okay',
+            confirmButtonColor: '#41b883',
+          })
+          notif.success('編集完了')
           searchAllGroups(currentPage.value)
           editActionsOpen.value = false
         } else {
-          swal.fire('Editing Failed!', '', 'error')
+          // swal.fire('Editing Failed!', '', 'error')
+          swal.fire({
+            icon: 'error',
+            title: 'Editing Failed!',
+            confirmButtonText: 'Okay',
+            confirmButtonColor: '#41b883',
+          })
           notif.warning(response.data.message)
           editActionsOpen.value = false
         }
@@ -111,7 +128,7 @@ const editGroupFunc = () => {
         isLoaderActive.value = !isLoaderActive.value
       });
   } else {
-    notif.warning('Empty Fields.!!')
+    notif.warning('未入力フィールドがございます。')
     isLoaderActive.value = !isLoaderActive.value
   }
 }
@@ -121,7 +138,9 @@ const fireGroupFuncAlert = () => {
   swal.fire({
     title: `Do you want to save the Group ?`,
     showCancelButton: true,
-    confirmButtonText: 'Save',
+    confirmButtonText: '保存する',
+    cancelButtonText:'キャンセル',
+    confirmButtonColor: '#41b883',
   }).then((result) => {
     if (result.isConfirmed) {
       saveGroupFun()
@@ -130,11 +149,13 @@ const fireGroupFuncAlert = () => {
 }
 
 const fireEditGroupFuncAlert = () => {
-  console.log("fireEditGroupFuncAlert")
+  // console.log("fireEditGroupFuncAlert")
   swal.fire({
     title: `Do you want to edit the Group ?`,
     showCancelButton: true,
-    confirmButtonText: 'Edit',
+    confirmButtonText: '修正',
+    cancelButtonText:'キャンセル',
+    confirmButtonColor: '#41b883',
   }).then((result) => {
     if (result.isConfirmed) {
       editGroupFunc()
@@ -144,16 +165,28 @@ const fireEditGroupFuncAlert = () => {
 
 const deleteGroupFunc = (group) => {
   isLoaderActive.value = !isLoaderActive.value
-  console.log('delete this', group)
+  // console.log('delete this', group)
   groupService.deleteGroup(group.id)
     .then(function (response) {
       // console.log('response', response)
       if (response.data.success) {
-        swal.fire('Deleting Successful!', '', 'success')
-        notif.success(response.data.message)
+        // swal.fire('Deleting Successful!', '', 'success')
+        swal.fire({
+          icon: 'success',
+          title: '削除を成功しました。',
+          confirmButtonText: 'Okay',
+          confirmButtonColor: '#41b883',
+        })
+        notif.success('削除を成功しました。')
         searchAllGroups(currentPage.value)
       } else {
-        swal.fire(response.data.message, '', 'error')
+        // swal.fire(response.data.message, '', 'error')
+        swal.fire({
+          icon: 'error',
+          title: response.data.message,
+          confirmButtonText: 'Okay',
+          confirmButtonColor: '#41b883',
+        })
         notif.warning(response.data.message)
       }
       isLoaderActive.value = !isLoaderActive.value
@@ -165,9 +198,11 @@ const deleteGroupFunc = (group) => {
 
 const fireDeleteGroupAlert = (group) => {
   swal.fire({
-    title: `Do you want to delete the Group ?`,
+    title: `このグループを削除したいですか？`,
     showCancelButton: true,
-    confirmButtonText: 'Delete',
+    confirmButtonText: '削除',
+    cancelButtonText:'キャンセル',
+    confirmButtonColor: '#41b883',
   }).then((result) => {
     if (result.isConfirmed) {
       deleteGroupFunc(group)
@@ -209,7 +244,7 @@ onMounted(async () => {
           <input
             v-model="filters"
             class="input custom-text-filter"
-            placeholder="Search..."
+            placeholder="検索"
           />
         </V-Control>
       </V-Field>
@@ -241,10 +276,10 @@ onMounted(async () => {
             class="flex-table-header"
             :class="[filteredData.length === 0 && 'is-hidden']"
           >
-            <span class="is-grow">Group Name</span>
-            <span class="is-grow">Area</span>
-            <span class="is-grow">Description</span>
-            <span class="is-grow cell-end">Actions</span>
+            <span class="is-grow">グループ名</span>
+            <span class="is-grow">地域</span>
+            <span class="is-grow">内容</span>
+            <span class="is-grow cell-end">アクション</span>
           </div>
 
           <div class="flex-list-inner">
@@ -255,29 +290,29 @@ onMounted(async () => {
                 :key="group.id"
                 class="flex-table-item"
               >
-                <div class="flex-table-cell is-grow" data-th="Group Name">
+                <div class="flex-table-cell is-grow" data-th="グループ名">
                   <span class="light-text">{{ group.name }}</span>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="Area">
+                <div class="flex-table-cell is-grow" data-th="地域">
                   <span class="light-text">{{ group.area }}</span>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="Description">
+                <div class="flex-table-cell is-grow" data-th="内容">
                   <span class="light-text">{{ group.description }}</span>
                 </div>
-                <div class="flex-table-cell is-grow cell-end" data-th="Actions">
+                <div class="flex-table-cell is-grow cell-end" data-th="アクション">
                   <span class="mr-2">
                     <VButton
                       @click="openEditActionsOpen(group)"
                       color="primary"
                       outlined
-                    > Edit
+                    > 編集
                     </VButton>
                   </span>
                   <span>
                     <VButton
                       @click="fireDeleteGroupAlert(group)"
                       color="danger"
-                      outlined> Delete</VButton>
+                      outlined> 削除</VButton>
                   </span>
                 </div>
               </div>
@@ -300,7 +335,7 @@ onMounted(async () => {
       size="medium"
       actions="center"
       @close="centeredActionsOpen = false"
-      title="Add a New Brand"
+      title="Add a New Group"
     >
       <template #content>
         <form class="form-layout is-split" @submit.prevent>
@@ -312,7 +347,7 @@ onMounted(async () => {
                     <input
                       type="text"
                       class="input"
-                      placeholder="Group Name"
+                      placeholder="グループ名"
                       autocomplete="group_name"
                       v-model="name"
                     />
@@ -323,7 +358,7 @@ onMounted(async () => {
                     <input
                       type="text"
                       class="input"
-                      placeholder="Area"
+                      placeholder="グループ名"
                       autocomplete="Area"
                       inputmode="Area"
                       v-model="area"
@@ -335,7 +370,7 @@ onMounted(async () => {
                     <input
                       type="text"
                       class="input"
-                      placeholder="Description"
+                      placeholder="内容"
                       autocomplete="description"
                       inputmode="description"
                       v-model="description"
@@ -350,6 +385,7 @@ onMounted(async () => {
 
       </template>
       <template #action>
+        <VButton @click="centeredActionsOpen = false"> キャンセル </VButton>
         <VButton color="primary" raised @click="fireGroupFuncAlert">Add Group</VButton>
       </template>
     </VModal>
@@ -358,7 +394,7 @@ onMounted(async () => {
       size="medium"
       actions="center"
       @close="editActionsOpen = false"
-      title="Edit Group"
+      title="グループ編集"
     >
       <template #content>
         <form class="form-layout is-split" @submit.prevent>
@@ -370,7 +406,7 @@ onMounted(async () => {
                     <input
                       type="text"
                       class="input"
-                      placeholder="Group Name"
+                      placeholder="グループ名"
                       autocomplete="group_name"
                       v-model="edit_name"
                     />
@@ -381,7 +417,7 @@ onMounted(async () => {
                     <input
                       type="tel"
                       class="input"
-                      placeholder="Area"
+                      placeholder="地域"
                       autocomplete="edit_area"
                       inputmode="edit_area"
                       v-model="edit_area"
@@ -393,7 +429,7 @@ onMounted(async () => {
                     <input
                       type="email"
                       class="input"
-                      placeholder="Description"
+                      placeholder="内容"
                       autocomplete="description"
                       inputmode="description"
                       v-model="edit_description"
@@ -408,7 +444,8 @@ onMounted(async () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="fireEditGroupFuncAlert">Edit Group</VButton>
+        <VButton @click="editActionsOpen = false"> キャンセル </VButton>
+        <VButton color="primary" raised @click="fireEditGroupFuncAlert">グループ編集</VButton>
       </template>
     </VModal>
   </div>

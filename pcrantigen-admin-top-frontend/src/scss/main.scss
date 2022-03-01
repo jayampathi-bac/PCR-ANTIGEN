@@ -76,3 +76,7 @@ SCSS Imports
 @import './layout/_responsive.scss';
 
 @import './abstracts/_dark.scss';
+
+body > div.is-active.is-medium.modal.v-modal > div.modal-content > div > div.modal-card-foot.is-centered > a {
+  display: none;
+}

@@ -26,7 +26,7 @@ class AuthService {
               profile_url: 'https://sample.jvpdtest.com/User.jpg',
             };
             cookies.set("admintop",admintop,60 * 60 * 24 * 1);
-            console.log("name cookie",cookies.get('admintop').name)
+            // console.log("name cookie",cookies.get('admintop').name)
           }
           return admintopStore;
         })

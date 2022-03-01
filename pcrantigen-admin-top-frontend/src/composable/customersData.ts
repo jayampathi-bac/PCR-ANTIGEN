@@ -10,11 +10,11 @@ const getCustomers = () => {
   const customerService = new CustomerService();
 
   const search = (pageId: number) => {
-    console.log("searching customers")
+    // console.log("searching customers")
     customerService.getCustomers(pageId).then((result: { data: any; }) => {
       customers.value = result.data.data;
       allCustomerCount.value = result.data.meta;
-      console.log("customers count",result.data.meta)
+      // console.log("customers count",result.data.meta)
     }).catch((e: any) => {
       console.log('error: ', e);
     });

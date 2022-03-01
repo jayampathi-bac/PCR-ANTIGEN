@@ -3,11 +3,10 @@ import { useHead } from '@vueuse/head'
 
 import { pageTitle } from '/@src/state/navbarLayoutState'
 
-pageTitle.value = 'Edit Account Settings'
+pageTitle.value = 'アカウント設定'
 
-pageTitle.value = 'Account'
 useHead({
-  title: 'Edit Account Settings',
+  title: 'アカウント設定',
 })
 </script>
 

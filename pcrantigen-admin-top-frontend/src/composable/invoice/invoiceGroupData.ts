@@ -10,13 +10,13 @@ const getInvoiceGroupData = () => {
   const invoiceGroupService = new InvoiceGroupService();
 
   const loadInvoiceGroupData = (invoiceData: { group_id: number; start_date: string; end_date: string; }) => {
-    console.log("loadInvoiceGroupData")
+    // console.log("loadInvoiceGroupData")
     invoiceGroupService.getGroupInvoice(invoiceData).then((result: { data: any; }) => {
-      console.log("groups",result)
+      // console.log("groups",result)
       invoiceGroupDataList.value = result.data.data;
       invoiceGroupName.value = result.data.data[0] ? result.data.data[0].branch_name : '';
       // console.log("result.data.data.branch_name",result.data.data[0].branch_name)
-      console.log("invoiceGroupDataList",invoiceGroupDataList.value)
+      // console.log("invoiceGroupDataList",invoiceGroupDataList.value)
       for (let i=0; i<invoiceGroupDataList.value.length; i++){
         // @ts-ignore
         groupTotalPrice.value += invoiceGroupDataList.value[i].total

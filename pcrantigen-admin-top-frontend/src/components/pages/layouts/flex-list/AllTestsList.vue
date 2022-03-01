@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import {computed, onMounted, ref} from 'vue'
-import { useRoute } from 'vue-router'
-import useNotyf from '/@src/composable/useNotyf'
-
+import {useRoute} from 'vue-router'
 import getAllTests from '/@src/composable/allTestData'
+
 const route = useRoute()
 
 const {allTests, searchAllTests, totalTestsCount} = getAllTests();
 
-const notif = useNotyf()
 const filters = ref('')
+
 const centeredActionsOpen = ref(false)
+
 const filteredData = computed(() => {
   if (!filters.value) {
     return allTests.value
@@ -25,22 +25,13 @@ const filteredData = computed(() => {
     })
   }
 });
-const selected = ref('range')
-const dateRange = ref(null)
-const selectedMonth = ref('')
-const selectedMonthByNo = ref(0)
-
-
-
-// const refreshLoading = () => {
-//   searchAllTests(1)
-// }
 
 const currentPage = computed(() => {
   try {
-    searchAllTests(Number.parseInt(route.query.page as string) || 1 )
+    searchAllTests(Number.parseInt(route.query.page as string) || 1)
     return Number.parseInt(route.query.page as string) || 1
-  } catch {}
+  } catch {
+  }
   return 1
 })
 
@@ -60,17 +51,10 @@ onMounted(() => {
               <input
                 v-model="filters"
                 class="input custom-text-filter"
-                placeholder="Search..."
+                placeholder="検索"
               />
             </V-Control>
           </V-Field>
-
-<!--          <V-Buttons>-->
-<!--            &lt;!&ndash;        <V-Button dark="3">View Reports</V-Button>&ndash;&gt;-->
-<!--            <V-Button color="primary" icon="feather:refresh-cw" elevated @click="refreshLoading()">-->
-<!--              refresh-->
-<!--            </V-Button>-->
-<!--          </V-Buttons>-->
         </div>
         <div class="page-content-inner">
           <div class="flex-list-wrapper flex-list-v1">
@@ -90,12 +74,10 @@ onMounted(() => {
                 class="flex-table-header"
                 :class="[filteredData.length === 0 && 'is-hidden']"
               >
-<!--                <span class="is-grow">Customer</span>-->
-                <span class="is-grow">Contact Number</span>
-<!--                <span class="is-grow">Record ID</span>-->
-                <span class="is-grow">Test Result</span>
-                <span class="is-grow">Record State</span>
-                <span class="is-grow cell-end">Created At</span>
+                <span class="is-grow">電話番号</span>
+                <span class="is-grow">検査結果</span>
+                <span class="is-grow">状態</span>
+                <span class="is-grow cell-end">依頼日時</span>
               </div>
               <div class="flex-list-inner">
                 <transition-group name="list" tag="div">
@@ -105,29 +87,16 @@ onMounted(() => {
                     :key="test.contact_number"
                     class="flex-table-item"
                   >
-<!--                    <div class="flex-table-cell is-media is-grow">-->
-<!--                      <V-Avatar-->
-<!--                        :picture="test.customer_img_url"-->
-<!--                        color="info"-->
-<!--                        size="medium"-->
-<!--                      />-->
-<!--                      <div>-->
-<!--                        <span class="item-name dark-inverted">{{ test.customer_name }}</span>-->
-<!--                      </div>-->
-<!--                    </div>-->
-                    <div class="flex-table-cell is-grow" data-th="Contact Number">
+                    <div class="flex-table-cell is-grow" data-th="電話番号">
                       <span class="light-text">{{ test.contact_number }}</span>
                     </div>
-<!--                    <div class="flex-table-cell is-grow" data-th="Record ID">-->
-<!--                      <span class="light-text">{{ test.record_id }}</span>-->
-<!--                    </div>-->
-                    <div class="flex-table-cell is-grow" data-th="Test Result">
+                    <div class="flex-table-cell is-grow" data-th="検査結果">
                       <span class="light-text">{{ test.test_result }}</span>
                     </div>
-                    <div class="flex-table-cell is-grow" data-th="Record State">
+                    <div class="flex-table-cell is-grow" data-th="状態">
                       <span class="light-text">{{ test.record_state }}</span>
                     </div>
-                    <div class="flex-table-cell is-grow cell-end" data-th="Created At">
+                    <div class="flex-table-cell is-grow cell-end" data-th="依頼日時">
                       <span class="light-text">{{ test.created_at }}</span>
                     </div>
                   </div>
@@ -145,79 +114,6 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <VModal
-        :open="centeredActionsOpen"
-        size="large"
-        actions="center"
-        @close="centeredActionsOpen = false"
-        title="Test Details"
-      >
-        <template #content>
-          <form class="form-layout is-split" @submit.prevent>
-            <div class="form-outer">
-              <div class="form-section is-grey">
-                <div>
-                  <V-Field>
-                    <V-Control icon="feather:user">
-                      <input
-                        type="text"
-                        class="input"
-                        placeholder="Customer ID"
-                        autocomplete="customer-id"
-                      />
-                    </V-Control>
-                  </V-Field>
-                  <V-Field>
-                    <V-Control icon="feather:user">
-                      <input
-                        type="text"
-                        class="input"
-                        placeholder="Test Name"
-                        autocomplete="test-name"
-                      />
-                    </V-Control>
-                  </V-Field>
-                  <V-Field>
-                    <V-Control icon="feather:mail">
-                      <input
-                        type="email"
-                        class="input"
-                        placeholder="Email Address *"
-                        autocomplete="email"
-                        inputmode="email"
-                      />
-                    </V-Control>
-                  </V-Field>
-                  <V-Field>
-                    <V-Control icon="feather:phone">
-                      <input
-                        type="tel"
-                        class="input"
-                        placeholder="Phone Number *"
-                        autocomplete="tel"
-                        inputmode="tel"
-                      />
-                    </V-Control>
-                  </V-Field>
-                  <V-Field>
-                    <V-Control icon="feather:phone">
-                      <input
-                        type="tel"
-                        class="input"
-                        placeholder="Test Date"
-                        autocomplete="test-date"
-                      />
-                    </V-Control>
-                  </V-Field>
-                </div>
-              </div>
-            </div>
-          </form>
-        </template>
-        <template #action>
-          <VButton color="primary" raised>Issue Resultf</VButton>
-        </template>
-      </VModal>
     </div>
   </div>
 

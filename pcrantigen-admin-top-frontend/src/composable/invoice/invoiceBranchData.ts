@@ -10,11 +10,11 @@ const getInvoiceBranchData = () => {
   const invoiceBranchService = new InvoiceBranchService();
 
   const loadInvoiceBranchData = (invoiceData: { branch_id: number; start_date: string; end_date: string; }) => {
-    console.log("loadInvoiceBranchData")
+    // console.log("loadInvoiceBranchData")
     invoiceBranchService.getBranchInvoice(invoiceData).then((result: { data: any; }) => {
       invoiceBranchDataList.value = result.data.data;
       invoiceBranchName.value = result.data.data[0] ? result.data.data[0].branch_name : '';
-      console.log("invoiceBranchDataList",invoiceBranchDataList.value)
+      // console.log("invoiceBranchDataList",invoiceBranchDataList.value)
       for (let i=0; i<invoiceBranchDataList.value.length; i++){
         // @ts-ignore
         branchTotalPrice.value += invoiceBranchDataList.value[i].total

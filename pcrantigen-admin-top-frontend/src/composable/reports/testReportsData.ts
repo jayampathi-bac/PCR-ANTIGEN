@@ -15,7 +15,7 @@ const getTestsReport = () => {
 
 
   const searchTests = (pageId: number, searchData: {result: number,status: number, start_date: string, end_date: string, branch_id: number, group_id: number}) => {
-    console.log("searchTests")
+    // console.log("searchTests")
     testReportsService.getTestsNormal(pageId, searchData).then((result: { data: any; }) => {
       tests.value = result.data.data;
       allTestsCount.value = result.data.meta;
@@ -26,7 +26,7 @@ const getTestsReport = () => {
   };
 
   const searchAllBranches = () => {
-    console.log("searchBranches")
+    // console.log("searchBranches")
     customerReportsService.getAllBranches().then((result: { data: any; }) => {
       // console.log("searchBranches",result.data.data)
       allBranches.value = result.data.data;
@@ -36,7 +36,7 @@ const getTestsReport = () => {
   };
 
   const loadBranchesFromGroup = (group_id: number) => {
-    console.log("loadBranchesFromGroup")
+    // console.log("loadBranchesFromGroup")
     testReportsService.getBranchesFromGroup(group_id).then((result: { data: any; }) => {
       // console.log("getBranchesFromGroup",result.data.data)
       // branchesFromGroup.value = result.data.data;

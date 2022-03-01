@@ -1,28 +1,13 @@
 <script setup lang="ts">
-import {computed, inject, onMounted, ref, watch} from 'vue'
-
+import {computed, onMounted, ref, watch} from 'vue'
+import {useRoute} from "vue-router";
 import getBranchesReport from '/@src/composable/reports/branchReportsData'
-
-import useNotyf from '/@src/composable/useNotyf'
-
 import BranchReportsService from '/@src/service/reports/branchReportsService';
 
-import {useCookies} from "vue3-cookies";
-import {useRoute} from "vue-router";
-
-const swal: any = inject('$swal')
-
-const {cookies} = useCookies();
+const route = useRoute()
 
 const branchReportsService = new BranchReportsService();
-
-const notif = useNotyf()
-
 const {allBranchesCount, branches, searchBranches, searchGroupsToBranch, allGroups} = getBranchesReport();
-
-const centeredActionsOpen = ref(false)
-
-const route = useRoute()
 
 const filters = ref('')
 
@@ -109,7 +94,6 @@ const downloadCSVFunc = () => {
 }
 
 const selectingFunc = () => {
-  console.log("selectingGroupFunc", selectedGroup.value)
   searchBranches(currentPageBranch.value, {
     group_id: selectedGroup.value,
     orderby: selectedFilter.value === 3 ? 0 : selectedFilter.value
@@ -123,7 +107,6 @@ const refreshFunc = () => {
 }
 
 onMounted(async () => {
-  console.log("Branch loading---------------------------------------------------")
   searchBranches(1, {group_id: 0, orderby: 0})
   searchGroupsToBranch()
 })
@@ -144,7 +127,7 @@ onMounted(async () => {
                   <Multiselect
                     v-model="selectedGroup"
                     :options="allGroups"
-                    placeholder="By Group"
+                    placeholder="グループを選択"
                     :searchable="true"
                     @select="selectingFunc"
                   />
@@ -158,8 +141,8 @@ onMounted(async () => {
                 <V-Control>
                   <Multiselect
                     v-model="selectedFilter"
-                    :options="[{value: 0, label : 'All'}, {value: 1, label : 'Min to Max'}, {value: 2, label : 'Max to Min'}]"
-                    placeholder="Filter by Tests Count: "
+                    :options="[{value: 0, label : '全て'}, {value: 1, label : '昇順（小さい順）'}, {value: 2, label : '降順（大きい順）'}]"
+                    placeholder="検査数で並べ替え"
                     :searchable="true"
                     @select="selectingFunc"
                   />
@@ -177,7 +160,7 @@ onMounted(async () => {
           Download
         </V-Button>
         <V-Button color="primary" icon="fas fa-sync" elevated @click="refreshFunc">
-          refresh
+          更新
         </V-Button>
       </V-Buttons>
     </div>
@@ -201,11 +184,11 @@ onMounted(async () => {
             class="flex-table-header"
             :class="[filteredData.length === 0 && 'is-hidden']"
           >
-            <span class="is-grow">Company</span>
-            <span class="is-grow">Contact Number</span>
-            <span class="is-grow">Address</span>
-            <span class="is-grow">Group</span>
-            <span class="is-grow cell-end">Tests Count</span>
+            <span class="is-grow">薬局名</span>
+            <span class="is-grow">電話番号</span>
+            <span class="is-grow">ご住所</span>
+            <span class="is-grow">グループ</span>
+            <span class="is-grow cell-end">検査数</span>
           </div>
 
           <div class="flex-list-inner">
@@ -225,16 +208,16 @@ onMounted(async () => {
                     <span class="item-name dark-inverted">{{ branch.company_name }}</span>
                   </div>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="Contact Number">
+                <div class="flex-table-cell is-grow" data-th="電話番号">
                   <span class="light-text">{{ branch.contact_number }}</span>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="Address">
+                <div class="flex-table-cell is-grow" data-th="ご住所">
                   <span class="light-text">{{ branch.address }}</span>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="Group">
+                <div class="flex-table-cell is-grow" data-th="グループ">
                   <span class="light-text">{{ branch.group_name }}</span>
                 </div>
-                <div class="flex-table-cell is-grow cell-end" data-th="Tests Count">
+                <div class="flex-table-cell is-grow cell-end" data-th="検査数">
                   <span class="light-text">{{ branch.count }}</span>
                 </div>
               </div>

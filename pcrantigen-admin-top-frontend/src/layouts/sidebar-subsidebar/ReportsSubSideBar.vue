@@ -7,7 +7,7 @@ const emit = defineEmit(['close'])
 <template>
   <div class="sidebar-panel is-generic">
     <div class="subpanel-header">
-      <h3 class="no-mb">Reports</h3>
+      <h3 class="no-mb">レポート</h3>
       <div class="panel-close" @click="emit('close')">
         <i aria-hidden="true" class="iconify" data-icon="feather:x"></i>
       </div>
@@ -15,13 +15,13 @@ const emit = defineEmit(['close'])
     <div class="inner" data-simplebar>
       <ul>
         <li>
-          <RouterLink :to="{ name: 'sidebar-layouts-reports-list-customer' }">Customers Reports</RouterLink>
+          <RouterLink :to="{ name: 'sidebar-layouts-reports-list-customer' }">顧客情報レポート</RouterLink>
         </li>
         <li>
-          <RouterLink :to="{ name: 'sidebar-layouts-reports-list-branches' }">Branches Reports</RouterLink>
+          <RouterLink :to="{ name: 'sidebar-layouts-reports-list-branches' }">薬局者情報レポート</RouterLink>
         </li>
         <li>
-          <RouterLink :to="{ name: 'sidebar-layouts-reports-list-tests' }">Tests Reports</RouterLink>
+          <RouterLink :to="{ name: 'sidebar-layouts-reports-list-tests' }">検査情報レポートを</RouterLink>
         </li>
       </ul>
     </div>

@@ -84,8 +84,8 @@ const profile_url = ref(cookies.get('admintop') ? cookies.get('admintop').profil
             <i aria-hidden="true" class="lnil lnil-cog"></i>
           </div>
           <div class="meta">
-            <span>Settings</span>
-            <span>Account settings</span>
+            <span>設定</span>
+            <span>アカウント設定</span>
           </div>
         </a>
       </RouterLink>
@@ -102,7 +102,7 @@ const profile_url = ref(cookies.get('admintop') ? cookies.get('admintop').profil
           fullwidth
           @click="handleLogOut"
         >
-          Logout
+          ログアウト
         </V-Button>
       </div>
     </template>

@@ -2,8 +2,6 @@
 import { useWindowScroll } from '@vueuse/core'
 import {computed, inject, onBeforeMount, ref} from 'vue'
 import useNotyf from '/@src/composable/useNotyf'
-import sleep from '/@src/utils/sleep'
-import axios from "axios";
 import {useStore} from "vuex";
 import {basic_url} from "/@src/utils/basic_config";
 
@@ -48,7 +46,7 @@ const fireEditAccountAlert = () => {
     }
 
   } else{
-    notyf.warning('Fields are empty..!')
+    notyf.warning('未入力フィールドがございます。')
     isLoading.value = false
   }
 }
@@ -85,7 +83,7 @@ const onSave = async () => {
     <div class="form-head stuck-header" :class="[isScrolling && 'is-stuck']">
       <div class="form-head-inner">
         <div class="left">
-          <h3>Settings</h3>
+          <h3>設定</h3>
           <p>Edit your account prefs and settings</p>
         </div>
         <div class="right">
@@ -96,7 +94,7 @@ const onSave = async () => {
               light
               dark-outlined
             >
-              Go Back
+              前に戻る
             </V-Button>
             <V-Button
               color="primary"
@@ -104,7 +102,7 @@ const onSave = async () => {
               :loading="isLoading"
               @click="fireEditAccountAlert"
             >
-              Save Changes
+              保存する
             </V-Button>
           </div>
         </div>
@@ -114,8 +112,8 @@ const onSave = async () => {
       <!--Fieldset-->
       <div class="fieldset">
         <div class="fieldset-heading">
-          <h4>Change Password</h4>
-          <p>For an improved account security</p>
+          <h4>パスワードを変更</h4>
+          <p>アカウントのセキュリティを向上させるため</p>
         </div>
 
         <div class="columns is-multiline">
@@ -126,7 +124,7 @@ const onSave = async () => {
                 <input
                   type="password"
                   class="input"
-                  placeholder="Current Password"
+                  placeholder="現在のパスワード"
                   autocomplete="current-password"
                   v-model="current_password"
                 />
@@ -140,7 +138,7 @@ const onSave = async () => {
                 <input
                   type="password"
                   class="input"
-                  placeholder="New Password"
+                  placeholder="新しいパスワード"
                   autocomplete="new-password"
                   v-model="new_password"
                 />
@@ -154,7 +152,7 @@ const onSave = async () => {
                 <input
                   type="password"
                   class="input"
-                  placeholder="Repeat New Password"
+                  placeholder="再新しいパスワード"
                   autocomplete="new-password"
                   v-model="confirm_password"
                 />
@@ -165,47 +163,10 @@ const onSave = async () => {
       </div>
 
       <!--Fieldset-->
-      <!--      <div class="fieldset">-->
-      <!--        <div class="fieldset-heading">-->
-      <!--          <h4>2 Factor Auth</h4>-->
-      <!--          <p>Enable or disable 2 factor auth</p>-->
-      <!--        </div>-->
-
-      <!--        <div class="columns is-multiline">-->
-      <!--          &lt;!&ndash;Field&ndash;&gt;-->
-      <!--          <div class="column is-12">-->
-      <!--            <V-Field>-->
-      <!--              <V-Control>-->
-      <!--                <V-SwitchBlock-->
-      <!--                  v-model="twoFactor"-->
-      <!--                  label="Enable / disable 2 factor"-->
-      <!--                  color="primary"-->
-      <!--                />-->
-      <!--              </V-Control>-->
-      <!--            </V-Field>-->
-      <!--          </div>-->
-      <!--          &lt;!&ndash;Field&ndash;&gt;-->
-      <!--          <div v-if="twoFactor" class="column is-12">-->
-      <!--            <V-Field>-->
-      <!--              <V-Control icon="feather:smartphone">-->
-      <!--                <input-->
-      <!--                  type="text"-->
-      <!--                  class="input"-->
-      <!--                  placeholder="Phone Number"-->
-      <!--                  autocomplete="tel"-->
-      <!--                  inputmode="tel"-->
-      <!--                />-->
-      <!--              </V-Control>-->
-      <!--            </V-Field>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--      </div>-->
-
-      <!--Fieldset-->
       <div class="fieldset">
         <div class="fieldset-heading">
-          <h4>Notifications</h4>
-          <p>Configure how you receive notifications</p>
+          <h4>通知</h4>
+          <p>通知の受信方法を構成する。</p>
         </div>
 
         <div class="columns is-multiline">
@@ -215,56 +176,14 @@ const onSave = async () => {
               <V-Control>
                 <V-SwitchBlock
                   v-model="notifications"
-                  label="Disable all notifications"
+                  label="全ての通知を無効にする。"
                   color="primary"
                 />
               </V-Control>
             </V-Field>
-
-            <!--            <V-Field>-->
-            <!--              <V-Control>-->
-            <!--                <V-SwitchBlock-->
-            <!--                  v-model="notificationsLow"-->
-            <!--                  label="Disable low priority notifications"-->
-            <!--                  color="primary"-->
-            <!--                />-->
-            <!--              </V-Control>-->
-            <!--            </V-Field>-->
           </div>
         </div>
       </div>
-
-      <!--Fieldset-->
-      <!--      <div class="fieldset">-->
-      <!--        <div class="fieldset-heading">-->
-      <!--          <h4>Marketing</h4>-->
-      <!--          <p>Configure how you receive promotions</p>-->
-      <!--        </div>-->
-
-      <!--        <div class="columns is-multiline">-->
-      <!--          &lt;!&ndash;Field&ndash;&gt;-->
-      <!--          <div class="column is-12">-->
-      <!--            <V-Field>-->
-      <!--              <V-Control>-->
-      <!--                <V-SwitchBlock-->
-      <!--                  v-model="marketing"-->
-      <!--                  label="Enable marketing emails"-->
-      <!--                  color="primary"-->
-      <!--                />-->
-      <!--              </V-Control>-->
-      <!--            </V-Field>-->
-      <!--            <V-Field>-->
-      <!--              <V-Control>-->
-      <!--                <V-SwitchBlock-->
-      <!--                  v-model="partners"-->
-      <!--                  label="Enable partners emails"-->
-      <!--                  color="primary"-->
-      <!--                />-->
-      <!--              </V-Control>-->
-      <!--            </V-Field>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--      </div>-->
     </form>
   </div>
 </template>

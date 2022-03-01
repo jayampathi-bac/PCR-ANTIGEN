@@ -79,7 +79,7 @@ const date = ref({
 })
 
 const selectingFunc = () => {
-  console.log("selectingGroupFunc", selectedResult.value, selectedState.value, date.value.start, date.value.end)
+  // console.log("selectingGroupFunc", selectedResult.value, selectedState.value, date.value.start, date.value.end)
   searchTests(currentPage.value, {
     start_date: date.value.start ? date.value.start.toISOString().split('T')[0] : '',
     end_date: date.value.end ? date.value.end.toISOString().split('T')[0] : '',
@@ -89,12 +89,6 @@ const selectingFunc = () => {
     group_id: selectedGroup.value,
   })
 }
-
-// const invoiceSelected = ref(true)
-// const invoiceBranchIsSelected = ref(false)
-// const invoiceBranchIsSelectedPrintBtn = ref(false)
-// const invoiceGroupIsSelected = ref(false)
-// const invoiceGroupIsSelectedPrintBtn = ref(false)
 
 const refreshFunc = () => {
   selectedResult.value = 5
@@ -167,13 +161,6 @@ const downloadCSVFunc = () => {
 }
 
 const browseBranchInvoice = () => {
-  // window.open('https://sample.jvpdtest.com/invoice/PDF+JVPDEmployee-Report-11_February_2022.pdf')
-  // const browseData = {
-  //   branch_id: selectedBranch.value,
-  //   start_date: date.value.start.toISOString().split('T')[0],
-  //   end_date: date.value.end.toISOString().split('T')[0],
-  // }
-  // router.push({name: 'sidebar-layouts-branch-invoice', params: { data: JSON.stringify(browseData)}})
   isLoaderActive.value = !isLoaderActive.value
   invoiceService.generateBranchInvoice({
     branch_id: selectedBranch.value,
@@ -181,7 +168,7 @@ const browseBranchInvoice = () => {
     end_date: date.value.end.toISOString().split('T')[0],
   })
     .then(function (response) {
-      console.log('browseBranchInvoice', response)
+      // console.log('browseBranchInvoice', response)
       if (response.data.success) {
         // window.open(response.data.message)
         window.location.assign(response.data.message)
@@ -198,19 +185,6 @@ const browseBranchInvoice = () => {
 }
 
 const browseGroupInvoice = () => {
-  // let branch_name = ''
-  // allGroups.value.map(branch => {
-  //   branch.value === selectedGroup.value ? branch_name = branch.label : ''
-  // })
-  // // console.log("searchGroupsToBranch",branch_name)
-  // const browseData = {
-  //   group_id: selectedGroup.value,
-  //   group_name: branch_name,
-  //   start_date: date.value.start.toISOString().split('T')[0],
-  //   end_date: date.value.end.toISOString().split('T')[0],
-  // }
-  // router.push({name: 'sidebar-layouts-group-invoice', params: { data: JSON.stringify(browseData)}})
-
   isLoaderActive.value = !isLoaderActive.value
   invoiceService.generateGroupInvoice({
     group_id: selectedGroup.value,
@@ -218,7 +192,7 @@ const browseGroupInvoice = () => {
     end_date: date.value.end.toISOString().split('T')[0],
   })
     .then(function (response) {
-      console.log('generateGroupInvoice', response)
+      // console.log('generateGroupInvoice', response)
       if (response.data.success) {
         // window.open(response.data.message)
         window.location.assign(response.data.message)
@@ -285,7 +259,7 @@ watch(
 )
 
 onMounted(async () => {
-  console.log("--------------------------Test loading--------------------------")
+  // console.log("--------------------------Test loading--------------------------")
   searchTests(1, {start_date: '', end_date: '', result: 0, status: 0, branch_id: 0, group_id: 0})
   searchAllBranches();
   searchGroupsToBranch();
@@ -306,8 +280,8 @@ onMounted(async () => {
                   <V-Control>
                     <Multiselect
                       v-model="selectedResult"
-                      :options="[{value: 0, label : 'All'}, {value: 1, label : 'Positive'}, {value: 2, label : 'Negative'}]"
-                      placeholder="By Result"
+                      :options="[{value: 0, label : '全て'}, {value: 1, label : '陽性（＋）'}, {value: 2, label : '陰性（―）'}]"
+                      placeholder="検査結果を選択"
                       :searchable="true"
                       @select="selectingFunc"
                     />
@@ -321,7 +295,7 @@ onMounted(async () => {
                   <V-Control>
                     <Multiselect
                       v-model="selectedState"
-                      :options="[{value: 0, label : 'All'}, {value: 1, label : 'Completed'}, {value: 2, label : 'Incomplete'} ,{value: 3, label : 'Pending'} ]"
+                      :options="[{value: 0, label : '全て'}, {value: 1, label : '検査済み'}, {value: 2, label : '削除'} ,{value: 3, label : '保留中'} ]"
                       placeholder="By Test Status"
                       :searchable="true"
                       @select="selectingFunc"
@@ -338,7 +312,7 @@ onMounted(async () => {
                     <Multiselect
                       v-model="selectedGroup"
                       :options="allGroups"
-                      placeholder="By Group"
+                      placeholder="グループを選択"
                       :searchable="true"
                       @select="selectingFunc"
 
@@ -354,7 +328,7 @@ onMounted(async () => {
                     <Multiselect
                       v-model="selectedBranch"
                       :options="allBranches"
-                      placeholder="By branch"
+                      placeholder="薬局者を選択"
                       :searchable="true"
                       @select="selectingFunc"
 
@@ -381,7 +355,7 @@ onMounted(async () => {
 
                             <V-Control icon="feather:calendar">
                               <input
-                                placeholder="Start Date"
+                                placeholder="開始日"
                                 :value="inputValue.start"
                                 class="input form-datepicker"
                                 v-on="inputEvents.start"
@@ -394,7 +368,7 @@ onMounted(async () => {
                             <!--                    <label class="is-vhidden">Meeting date</label>-->
                             <V-Control icon="feather:calendar">
                               <input
-                                placeholder="End Date"
+                                placeholder="終了日"
                                 :value="inputValue.end"
                                 class="input form-datepicker"
                                 v-on="inputEvents.end"
@@ -425,7 +399,7 @@ onMounted(async () => {
             Download
           </V-Button>
           <V-Button color="primary" icon="fas fa-sync" elevated @click="refreshFunc">
-            refresh
+            更新
           </V-Button>
         </V-Buttons>
       </div>
@@ -449,12 +423,12 @@ onMounted(async () => {
               class="flex-table-header"
               :class="[filteredData.length === 0 && 'is-hidden']"
             >
-              <span class="is-grow">Contact Number</span>
-              <span class="is-grow">Test Result</span>
-              <span class="is-grow">Record State</span>
-              <span class="is-grow">Branch</span>
-              <span class="is-grow">Group</span>
-              <span class="is-grow cell-end">Created At</span>
+              <span class="is-grow">電話番号</span>
+              <span class="is-grow">検査結果</span>
+              <span class="is-grow">状態</span>
+              <span class="is-grow">薬局名</span>
+              <span class="is-grow">グループ名</span>
+              <span class="is-grow cell-end">依頼日時</span>
             </div>
             <div class="flex-list-inner">
               <transition-group name="list" tag="div">
@@ -464,22 +438,22 @@ onMounted(async () => {
                   :key="test.contact_number"
                   class="flex-table-item"
                 >
-                  <div class="flex-table-cell is-grow" data-th="Contact Number">
+                  <div class="flex-table-cell is-grow" data-th="電話番号">
                     <span class="light-text">{{ test.contact_number }}</span>
                   </div>
-                  <div class="flex-table-cell is-grow" data-th="Test Result">
+                  <div class="flex-table-cell is-grow" data-th="検査結果">
                     <span class="light-text">{{ test.test_result }}</span>
                   </div>
-                  <div class="flex-table-cell is-grow" data-th="Record State">
+                  <div class="flex-table-cell is-grow" data-th="状態">
                     <span class="light-text">{{ test.record_state }}</span>
                   </div>
-                  <div class="flex-table-cell is-grow" data-th="Branch">
+                  <div class="flex-table-cell is-grow" data-th="薬局名">
                     <span class="light-text">{{ test.branch_name }}</span>
                   </div>
-                  <div class="flex-table-cell is-grow" data-th="Group">
+                  <div class="flex-table-cell is-grow" data-th="グループ名">
                     <span class="light-text">{{ test.group_name }}</span>
                   </div>
-                  <div class="flex-table-cell is-grow cell-end" data-th="Created At">
+                  <div class="flex-table-cell is-grow cell-end" data-th="依頼日時">
                     <span class="light-text">{{ test.created_at }}</span>
                   </div>
                 </div>

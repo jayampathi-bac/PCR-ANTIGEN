@@ -3,9 +3,9 @@ import { useHead } from '@vueuse/head'
 
 import { pageTitle } from '/@src/state/sidebarLayoutState'
 
-pageTitle.value = 'Reports'
+pageTitle.value = 'レポート'
 useHead({
-  title: 'Reports',
+  title: 'レポート',
 })
 </script>
 

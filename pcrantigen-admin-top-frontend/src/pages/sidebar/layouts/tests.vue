@@ -5,9 +5,9 @@ import { pageTitle } from '/@src/state/sidebarLayoutState'
 import ResultGeneration from "/@src/components/pages/layouts/flex-list/ResultGeneration.vue";
 import TestsList from "/@src/components/pages/layouts/flex-list/AllTestsList.vue";
 
-pageTitle.value = 'All Tests'
+pageTitle.value = '全ての検査'
 useHead({
-  title: 'All Tests',
+  title: '全ての検査',
 })
 </script>
 

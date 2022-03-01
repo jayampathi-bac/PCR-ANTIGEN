@@ -1,29 +1,13 @@
 <script setup lang="ts">
-import {computed, inject, onMounted, ref, watch} from 'vue'
-
+import {computed, onMounted, ref, watch} from 'vue'
 import getCustomersReport from '/@src/composable/reports/customerReportsData'
-
-import useNotyf from '/@src/composable/useNotyf'
-
 import CustomerReportsService from '/@src/service/reports/customerReportsService';
-
-import {useCookies} from "vue3-cookies";
 import {useRoute} from "vue-router";
 
-const swal: any = inject('$swal')
-
-const {cookies} = useCookies();
-
 const customerReportsService = new CustomerReportsService();
-
-const notif = useNotyf()
-
 const {searchCustomers, searchBranchesToCustomer, customers, allCustomerCount, allBranches} = getCustomersReport();
 
-const centeredActionsOpen = ref(false)
-
 const route = useRoute()
-
 
 const filters = ref('')
 
@@ -43,17 +27,6 @@ const filteredData = computed(() => {
   }
 });
 
-//profile_url: string; password: string; email: string; contact_number: string; name: string;
-const name = ref('')
-const contact_number = ref('')
-const email = ref('')
-const confirm_email = ref('')
-const profile_url = ref('https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png')
-const password = ref('')
-const confirm_password = ref('')
-
-
-// {branch_id: string, start_date: string, end_date: string}
 const date = ref({
   start: null,
   end: null,
@@ -77,8 +50,6 @@ const currentPageCustomer = computed(() => {
 })
 
 const selectingBranchFunc = () => {
-  console.log("selectingBranchFunc", selectedBranch.value)
-  // console.log('date range', date.value.start.toISOString().split('T')[0])
   searchCustomers(currentPageCustomer.value, {
     branch_id: selectedBranch.value,
     start_date: date.value.start ? date.value.start.toISOString().split('T')[0] : '',
@@ -124,7 +95,6 @@ const exportToCsv = (filename: any, data: any) => {
 
 
 const downloadCSVFunc = () => {
-
   isLoaderActive.value = !isLoaderActive.value
   customerReportsService.getCustomersForCSV()
     .then(function (response) {
@@ -134,17 +104,14 @@ const downloadCSVFunc = () => {
       } else {
         isLoaderActive.value = !isLoaderActive.value
       }
-      // isLoaderActive.value = !isLoaderActive.value
     })
     .catch(function (error) {
       isLoaderActive.value = !isLoaderActive.value
       console.log(error);
-      // isLoaderActive.value = !isLoaderActive.value
     });
 }
 
 const selectingDateFunc = () => {
-  // console.log('date range', date.value.start.toISOString().split('T')[0])
   searchCustomers(currentPageCustomer.value, {
     branch_id: selectedBranch.value !== '' ? selectedBranch.value : '',
     start_date: date.value.start ? date.value.start.toISOString().split('T')[0] : '',
@@ -165,17 +132,10 @@ const refreshFunc = () => {
     start: null,
     end: null,
   }
-  // console.log("selected branch",selectedBranch.value)
   searchCustomers(1, emptySearchData);
-  // console.log('date range', date.value.start.toISOString().split('T')[0])
-}
-
-const testingFunc = (value: number) => {
-  console.log("testingFunc---------------------------------------------------", value)
 }
 
 onMounted(async () => {
-  console.log("Customer loading---------------------------------------------------")
   searchCustomers(1, {branch_id: '', start_date: '', end_date: ''});
   searchBranchesToCustomer();
 })
@@ -196,7 +156,7 @@ onMounted(async () => {
                     <Multiselect
                       v-model="selectedBranch"
                       :options="allBranches"
-                      placeholder="By branch"
+                      placeholder="薬局者を選択"
                       :searchable="true"
                       @select="selectingBranchFunc"
                     />
@@ -222,7 +182,7 @@ onMounted(async () => {
 
                             <V-Control icon="feather:calendar">
                               <input
-                                placeholder="Start Date"
+                                placeholder="開始日"
                                 :value="inputValue.start"
                                 class="input form-datepicker"
                                 v-on="inputEvents.start"
@@ -235,7 +195,7 @@ onMounted(async () => {
                             <!--                    <label class="is-vhidden">Meeting date</label>-->
                             <V-Control icon="feather:calendar">
                               <input
-                                placeholder="End Date"
+                                placeholder="終了日"
                                 :value="inputValue.end"
                                 class="input form-datepicker"
                                 v-on="inputEvents.end"
@@ -259,7 +219,7 @@ onMounted(async () => {
             Download
           </V-Button>
           <V-Button @click="refreshFunc" color="primary" icon="fas fa-sync" elevated>
-            refresh
+            更新
           </V-Button>
         </V-Buttons>
       </div>
@@ -283,11 +243,11 @@ onMounted(async () => {
               class="flex-table-header"
               :class="[filteredData.length === 0 && 'is-hidden']"
             >
-              <span class="is-grow">Customer</span>
-              <span class="is-grow">Email</span>
-              <span class="is-grow">Contact</span>
-              <span class="is-grow">Created At</span>
-              <span class="is-grow cell-end">Branch Name</span>
+              <span class="is-grow">患者</span>
+              <span class="is-grow">メールアドレス</span>
+              <span class="is-grow">電話番号</span>
+              <span class="is-grow">作成</span>
+              <span class="is-grow cell-end">薬局名</span>
             </div>
 
             <div class="flex-list-inner">
@@ -308,16 +268,16 @@ onMounted(async () => {
                       <span class="item-name dark-inverted">{{ customer.name }}</span>
                     </div>
                   </div>
-                  <div class="flex-table-cell is-grow" data-th="Email">
+                  <div class="flex-table-cell is-grow" data-th="メールアドレス">
                     <span class="light-text">{{ customer.email }}</span>
                   </div>
-                  <div class="flex-table-cell is-grow" data-th="Contact Number">
+                  <div class="flex-table-cell is-grow" data-th="電話番号">
                     <span class="light-text">{{ customer.contact_number }}</span>
                   </div>
-                  <div class="flex-table-cell is-grow" data-th="Created At">
+                  <div class="flex-table-cell is-grow" data-th="作成">
                     <span class="light-text">{{ customer.created_at }}</span>
                   </div>
-                  <div class="flex-table-cell  is-grow cell-end" data-th="Actions">
+                  <div class="flex-table-cell  is-grow cell-end" data-th="薬局名">
                     <span class="light-text">{{ customer.branch_name }}</span>
                   </div>
                 </div>
@@ -332,7 +292,6 @@ onMounted(async () => {
             :total-items="allCustomerCount"
             :current-page="currentPageCustomer"
             :max-links-displayed="7"
-            @update:currentPageCustomer="testingFunc"
           />
         </div>
       </div>
@@ -400,52 +359,5 @@ onMounted(async () => {
     }
   }
 }
-
-.swal2-title {
-  font-size: 20px !important;
-}
-
-.swal2-styled.swal2-confirm {
-  background-color: #41b883 !important;
-}
-
-//.data-picker-responsive {
-//  .column {
-//    width: fit-content !important;
-//  }
-//}
-
-//@media only screen and (max-width: 768px) {
-//  .data-picker-responsive {
-//    .column {
-//      width: auto !important;
-//    }
-//  }
-//}
-
-
-//@media only screen and (min-width: 767px) {
-//  .v-calendar-combo {
-//    margin: 0 !important;
-//
-//    .column {
-//      padding-top: 0 !important;
-//      padding-bottom: 0 !important;
-//
-//      &:first-child {
-//        padding-left: 0 !important;
-//      }
-//      &:last-child {
-//        padding-right: 0 !important;
-//      }
-//    }
-//  }
-//}
-
-//@media only screen and (min-width: 768px) and (max-width: 1204px) {
-//  .buttons {
-//    flex-wrap: nowrap;
-//  }
-//}
 
 </style>

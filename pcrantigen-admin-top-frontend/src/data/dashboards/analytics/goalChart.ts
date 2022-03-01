@@ -33,11 +33,16 @@ export const gaugeOptions = {
           fontSize: '14px',
           fontWeight: 500,
           color: themeColors.lightText,
+          label: 'Percentages',
+          formatter: function (w) {
+            // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+            return ''
+          }
         },
       },
       hollow: {
         margin: 15,
-        size: '75%',
+        size: '60%',
       },
       track: {
         strokeWidth: '100%',
@@ -48,5 +53,5 @@ export const gaugeOptions = {
   stroke: {
     lineCap: 'round',
   },
-  labels: ['Completed', 'Inomplete'],
+  labels: ['検査済み', '削除'],
 }
