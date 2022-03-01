@@ -47,8 +47,8 @@ const profile_url = ref(store.state.auth.admin2.profile_url)
             <i aria-hidden="true" class="lnil lnil-user-alt"></i>
           </div>
           <div class="meta">
-            <span>Profile</span>
-            <span>View your profile</span>
+            <span>プロフィール</span>
+            <span>プロフィールを見る</span>
           </div>
         </a>
       </RouterLink>
@@ -84,8 +84,8 @@ const profile_url = ref(store.state.auth.admin2.profile_url)
             <i aria-hidden="true" class="lnil lnil-cog"></i>
           </div>
           <div class="meta">
-            <span>Settings</span>
-            <span>Account settings</span>
+            <span>設定</span>
+            <span>アカウント設定</span>
           </div>
         </a>
       </RouterLink>
@@ -102,7 +102,7 @@ const profile_url = ref(store.state.auth.admin2.profile_url)
           fullwidth
           @click="handleLogOut"
         >
-          Logout
+          ログアウト
         </V-Button>
       </div>
     </template>

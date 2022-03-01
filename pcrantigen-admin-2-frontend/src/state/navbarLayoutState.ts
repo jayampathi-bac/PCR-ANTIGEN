@@ -50,4 +50,4 @@ export const navbarLayoutTheme = computed(() => {
       return 'default'
   }
 })
-export const pageTitle = ref('Welcome')
+export const pageTitle = ref('ようこそ！')

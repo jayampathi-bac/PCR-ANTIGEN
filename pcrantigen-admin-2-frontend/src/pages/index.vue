@@ -24,11 +24,11 @@ const handleLogin = async () => {
         username: userName1.value,
         password: ups.value
       }).then((response) => {
-          console.log("resp resp",response)
+          // console.log("resp resp",response)
           isLoading.value = false
           router.push({ name: 'sidebar-layouts-dashboard' })
           // console.log('hrere hrer',store.state.auth.admin2)
-          notif.success(`Welcome ${store.state.auth.admin2.name} .!`)
+          notif.success(`ようこそ！ ${store.state.auth.admin2.name} .!`)
         },
         (error) => {
           // console.log("eror",error.response)
@@ -111,7 +111,7 @@ useHead({
                     type="number"
                     pattern="[0-9]*"
                     inputmode="numeric"
-                    placeholder="Contact Number"
+                    placeholder="電話番号"
                     autocomplete="contact"
                     v-model="userName1"
                   />
@@ -123,7 +123,7 @@ useHead({
                   <input
                     class="input"
                     type="password"
-                    placeholder="Password"
+                    placeholder="パスワード"
                     autocomplete="current-password"
                     v-model="ups"
                   />
@@ -137,7 +137,7 @@ useHead({
                 </label>
                 <div class="setting-meta">
                   <label for="remember-me">
-                    <span>Remember Me</span>
+                    <span>パスワードを保存する</span>
                   </label>
                 </div>
               </V-Control>
@@ -150,7 +150,7 @@ useHead({
                   fullwidth
                   raised
                 >
-                  Sign In
+                  ログイン
                 </V-Button>
               </V-Control>
             </div>
@@ -161,7 +161,7 @@ useHead({
           class="is-submenu"
         >
           <div class="forgot-link has-text-centered">
-            <a>Forgot Password?</a>
+            <a>パスワードを忘れた方はこちら</a>
           </div>
         </RouterLink>
       </div>

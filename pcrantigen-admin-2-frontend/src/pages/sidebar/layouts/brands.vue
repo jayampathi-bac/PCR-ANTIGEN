@@ -6,9 +6,9 @@ import ResultGeneration from "/@src/components/pages/layouts/flex-list/ResultGen
 import CustomersList from "/@src/components/pages/layouts/flex-list/CustomersList.vue";
 import BrandsList from "/@src/components/pages/layouts/flex-list/BrandsList.vue";
 
-pageTitle.value = 'Brands'
+pageTitle.value = 'ブランド'
 useHead({
-  title: 'Brands',
+  title: 'ブランド',
 })
 </script>
 

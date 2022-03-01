@@ -36,7 +36,8 @@ const fireEditAccountAlert = () => {
       swal.fire({
         title: `Do you want to edit profile ?`,
         showCancelButton: true,
-        confirmButtonText: 'Save',
+        confirmButtonText: '保存する',
+        cancelButtonText:'キャンセル',
       }).then((result) => {
         if (result.isConfirmed) {
           onSave()
@@ -48,7 +49,7 @@ const fireEditAccountAlert = () => {
     }
 
   } else{
-    notyf.warning('Fields are empty..!')
+    notyf.warning('未入力フィールドがございます。')
     isLoading.value = false
   }
 }
@@ -63,8 +64,8 @@ const onSave = async () => {
   userService.editUserAccount(data)
     .then(function (response) {
       if (response.data.success) {
-        notyf.success('Your changes have been successfully saved!')
-        swal.fire('Saving Successful!', '', 'success')
+        notyf.success('保存完了')
+        swal.fire('保存完了', '', 'success')
         isLoading.value = false
       } else {
         swal.fire('Saving Failed!', '', 'error')
@@ -85,7 +86,7 @@ const onSave = async () => {
     <div class="form-head stuck-header" :class="[isScrolling && 'is-stuck']">
       <div class="form-head-inner">
         <div class="left">
-          <h3>Settings</h3>
+          <h3>設定</h3>
           <p>Edit your account prefs and settings</p>
         </div>
         <div class="right">
@@ -96,7 +97,7 @@ const onSave = async () => {
               light
               dark-outlined
             >
-              Go Back
+              前に戻る
             </V-Button>
             <V-Button
               color="primary"
@@ -104,7 +105,7 @@ const onSave = async () => {
               :loading="isLoading"
               @click="fireEditAccountAlert"
             >
-              Save Changes
+              保存する
             </V-Button>
           </div>
         </div>
@@ -114,8 +115,8 @@ const onSave = async () => {
       <!--Fieldset-->
       <div class="fieldset">
         <div class="fieldset-heading">
-          <h4>Change Password</h4>
-          <p>For an improved account security</p>
+          <h4>パスワードを変更</h4>
+          <p>アカウントのセキュリティを向上させるため</p>
         </div>
 
         <div class="columns is-multiline">
@@ -126,7 +127,7 @@ const onSave = async () => {
                 <input
                   type="password"
                   class="input"
-                  placeholder="Current Password"
+                  placeholder="現在のパスワード"
                   autocomplete="current-password"
                   v-model="current_password"
                 />
@@ -140,7 +141,7 @@ const onSave = async () => {
                 <input
                   type="password"
                   class="input"
-                  placeholder="New Password"
+                  placeholder="新しいパスワード"
                   autocomplete="new-password"
                   v-model="new_password"
                 />
@@ -154,7 +155,7 @@ const onSave = async () => {
                 <input
                   type="password"
                   class="input"
-                  placeholder="Repeat New Password"
+                  placeholder="再新しいパスワード"
                   autocomplete="new-password"
                   v-model="confirm_password"
                 />
@@ -204,8 +205,8 @@ const onSave = async () => {
       <!--Fieldset-->
       <div class="fieldset">
         <div class="fieldset-heading">
-          <h4>Notifications</h4>
-          <p>Configure how you receive notifications</p>
+          <h4>通知</h4>
+          <p>通知の受信方法を構成する。</p>
         </div>
 
         <div class="columns is-multiline">
@@ -215,7 +216,7 @@ const onSave = async () => {
               <V-Control>
                 <V-SwitchBlock
                   v-model="notifications"
-                  label="Disable all notifications"
+                  label="全ての通知を無効にする。"
                   color="primary"
                 />
               </V-Control>

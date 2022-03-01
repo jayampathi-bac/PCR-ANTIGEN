@@ -35,11 +35,11 @@ const isScrolling = computed(() => {
 })
 
 const getBase64 = (file: any) => {
-  console.log("basing")
+  // console.log("basing")
   const reader = new FileReader();
   reader.readAsDataURL(file);
   reader.onload = function () {
-    console.log(reader.result);
+    // console.log(reader.result);
     image_in_base64.value = reader.result;
   };
   reader.onerror = function (error) {
@@ -53,7 +53,7 @@ const onAddFile = (error: any, file: any) => {
     return
   }
   getBase64(file.file)
-  console.log('file added', file)
+  // console.log('file added', file)
 }
 
 const onRemoveFile = (error: any, file: any) => {
@@ -61,7 +61,7 @@ const onRemoveFile = (error: any, file: any) => {
     console.error(error)
     return
   }
-  console.log('file removed', file)
+  // console.log('file removed', file)
 }
 
 const name = ref(store.state.auth.admin2.name);
@@ -82,14 +82,15 @@ const fireEditProfileAlert = () => {
     swal.fire({
       title: `Do you want to edit profile ?`,
       showCancelButton: true,
-      confirmButtonText: 'Save',
+      confirmButtonText: '保存する',
+      cancelButtonText:'キャンセル',
     }).then((result) => {
       if (result.isConfirmed) {
         onSave()
       }
     })
   } else {
-    notyf.warning('Fields are empty..!')
+    notyf.warning('未入力フィールドがございます。')
   }
 }
 
@@ -103,10 +104,10 @@ const onSave = async () => {
   }
   userService.editUserProfile(data)
     .then(function (response) {
-      console.log('userService response--------',response)
+      // console.log('userService response--------',response)
       if (response.data.success) {
-        notyf.success('Your changes have been successfully saved!')
-        swal.fire('Saving Successful!', '', 'success')
+        notyf.success('保存完了')
+        swal.fire('保存完了', '', 'success')
         store.dispatch("auth/updateUser", {
           name: name.value,
           address: address.value,
@@ -184,8 +185,8 @@ onBeforeMount(() => {
     <div class="form-head stuck-header" :class="[isScrolling && 'is-stuck']">
       <div class="form-head-inner">
         <div class="left">
-          <h3>General Info</h3>
-          <p>Edit your account's general information</p>
+          <h3>基本情報</h3>
+          <p>プロフィール基本情報編集</p>
         </div>
         <div class="right">
           <div class="buttons">
@@ -195,7 +196,7 @@ onBeforeMount(() => {
               light
               dark-outlined
             >
-              Go Back
+              前に戻る
             </V-Button>
             <V-Button
               color="primary"
@@ -203,7 +204,7 @@ onBeforeMount(() => {
               :loading="isLoading"
               @click="fireEditProfileAlert()"
             >
-              Save Changes
+              保存する
             </V-Button>
           </div>
         </div>
@@ -213,7 +214,7 @@ onBeforeMount(() => {
       <!--Fieldset-->
       <div class="fieldset">
         <div class="fieldset-heading">
-          <h4>Profile Picture</h4>
+          <h4>前に戻る</h4>
         </div>
 
         <V-Avatar size="xl" class="profile-v-avatar">
@@ -269,8 +270,8 @@ onBeforeMount(() => {
        <div class="columns is-multiline">
          <div class="column is-9">
            <div class="fieldset-heading">
-             <h4>Personal Info</h4>
-             <p>Update your personal details here. </p>
+             <h4>個人情報</h4>
+             <p>あなたの個人情報アップデートしてください。</p>
            </div>
          </div>
          <div class="column is-2">
@@ -285,12 +286,12 @@ onBeforeMount(() => {
           <!--Field-->
           <div class="column is-12">
             <V-Field>
-              <label>Full Name</label>
+              <label>名前（カナ）</label>
               <V-Control icon="feather:user">
                 <input
                   type="text"
                   class="input"
-                  placeholder="Full Name"
+                  placeholder="名前（カナ）"
                   autocomplete="full-name"
                   v-model="name"
                 />
@@ -300,12 +301,12 @@ onBeforeMount(() => {
           <!--Field-->
           <div class="column is-12">
             <V-Field>
-              <label>Contact Number</label>
+              <label>電話番号</label>
               <V-Control icon="feather:phone">
                 <input
                   type="text"
                   class="input"
-                  placeholder="Contact Number"
+                  placeholder="電話番号"
                   autocomplete="contact-number"
                   readonly
                   v-model="contact_number"
@@ -316,12 +317,12 @@ onBeforeMount(() => {
           <!--Field-->
           <div class="column is-12">
             <V-Field>
-              <label>Address</label>
+              <label>ご住所</label>
               <V-Control icon="feather:mail">
                 <input
                   type="text"
                   class="input"
-                  placeholder="Address"
+                  placeholder="ご住所"
                   autocomplete="address"
                   v-model="address"
                 />

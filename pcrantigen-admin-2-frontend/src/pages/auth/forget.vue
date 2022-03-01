@@ -70,7 +70,7 @@ useHead({
         <div class="is-form">
           <div class="hero-body">
             <div class="form-text">
-              <h2>Recover Account</h2>
+              <h2>アカウントをリカバリ</h2>
 
             </div>
             <div class="form-text is-hidden">
@@ -82,9 +82,7 @@ useHead({
               class="login-wrapper"
               @submit.prevent
             >
-              <p>Enter your email and click on the confirm button to reset your
-                password. We'll send you an email detailing the steps to
-                complete the procedure.</p>
+              <p>登録されたメールアドレスを入力し送信ボタンで送信を行ってください。送信後パスワードをリセットする画面に自動的に切り替えるのでメールに受信するOTP（ワンタイムパスワード）と新しいパスワードを入力し送信してください。</p>
               <div class="control has-validation">
                 <input
                   type="text"
@@ -94,7 +92,7 @@ useHead({
                 />
                 <small class="error-text">This is a required field</small>
 
-                <div class="auth-label">Email Address</div>
+                <div class="auth-label">メールアドレス</div>
                 <div class="autv-icon">
                   <i aria-hidden="true" class="lnil lnil-envelope"></i>
                 </div>
@@ -150,7 +148,7 @@ useHead({
                   bold
                   @click="step = 'forgot-password'"
                 >
-                  Next
+                  次へ
                 </V-Button>
                 <!--                <span>-->
                 <!--                  Or-->
@@ -168,12 +166,12 @@ useHead({
               @submit.prevent
             >
               <p >
-                complete the procedure.
+                手順を完了する。
               </p>
               <div class="control has-validation">
                 <input type="number" class="input" autocomplete="otp" />
                 <small class="error-text">This is a required field</small>
-                <div class="auth-label">OTP</div>
+                <div class="auth-label">OTP（ワンタイムパスワード）</div>
                 <div class="autv-icon">
                   <i aria-hidden="true" class="lnil lnil-lock"></i>
                 </div>
@@ -190,7 +188,7 @@ useHead({
                   class="input"
                   autocomplete="new-password"
                 />
-                <div class="auth-label">New Password</div>
+                <div class="auth-label">新しいパスワード</div>
                 <div class="autv-icon">
                   <i aria-hidden="true" class="lnil lnil-lock-alt"></i>
                 </div>
@@ -201,7 +199,7 @@ useHead({
                   class="input"
                   autocomplete="confrim-password"
                 />
-                <div class="auth-label">Confrim Password</div>
+                <div class="auth-label">再新しいパスワード</div>
                 <div class="autv-icon">
                   <i aria-hidden="true" class="lnil lnil-lock-alt"></i>
                 </div>
@@ -223,11 +221,11 @@ useHead({
                   solid
                   @click="step = 'login'"
                 >
-                  Confirm
+                  保存する
                 </V-Button>
                 <span>
                   <RouterLink :to="{ name: 'index' }">
-                    Cancel
+                    キャンセル
                   </RouterLink>
                 </span>
               </div>

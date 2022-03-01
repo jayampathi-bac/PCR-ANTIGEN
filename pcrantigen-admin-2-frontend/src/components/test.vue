@@ -61,7 +61,7 @@ export default {
   methods: {
     initCamera() {
       let shouldFaceUser123 = this.shouldFaceUser ? 'user' : 'environment';
-      console.log("initCamera", shouldFaceUser123)
+      // console.log("initCamera", shouldFaceUser123)
       navigator.mediaDevices.getUserMedia({
         video: {
           facingMode: 'user'
@@ -85,10 +85,10 @@ export default {
       this.photo = this.dataURItoBlob(canvas.toDataURL())
       this.disableCamera()
       this.$emit('savedTestImage', this.photo)
-      console.log("capturing")
+      // console.log("capturing")
     },
     swapCamera(){
-      console.log("shouldFaceUser",this.shouldFaceUser)
+      // console.log("shouldFaceUser",this.shouldFaceUser)
       this.shouldFaceUser = !this.shouldFaceUser;
       this.initCamera()
     },
@@ -133,7 +133,7 @@ export default {
       formdata.append('file',this.post.photo,this.post.id+'.png')
 
       this.$axios.post(`${process.env.API}/createPost`,formdata).then(response =>{
-        console.log("response : ",response)
+        // console.log("response : ",response)
         this.$router.push('/')
 
         //notification
@@ -163,7 +163,7 @@ export default {
   },
   beforeUnmount() {
     if (this.hasCameraSupport){
-      console.log("destroyed")
+      // console.log("destroyed")
       this.disableCamera()
     }
   },

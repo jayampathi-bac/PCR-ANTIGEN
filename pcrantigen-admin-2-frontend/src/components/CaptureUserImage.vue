@@ -70,7 +70,7 @@ export default {
   methods: {
     initCamera() {
       let shouldFaceUser123 = this.shouldFaceUser ? 'user' : 'environment';
-      console.log("initCamera", shouldFaceUser123)
+      // console.log("initCamera", shouldFaceUser123)
       navigator.mediaDevices.getUserMedia({
         video: {
           facingMode: shouldFaceUser123
@@ -79,7 +79,7 @@ export default {
         this.$refs.video.srcObject = stream
       }).catch(error => {
         console.log("error", error)
-        this.notif.warning("Please connect a camera.!")
+        this.notif.warning("カメラを設置してください。")
         this.hasCameraSupport = false
       })
     },
@@ -97,7 +97,7 @@ export default {
       this.$emit('savedCustomerImage', canvas.toDataURL())
     },
     swapCamera() {
-      console.log("shouldFaceUser", this.shouldFaceUser)
+      // console.log("shouldFaceUser", this.shouldFaceUser)
       this.shouldFaceUser = !this.shouldFaceUser;
       this.initCamera();
     },
@@ -141,7 +141,7 @@ export default {
       formdata.append('file', this.post.photo, this.post.id + '.png')
 
       this.$axios.post(`${process.env.API}/createPost`, formdata).then(response => {
-        console.log("response : ", response)
+        // console.log("response : ", response)
         this.$router.push('/')
 
         //notification
@@ -170,7 +170,7 @@ export default {
   },
   beforeUnmount() {
     if (this.hasCameraSupport) {
-      console.log("destroyed")
+      // console.log("destroyed")
       this.disableCamera()
     }
   },

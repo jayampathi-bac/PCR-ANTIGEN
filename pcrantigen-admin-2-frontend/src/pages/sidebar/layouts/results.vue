@@ -4,9 +4,9 @@ import { useHead } from '@vueuse/head'
 import { pageTitle } from '/@src/state/sidebarLayoutState'
 import ResultGeneration from "/@src/components/pages/layouts/flex-list/ResultGeneration.vue";
 
-pageTitle.value = 'Result Generation'
+pageTitle.value = '検査結果を送信'
 useHead({
-  title: 'Result Generation',
+  title: '検査結果を送信',
 })
 </script>
 

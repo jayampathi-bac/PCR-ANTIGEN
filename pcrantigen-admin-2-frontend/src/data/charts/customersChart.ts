@@ -73,7 +73,7 @@ export const customerChartOptions = {
   },
   colors: [themeColors.green, themeColors.secondary, themeColors.orange],
   title: {
-    text: 'Customers',
+    text: '患者',
     align: 'left',
   },
 }

@@ -52,11 +52,11 @@ const password = ref('')
 const confirm_password = ref('')
 
 const saveCustomerFunc = () => {
-  console.log("saving")
+  // console.log("saving")
   if (name.value && contact_number.value && email.value && confirm_email.value && password.value && confirm_password.value && profile_url.value) {
     if (email.value === confirm_email.value) {
       if (password.value === confirm_password.value) {
-        console.log("working")
+        // console.log("working")
         const customer  = {
           name: name.value,
           email: email.value,
@@ -67,9 +67,9 @@ const saveCustomerFunc = () => {
         }
         customerService.postCustomer(customer)
           .then(function (response) {
-            console.log('response',response)
+            // console.log('response',response)
             if (response.data.data.success){
-              swal.fire('Saving Successful!', '', 'success')
+              swal.fire('保存を成功しました。', '', 'success')
               notif.success(response.data.data.message)
               centeredActionsOpen.value = false;
               search(currentPage.value);
@@ -81,21 +81,22 @@ const saveCustomerFunc = () => {
             console.log(error);
           });
       } else {
-        notif.warning('Passwords do not match. Please try again.!!')
+        notif.warning('パスワードを間違っていないかもう一度ご確認お願い致します。')
       }
     } else {
-      notif.warning('Emails do not match. Please try again.!!')
+      notif.warning('メールアドレスを間違っていないかもう一度ご確認お願い致します。')
     }
   } else {
-    notif.warning('Empty Fields.!!')
+    notif.warning('未入力フィールドがございます。')
   }
 }
 const fireSaveCustomerAlert = () => {
   centeredActionsOpen.value = false
   swal.fire({
-    title: `Do you want to save the customer ?`,
+    title: `この患者を保存しますか？`,
     showCancelButton: true,
-    confirmButtonText: 'Save',
+    confirmButtonText: '保存する',
+    cancelButtonText:'キャンセル',
   }).then((result) => {
     if (result.isConfirmed) {
       saveCustomerFunc()
@@ -117,9 +118,9 @@ const editCustomerModelOpen = (customer) => {
 }
 
 const editCustomerFunc = () => {
-  console.log("editing")
+  // console.log("editing")
   if (editName.value && editContactNumber.value && editEmail.value) {
-    console.log("working edit")
+    // console.log("working edit")
     const customerObj  = {
       name: editName.value,
       email: editEmail.value,
@@ -127,10 +128,10 @@ const editCustomerFunc = () => {
     }
     customerService.editCustomer(customerObj)
       .then(function (response) {
-        console.log('response',response)
+        // console.log('response',response)
         if (response.data.data.success){
-          notif.success('Editing customer is Successful..!')
-          swal.fire('Editing Successful!', '', 'success')
+          notif.success('顧客情報編集完了')
+          swal.fire('編集完了', '', 'success')
           editCustomerAction.value = false;
           editName.value = '';
           search(currentPage.value);
@@ -142,16 +143,17 @@ const editCustomerFunc = () => {
         console.log(error);
       });
   } else {
-    notif.warning('Empty Fields.!!')
+    notif.warning('未入力フィールドがございます。')
   }
 }
 
 const fireEditCustomerAlert = () => {
   editCustomerAction.value = false
   swal.fire({
-    title: `Do you want to edit the customer ?`,
+    title: `顧客情報編集したいですか？`,
     showCancelButton: true,
-    confirmButtonText: 'Edit',
+    confirmButtonText: '修正',
+    cancelButtonText:'キャンセル',
   }).then((result) => {
     if (result.isConfirmed) {
       editCustomerFunc()
@@ -180,7 +182,7 @@ onMounted(async () => {
           <input
             v-model="filters"
             class="input custom-text-filter"
-            placeholder="Search..."
+            placeholder="検索"
           />
         </V-Control>
       </V-Field>
@@ -188,7 +190,7 @@ onMounted(async () => {
       <V-Buttons>
         <!--        <V-Button dark="3">View Reports</V-Button>-->
         <V-Button color="primary" icon="fas fa-plus" elevated @click="centeredActionsOpen = true">
-          Add Customer
+          患者を追加
         </V-Button>
       </V-Buttons>
     </div>
@@ -212,10 +214,10 @@ onMounted(async () => {
             class="flex-table-header"
             :class="[filteredData.length === 0 && 'is-hidden']"
           >
-            <span class="is-grow">Customer</span>
-            <span class="is-grow">Email</span>
-            <span class="is-grow">Contact</span>
-            <span class="is-grow cell-end">Actions</span>
+            <span class="is-grow">患者</span>
+            <span class="is-grow">メールアドレス</span>
+            <span class="is-grow">電話番号</span>
+            <span class="is-grow cell-end">行動</span>
           </div>
 
           <div class="flex-list-inner">
@@ -236,14 +238,14 @@ onMounted(async () => {
                     <span class="item-name dark-inverted">{{ customer.name }}</span>
                   </div>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="Email">
+                <div class="flex-table-cell is-grow" data-th="メールアドレス">
                   <span class="light-text">{{ customer.email }}</span>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="Contact Number">
+                <div class="flex-table-cell is-grow" data-th="電話番号">
                   <span class="light-text">{{ customer.contact_number }}</span>
                 </div>
-                <div class="flex-table-cell  is-grow cell-end" data-th="Actions">
-                  <span><VButton color="primary" outlined @click="editCustomerModelOpen(customer)"> Edit</VButton></span>
+                <div class="flex-table-cell  is-grow cell-end" data-th="行動">
+                  <span><VButton color="primary" outlined @click="editCustomerModelOpen(customer)"> 修正</VButton></span>
                 </div>
               </div>
             </transition-group>
@@ -265,7 +267,7 @@ onMounted(async () => {
       size="medium"
       actions="center"
       @close="centeredActionsOpen = false"
-      title="Add New Customers"
+      title="患者を追加"
     >
       <template #content>
         <form class="form-layout is-split" @submit.prevent>
@@ -277,7 +279,7 @@ onMounted(async () => {
                     <input
                       type="text"
                       class="input"
-                      placeholder="Name"
+                      placeholder="名前（カナ）"
                       autocomplete="name"
                       v-model="name"
                     />
@@ -288,7 +290,7 @@ onMounted(async () => {
                     <input
                       type="tel"
                       class="input"
-                      placeholder="Phone Number"
+                      placeholder="電話番号"
                       autocomplete="tel"
                       inputmode="tel"
                       v-model="contact_number"
@@ -300,7 +302,7 @@ onMounted(async () => {
                     <input
                       type="email"
                       class="input"
-                      placeholder="Email Address"
+                      placeholder="メールアドレス"
                       autocomplete="email"
                       inputmode="email"
                       v-model="email"
@@ -312,7 +314,7 @@ onMounted(async () => {
                     <input
                       type="email"
                       class="input"
-                      placeholder="Confirm Email"
+                      placeholder="再メールアドレス"
                       autocomplete="confirm-email"
                       v-model="confirm_email"
                     />
@@ -323,7 +325,7 @@ onMounted(async () => {
                     <input
                       type="password"
                       class="input"
-                      placeholder="Password"
+                      placeholder="パスワード"
                       autocomplete="password"
                       v-model="password"
                     />
@@ -334,7 +336,7 @@ onMounted(async () => {
                     <input
                       type="password"
                       class="input"
-                      placeholder="Confirm Password"
+                      placeholder="再パスワード"
                       autocomplete="confirm-password"
                       v-model="confirm_password"
                     />
@@ -348,7 +350,8 @@ onMounted(async () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="fireSaveCustomerAlert">Add Customer</VButton>
+        <VButton @click="centeredActionsOpen = false"> キャンセル </VButton>
+        <VButton color="primary" raised @click="fireSaveCustomerAlert">患者を追加</VButton>
       </template>
     </VModal>
     <VModal
@@ -356,7 +359,7 @@ onMounted(async () => {
       size="medium"
       actions="center"
       @close="editCustomerAction = false"
-      title="Edit Customer"
+      title="患者を修正"
     >
       <template #content>
         <form class="form-layout is-split" @submit.prevent>
@@ -368,7 +371,7 @@ onMounted(async () => {
                     <input
                       type="text"
                       class="input"
-                      placeholder="Name"
+                      placeholder="名前（カナ）"
                       autocomplete="name"
                       v-model="editName"
                     />
@@ -379,7 +382,7 @@ onMounted(async () => {
                     <input
                       type="tel"
                       class="input"
-                      placeholder="Phone Number"
+                      placeholder="電話番号"
                       autocomplete="tel"
                       inputmode="tel"
                       v-model="editContactNumber"
@@ -392,7 +395,7 @@ onMounted(async () => {
                     <input
                       type="email"
                       class="input"
-                      placeholder="Email Address"
+                      placeholder="メールアドレス"
                       autocomplete="email"
                       inputmode="email"
                       v-model="editEmail"
@@ -406,14 +409,15 @@ onMounted(async () => {
         </form>
       </template>
       <template #action>
-        <VButton color="primary" raised @click="fireEditCustomerAlert">Edit Customer</VButton>
+        <VButton @click="editCustomerAction = false"> キャンセル </VButton>
+        <VButton color="primary" raised @click="fireEditCustomerAlert">患者を修正</VButton>
       </template>
     </VModal>
   </div>
 
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../../../scss/abstracts/_variables.scss';
 
 .has-top-nav {

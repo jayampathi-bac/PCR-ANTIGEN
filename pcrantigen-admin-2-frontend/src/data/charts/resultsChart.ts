@@ -24,7 +24,7 @@ export const resultOptions = {
   },
   colors: [themeColors.accent, themeColors.info, themeColors.green],
   title: {
-    text: 'Results Generation',
+    text: '検査結果を送信',
     align: 'left',
   },
   legend: {

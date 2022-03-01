@@ -22,7 +22,7 @@ const captureUserImageModel = ref(false)
 const captureTestImageModel = ref(false)
 const capturedCustomerImage = ref('')
 const capturedTestImage = ref('')
-const test_name = ref('PCR Antigen')
+const test_name = ref('抗原検査')
 
 const swal = inject('$swal')
 
@@ -47,11 +47,11 @@ const filteredData = computed(() => {
 //selected_customer object data = c
 const selected_customer = ref('');
 const date = ref(new Date())
-let result = ref('Negative')
+let result = ref('陰性（―）')
 const testResult = ref(null)
 const resultOptions = [
-  'Positive',
-  'Negative',
+  '陽性（＋）',
+  '陰性（―）',
 ]
 
 const selectedBrand = ref(0)
@@ -64,27 +64,28 @@ const loadSendResult = (customer: string) => {
 const issueResult = () => {
   isLoaderActive.value = !isLoaderActive.value
   if (testResult.value && selectedBrand.value !== 0) {
-    console.log("here here")
+    // console.log("here here")
     sendResutlsModelOpen.value = false
     swal.fire({
       title: `Do you want to send results to ${selected_customer.value.name}?`,
       showCancelButton: true,
-      confirmButtonText: 'Send',
+      cancelButtonText:'キャンセル',
+      confirmButtonText: '結果を送信',
     }).then((result: any) => {
-      console.log("testing negative",testResult.value)
-      console.log("result", result)
+      // console.log("testing negative",testResult.value)
+      // console.log("result", result)
       if (result.isConfirmed) {
         let formdata = new FormData()
         formdata.append('contact_number', selected_customer.value.customer_contact)
         formdata.append('record_state', '1')
         formdata.append('testkit_id', selectedBrand.value.toString())
         formdata.append('branch_id', cookies.get('admin2').branch_id.toString())
-        if (testResult.value === 'Negative') {
+        if (testResult.value === '陰性（―）') {
           formdata.append('script_image_url', capturedTestImage.value);
           formdata.append('user_image_url', capturedCustomerImage.value);
           formdata.append('test_result', '0');
           resultService.generateResult(formdata).then(function (response) {
-            console.log('response', response)
+            // console.log('response', response)
             if (response.data.success) {
               callingWebSocket2(selected_customer.value.customer_contact, "COMPLETE")
             } else {
@@ -100,7 +101,7 @@ const issueResult = () => {
           formdata.append('user_image_url', '');
           formdata.append('test_result', '1');
           resultService.generateResult(formdata).then(function (response) {
-            console.log('response', response)
+            // console.log('response', response)
             if (response.data.success) {
               callingWebSocket2(selected_customer.value.customer_contact, "COMPLETE")
             } else {
@@ -122,7 +123,7 @@ const issueResult = () => {
       }
     })
   } else {
-    notif.warning("Please fill all fields..!")
+    notif.warning("未入力フィールドが入力してください。")
     isLoaderActive.value = !isLoaderActive.value
   }
 
@@ -148,25 +149,26 @@ const closeCaptureTestImageModel = () => {
 
 const savedCustomerImage = (value: any) => {
   capturedCustomerImage.value = value
-  console.log('savedCustomerImage',value);
+  // console.log('savedCustomerImage',value);
 };
 
 const isDisabled = (customer: object) => (customer.status === 'COMPLETE' || customer.status === 'INCOMPLETE');
 
 const savedTestImage = (value: any) => {
   capturedTestImage.value = value
-  console.log('savedTestImage', value);
+  // console.log('savedTestImage', value);
 };
 
 const selectedCustomerVoid = ref({})
 
 const voidCustomer = (customer: object) => {
   selectedCustomerVoid.value = customer
-  console.log('voidCustomer', customer);
+  // console.log('voidCustomer', customer);
   swal.fire({
     title: `Do you want to void ${customer.name}?`,
     showCancelButton: true,
-    confirmButtonText: 'Void',
+    confirmButtonText: '空所',
+    cancelButtonText:'キャンセル',
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
@@ -215,12 +217,12 @@ let connection2 = null
 
 //websocket connection 2
 const callingWebSocket2 = (contact: any, state: string) => {
-  console.log("Starting connection to WebSocket Server 2")
+  // console.log("Starting connection to WebSocket Server 2")
   connection2 = new WebSocket(socket_url2)
 
   connection2.onmessage = function (event) {
-    console.log("connection2 response came")
-    console.log("connection2",event.data);
+    // console.log("connection2 response came")
+    // console.log("connection2",event.data);
     if (event.data === 'updated') {
         notif.success('Send Successfully..')
         swal.fire('Saved!', '', 'success')
@@ -236,8 +238,8 @@ const callingWebSocket2 = (contact: any, state: string) => {
   }
 
   connection2.onopen = function (event) {
-    console.log('connection2 onopen',event)
-    console.log("Successfully connected to the echo websocket server 2...")
+    // console.log('connection2 onopen',event)
+    // console.log("Successfully connected to the echo websocket server 2...")
     // console.log("contact number here here here",contact)
     // console.log("contact number here here here",JSON.stringify({'contact_number': contact, "status": "INCOMPLETE", "branch_id":cookies.get('admin2').branch_id}))
     // setInterval(() => connection.send(JSON.stringify({ event: "ping" })), 10000);
@@ -250,13 +252,13 @@ const callingWebSocket2 = (contact: any, state: string) => {
   // connection2.send('{"contact_number": "0998765434","branch_id":"1"}');
 
   connection2.onclose = function(){
-    console.log('connection2 onclose')
+    // console.log('connection2 onclose')
     connection2 = new WebSocket(socket_url2)
   };
 }
 
 const callingWebSocket = () => {
-  console.log("Starting connection to WebSocket Server")
+  // console.log("Starting connection to WebSocket Server")
   connection = new WebSocket(socket_url)
 
 
@@ -274,8 +276,8 @@ const callingWebSocket = () => {
   }
 
   connection.onopen = function (event) {
-    console.log(event)
-    console.log("Successfully connected to the echo websocket server...")
+    // console.log(event)
+    // console.log("Successfully connected to the echo websocket server...")
     // setInterval(() => connection.send(JSON.stringify({ event: "ping" })), 10000);
   }
 
@@ -306,6 +308,7 @@ onMounted(async () => {
   callingWebSocket();
   searchAllBrandsToResults();
   checkCameraSupport();
+
 })
 
 const refreshSearch = () => {
@@ -324,14 +327,14 @@ const refreshSearch = () => {
           <input
             v-model="filters"
             class="input custom-text-filter"
-            placeholder="Search..."
+            placeholder="検索"
           />
         </V-Control>
       </V-Field>
 
       <V-Buttons>
         <V-Button @click="refreshSearch()" color="primary" icon="feather:refresh-cw" elevated>
-          Refresh
+          更新
         </V-Button>
       </V-Buttons>
     </div>
@@ -355,11 +358,11 @@ const refreshSearch = () => {
             class="flex-table-header"
             :class="[filteredData.length === 0 && 'is-hidden']"
           >
-            <span class="is-grow">Customer ID</span>
-            <span class="is-grow">Time Logged</span>
-            <span class="is-grow">Test State</span>
-            <span class="is-grow">Test Type</span>
-            <span class="is-grow cell-end">Actions</span>
+            <span class="is-grow">患者ID</span>
+            <span class="is-grow">記録された時間</span>
+            <span class="is-grow">テスト状態</span>
+            <span class="is-grow">テストタイプ</span>
+            <span class="is-grow cell-end">行動</span>
           </div>
 
           <div class="flex-list-inner">
@@ -382,23 +385,23 @@ const refreshSearch = () => {
                     </span>
                   </div>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="Time Logged">
+                <div class="flex-table-cell is-grow" data-th="記録された時間">
                   <span class="light-text">{{ customer.logged_at }}</span>
                 </div>
                 <div class="flex-table-cell is-grow" data-th="State">
                   <span class="light-text">{{ customer.status }}</span>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="Test Type">
-                  <span class="light-text"> PCR Antigen </span>
+                <div class="flex-table-cell is-grow" data-th="テストタイプ">
+                  <span class="light-text"> 抗原検査 </span>
                 </div>
-                <div class="flex-table-cell is-grow cell-end" data-th="Actions">
+                <div class="flex-table-cell is-grow cell-end" data-th="行動">
                   <span class="mr-2">
                     <VButton
                       @click="loadSendResult(customer)"
                       color="primary"
                       outlined
                       :disabled="isDisabled(customer)"
-                    > Send Result
+                    > 結果を送信
                     </VButton>
                   </span>
                   <span>
@@ -406,7 +409,7 @@ const refreshSearch = () => {
                       @click="voidCustomer(customer)"
                       color="danger"
                       :disabled="isDisabled(customer)"
-                      outlined> Void</VButton>
+                      outlined> 空所</VButton>
                   </span>
                 </div>
               </div>
@@ -429,7 +432,7 @@ const refreshSearch = () => {
       size="large"
       actions="center"
       @close="sendResutlsModelOpen = false"
-      title="Test Details"
+      title="検査情報"
     >
       <template #content>
         <form class="form-layout is-split" @submit.prevent>
@@ -443,7 +446,7 @@ const refreshSearch = () => {
                         type="text"
                         class="input"
                         readonly
-                        placeholder="Customer ID"
+                        placeholder="患者ID"
                         autocomplete="customer-id"
                         v-model="selected_customer.customer_contact"
                       />
@@ -479,7 +482,7 @@ const refreshSearch = () => {
                       <Multiselect
                         v-model="selectedBrand"
                         :options="brands"
-                        placeholder="Select Test Kit"
+                        placeholder="検査キットを選択してください。"
                         :searchable="true"
                       >
                       </Multiselect>
@@ -491,22 +494,22 @@ const refreshSearch = () => {
                         v-model="testResult"
                         :options="resultOptions"
                         :searchable="true"
-                        placeholder="Test Result"
+                        placeholder="検査結果"
                       />
                     </V-Control>
                   </V-Field>
-                  <V-Field v-show="testResult === 'Negative'">
+                  <V-Field v-show="testResult === '陰性（―）'">
                     <V-Control>
                       <VButtons class="is-centered">
                         <VButton @click="openCaptureUserImageModel()"
                                  color="info" icon="feather:user" raised rounded outlined
                                  :disabled="!hasCameraSupport"
-                        > Capture Customer Image
+                        > 本人顔写真撮影
                         </VButton>
                         <VButton @click="openCaptureTestImageModel()"
                                  :disabled="!hasCameraSupport"
                                  color="danger" icon="feather:activity" raised rounded outlined>
-                          Capture Test Image
+                          抗原検査キット撮影
                         </VButton>
                       </VButtons>
                     </V-Control>
@@ -521,7 +524,8 @@ const refreshSearch = () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="issueResult()">Issue Result</VButton>
+        <VButton @click="sendResutlsModelOpen = false"> キャンセル </VButton>
+        <VButton color="primary" raised @click="issueResult()">検査結果送信</VButton>
       </template>
     </VModal>
     <VModal
@@ -529,7 +533,7 @@ const refreshSearch = () => {
       size="large"
       actions="center"
       @close="closeCaptureUserImageModel"
-      title="Capture Customer Image"
+      title="本人顔写真撮影"
     >
       <template #content>
         <capture-user-image :is-opened="captureUserImageModel" @savedCustomerImage="savedCustomerImage"/>
@@ -544,7 +548,7 @@ const refreshSearch = () => {
       size="large"
       actions="center"
       @close="closeCaptureTestImageModel"
-      title="Capture Test Record Image"
+      title="抗原検査キット撮影"
     >
       <template #content>
         <capture-test-image :is-opened="captureTestImageModel" @savedTestImage="savedTestImage"/>
@@ -558,7 +562,7 @@ const refreshSearch = () => {
   </VLoader>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../../../scss/abstracts/_variables.scss';
 
 .has-top-nav {
@@ -581,5 +585,12 @@ const refreshSearch = () => {
 
 .swal2-styled.swal2-confirm {
   background-color: #41b883 !important;
+}
+
+.v-modal-close {
+  .v-button {
+    display: none !important;
+  }
+
 }
 </style>

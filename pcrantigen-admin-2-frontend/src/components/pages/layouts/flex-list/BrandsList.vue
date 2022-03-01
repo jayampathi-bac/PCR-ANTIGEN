@@ -52,9 +52,9 @@ const edit_brand_company_name = ref('')
 const edit_description = ref('')
 
 const saveBrandFunc = () => {
-  console.log("saving")
+  // console.log("saving")
   if (brand_name.value && brand_company_name.value && branch_id.value && description.value) {
-    console.log("working")
+    // console.log("working")
     const brand = {
       brand_name: brand_name.value,
       brand_company_name: brand_company_name.value,
@@ -63,9 +63,9 @@ const saveBrandFunc = () => {
     }
     brandService.saveBrand(brand)
       .then(function (response) {
-        console.log('response', response)
+        // console.log('response', response)
         if (response.data.success) {
-          swal.fire('Saving Successful!', '', 'success')
+          swal.fire('保存完了', '', 'success')
           notif.success(response.data.message)
           searchAllBrands(currentPage.value)
           centeredActionsOpen.value = false
@@ -77,13 +77,13 @@ const saveBrandFunc = () => {
         console.log(error);
       });
   } else {
-    notif.warning('Empty Fields.!!')
+    notif.warning('未入力フィールドがございます。')
   }
 }
 const editBrandFunc = () => {
-  console.log("editing")
+  // console.log("editing")
   if (edit_brand_name.value && edit_brand_company_name.value && branch_id.value && edit_description.value) {
-    console.log("working")
+    // console.log("working")
     const brand = {
       id: edit_brand_id.value,
       brand_name: edit_brand_name.value,
@@ -93,9 +93,9 @@ const editBrandFunc = () => {
     }
     brandService.editBrand(brand)
       .then(function (response) {
-        console.log('response', response)
+        // console.log('response', response)
         if (response.data.success) {
-          swal.fire('Editing Successful!', '', 'success')
+          swal.fire('編集完了', '', 'success')
           notif.success(response.data.message)
           searchAllBrands(currentPage.value)
           editActionsOpen.value = false
@@ -109,16 +109,17 @@ const editBrandFunc = () => {
         console.log(error);
       });
   } else {
-    notif.warning('Empty Fields.!!')
+    notif.warning('未入力フィールドがございます。')
   }
 }
 
 const fireBrandFuncAlert = () => {
   centeredActionsOpen.value = false;
   swal.fire({
-    title: `Do you want to save the Brand ?`,
+    title: `抗原検査キット名保存したいですか？`,
     showCancelButton: true,
-    confirmButtonText: 'Save',
+    confirmButtonText: '保存する',
+    cancelButtonText:'キャンセル',
   }).then((result) => {
     if (result.isConfirmed) {
       saveBrandFunc()
@@ -127,11 +128,12 @@ const fireBrandFuncAlert = () => {
 }
 
 const fireEditBrandFuncAlert = () => {
-  console.log("fireEditBrandFuncAlert")
+  // console.log("fireEditBrandFuncAlert")
   swal.fire({
-    title: `Do you want to edit the Brand ?`,
+    title: `抗原検査キット名を編集したいですか？`,
     showCancelButton: true,
-    confirmButtonText: 'Edit',
+    confirmButtonText: '修正',
+    cancelButtonText:'キャンセル',
   }).then((result) => {
     if (result.isConfirmed) {
       editBrandFunc()
@@ -140,16 +142,16 @@ const fireEditBrandFuncAlert = () => {
 }
 
 const deleteBrandFunc = (brand) => {
-  console.log('delete this', brand)
+  // console.log('delete this', brand)
   brandService.deleteBrand(brand.id)
     .then(function (response) {
-      console.log('response', response)
+      // console.log('response', response)
       if (response.data.success) {
-        swal.fire('Deleting Successful!', '', 'success')
+        swal.fire('削除を成功しました。', '', 'success')
         notif.success(response.data.message)
         searchAllBrands(currentPage.value)
       } else {
-        swal.fire('Deleting Failed!', '', 'error')
+        swal.fire('フィールドを削除するc', '', 'error')
         notif.warning(response.data.message)
       }
     })
@@ -160,9 +162,10 @@ const deleteBrandFunc = (brand) => {
 
 const fireDeleteBrandAlert = (brand) => {
   swal.fire({
-    title: `Do you want to delete the Brand ?`,
+    title: `このブランドを削除してもよろしいでしょうか？`,
     showCancelButton: true,
-    confirmButtonText: 'Delete',
+    confirmButtonText: '削除',
+    cancelButtonText:'キャンセル',
   }).then((result) => {
     if (result.isConfirmed) {
       deleteBrandFunc(brand)
@@ -171,7 +174,7 @@ const fireDeleteBrandAlert = (brand) => {
 }
 
 const openEditActionsOpen = (brand) => {
-  console.log("currentPage", currentPage)
+  // console.log("currentPage", currentPage)
   editActionsOpen.value = true
   edit_brand_id.value = brand.id;
   edit_brand_name.value = brand.brand_name;
@@ -181,7 +184,7 @@ const openEditActionsOpen = (brand) => {
 
 const currentPage = computed(() => {
   try {
-    console.log("currentPage", Number.parseInt(route.query.page as string) || 1)
+    // console.log("currentPage", Number.parseInt(route.query.page as string) || 1)
     searchAllBrands(Number.parseInt(route.query.page as string) || 1)
     return Number.parseInt(route.query.page as string) || 1
   } catch {
@@ -202,7 +205,7 @@ onMounted(async () => {
           <input
             v-model="filters"
             class="input custom-text-filter"
-            placeholder="Search..."
+            placeholder="検索"
           />
         </V-Control>
       </V-Field>
@@ -210,7 +213,7 @@ onMounted(async () => {
       <V-Buttons>
         <!--        <V-Button dark="3">View Reports</V-Button>-->
         <V-Button color="primary" icon="fas fa-plus" elevated @click="centeredActionsOpen = true">
-          Add Brand
+          ブランドを追加
         </V-Button>
       </V-Buttons>
     </div>
@@ -234,10 +237,10 @@ onMounted(async () => {
             class="flex-table-header"
             :class="[filteredData.length === 0 && 'is-hidden']"
           >
-            <span class="is-grow">Brand Name</span>
-            <span class="is-grow">Company Name</span>
-            <span class="is-grow">Description</span>
-            <span class="is-grow cell-end">Actions</span>
+            <span class="is-grow">ブランド名前</span>
+            <span class="is-grow">会社名</span>
+            <span class="is-grow">備考</span>
+            <span class="is-grow cell-end">行動</span>
           </div>
 
           <div class="flex-list-inner">
@@ -248,29 +251,29 @@ onMounted(async () => {
                 :key="brand.id"
                 class="flex-table-item"
               >
-                <div class="flex-table-cell is-grow" data-th="Brand Name">
+                <div class="flex-table-cell is-grow" data-th="ブランド名前">
                   <span class="light-text">{{ brand.brand_name }}</span>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="Company Name">
+                <div class="flex-table-cell is-grow" data-th="会社名">
                   <span class="light-text">{{ brand.brand_company_name }}</span>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="Description">
+                <div class="flex-table-cell is-grow" data-th="備考">
                   <span class="light-text">{{ brand.description }}</span>
                 </div>
-                <div class="flex-table-cell is-grow cell-end" data-th="Actions">
+                <div class="flex-table-cell is-grow cell-end" data-th="行動">
                   <span class="mr-2">
                     <VButton
                       @click="openEditActionsOpen(brand)"
                       color="primary"
                       outlined
-                    > Edit
+                    > 修正
                     </VButton>
                   </span>
                   <span>
                     <VButton
                       @click="fireDeleteBrandAlert(brand)"
                       color="danger"
-                      outlined> Delete</VButton>
+                      outlined> 削除</VButton>
                   </span>
                 </div>
               </div>
@@ -305,7 +308,7 @@ onMounted(async () => {
                     <input
                       type="text"
                       class="input"
-                      placeholder="Brand Name"
+                      placeholder="ブランド名前"
                       autocomplete="brand_name"
                       v-model="brand_name"
                     />
@@ -316,7 +319,7 @@ onMounted(async () => {
                     <input
                       type="tel"
                       class="input"
-                      placeholder="Company Name"
+                      placeholder="会社名"
                       autocomplete="company_brand"
                       inputmode="company_brand"
                       v-model="brand_company_name"
@@ -328,7 +331,7 @@ onMounted(async () => {
                     <input
                       type="email"
                       class="input"
-                      placeholder="Description"
+                      placeholder="備考"
                       autocomplete="description"
                       inputmode="description"
                       v-model="description"
@@ -343,7 +346,8 @@ onMounted(async () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="fireBrandFuncAlert">Add Brand</VButton>
+        <VButton @click="centeredActionsOpen = false"> キャンセル </VButton>
+        <VButton color="primary" raised @click="fireBrandFuncAlert">ブランドを追加</VButton>
       </template>
     </VModal>
     <VModal
@@ -351,7 +355,7 @@ onMounted(async () => {
       size="medium"
       actions="center"
       @close="editActionsOpen = false"
-      title="Edit Brand"
+      title="ブランドを修正する"
     >
       <template #content>
         <form class="form-layout is-split" @submit.prevent>
@@ -363,7 +367,7 @@ onMounted(async () => {
                     <input
                       type="text"
                       class="input"
-                      placeholder="Brand Name"
+                      placeholder="ブランド名前"
                       autocomplete="brand_name"
                       v-model="edit_brand_name"
                     />
@@ -374,7 +378,7 @@ onMounted(async () => {
                     <input
                       type="tel"
                       class="input"
-                      placeholder="Company Brand Name"
+                      placeholder="会社名"
                       autocomplete="company_brand"
                       inputmode="company_brand"
                       v-model="edit_brand_company_name"
@@ -386,7 +390,7 @@ onMounted(async () => {
                     <input
                       type="email"
                       class="input"
-                      placeholder="Description"
+                      placeholder="備考"
                       autocomplete="description"
                       inputmode="description"
                       v-model="edit_description"
@@ -401,7 +405,8 @@ onMounted(async () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="fireEditBrandFuncAlert">Edit Brand</VButton>
+        <VButton @click="editActionsOpen = false"> キャンセル </VButton>
+        <VButton color="primary" raised @click="fireEditBrandFuncAlert">ブランドを修正する</VButton>
       </template>
     </VModal>
   </div>

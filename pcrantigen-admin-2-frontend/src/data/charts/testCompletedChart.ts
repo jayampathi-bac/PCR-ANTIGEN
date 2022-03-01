@@ -3,7 +3,7 @@ import { themeColors } from '/@src/utils/themeColors'
 export const testCompletedChartOptions = {
   series: [76],
   title: {
-    text: 'Test Completed Proportion',
+    text: 'テスト完了率',
   },
   chart: {
     height: 455,

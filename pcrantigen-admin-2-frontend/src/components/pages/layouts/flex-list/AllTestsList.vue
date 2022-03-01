@@ -170,19 +170,19 @@ onMounted(() => {
         <div class="columns is-multiline">
           <div class="column is-3">
             <V-Field>
-              <label>Filter Search</label>
+              <label>フィルター検索</label>
               <V-Control>
                 <VRadio
                   v-model="selected"
                   value="range"
-                  label="Date Range"
+                  label="日付け範囲"
                   name="outlined_radio"
                   color="primary"
                 />
                 <VRadio
                   v-model="selected"
                   value="month"
-                  label="Month"
+                  label="月"
                   name="outlined_radio"
                   color="info"
                 />
@@ -207,7 +207,7 @@ onMounted(() => {
 
                           <V-Control icon="feather:calendar">
                             <input
-                              placeholder="Start Date"
+                              placeholder="開始日"
                               :value="inputValue.start"
                               class="input form-datepicker"
                               v-on="inputEvents.start"
@@ -220,7 +220,7 @@ onMounted(() => {
                           <!--                    <label class="is-vhidden">Meeting date</label>-->
                           <V-Control icon="feather:calendar">
                             <input
-                              placeholder="End Date"
+                              placeholder="終了日"
                               :value="inputValue.end"
                               class="input form-datepicker"
                               v-on="inputEvents.end"
@@ -245,14 +245,14 @@ onMounted(() => {
             <V-Buttons>
               <V-Button v-show="selected === 'range'" color="info" icon="fas fa-search" elevated
                         @click="searchCustomerByRange()">
-                Search
+                検索
               </V-Button>
               <V-Button v-show="selected === 'month'" color="info" icon="fas fa-search" elevated
                         @click="searchCustomerByMonth()">
-                Search
+                検索
               </V-Button>
               <V-Button color="primary" icon="fas fa-download" elevated @click="downloadCSVFunc">
-                Download
+                ダウンロード
               </V-Button>
             </V-Buttons>
           </div>
@@ -266,7 +266,7 @@ onMounted(() => {
                 <input
                   v-model="filters"
                   class="input custom-text-filter"
-                  placeholder="Search..."
+                  placeholder="検索"
                 />
               </V-Control>
             </V-Field>
@@ -274,7 +274,7 @@ onMounted(() => {
             <V-Buttons>
               <!--        <V-Button dark="3">View Reports</V-Button>-->
               <V-Button color="primary" icon="feather:refresh-cw" elevated @click="refreshLoading()">
-                refresh
+                更新
               </V-Button>
             </V-Buttons>
           </div>
@@ -296,12 +296,12 @@ onMounted(() => {
                   class="flex-table-header"
                   :class="[filteredData.length === 0 && 'is-hidden']"
                 >
-                  <span class="is-grow">Customer</span>
-                  <span class="is-grow">Contact Number</span>
-                  <span class="is-grow">Record ID</span>
-                  <span class="is-grow">Test Result</span>
-                  <span class="is-grow">Record State</span>
-                  <span class="is-grow cell-end">Created At</span>
+                  <span class="is-grow">患者c</span>
+                  <span class="is-grow">電話番号</span>
+                  <span class="is-grow">レコードID</span>
+                  <span class="is-grow">検査結果</span>
+                  <span class="is-grow">レコード状態</span>
+                  <span class="is-grow cell-end">作成</span>
                 </div>
                 <div class="flex-list-inner">
                   <transition-group name="list" tag="div">
@@ -321,19 +321,19 @@ onMounted(() => {
                           <span class="item-name dark-inverted">{{ test.customer_name }}</span>
                         </div>
                       </div>
-                      <div class="flex-table-cell is-grow" data-th="Contact Number">
+                      <div class="flex-table-cell is-grow" data-th="電話番号">
                         <span class="light-text">{{ test.customer_contact_number }}</span>
                       </div>
-                      <div class="flex-table-cell is-grow" data-th="Record ID">
+                      <div class="flex-table-cell is-grow" data-th="レコードID">
                         <span class="light-text">{{ test.record_id }}</span>
                       </div>
-                      <div class="flex-table-cell is-grow" data-th="Test Result">
+                      <div class="flex-table-cell is-grow" data-th="検査結果">
                         <span class="light-text">{{ test.test_result }}</span>
                       </div>
-                      <div class="flex-table-cell is-grow" data-th="Record State">
+                      <div class="flex-table-cell is-grow" data-th="レコード状態">
                         <span class="light-text">{{ test.record_state }}</span>
                       </div>
-                      <div class="flex-table-cell is-grow cell-end" data-th="Created At">
+                      <div class="flex-table-cell is-grow cell-end" data-th="作成">
                         <span class="light-text">{{ test.created_at }}</span>
                       </div>
                     </div>

@@ -25,8 +25,8 @@ onMounted(() => {
     <div class="dashboard-header">
       <V-Avatar :picture="profile_url" size="large"/>
       <div class="start">
-        <h3>Welcome back, {{name}}</h3>
-        <p>We're very happy to see you again on your sales admin dashboard.</p>
+        <h3>ようこそ, {{name}}</h3>
+        <p>管理者画面へようこそ！</p>
       </div>
 <!--      <div class="end">-->
 <!--        <V-Button dark="3">View Reports</V-Button>-->
@@ -40,7 +40,7 @@ onMounted(() => {
         <!--Card-->
         <div class="column is-6">
           <div class="dashboard-card">
-            <h4 class="dark-inverted">Your Quick Stats</h4>
+            <h4 class="dark-inverted">ステータス</h4>
 
             <div class="quick-stats">
               <div class="quick-stats-inner">
@@ -48,7 +48,7 @@ onMounted(() => {
                 <div class="quick-stat">
                   <V-Block
                     :title="dashboardQuickStats.new_customer+''"
-                    subtitle="Customers in this "
+                    subtitle="患者数 "
                     center
                     m-responsive
                     t-responsive
@@ -68,7 +68,7 @@ onMounted(() => {
                 <div class="quick-stat">
                   <V-Block
                     :title="dashboardQuickStats.test_done_by_month+''"
-                    subtitle="Test kits issued"
+                    subtitle="検査キットを配布"
                     center
                     m-responsive
                     t-responsive
@@ -90,7 +90,7 @@ onMounted(() => {
                 <div class="quick-stat">
                   <V-Block
                     :title="dashboardQuickStats.total_testkit_brand+''"
-                    subtitle="Total testkit brands"
+                    subtitle="検査キットブランド数"
                     center
                     m-responsive
                     t-responsive
@@ -111,7 +111,7 @@ onMounted(() => {
                 <div class="quick-stat">
                   <V-Block
                     :title="dashboardQuickStats.all_customers+''"
-                    subtitle="All Customers"
+                    subtitle="全ての患者"
                     center
                     m-responsive
                     t-responsive
