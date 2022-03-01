@@ -44,30 +44,30 @@ const handleLogin = async () => {
 
         },
         (error) => {
-          notif.warning('Incorrect credentials.! Please try again..!')
+          notif.warning('誤った資格情報です。もう一度やり直してください。')
           isLoading.value = false
         }
       );
     } else {
-      notif.warning("empty fields.!")
+      notif.warning("未入力フィールドがございます。")
       isLoading.value = false
     }
   }
 }
 
 const callingWebSocket = () => {
-  console.log("Starting connection to WebSocket Server")
+  // console.log("Starting connection to WebSocket Server")
   connection = new WebSocket(socket_url)
 
   connection.onopen = function (event) {
-    console.log(event)
-    console.log("Successfully connected to the echo websocket server...")
+    // console.log(event)
+    // console.log("Successfully connected to the echo websocket server...")
     sendMessage();
   }
 }
 
 const sendMessage = () => {
-  console.log(connection);
+  // console.log(connection);
   // console.log("hi",store.getters['auth/getContactNo'])
   connection.send(`{"contact_number": "${cookies.get('user').contact_number}","branch_id":"${store.getters.getBranchID}"}`);
 }
@@ -77,18 +77,15 @@ const branch_id = ref()
 const loadBranchIDParam = () => {
   const urlSearchParams = new URLSearchParams(window.location.search);
   const params = Object.fromEntries(urlSearchParams.entries());
-  console.log("params", route.query.id)
+  // console.log("params", route.query.id)
   branch_id.value = route.query.id
 }
 
 
 onMounted(() => {
-  console.log("branch hello")
-  // const branch_id = route.params.index;
   loadBranchIDParam()
 
   store.commit('setBranchID', branch_id.value)
-  // console.log("test token : ", route.params.branch)
 })
 
 
@@ -125,9 +122,9 @@ onMounted(() => {
       <div class="inner-wrap">
         <!--Form Title-->
         <div class="auth-head">
-          <p>Please sign in to your account</p>
+          <p>ログイン</p>
           <RouterLink :to="{ name: 'auth-signup-3' }">
-            I do not have an account yet
+            会員登録がお済みでない方は新規会員登録を行って下さい。
           </RouterLink>
         </div>
 

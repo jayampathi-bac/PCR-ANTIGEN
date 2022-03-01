@@ -27,14 +27,13 @@ const repeat_password = ref(null)
 const isAgreed = ref(null)
 
 const handleSignup = async () => {
-  console.log("identifier handle", identifier.value)
   if (name.value && contact_number.value && email.value && password.value && repeat_password.value) {
     isLoading.value = true
     if (password.value !== repeat_password.value) {
-      notif.warning('Passwords do not match. Please try again..!')
+      notif.warning('パスワードを間違っていないかもう一度ご確認お願い致します。')
     } else {
       if (!isAgreed.value) {
-        notif.warning('Please agree to the terms and conditions..!')
+        notif.warning('検査規約をお読みの上同意してください。')
       } else {
         axios
           .post(`${basic_url}/v1/customer`, {
@@ -46,7 +45,6 @@ const handleSignup = async () => {
             branch_id: (identifier.value !== '0') ? identifier.value : null
           })
           .then(response => {
-            // console.log("signup response : ",response)
             if (response.data.success === true) {
               notif.success(response.data.message)
               router.push({name: 'index', params: { data: identifier ? identifier.value  : 0}})
@@ -60,7 +58,7 @@ const handleSignup = async () => {
     // router.push({ name: 'index' })
     isLoading.value = false
   } else {
-    notif.warning('Please fill the empty Fields..!')
+    notif.warning('未入力フィールドが入力してください。')
     isLoading.value = false
   }
 }
@@ -71,13 +69,9 @@ useHead({
 
 onMounted(() => {
   // @ts-ignore
-  console.log("hi this is the identifier",identifier);
   if (identifier === undefined) {
     router.push({ name: "index" })
   }
-  console.log("hi this is the identifier",identifier);
-
-
 })
 </script>
 
@@ -114,9 +108,9 @@ onMounted(() => {
         <!--Form Title-->
         <div class="auth-head">
           <!--          <h2>Join Us Now.</h2>-->
-          <p>Start by creating your account</p>
+          <p style="font-weight: 500">新規会員登録</p>
           <RouterLink :to="{ name: 'index' }">
-            I already have an account
+            既に会員登録を済みの方はログインしてください。
           </RouterLink>
         </div>
 
@@ -130,7 +124,7 @@ onMounted(() => {
                   <input
                     class="input"
                     type="text"
-                    placeholder="Name"
+                    placeholder="お名前（カナ）"
                     autocomplete="name"
                     v-model="name"
                   />
@@ -142,7 +136,7 @@ onMounted(() => {
                   <input
                     class="input"
                     type="text"
-                    placeholder="Contact Number"
+                    placeholder="電話番号"
                     autocomplete="contact_number"
                     v-model="contact_number"
                   />
@@ -154,7 +148,7 @@ onMounted(() => {
                   <input
                     class="input"
                     type="text"
-                    placeholder="Email Address"
+                    placeholder="メールアドレス"
                     autocomplete="email"
                     v-model="email"
                   />
@@ -166,7 +160,7 @@ onMounted(() => {
                   <input
                     class="input"
                     type="password"
-                    placeholder="Password"
+                    placeholder="パスワード"
                     autocomplete="new-password"
                     v-model="password"
                   />
@@ -178,7 +172,7 @@ onMounted(() => {
                   <input
                     class="input"
                     type="password"
-                    placeholder="Repeat Password"
+                    placeholder="再パスワード"
                     v-model="repeat_password"
                   />
                 </V-Control>
@@ -197,7 +191,7 @@ onMounted(() => {
                   </label>
                   <div class="setting-meta">
                     <label for="send-promotional">
-                      <span>Agree to our terms & conditions.</span>
+                      <span style="font-weight: 550">同意書をお読みの上同意チェックしてください。</span>
                     </label>
                   </div>
                 </V-Control>
@@ -207,7 +201,7 @@ onMounted(() => {
               <V-Field>
                 <V-Control class="login">
                   <V-Button color="primary" bold fullwidth raised>
-                    Sign Up
+                    登録
                   </V-Button>
                 </V-Control>
               </V-Field>
@@ -226,6 +220,6 @@ onMounted(() => {
 
 .auth-nav .center a img {
   max-width: 120px !important;
-  margin-top: 20px;
+  margin-top: 17px;
 }
 </style>

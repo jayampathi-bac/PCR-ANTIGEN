@@ -38,18 +38,18 @@ const onSave = async () => {
       const res = await axios.put(`${basic_url}/v1/customer/updatePassword`,data, config);
       // console.log("updating password response : ",res)
       if (res.data.success){
-        notyf.success('Your changes have been successfully saved!')
+        notyf.success('保存完了')
         isLoading.value = false
       }else{
-        notyf.warning(res.data.message)
+        notyf.warning('Please try again!')
         isLoading.value = false
       }
     }else{
-      notyf.warning('Passwords do not match. Please try again..!')
+      notyf.warning('パスワードを間違っていないかもう一度ご確認お願い致します。')
       isLoading.value = false
     }
   }else{
-    notyf.warning('Fields are empty..!')
+    notyf.warning('未入力フィールドがございます。')
     isLoading.value = false
   }
 }
@@ -62,8 +62,8 @@ const onSave = async () => {
     <div class="form-head stuck-header" :class="[isScrolling && 'is-stuck']">
       <div class="form-head-inner">
         <div class="left">
-          <h3>Settings</h3>
-          <p>Edit your account prefs and settings</p>
+          <h3>設定</h3>
+          <p>プロフィール情報変更と設定</p>
         </div>
         <div class="right">
           <div class="buttons">
@@ -73,7 +73,7 @@ const onSave = async () => {
               light
               dark-outlined
             >
-              Go Back
+              前に戻る
             </V-Button>
             <V-Button
               color="primary"
@@ -81,7 +81,7 @@ const onSave = async () => {
               :loading="isLoading"
               @click="onSave"
             >
-              Save Changes
+              保存する
             </V-Button>
           </div>
         </div>
@@ -91,8 +91,8 @@ const onSave = async () => {
       <!--Fieldset-->
       <div class="fieldset">
         <div class="fieldset-heading">
-          <h4>Change Password</h4>
-          <p>For an improved account security</p>
+          <h4>パスワードを変更</h4>
+          <p>アカウントのセキュリティを向上させるため</p>
         </div>
 
         <div class="columns is-multiline">
@@ -103,7 +103,7 @@ const onSave = async () => {
                 <input
                   type="password"
                   class="input"
-                  placeholder="Old Password"
+                  placeholder="現在のパスワード"
                   autocomplete="current-password"
                   v-model="current_password"
                 />
@@ -117,7 +117,7 @@ const onSave = async () => {
                 <input
                   type="password"
                   class="input"
-                  placeholder="New Password"
+                  placeholder="新しいパスワード"
                   autocomplete="new-password"
                   v-model="new_password"
                 />
@@ -131,7 +131,7 @@ const onSave = async () => {
                 <input
                   type="password"
                   class="input"
-                  placeholder="Repeat New Password"
+                  placeholder="再新しいパスワード"
                   autocomplete="new-password"
                   v-model="confirm_password"
                 />
@@ -181,8 +181,8 @@ const onSave = async () => {
       <!--Fieldset-->
       <div class="fieldset">
         <div class="fieldset-heading">
-          <h4>Notifications</h4>
-          <p>Configure how you receive notifications</p>
+          <h4>通知</h4>
+          <p>通知の受信方法を構成する。</p>
         </div>
 
         <div class="columns is-multiline">
@@ -192,7 +192,7 @@ const onSave = async () => {
               <V-Control>
                 <V-SwitchBlock
                   v-model="notifications"
-                  label="Disable all notifications"
+                  label="全ての通知を無効にする。"
                   color="primary"
                 />
               </V-Control>
@@ -235,7 +235,7 @@ const onSave = async () => {
 <!--                <V-SwitchBlock-->
 <!--                  v-model="partners"-->
 <!--                  label="Enable partners emails"-->
-<!--                  color="primary"-->
+<!--                  color="primary"-->c
 <!--                />-->
 <!--              </V-Control>-->
 <!--            </V-Field>-->

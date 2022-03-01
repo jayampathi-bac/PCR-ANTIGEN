@@ -28,8 +28,8 @@
           </div>
           <div class="meta">
 
-            <span>Profile</span>
-            <span>View your profile</span>
+            <span>プロフィール</span>
+            <span>プロフィールを見る</span>
 
           </div>
         </a>
@@ -48,8 +48,8 @@
             <i aria-hidden="true" class="lnil lnil-cog"></i>
           </div>
           <div class="meta" @click="gotoImage">
-            <span>Settings</span>
-            <span>Account settings</span>
+            <span>設定</span>
+            <span>アカウント設定</span>
           </div>
         </a>
       </RouterLink>
@@ -66,7 +66,7 @@
           fullwidth
           @click="handleLogOut"
         >
-          Logout
+          ログアウト
         </V-Button>
       </div>
     </template>

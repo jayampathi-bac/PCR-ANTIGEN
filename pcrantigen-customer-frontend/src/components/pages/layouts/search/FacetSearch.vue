@@ -29,7 +29,7 @@ async function getData() {
   customerService.getCustomerIDCard(contact_number.value)
     .then(function (response) {
       isIdCardAvailable.value = !!response.success
-      console.log('response --------', response)
+      // console.log('response --------', response)
       test_done_at.value = response.data.created_at
       brand_name.value = response.data.brand_name
       test_validity.value = response.data.validity
@@ -66,7 +66,7 @@ const downloadPNG = () => {
 };
 
 const PrintImage = () => {
-  console.log('Im batman')
+  // console.log('Im batman')
   window.print();
 }
 
@@ -134,7 +134,7 @@ onMounted(async () => {
   <div class="search-results-wrapper">
     <div class="search-results-header">
       <V-Modal
-        title="Result "
+        title="検査結果 "
         :open="centeredActionsOpen"
         actions="center"
         @close="centeredActionsOpen = false"
@@ -182,7 +182,7 @@ onMounted(async () => {
           <div class="search-results-group">
             <div class="group-header ">
               <V-IconWrap icon="feather:list"/>
-              <h4>Your test results within the 72 hours validly is shown below.</h4>
+              <h4 style="font-weight: 555">あなたの有効な検査結果は以下の通りです。</h4>
             </div>
 
             <div class="search-results-list" v-if="isIdCardAvailable">
@@ -195,16 +195,16 @@ onMounted(async () => {
                     <!--                    <V-Avatar size="medium" :picture="person.avatar" />-->
                   </template>
                   <template #action>
-                    <V-Button @click="centeredActionsOpen = true" color="success" outlined> View Result</V-Button>
+                    <V-Button @click="centeredActionsOpen = true" color="success" outlined> 結果を見る</V-Button>
                   </template>
                 </V-Block>
               </div>
             </div>
             <div v-else>
               <div class=" m-8">
-                <h3 class="pb-9">0 results.</h3>
+                <h3 class="pb-9">あなたの検査結果数は０件です。</h3>
                 <p class="is-larger">
-                  No test results available yet, please contact your pharmacy.
+                  あなたの検査結果はまだ表示されていません。薬局にお問合せください。
                 </p>
               </div>
             </div>

@@ -114,12 +114,10 @@ function getBase64FromImageUrlTestKit(url) {
 }
 
 const PrintImage = () => {
-  console.log('Im batman')
   window.print();
 }
 
 watch(() => props.foo, (first, second) => {
-  // console.log("Watch props:", first, second);
   first === 1 ? downloadPNG() :
     first === 2 ? downloadPDF() :
       first === 3 ? PrintImage() : null
@@ -128,12 +126,11 @@ watch(() => props.foo, (first, second) => {
 
 
 onMounted(() => {
-  console.log(contact_number.value, "contact")
   //calling api
 
   customerService.getCustomerIDCard(contact_number.value)
     .then(function (response) {
-      console.log('response', response)
+      // console.log('response', response)
       test_done_at.value = response.created_at
       brand_name.value = response.brand_name
       test_validity.value = response.validity

@@ -39,31 +39,31 @@ const handleLogin = async () => {
       }).then(() => {
           isLoading.value = false
           router.push({name: 'results'})
-          notif.success(`Welcome ${store.state.auth.user.name} .!`)
+          notif.success(`ようこそ！ ${store.state.auth.user.name} .!`)
           if (identifier.value !== undefined){
-            console.log("calling websocket")
+            // console.log("calling websocket")
             callingWebSocket();
           }
         },
         (error) => {
-          notif.warning('Incorrect credentials.! Please try again..!')
+          notif.warning('誤った資格情報です。もう一度やり直してください。')
           isLoading.value = false
         }
       );
     } else {
-      notif.warning("empty fields.!")
+      notif.warning("未入力フィールドがございます。")
       isLoading.value = false
     }
   }
 }
 
 const callingWebSocket = () => {
-  console.log("Starting connection to WebSocket Server")
+  // console.log("Starting connection to WebSocket Server")
   connection = new WebSocket(socket_url)
 
   connection.onopen = function (event) {
-    console.log(event)
-    console.log("Successfully connected to the echo websocket server...")
+    // console.log(event)
+    // console.log("Successfully connected to the echo websocket server...")
     sendMessage();
   }
 
@@ -73,7 +73,7 @@ const callingWebSocket = () => {
 }
 
 const sendMessage = () => {
-  console.log(connection);
+  // console.log(connection);
   // console.log("hi",store.getters['auth/getContactNo'])
   connection.send(`{"contact_number": "${cookies.get('user').contact_number}","branch_id":"${store.getters.getBranchID}"}`);
 }
@@ -81,14 +81,14 @@ const sendMessage = () => {
 const identifier = ref('-1')
 
 onMounted(() => {
-  console.log("hi this is the param",route.query.identifier)
-  console.log("hi this is the param data",route.params.data)
+  // console.log("hi this is the param",route.query.identifier)
+  // console.log("hi this is the param data",route.params.data)
   // const branch_id = route.params.index;
   identifier.value = route.query.identifier ? route.query.identifier : 0
   if(!route.query.identifier ){
-    console.log("testing data params",route.params.data)
+    // console.log("testing data params",route.params.data)
     identifier.value = (!route.params.data || route.params.data !== 0) ? route.params.data : 0
-    console.log("testing data params identifier",identifier.value)
+    // console.log("testing data params identifier",identifier.value)
   }
   store.commit('setBranchID', identifier.value)
 })
@@ -126,14 +126,14 @@ onMounted(() => {
     <div class="single-form-wrap">
       <div class="inner-wrap">
         <!--Form Title-->
-        <div class="auth-head">
-          <p>Please sign in to your account</p>
+        <div class="auth-head mt-5">
+          <p>ログイン</p>
           <RouterLink
             :to="{
             name: 'auth-signup-3',
             params: { identifier: identifier}
             }"
-          >I do not have an account yet
+          >会員登録がお済みでない方は新規会員登録を行って下さい。
           </RouterLink>
         </div>
 
@@ -149,7 +149,7 @@ onMounted(() => {
                     type="number"
                     pattern="[0-9]*"
                     inputmode="numeric"
-                    placeholder="Contact Number"
+                    placeholder="電話番号"
                     autocomplete="contact"
                     v-model="userName1"
                   />
@@ -161,7 +161,7 @@ onMounted(() => {
                   <input
                     class="input"
                     type="password"
-                    placeholder="Password"
+                    placeholder="パスワード"
                     autocomplete="current-password"
                     v-model="ups"
                   />
@@ -175,7 +175,7 @@ onMounted(() => {
                 </label>
                 <div class="setting-meta">
                   <label for="remember-me">
-                    <span>Remember Me</span>
+                    <span>パスワードを保存する</span>
                   </label>
                 </div>
               </V-Control>
@@ -188,7 +188,7 @@ onMounted(() => {
                   fullwidth
                   raised
                 >
-                  Sign In
+                  ログイン
                 </V-Button>
               </V-Control>
             </div>
@@ -199,7 +199,7 @@ onMounted(() => {
           class="is-submenu"
         >
           <div class="forgot-link has-text-centered">
-            <a>Forgot Password?</a>
+            <a>パスワードを忘れた方はこちら</a>
           </div>
         </RouterLink>
       </div>
@@ -225,8 +225,15 @@ onMounted(() => {
 
 .auth-nav .center a img {
   max-width: 120px !important;
-  margin-top: 156px;
+  margin-top: 150px;
 }
 
+.auth-wrapper-inner .single-form-wrap .inner-wrap .auth-head p{
+  font-weight: 550 !important;
+}
+
+.auth-wrapper-inner .single-form-wrap .inner-wrap .auth-head a{
+  font-size: 0.84rem  !important;
+}
 //
 </style>

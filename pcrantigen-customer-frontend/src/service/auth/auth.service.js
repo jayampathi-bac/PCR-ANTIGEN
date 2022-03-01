@@ -24,7 +24,7 @@ class AuthService {
               profile_url:response.data.profile_url ,
             };
             cookies.set("user",user,60 * 60 * 24 * 3);
-            console.log("name cookie",cookies.get('user').name)
+            // console.log("name cookie",cookies.get('user').name)
           }
           return response.data;
         })

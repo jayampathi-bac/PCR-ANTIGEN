@@ -26,7 +26,7 @@ export default class CustomerService {
     return axios
       .get(`${basic_url}/v1/test/${contact}`, config)
       .then(response => {
-        console.log("getCustomerIDCard response : ", response)
+        // console.log("getCustomerIDCard response : ", response)
         return response.data;
       });
   }

@@ -35,16 +35,16 @@ const image_file = ref();
 const image = ref();
 
 function getBase64(file) {
-  console.log("basing")
+  // console.log("basing")
   var reader = new FileReader();
   reader.readAsDataURL(file);
   reader.onload = function () {
-    console.log(reader.result);
+    // console.log(reader.result);
     image_in_base64.value = reader.result;
     dataURItoBlob(reader.result)
   };
   reader.onerror = function (error) {
-    console.log('Error: ', error);
+    // console.log('Error: ', error);
   };
 }
 
@@ -80,7 +80,7 @@ const onAddFile = (error: any, file: any) => {
     return
   }
 
-  console.log('file added', file)
+  // console.log('file added', file)
   getBase64(file.file)
 }
 
@@ -92,7 +92,7 @@ const onRemoveFile = (error: any, file: any) => {
     return
   }
 
-  console.log('file removed', file)
+  // console.log('file removed', file)
 }
 const name = ref(store.state.auth.user.name);
 const contact_number = ref(store.state.auth.user.contact);
@@ -124,8 +124,8 @@ const onSave = async () => {
     const res = await axios.post(`${basic_url}/v1/customer/post`,data, config);
     // console.log("updating response : ",res)
     if (res.data.success){
-      console.log("response ",res)
-      notyf.success('Your changes have been successfully saved!')
+      // console.log("response ",res)
+      notyf.success('保存完了')
       store.dispatch("auth/updateUser", {
         name: name.value,
         email: email.value,
@@ -140,11 +140,11 @@ const onSave = async () => {
       };
       cookies.set("user",user,60 * 60 * 24 * 3);
     }else{
-      console.log("response ",res)
+      // console.log("response ",res)
       notyf.warning(res.data.message)
     }
   }else{
-    notyf.warning('Fields are empty..!')
+    notyf.warning('未入力フィールドがございます。')
   }
   isLoaderActive.value = !isLoaderActive.value
   isLoading.value = false
@@ -158,7 +158,7 @@ onBeforeMount(() => {
   profile_picture_url.value = store.getters['auth/getUser'].name
 })
 onMounted( () => {
-  console.log("store", store.getters['auth/getUser'].profile_url)
+  // console.log("store", store.getters['auth/getUser'].profile_url)
 })
 </script>
 
@@ -168,8 +168,8 @@ onMounted( () => {
     <div class="form-head stuck-header" :class="[isScrolling && 'is-stuck']">
       <div class="form-head-inner">
         <div class="left">
-          <h3>General Info</h3>
-          <p>Edit your account's general information</p>
+          <h3>基本情報</h3>
+          <p>プロフィール基本情報編集</p>
         </div>
         <div class="right">
           <div class="buttons">
@@ -179,7 +179,7 @@ onMounted( () => {
               light
               dark-outlined
             >
-              Go Back
+              前に戻る
             </V-Button>
             <V-Button
               color="primary"
@@ -187,7 +187,7 @@ onMounted( () => {
               :loading="isLoading"
               @click.prevent="onSave"
             >
-              Save Changes
+              保存する
             </V-Button>
           </div>
         </div>
@@ -197,7 +197,7 @@ onMounted( () => {
       <!--Fieldset-->
       <div class="fieldset">
         <div class="fieldset-heading">
-          <h4>Profile Picture</h4>
+          <h4>プロフィール画像</h4>
         </div>
 
         <V-Avatar size="xl" class="profile-v-avatar">
@@ -251,8 +251,8 @@ onMounted( () => {
       <!--Fieldset-->
       <div class="fieldset">
         <div class="fieldset-heading">
-          <h4>Personal Info</h4>
-          <p>Update your personal details here. </p>
+          <h4>個人情報</h4>
+          <p>あなたの個人情報アップデートしてください。 </p>
         </div>
 
         <div class="columns is-multiline">
@@ -263,7 +263,7 @@ onMounted( () => {
                 <input
                   type="text"
                   class="input"
-                  placeholder="Full Name"
+                  placeholder="名前（カナ）"
                   autocomplete="full-name"
                   v-model="name"
                 />
@@ -277,7 +277,7 @@ onMounted( () => {
                 <input
                   type="text"
                   class="input"
-                  placeholder="Contact Number"
+                  placeholder="電話番号"
                   autocomplete="contact-number"
                   readonly
                   v-model="contact_number"
@@ -292,7 +292,7 @@ onMounted( () => {
                 <input
                   type="text"
                   class="input"
-                  placeholder="Email Address"
+                  placeholder="メールアドレス"
                   autocomplete="email"
                   v-model="email"
                 />

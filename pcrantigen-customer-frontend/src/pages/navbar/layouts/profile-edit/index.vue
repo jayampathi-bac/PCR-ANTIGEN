@@ -3,9 +3,9 @@ import { useHead } from '@vueuse/head'
 
 import { pageTitle } from '/@src/state/navbarLayoutState'
 
-pageTitle.value = 'Profile'
+pageTitle.value = 'プロフィール'
 useHead({
-  title: 'Edit Profile',
+  title: 'マイプロフィールを編集',
 })
 </script>
 

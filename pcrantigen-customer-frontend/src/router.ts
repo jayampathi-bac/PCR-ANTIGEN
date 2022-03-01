@@ -40,7 +40,7 @@ import routes from 'pages-generated'
  *
  * Uncomment the line below to view the generated routes
  */
-console.log(routes)
+// console.log(routes)
 
 const router = createRouter({
   history: createWebHistory(),
@@ -61,7 +61,7 @@ router.beforeEach((to, from, next) => {
     next({ name: 'index' })
   }
   else {
-    console.log("else")
+    // console.log("else")
     next()
   }
 })

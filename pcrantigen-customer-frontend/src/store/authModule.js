@@ -50,22 +50,22 @@ export const authModule = {
     },
     mutations: {
         loginSuccess(state, user) {
-            console.log("login Success")
+            // console.log("login Success")
             state.status.loggedIn = true;
             state.user = user;
         },
         loginFailure(state) {
-            console.log("login Failure")
+            // console.log("login Failure")
             state.status.loggedIn = false;
             state.user = null;
         },
         logout(state) {
-            console.log("logout Success")
+            // console.log("logout Success")
             state.status.loggedIn = false;
             state.user = null;
         },
         UpdateUserState(state, data) {
-            console.log("UpdateUserState Success")
+            // console.log("UpdateUserState Success")
             state.user.name = data.name;
             state.user.email = data.email;
             state.user.profile_url = data.profile_url;

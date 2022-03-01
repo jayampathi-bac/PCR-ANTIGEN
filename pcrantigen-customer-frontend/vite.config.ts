@@ -21,7 +21,8 @@ export default defineConfig({
   // Project root directory (where index.html is located).
   root: process.cwd(),
   // Base public path when served in development or production.
-  base: 'https://jvpdtest.com/',
+  // base: 'https://jvpdtest.com/',
+  base: 'https://jvpdtest-customer.netlify.app/',
   // Directory to serve as plain static assets.
   publicDir: 'public',
   // Adjust console output verbosity.
