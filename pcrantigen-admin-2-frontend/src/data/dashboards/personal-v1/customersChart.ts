@@ -3,15 +3,15 @@ import { themeColors } from '/@src/utils/themeColors'
 export const customersOptions = {
   series: [
     {
-      name: 'Total',
+      name: '全て',
       data: [31, 40, 28, 51, 42, 109, 100],
     },
     {
-      name: 'Completed',
+      name: '完成',
       data: [11, 32, 45, 32, 34, 52, 41],
     },
     {
-      name: 'Incomplete',
+      name: '削除（未完成）',
       data: [78, 53, 36, 10, 14, 5, 2],
     },
   ],

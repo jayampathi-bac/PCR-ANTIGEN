@@ -54,15 +54,15 @@ const getDashboardData = () => {
 
   const series = ref([
     {
-      name: 'Total',
+      name: '全て',
       data: totalResultData.value,
     },
     {
-      name: 'Completed',
+      name: '完成',
       data: completeResultData.value,
     },
     {
-      name: 'Incomplete',
+      name: '削除（未完成）',
       data: inCompleteResultData.value,
     },
   ]);

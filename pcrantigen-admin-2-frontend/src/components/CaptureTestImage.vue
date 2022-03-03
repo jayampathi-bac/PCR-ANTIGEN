@@ -25,14 +25,14 @@
               @click="reloadCapture"
               :disabled="!imageCaptured"
               rounded
-            >Reload
+            >上書き
             </VButton>
             <VButton
               @click="captureImage"
               :disabled="imageCaptured"
               color="success" outlined
               rounded
-            >Capture
+            >撮影
             </VButton>
             <!--            <VButton-->
             <!--              @click="swapCamera"-->

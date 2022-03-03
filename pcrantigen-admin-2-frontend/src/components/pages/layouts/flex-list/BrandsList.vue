@@ -100,7 +100,7 @@ const editBrandFunc = () => {
           searchAllBrands(currentPage.value)
           editActionsOpen.value = false
         } else {
-          swal.fire('Editing Failed!', '', 'error')
+          swal.fire('変更フィールド', '', 'error')
           notif.warning(response.data.message)
           editActionsOpen.value = false
         }
@@ -120,6 +120,7 @@ const fireBrandFuncAlert = () => {
     showCancelButton: true,
     confirmButtonText: '保存する',
     cancelButtonText:'キャンセル',
+    confirmButtonColor: '#41b883',
   }).then((result) => {
     if (result.isConfirmed) {
       saveBrandFunc()
@@ -134,6 +135,7 @@ const fireEditBrandFuncAlert = () => {
     showCancelButton: true,
     confirmButtonText: '修正',
     cancelButtonText:'キャンセル',
+    confirmButtonColor: '#41b883',
   }).then((result) => {
     if (result.isConfirmed) {
       editBrandFunc()
@@ -166,6 +168,7 @@ const fireDeleteBrandAlert = (brand) => {
     showCancelButton: true,
     confirmButtonText: '削除',
     cancelButtonText:'キャンセル',
+    confirmButtonColor: '#41b883',
   }).then((result) => {
     if (result.isConfirmed) {
       deleteBrandFunc(brand)
@@ -223,7 +226,7 @@ onMounted(async () => {
         <!--List Empty Search Placeholder -->
         <V-PlaceholderPage
           :class="[filteredData.length !== 0 && 'is-hidden']"
-          title="We couldn't find any matching results."
+          title="対象のものはございませんでした。"
           subtitle="Too bad. Looks like we couldn't find any matching results for the
           search terms you've entered. Please try different search terms or
           criteria."

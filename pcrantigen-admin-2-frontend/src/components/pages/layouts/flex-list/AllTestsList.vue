@@ -39,7 +39,7 @@ const searchCustomerByRange = () => {
   if (dateRange.value) {
     searchAllTestsByRange(dateRange.value.start.toISOString().split('T')[0], dateRange.value.end.toISOString().split('T')[0])
   } else {
-    notif.warning('Please enter start date and end date.!')
+    notif.warning('開始日と終了日を入力してください。')
   }
 }
 
@@ -85,7 +85,7 @@ const searchCustomerByMonth = () => {
   if (selectedMonthByNo.value != 0) {
     searchAllTestsByMonth(selectedMonthByNo.value)
   } else {
-    notif.warning('Please select a month.!')
+    notif.warning('月を選択してください。')
   }
 }
 
@@ -283,7 +283,7 @@ onMounted(() => {
               <!--List Empty Search Placeholder -->
               <V-PlaceholderPage
                 :class="[filteredData.length !== 0 && 'is-hidden']"
-                title="We couldn't find any matching results."
+                title="対象のものはございませんでした。"
                 subtitle="Too bad. Looks like we couldn't find any matching results for the
           search terms you've entered. Please try different search terms or
           criteria."

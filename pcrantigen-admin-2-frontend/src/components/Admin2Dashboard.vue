@@ -25,7 +25,7 @@ onMounted(() => {
     <div class="dashboard-header">
       <V-Avatar :picture="profile_url" size="large"/>
       <div class="start">
-        <h3>ようこそ, {{name}}</h3>
+        <h3>{{name}}</h3>
         <p>管理者画面へようこそ！</p>
       </div>
 <!--      <div class="end">-->
@@ -40,7 +40,7 @@ onMounted(() => {
         <!--Card-->
         <div class="column is-6">
           <div class="dashboard-card">
-            <h4 class="dark-inverted">ステータス</h4>
+            <h4 class="dark-inverted">集計</h4>
 
             <div class="quick-stats">
               <div class="quick-stats-inner">
@@ -48,7 +48,7 @@ onMounted(() => {
                 <div class="quick-stat">
                   <V-Block
                     :title="dashboardQuickStats.new_customer+''"
-                    subtitle="患者数 "
+                    subtitle="今月の患者数 "
                     center
                     m-responsive
                     t-responsive
@@ -68,7 +68,7 @@ onMounted(() => {
                 <div class="quick-stat">
                   <V-Block
                     :title="dashboardQuickStats.test_done_by_month+''"
-                    subtitle="検査キットを配布"
+                    subtitle="検査キット配布数"
                     center
                     m-responsive
                     t-responsive
@@ -111,7 +111,7 @@ onMounted(() => {
                 <div class="quick-stat">
                   <V-Block
                     :title="dashboardQuickStats.all_customers+''"
-                    subtitle="全ての患者"
+                    subtitle="全ての患者数"
                     center
                     m-responsive
                     t-responsive

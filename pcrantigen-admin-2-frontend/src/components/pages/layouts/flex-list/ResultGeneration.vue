@@ -62,15 +62,17 @@ const loadSendResult = (customer: string) => {
 }
 
 const issueResult = () => {
+
   isLoaderActive.value = !isLoaderActive.value
   if (testResult.value && selectedBrand.value !== 0) {
     // console.log("here here")
     sendResutlsModelOpen.value = false
     swal.fire({
-      title: `Do you want to send results to ${selected_customer.value.name}?`,
+      title: `${selected_customer.value.name} 様の検査結果送信してもよろしいでしょうか？`,
       showCancelButton: true,
       cancelButtonText:'キャンセル',
       confirmButtonText: '結果を送信',
+      confirmButtonColor: '#41b883',
     }).then((result: any) => {
       // console.log("testing negative",testResult.value)
       // console.log("result", result)
@@ -89,7 +91,8 @@ const issueResult = () => {
             if (response.data.success) {
               callingWebSocket2(selected_customer.value.customer_contact, "COMPLETE")
             } else {
-              notif.warning(response.data.message)
+              // notif.warning(response.data.message)
+              notif.warning('エラーが発生しました。')
             }
             isLoaderActive.value = !isLoaderActive.value
           }).catch(function (error) {
@@ -105,7 +108,8 @@ const issueResult = () => {
             if (response.data.success) {
               callingWebSocket2(selected_customer.value.customer_contact, "COMPLETE")
             } else {
-              notif.warning(response.data.message)
+              // notif.warning(response.data.message)
+              notif.warning('エラーが発生しました。')
             }
             isLoaderActive.value = !isLoaderActive.value
           }).catch(function (error) {
@@ -115,9 +119,11 @@ const issueResult = () => {
 
         }
       } else if (result.isDenied) {
-        swal.fire('Changes are not saved', '', 'info')
+        // console.log("here is me")
+        // swal.fire('Sending Results Failed', '', 'info')
+        swal.fire('検査結果送信エラーが発生しました。', '', 'info')
         isLoaderActive.value = !isLoaderActive.value
-      } else if (result.isDismissed) {
+      } else if (result.isDismissed) {z``
         sendResutlsModelOpen.value = true
         isLoaderActive.value = !isLoaderActive.value
       }
@@ -165,10 +171,11 @@ const voidCustomer = (customer: object) => {
   selectedCustomerVoid.value = customer
   // console.log('voidCustomer', customer);
   swal.fire({
-    title: `Do you want to void ${customer.name}?`,
+    title: `${customer.name} 様の検査依頼削除してもよろしいでしょうか？`,
     showCancelButton: true,
     confirmButtonText: '空所',
     cancelButtonText:'キャンセル',
+    confirmButtonColor: '#41b883',
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
@@ -186,7 +193,7 @@ const voidCustomer = (customer: object) => {
         if (response.data.success) {
           callingWebSocket2(customer.customer_contact, "INCOMPLETE")
         }else {
-          notif.warning('Something went wrong..!')
+          notif.warning('エラーが発生しました。')
         }
       })
 
@@ -224,13 +231,13 @@ const callingWebSocket2 = (contact: any, state: string) => {
     // console.log("connection2 response came")
     // console.log("connection2",event.data);
     if (event.data === 'updated') {
-        notif.success('Send Successfully..')
-        swal.fire('Saved!', '', 'success')
+        notif.success('検査結果送信完了')
+        swal.fire('検査結果送信完了', '', 'success')
         clearFields();
         search();
     } else  {
-      notif.warning('Send Failed..!')
-      swal.fire('Saving Failed.!', '', 'error')
+      notif.warning('エラーが発生しました。')
+      swal.fire('エラーが発生しました。', '', 'error')
       clearFields();
       search();
     }
@@ -342,14 +349,19 @@ const refreshSearch = () => {
     <div class="page-content-inner">
       <div class="flex-list-wrapper flex-list-v1">
         <!--List Empty Search Placeholder -->
-        <V-PlaceholderPage
-          :class="[filteredData.length !== 0 && 'is-hidden']"
-          title="We couldn't find any matching results."
-          subtitle="Too bad. Looks like we couldn't find any matching results for the
-          search terms you've entered. Please try different search terms or
-          criteria."
-          larger
-        >
+<!--        <V-PlaceholderPage-->
+<!--          :class="[filteredData.length !== 0 && 'is-hidden']"-->
+<!--          title="対象のものはございませんでした。"-->
+<!--          subtitle="Too bad. Looks like we couldn't find any matching results for the-->
+<!--          search terms you've entered. Please try different search terms or-->
+<!--          criteria."-->
+<!--          larger-->
+<!--        >-->
+          <V-PlaceholderPage
+            :class="[filteredData.length !== 0 && 'is-hidden']"
+            title="対象のものはございませんでした。"
+            larger
+          >
         </V-PlaceholderPage>
 
         <div class="flex-table">
@@ -358,11 +370,11 @@ const refreshSearch = () => {
             class="flex-table-header"
             :class="[filteredData.length === 0 && 'is-hidden']"
           >
-            <span class="is-grow">患者ID</span>
-            <span class="is-grow">記録された時間</span>
-            <span class="is-grow">テスト状態</span>
-            <span class="is-grow">テストタイプ</span>
-            <span class="is-grow cell-end">行動</span>
+            <span class="is-grow">患者</span>
+            <span class="is-grow">検査依頼日時</span>
+            <span class="is-grow">検査状態</span>
+            <span class="is-grow">検査名</span>
+            <span class="is-grow cell-end">結果送信/削除</span>
           </div>
 
           <div class="flex-list-inner">
@@ -385,16 +397,16 @@ const refreshSearch = () => {
                     </span>
                   </div>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="記録された時間">
+                <div class="flex-table-cell is-grow" data-th="検査依頼日時">
                   <span class="light-text">{{ customer.logged_at }}</span>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="State">
+                <div class="flex-table-cell is-grow" data-th="検査状態">
                   <span class="light-text">{{ customer.status }}</span>
                 </div>
-                <div class="flex-table-cell is-grow" data-th="テストタイプ">
+                <div class="flex-table-cell is-grow" data-th="検査名">
                   <span class="light-text"> 抗原検査 </span>
                 </div>
-                <div class="flex-table-cell is-grow cell-end" data-th="行動">
+                <div class="flex-table-cell is-grow cell-end" data-th="結果送信/削除">
                   <span class="mr-2">
                     <VButton
                       @click="loadSendResult(customer)"
@@ -409,7 +421,7 @@ const refreshSearch = () => {
                       @click="voidCustomer(customer)"
                       color="danger"
                       :disabled="isDisabled(customer)"
-                      outlined> 空所</VButton>
+                      outlined> 削除</VButton>
                   </span>
                 </div>
               </div>
@@ -540,7 +552,8 @@ const refreshSearch = () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="closeCaptureUserImageModel">Save Image</VButton>
+        <VButton @click="captureUserImageModel = false"> キャンセル </VButton>
+        <VButton color="primary" raised @click="closeCaptureUserImageModel">画像を保存</VButton>
       </template>
     </VModal>
     <VModal
@@ -555,7 +568,8 @@ const refreshSearch = () => {
 
       </template>
       <template #action>
-        <VButton color="primary" raised @click="closeCaptureTestImageModel">Save Image</VButton>
+        <VButton @click="captureTestImageModel = false"> キャンセル </VButton>
+        <VButton color="primary" raised @click="closeCaptureTestImageModel">画像を保存</VButton>
       </template>
     </VModal>
   </div>

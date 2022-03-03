@@ -96,6 +96,7 @@ const fireSaveCustomerAlert = () => {
     title: `この患者を保存しますか？`,
     showCancelButton: true,
     confirmButtonText: '保存する',
+    confirmButtonColor: '#41b883',
     cancelButtonText:'キャンセル',
   }).then((result) => {
     if (result.isConfirmed) {
@@ -150,10 +151,11 @@ const editCustomerFunc = () => {
 const fireEditCustomerAlert = () => {
   editCustomerAction.value = false
   swal.fire({
-    title: `顧客情報編集したいですか？`,
+    title: `患者情報を保存してもよろしいでしょうか？`,
     showCancelButton: true,
     confirmButtonText: '修正',
     cancelButtonText:'キャンセル',
+    confirmButtonColor: '#41b883',
   }).then((result) => {
     if (result.isConfirmed) {
       editCustomerFunc()
@@ -198,12 +200,17 @@ onMounted(async () => {
     <div class="page-content-inner">
       <div class="flex-list-wrapper flex-list-v1">
         <!--List Empty Search Placeholder -->
+<!--        <V-PlaceholderPage-->
+<!--          :class="[filteredData.length !== 0 && 'is-hidden']"-->
+<!--          title="対象のものはございませんでした。"-->
+<!--          subtitle="Too bad. Looks like we couldn't find any matching results for the-->
+<!--          search terms you've entered. Please try different search terms or-->
+<!--          criteria."-->
+<!--          larger-->
+<!--        >-->
         <V-PlaceholderPage
           :class="[filteredData.length !== 0 && 'is-hidden']"
-          title="We couldn't find any matching results."
-          subtitle="Too bad. Looks like we couldn't find any matching results for the
-          search terms you've entered. Please try different search terms or
-          criteria."
+          title="対象のものはございませんでした。"
           larger
         >
         </V-PlaceholderPage>
@@ -217,7 +224,7 @@ onMounted(async () => {
             <span class="is-grow">患者</span>
             <span class="is-grow">メールアドレス</span>
             <span class="is-grow">電話番号</span>
-            <span class="is-grow cell-end">行動</span>
+            <span class="is-grow cell-end">編集</span>
           </div>
 
           <div class="flex-list-inner">
@@ -244,8 +251,8 @@ onMounted(async () => {
                 <div class="flex-table-cell is-grow" data-th="電話番号">
                   <span class="light-text">{{ customer.contact_number }}</span>
                 </div>
-                <div class="flex-table-cell  is-grow cell-end" data-th="行動">
-                  <span><VButton color="primary" outlined @click="editCustomerModelOpen(customer)"> 修正</VButton></span>
+                <div class="flex-table-cell  is-grow cell-end" data-th="編集">
+                  <span><VButton color="primary" outlined @click="editCustomerModelOpen(customer)">  編集</VButton></span>
                 </div>
               </div>
             </transition-group>
@@ -359,7 +366,7 @@ onMounted(async () => {
       size="medium"
       actions="center"
       @close="editCustomerAction = false"
-      title="患者を修正"
+      title="患者情報編集"
     >
       <template #content>
         <form class="form-layout is-split" @submit.prevent>
@@ -410,7 +417,7 @@ onMounted(async () => {
       </template>
       <template #action>
         <VButton @click="editCustomerAction = false"> キャンセル </VButton>
-        <VButton color="primary" raised @click="fireEditCustomerAlert">患者を修正</VButton>
+        <VButton color="primary" raised @click="fireEditCustomerAlert">編集情報保存</VButton>
       </template>
     </VModal>
   </div>

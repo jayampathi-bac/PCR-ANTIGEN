@@ -48,7 +48,7 @@ const activeTab = ref<TabId>('all')
             src="/@src/assets/illustrations/placeholders/search-7-dark.svg"
             alt=""
           />
-          <h3>We couldn't find any matching results.</h3>
+          <h3>対象のものはございませんでした。</h3>
           <p class="is-larger">
             Too bad. Looks like we couldn't find any matching results for the
             search terms you've entered. Please try different search terms or

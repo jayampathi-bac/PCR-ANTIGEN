@@ -28,7 +28,7 @@ const handleLogin = async () => {
           isLoading.value = false
           router.push({ name: 'sidebar-layouts-dashboard' })
           // console.log('hrere hrer',store.state.auth.admin2)
-          notif.success(`ようこそ！ ${store.state.auth.admin2.name} .!`)
+          notif.success(`${store.state.auth.admin2.name} 様システムへようこそ！`)
         },
         (error) => {
           // console.log("eror",error.response)
@@ -39,18 +39,18 @@ const handleLogin = async () => {
           //   notif.warning(error)
           // }
           if(error.response !== undefined){
-            error.response.data.error_description === "Bad credentials" ? notif.warning('Invalid username or password..!'):
-              error.response.data.error_description === "Time in not Valid period" ? notif.warning('Not Within Valid Time Period..!'):
-                error.response.data.error_description === "Account Not Found" ? notif.warning('User Account Not Found..!'):
-                  notif.warning('Something went wrong!')
+            error.response.data.error_description === "Bad credentials" ? notif.warning('電話番号とパスワードが間違っていないかもう一度ご確認ください。'):
+              error.response.data.error_description === "Time in not Valid period" ? notif.warning('有効な時間外です。有効な時間内でログインしてください。'):
+                error.response.data.error_description === "Account Not Found" ? notif.warning('このユーザーが見つかりませんでした。'):
+                  notif.warning('エラーが発生しました。')
           }else{
-            notif.warning('Connection was interrupted!')
+            notif.warning('コネクションエラーが発生しました。')
           }
           isLoading.value = false
         }
       );
     } else {
-      notif.warning("empty fields.!")
+      notif.warning("未入力フィールドがございます。")
       isLoading.value = false
     }
   }

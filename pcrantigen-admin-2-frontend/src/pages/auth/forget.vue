@@ -166,7 +166,7 @@ useHead({
               @submit.prevent
             >
               <p >
-                手順を完了する。
+                手順に従って完了してください。
               </p>
               <div class="control has-validation">
                 <input type="number" class="input" autocomplete="otp" />
@@ -199,7 +199,7 @@ useHead({
                   class="input"
                   autocomplete="confrim-password"
                 />
-                <div class="auth-label">再新しいパスワード</div>
+                <div class="auth-label">新しいパスワード確認用</div>
                 <div class="autv-icon">
                   <i aria-hidden="true" class="lnil lnil-lock-alt"></i>
                 </div>

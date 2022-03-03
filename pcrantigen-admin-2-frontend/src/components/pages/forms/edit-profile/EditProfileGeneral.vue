@@ -80,10 +80,11 @@ const downloadQR = () => {
 const fireEditProfileAlert = () => {
   if (name.value && address.value) {
     swal.fire({
-      title: `Do you want to edit profile ?`,
+      title: `プロフィール情報変更したいですか？`,
       showCancelButton: true,
       confirmButtonText: '保存する',
       cancelButtonText:'キャンセル',
+      confirmButtonColor: '#41b883',
     }).then((result) => {
       if (result.isConfirmed) {
         onSave()
@@ -124,8 +125,8 @@ const onSave = async () => {
         cookies.set("admin2", user, 60 * 60 * 24 * 3);
         isLoading.value = false
       } else {
-        swal.fire('Saving Failed!', '', 'error')
-        notyf.warning('Please try again!')
+        swal.fire('フィールドが保存しました。', '', 'error')
+        notyf.warning('もう一度トライしてください。')
         isLoading.value = false
       }
     }).catch(function (error) {
@@ -277,7 +278,7 @@ onBeforeMount(() => {
          <div class="column is-2">
            <div class="fieldset-heading">
 <!--             <VButton icon="feather:eye" outlined> QR Code </VButton>-->
-             <VButton icon="feather:eye" color="primary" outlined @click="QrCodeActionsOpen = true">  QR Code </VButton>
+             <VButton icon="feather:eye" color="primary" outlined @click="QrCodeActionsOpen = true">  QRコード </VButton>
            </div>
          </div>
        </div>
@@ -337,7 +338,7 @@ onBeforeMount(() => {
       size="medium"
       actions="center"
       @close="QrCodeActionsOpen = false"
-      title="QR Code"
+      title="QRコード"
     >
       <template #content>
         <form class="form-layout is-split" @submit.prevent>
@@ -351,7 +352,7 @@ onBeforeMount(() => {
         </form>
       </template>
       <template #action>
-        <VButton color="primary" raised @click="downloadPNG">Download</VButton>
+        <VButton color="primary" raised @click="downloadPNG">ダウンロード</VButton>
       </template>
     </VModal>
   </div>

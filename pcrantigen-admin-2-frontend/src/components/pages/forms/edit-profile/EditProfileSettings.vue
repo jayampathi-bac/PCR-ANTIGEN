@@ -34,17 +34,18 @@ const fireEditAccountAlert = () => {
   if (current_password.value && new_password.value && confirm_password.value) {
     if (new_password.value === confirm_password.value){
       swal.fire({
-        title: `Do you want to edit profile ?`,
+        title: `プロフィール情報変更したいですか？`,
         showCancelButton: true,
         confirmButtonText: '保存する',
         cancelButtonText:'キャンセル',
+        confirmButtonColor: '#41b883',
       }).then((result) => {
         if (result.isConfirmed) {
           onSave()
         }
       })
     }else{
-      notyf.warning('Passwords do not match. Please try again..!')
+      notyf.warning('パスワードが間違っていないかもう一度ご確認お願い致します。')
       isLoading.value = false
     }
 
@@ -68,8 +69,8 @@ const onSave = async () => {
         swal.fire('保存完了', '', 'success')
         isLoading.value = false
       } else {
-        swal.fire('Saving Failed!', '', 'error')
-        notyf.warning('Please try again!')
+        swal.fire('フィールドが保存しました。', '', 'error')
+        notyf.warning('もう一度トライしてください。')
         isLoading.value = false
       }
     }).catch(function (error) {
@@ -87,7 +88,7 @@ const onSave = async () => {
       <div class="form-head-inner">
         <div class="left">
           <h3>設定</h3>
-          <p>Edit your account prefs and settings</p>
+          <p>プロフィール情報変更と設定</p>
         </div>
         <div class="right">
           <div class="buttons">

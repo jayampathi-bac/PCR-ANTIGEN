@@ -33,7 +33,7 @@ export const customerChartOptions = {
     },
   },
   xaxis: {
-    categories: ['Jan','Feb','Mar','Apr','May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    categories: ['1月','2月','3月','4月','5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
     position: 'top',
     axisBorder: {
       show: false,
@@ -73,7 +73,7 @@ export const customerChartOptions = {
   },
   colors: [themeColors.green, themeColors.secondary, themeColors.orange],
   title: {
-    text: '患者',
+    text: '患者集計',
     align: 'left',
   },
 }

@@ -24,7 +24,7 @@ const handleSignup = async () => {
   if (name.value && contact_number.value && email.value && password.value && repeat_password.value) {
     isLoading.value = true
     if (password.value !== repeat_password.value){
-      notif.warning('Passwords do not match. Please try again..!')
+      notif.warning('パスワードが間違っていないかもう一度ご確認お願い致します。')
     }else{
       if (!isAgreed.value){
         notif.warning('Please agree to the terms and conditions..!')
