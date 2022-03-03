@@ -3,9 +3,9 @@ import { useHead } from '@vueuse/head'
 
 import { pageTitle } from '/@src/state/navbarLayoutState'
 import {defineProps, ref, toRefs} from "vue";
-pageTitle.value = '検査結果を検索'
+pageTitle.value = '検査結果'
 useHead({
-  title: '検査結果を検索',
+  title: '検査結果',
 })
 </script>
 

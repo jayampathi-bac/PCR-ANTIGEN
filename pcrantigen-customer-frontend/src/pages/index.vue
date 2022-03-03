@@ -39,14 +39,14 @@ const handleLogin = async () => {
       }).then(() => {
           isLoading.value = false
           router.push({name: 'results'})
-          notif.success(`ようこそ！ ${store.state.auth.user.name} .!`)
+          notif.success(`${store.state.auth.user.name} 様システムへようこそ！`)
           if (identifier.value !== undefined){
             // console.log("calling websocket")
             callingWebSocket();
           }
         },
         (error) => {
-          notif.warning('誤った資格情報です。もう一度やり直してください。')
+          notif.warning('電話番号とパスワードが間違っていないかもう一度ご確認ください。')
           isLoading.value = false
         }
       );

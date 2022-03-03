@@ -15,11 +15,12 @@ const centeredActionsOpen = ref(false)
 
 const customerService = new CustomerService();
 const store = useStore()
+const customer_name = ref(store.state.auth.user.name);
 const profile_url = ref('')
 const testkit_image = ref('')
 const test_name = ref("PCR Antigen")
 const brand_name = ref("PFizer")
-const test_result = ref("Negative （-）")
+const test_result = ref("陰性（―）")
 const test_done_at = ref("2022/01/02 - 17:25 PM")
 const test_validity = ref("2022/01/02 - 2022/01/02")
 const contact_number = ref(store.state.auth.user.contact_number);
@@ -146,19 +147,20 @@ onMounted(async () => {
               <div id="id-card" >
                 <div class="id-card material-ui-shadow">
                   <div class="rotated2"></div>
-                  <p class="topic">测试结果证书</p>
+                  <p class="topic">検査結果報告書</p>
                   <hr style="margin: 5px 0; ">
                   <div id="id-card__mugshot">
                     <img  id="id-card-mugshot" :src="profile_url" />
                   </div>
                   <img id="img2"  :src="testkit_image"  />
-                  <p class="para">Test Name ：{{test_name}} - {{brand_name}}</p>
-                  <p class="para">Result ：{{test_result}}</p>
-                  <p class="para">Test Done At ：{{test_done_at}}</p>
+                  <p class="para">名前 ：{{customer_name}}</p>
+                  <p class="para">検査名 ：{{test_name}} - {{brand_name}}</p>
+                  <p class="para">検査結果 ：{{test_result}}</p>
+                  <p class="para">検査日時 ：{{test_done_at}}</p>
 
 
                   <div>
-                    <p class="para">Validity : {{test_validity}}</p>
+                    <p class="para">有効期限 : {{test_validity}}</p>
 <!--                    <p class="para">Validity : 2022-02-03 01:39 - 2022-02-06 01:39</p>-->
                   </div>
                   <div class="rotated"></div>
@@ -170,7 +172,7 @@ onMounted(async () => {
         <template #action>
           <VButton color="primary" raised v-on:click="downloadPNG"> PNG</VButton>
           <VButton color="primary" raised v-on:click="downloadPDF">  PDF</VButton>
-          <VButton color="primary" raised v-on:click="PrintImage"> PRINT</VButton>
+          <VButton color="primary" raised v-on:click="PrintImage"> 印刷</VButton>
         </template>
       </V-Modal>
     </div>
@@ -190,7 +192,7 @@ onMounted(async () => {
               <div
                 class="search-results-item"
               >
-                <V-Block title="Antigen Test" :subtitle="test_done_at" center>
+                <V-Block title="抗原検査" :subtitle="test_done_at" center>
                   <template #icon>
                     <!--                    <V-Avatar size="medium" :picture="person.avatar" />-->
                   </template>
@@ -251,7 +253,7 @@ template {
 
 .id-card {
   width: 336px;
-  height: 193px;
+  height: 203px;
   background: #ffffff;
   padding: 10px;
   position: relative;
@@ -364,7 +366,7 @@ template {
 .para{
   font-family: 'PT Sans', sans-serif;
   color: black;
-  font-size: 6.3pt;
+  font-size: 6.2pt;
   font-weight: 400;
 }
 .topic{

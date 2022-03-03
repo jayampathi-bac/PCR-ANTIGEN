@@ -41,11 +41,11 @@ const onSave = async () => {
         notyf.success('保存完了')
         isLoading.value = false
       }else{
-        notyf.warning('Please try again!')
+        notyf.warning('現在のパスワードが間違っています。')
         isLoading.value = false
       }
     }else{
-      notyf.warning('パスワードを間違っていないかもう一度ご確認お願い致します。')
+      notyf.warning('新しいパスワードが確認用パスワードとあっていません。')
       isLoading.value = false
     }
   }else{
@@ -63,7 +63,7 @@ const onSave = async () => {
       <div class="form-head-inner">
         <div class="left">
           <h3>設定</h3>
-          <p>プロフィール情報変更と設定</p>
+          <p>パスワードを変更</p>
         </div>
         <div class="right">
           <div class="buttons">
@@ -131,7 +131,7 @@ const onSave = async () => {
                 <input
                   type="password"
                   class="input"
-                  placeholder="再新しいパスワード"
+                  placeholder="新しいパスワード確認用"
                   autocomplete="new-password"
                   v-model="confirm_password"
                 />
